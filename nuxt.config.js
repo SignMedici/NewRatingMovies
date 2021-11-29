@@ -6,7 +6,7 @@ export default {
     titleTemplate: "%s - ratingMovies",
     title: "ratingMovies",
     htmlAttrs: {
-      lang: "en",
+      lang: "fr",
     },
     meta: [
       { charset: "utf-8" },
@@ -88,11 +88,18 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
+  /* axios: {
     // proxy: true,
     baseURL: process.env.BASE_URL || "https://localhost:8010/api",
+    baseURL:
+      process.env.BASE_URL ||
+      "https://newratingmovies-backend.herokuapp.com/api",
+  }, */
+  env: {
+    baseURL:
+      process.env.BASE_URL ||
+      "https://newratingmovies-backend.herokuapp.com/api",
   },
-
   auth: {
     strategies: {
       local: {
@@ -106,14 +113,10 @@ export default {
           property: "user",
           autoFetch: true,
         },
-        //      refreshToken: {  // it sends request automatically when the access token expires, and its expire time has set on the Back-end and does not need to we set it here, because is useless
-        //        property: "refresh_token", // property name that the Back-end sends for you as a refresh token for saving on localStorage and cookie of user browser
-        //        data: "refresh_token", // data can be used to set the name of the property you want to send in the request.
-        //      },
         endpoints: {
-          login: { url: "/api/auth/login", method: "post" },
+          login: { url: "/auth/login", method: "post" },
           logout: false,
-          user: { url: "/api/auth/user", method: "get" },
+          user: { url: "/auth/user", method: "get" },
         },
       },
     },

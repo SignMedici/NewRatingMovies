@@ -66,7 +66,6 @@
   import axios from "axios";
   import MovieModal from "./movieModal";
 
-
   export default{
     data(){
       return {
@@ -80,6 +79,7 @@
         sortDirection: 'asc',
         movieForModal:'',
         revele: false,
+        baseURL: process.env.baseURL,
       }
     },
     computed: {
@@ -91,7 +91,7 @@
         rateMovie(value, id){
             axios
             .patch(
-                process.env._AXIOS_BASE_URL_ +
+                this.baseURL +
                 "/movies/" +
                 id, {
                 grade: value*2
@@ -101,8 +101,9 @@
             });
         },
         getInfo(filePath, fileToModify, movie){
+          console.log(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo");
           axios
-          .post(process.env._AXIOS_BASE_URL_ + "/movies/" + movie.movieDbId + "/getInfo")
+          .post(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
           .then((response) => {
             this.toggleModal(response.data);
           });

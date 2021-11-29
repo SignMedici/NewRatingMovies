@@ -56,6 +56,7 @@
       rules: [
         value => !!value || 'Required.',
       ],
+      baseURL: process.env.baseURL,
     }),
     methods:{
       getSearchResult(event){
@@ -78,7 +79,7 @@
         //get results from api
         axios
           .post(
-              process.env._AXIOS_BASE_URL_ +
+              this.baseURL +
               "/movies/search/" +
               this.search.replaceAll(" ", "+")
           )
