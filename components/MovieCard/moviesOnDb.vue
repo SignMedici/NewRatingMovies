@@ -91,7 +91,7 @@
         rateMovie(value, id){
             axios
             .patch(
-                process.env.baseURL +
+                process.env._AXIOS_BASE_URL_ +
                 "/movies/" +
                 id, {
                 grade: value*2
@@ -102,7 +102,7 @@
         },
         getInfo(filePath, fileToModify, movie){
           axios
-          .post(process.env.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
+          .post(process.env._AXIOS_BASE_URL_ + "/movies/" + movie.movieDbId + "/getInfo")
           .then((response) => {
             this.toggleModal(response.data);
           });

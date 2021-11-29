@@ -78,7 +78,7 @@
         //get results from api
         axios
           .post(
-              process.env.baseUrl +
+              process.env._AXIOS_BASE_URL_ +
               "/movies/search/" +
               this.search.replaceAll(" ", "+")
           )
