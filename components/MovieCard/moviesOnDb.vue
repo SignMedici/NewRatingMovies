@@ -118,7 +118,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
 .mainContainer{
     margin-top: 30px;
 }

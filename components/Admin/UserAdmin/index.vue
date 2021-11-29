@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 tr{
   font-family: 'Lato', sans-serif;
   font-weight: 600;

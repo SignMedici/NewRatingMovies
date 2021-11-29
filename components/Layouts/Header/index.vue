@@ -58,7 +58,7 @@
                 My Profile
               </nuxt-link>
             </v-tab>
-            <v-tab v-if="getUserInfo.isAdmin == true"> 
+            <v-tab v-if="getUserInfo.isAdmin == true">
               <nuxt-link class="nav-link active" aria-current="page" to="/admin">
                 Admin
               </nuxt-link>
@@ -85,7 +85,7 @@
 export default {
   data() {
     return {
-      
+
     }
   },
   methods: {
@@ -104,17 +104,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nav-link{
   color: #ffffff;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
-} 
+}
 .nav-link:focus{
   color: #9042b4;
   font-family: 'Ubuntu', sans-serif;
   font-weight: 600;
-} 
+}
 .v-tabs-slider {
     background-color: #9042b4;
     height: 100%;

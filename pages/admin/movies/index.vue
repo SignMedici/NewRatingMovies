@@ -3,7 +3,7 @@
     <Admin-MovieAdmin />
   </div>
 </template>
-<style>
+<style scoped>
 .table{
   color: #fff;
 }

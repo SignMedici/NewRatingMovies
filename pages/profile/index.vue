@@ -9,6 +9,3 @@ export default {
   middleware: "isAuthenticated", // it will use `isAuthenticated` middleware
 };
 </script>
-
-<style>
-</style>
