@@ -71,9 +71,6 @@ export default {
 </script>
 
 <style scoped>
-.mainContainer{
-    margin-top: 30px;
-}
 .mainLogo{
     margin-left:0;
     margin-right:0;
@@ -81,10 +78,10 @@ export default {
 }
 .loginForm{
   width: 600px;
-  padding: 50px;
+  padding: 30px;
   background-color: #ffffff20;
   border-radius: 14px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .loginTitle{
   color: #ffffff79;

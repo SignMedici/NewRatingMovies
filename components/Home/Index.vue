@@ -1,9 +1,5 @@
 <template>
-<div>
-  <div>
-    <MoviesOnDb />
-  </div>
-</div>
+  <MoviesOnDb />
 </template>
 
 <script>

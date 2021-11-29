@@ -110,4 +110,13 @@ export default {
     width: 300px;
     text-align: justify;
   }
+  tr{
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: #9042b4;
+    font-size: 17px;
+  }
+  td{
+    color: #fff;
+  }
 </style>
