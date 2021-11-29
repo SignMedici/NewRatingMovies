@@ -96,9 +96,7 @@ export default {
       "https://newratingmovies-backend.herokuapp.com/api",
   }, */
   env: {
-    baseURL:
-      process.env.BASE_URL ||
-      "https://newratingmovies-backend.herokuapp.com/api",
+    baseURL: process.env.BASE_URL || "localhost:8010/api",
   },
   auth: {
     strategies: {
