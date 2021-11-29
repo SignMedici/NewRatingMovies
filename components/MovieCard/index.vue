@@ -43,8 +43,6 @@
   import axios from "axios";
   import MovieModal from "./movieModal";
 
-  const baseURL = "http://localhost:8010/api";
-
   export default{
     props: ['btnTxt','fileToModify','filePath'],
     components: {
@@ -85,7 +83,7 @@
 
       getInfo(filePath, fileToModify, movie){
         axios
-        .post(baseURL + "/movies/" + movie.id + "/getInfo")
+        .post(process.env.baseUrl + "/movies/" + movie.id + "/getInfo")
         .then((response) => {
           this.selectedMovie = response.data;
           if(filePath === null){
@@ -116,7 +114,7 @@
           }
 
           axios
-          .post(baseURL + "/movies/" + info.movieDbId + "/metadata", {
+          .post(process.env.baseUrl + "/movies/" + info.movieDbId + "/metadata", {
             'format': fileToModify.type,
             'path': filePath + fileToModify.name,
             'selectedMovie': info
@@ -130,7 +128,7 @@
 
       addMovie(){
         axios
-        .post(baseURL + "/movies", this.selectedMovie)
+        .post(process.env.baseUrl + "/movies", this.selectedMovie)
         .then(async(response) => {
           await this.$store.commit('ADD_MOVIE', this.selectedMovie);
           alert ("Movie successfully added");

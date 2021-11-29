@@ -66,7 +66,6 @@
   import axios from "axios";
   import MovieModal from "./movieModal";
 
-  const baseURL = "http://localhost:8010/api";
 
   export default{
     data(){
@@ -92,7 +91,7 @@
         rateMovie(value, id){
             axios
             .patch(
-                baseURL +
+                process.env.baseURL +
                 "/movies/" +
                 id, {
                 grade: value*2
@@ -103,7 +102,7 @@
         },
         getInfo(filePath, fileToModify, movie){
           axios
-          .post(baseURL + "/movies/" + movie.movieDbId + "/getInfo")
+          .post(process.env.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
           .then((response) => {
             this.toggleModal(response.data);
           });

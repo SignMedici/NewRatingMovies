@@ -97,9 +97,7 @@
       </v-form>
 </template>
 <script>
-  import axios from "axios";
-
-  const baseURL = "http://localhost:8010/api/movies/";
+import axios from "axios";
 
 export default {
   data: () => ({
@@ -118,14 +116,14 @@ export default {
   methods:{
     getMovie(){
         axios
-        .get(baseURL + this.$route.params.id)
+        .get(process.env.baseUrl + this.$route.params.id)
         .then(async (response) => {
           this.movie = response.data;
         });
     },
    updateMovie(){
        axios
-        .patch(baseURL + this.$route.params.id, {
+        .patch(process.env.baseUrl + this.$route.params.id, {
           title: this.title,
           genre: this.genre,
           grade: this.grade,

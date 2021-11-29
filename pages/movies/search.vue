@@ -40,8 +40,6 @@
   import axios from "axios";
   import MovieCard from '@/components/MovieCard/index';
 
-  const baseURL = "http://localhost:8010/api";
-
   export default {
     components:{
         MovieCard
@@ -59,7 +57,7 @@
         if (this.title !== ''){
           axios
             .post(
-                baseURL +
+                process.env.baseUrl +
                 "/movies/search/" +
                 this.title.replace(" ", "+")
             )
