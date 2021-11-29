@@ -2,7 +2,6 @@
   <div>
     <layouts-header />
     <div class="container">
-      <br />
       <Nuxt />
     </div>
   </div>
@@ -12,7 +11,7 @@
 export default {};
 </script>
 
-<style scoped>
+<style>
 body
 {
     height: 100%;
