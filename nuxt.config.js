@@ -87,17 +87,15 @@ export default {
     "@nuxtjs/auth-next",
   ],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  /* axios: {
-    // proxy: true,
-    baseURL: process.env.BASE_URL || "https://localhost:8010/api",
-    baseURL:
-      process.env.BASE_URL ||
-      "https://newratingmovies-backend.herokuapp.com/api",
-  }, */
-  env: {
-    baseURL: process.env.BASE_URL || "localhost:8010/api",
+  axios: {
+    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
   },
+
+  env: {
+    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
+    /* baseURL: "https://newratingmovies-backend.herokuapp.com/api", */
+  },
+
   auth: {
     strategies: {
       local: {
@@ -112,9 +110,9 @@ export default {
           autoFetch: true,
         },
         endpoints: {
-          login: { url: "/auth/login", method: "post" },
+          login: { url: "auth/login", method: "post" },
           logout: false,
-          user: { url: "/auth/user", method: "get" },
+          user: { url: "auth/user", method: "get" },
         },
       },
     },
