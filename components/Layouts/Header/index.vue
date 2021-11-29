@@ -28,17 +28,17 @@
               <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M12,3L20,9V21H15V14H9V21H4V9L12,3Z" />
               </svg>
-                Home
+                Accueil
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/auth/login">
-                Login
+                Connexion
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/auth/register">
-                Register
+                Inscription
               </nuxt-link>
             </v-tab>
           </v-tabs>
@@ -50,22 +50,22 @@
               <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
                   <path fill="currentColor" d="M12,3L20,9V21H15V14H9V21H4V9L12,3Z" />
               </svg>
-                Home
+                Accueil
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/profile">
-                My Profile
+                Mon Profile
               </nuxt-link>
             </v-tab>
             <v-tab v-if="getUserInfo.isAdmin == true">
               <nuxt-link class="nav-link active" aria-current="page" to="/admin">
-                Admin
+                Administration
               </nuxt-link>
             </v-tab>
             <v-tab class="nav-item logout" @click="logout">
               <nuxt-link class="nav-link active" aria-current="page" to="#"
-                  >Logout</nuxt-link>
+                  >Déconnexion</nuxt-link>
             </v-tab>
           </v-tabs>
         </template>

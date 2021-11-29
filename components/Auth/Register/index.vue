@@ -8,20 +8,20 @@
         <svg style="width:65px;height:65px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M21.7 14.4L20.7 15.4L18.6 13.3L19.6 12.3C19.8 12.1 20.2 12.1 20.4 12.3L21.7 13.6C21.9 13.8 21.9 14.1 21.7 14.4M12 19.9L18.1 13.8L20.2 15.9L14.1 22H12V19.9M10 19.1L21 8.1V5L12 1L3 5V11C3 15.8 5.9 20.3 10 22.3V19.1Z" />
         </svg><br>
-        Register</div>
+        Inscription</div>
     <form @submit.prevent="register">
       <label for="password" class="form-label"></label>
       <div>
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Nom"
           v-model="registerData.name"
           class="form-control"
           id="name"
         />
         <input
           type="email"
-          placeholder="Email address"
+          placeholder="Adresse email"
           class="fields form-control"
           id="email"
           v-model="registerData.email"
@@ -29,13 +29,13 @@
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder="Mot de passe"
           v-model="registerData.password"
           class="form-control"
           id="password"
         />
       </div>
-      <button type="submit" class="btn w-100 registerButton mt-3">Register</button>
+      <button type="submit" class="btn w-100 registerButton mt-3">Valider</button>
     </form>
     </v-container>
   </div>
@@ -71,8 +71,16 @@ export default {
 </script>
 
 <style scoped>
+.mainContainer{
+    margin-top: 30px;
+}
+.mainLogo{
+    margin-left:0;
+    margin-right:0;
+    text-align: center;
+}
 .loginForm{
-  width: 800px;
+  width: 600px;
   padding: 50px;
   background-color: #ffffff20;
   border-radius: 14px;
