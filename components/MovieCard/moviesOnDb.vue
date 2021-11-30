@@ -4,60 +4,60 @@
       <img src="../../assets/logo_big.png">
     </v-container>
     <v-container class="grey lighten-5 mainContainer">
-        <v-row no-gutters>
-            <v-col
-                v-for="movie in movies" :key="movie.id"
-                cols="12"
-                sm="3"
-            >
-              <div class="card">
-                <v-card>
-                    <div class="hover10">
-                        <figure>
-                            <img  @click="getInfo(null,null,movie)" class="imgMovieCard" :srcset="url+movie.poster_path" >
-                            <v-rating v-if="isAuthenticated"
-                                class="favoriteMovie"
-                                hover
-                                length="1"
-                                size="54"
-                                :empty-icon="emptyIcon"
-                                :full-icon="fullIcon"
-                                color="yellow darken-3"
-                                background-color="grey darken-1"
-                            ></v-rating>
-                        </figure>
-                    </div>
-                    <div class="cardInfos">
-                    <v-card-title v-if="movie.title.length > 25">{{ movie.title.substring(0,22) }}...</v-card-title>
-                    <v-card-title v-else>{{ movie.title }}</v-card-title>
-                    <div class="text-subtitle-1">
-                        {{ movie.release_date.substring(0,4) }}
-                    </div>
-                    <v-card-actions class="pa-4">
-                        <v-rating v-if="isAuthenticated"
-                        background-color="red lighten-3"
-                        color="red"
-                        hover
-                        length="5"
-                        size="18"
-                        :value= "movie.grade/2"
-                        @input="rateMovie($event, movie._id)"
-                    ></v-rating>
-                    <v-rating v-else
-                        background-color="red lighten-3"
-                        color="red"
-                        hover
-                        length="5"
-                        size="18"
-                        :value= "movie.grade/2"
-                        readonly
-                    ></v-rating>
-                    </v-card-actions>
-                  </div>
-                </v-card>
+      <v-row no-gutters>
+        <v-col
+            v-for="movie in movies" :key="movie.id"
+            cols="12"
+            sm="3"
+        >
+          <div class="card">
+            <v-card>
+              <div class="hover10">
+                <figure>
+                  <img  @click="getInfo(null,null,movie)" class="imgMovieCard" :srcset="url+movie.poster_path" >
+                  <v-rating v-if="isAuthenticated"
+                      class="favoriteMovie"
+                      hover
+                      length="1"
+                      size="54"
+                      :empty-icon="emptyIcon"
+                      :full-icon="fullIcon"
+                      color="yellow darken-3"
+                      background-color="grey darken-1"
+                  ></v-rating>
+                </figure>
               </div>
-            </v-col>
-    </v-row>
+              <div class="cardInfos">
+                <v-card-title v-if="movie.title.length > 25">{{ movie.title.substring(0,22) }}...</v-card-title>
+                <v-card-title v-else>{{ movie.title }}</v-card-title>
+                <div class="text-subtitle-1">
+                    {{ movie.release_date.substring(0,4) }}
+                </div>
+                <v-card-actions class="pa-4">
+                  <v-rating v-if="isAuthenticated"
+                    background-color="red lighten-3"
+                    color="red"
+                    hover
+                    length="5"
+                    size="18"
+                    :value= "movie.grade/2"
+                    @input="rateMovie($event, movie._id)"
+                  ></v-rating>
+                  <v-rating v-else
+                    background-color="red lighten-3"
+                    color="red"
+                    hover
+                    length="5"
+                    size="18"
+                    :value= "movie.grade/2"
+                    readonly
+                  ></v-rating>
+                </v-card-actions>
+              </div>
+            </v-card>
+          </div>
+        </v-col>
+      </v-row>
     </v-container>
     <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" />
   </div>

@@ -12,6 +12,9 @@ export default {};
 </script>
 
 <style>
+* {
+    box-sizing: border-box;
+}
 body
 {
     height: 100%;
