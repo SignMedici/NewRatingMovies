@@ -54,14 +54,13 @@
               </nuxt-link>
             </v-tab>
             <v-tab>
-              <nuxt-link class="nav-link active" aria-current="page" :to="{ name: 'profile', hash: "#logo"}">
+              <nuxt-link class="nav-link active" :to="{ name: 'profile', hash: "#logo"}">
                 Mon Profil
               </nuxt-link>
             </v-tab>
             <v-tab v-if="getUserInfo.isAdmin == true">
-              <nuxt-link class="nav-link active" aria-current="page" :to="{ name: 'admin', hash: "#logo"}">
-                Administration
-              </nuxt-link>
+              <nuxt-link class="nav-link active" :to="{ name: 'admin', hash: "#logo"}">
+                Administration</nuxt-link>
             </v-tab>
             <v-tab class="nav-item logout" @click="logout">
               <nuxt-link class="nav-link active" aria-current="page" to="#">
