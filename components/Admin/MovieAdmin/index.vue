@@ -36,7 +36,7 @@
             <td>{{ movie.vote_average }}</td>
             <td class="noWrap">{{ movie.release_date }}</td>
             <td class="noWrap">{{ movie.director }}</td>
-            <td class="overview">{{ movie.overview }}</td>
+            <td class="overview"><span class="overviewTxt">{{ movie.overview }}</span></td>
             <td class="align-middle">
               <div>
                 <nuxt-link :to="{ name: 'admin-movies-updateMovie-id', params: { id: movie._id }, hash: '#logo' }" class="btn">
@@ -94,8 +94,15 @@ export default {
 </script>
 <style scoped>
   .overview{
+    padding: 5px;
+  }
+  .overviewTxt{
+    display:flex;
     width: 300px;
+    height: 265px;
+    overflow:auto;
     text-align: justify;
+    padding-right: 5px;
   }
   tr{
     font-family: 'Lato', sans-serif;

@@ -143,7 +143,6 @@
 }
 .v-card__text{
     max-height: 200px;
-    overflow: scroll;
     font-family: 'Lato', sans-serif;
     font-size: 18px;
 }
@@ -196,9 +195,5 @@ figure{
 .hover10 figure:hover img {
 	-webkit-filter: sepia(100%);
 	filter: sepia(100%);
-}
-.text-overview{
-  overflow:auto;
-  height: 120px;
 }
 </style>

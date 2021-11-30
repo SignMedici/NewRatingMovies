@@ -183,7 +183,6 @@ button{
 }
 .v-card__text{
     max-height: 200px;
-    overflow: scroll;
     font-family: 'Lato', sans-serif;
     font-size: 18px;
 }
