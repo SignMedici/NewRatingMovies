@@ -1,16 +1,12 @@
 <template>
   <div>
     <div>
-      <div>
-        <nuxt-link :to="{ name: 'movies-search', hash: '#logo' }" class="btn btn-success mb-2 me-2">
-          Ajouter
-        </nuxt-link>
-      </div>
-      <div>
-        <nuxt-link :to="{ name: 'movies-metadata',hash:'#logo'}" class="btn btn-success mb-2">
-          Modifier metadata
-        </nuxt-link>
-      </div>
+      <nuxt-link :to="{ name: 'movies-search', hash: '#logo' }" class="btn btn-success mb-2 me-2">
+        Ajouter
+      </nuxt-link>
+      <nuxt-link :to="{ name: 'movies-metadata',hash:'#logo'}" class="btn btn-success mb-2">
+        Modifier metadata
+      </nuxt-link>
     </div>
     <table class="table table-striped borderless text-center">
       <thead>
