@@ -100,25 +100,14 @@ export default {
     BASE_URL: process.env.BASE_URL || "http://localhost:8010/api",
   }, */
 
-  /* env: {
-    BASE_URL: "http://localhost:8010/api",
-    BASE_URL: process.env.BASE_URL || "http://localhost:8010/api",
-  }, */
+  env: {
+    /* BASE_URL: "http://localhost:8010/api", */
+    BASE_URL: "https://newratingmovies-backend.herokuapp.com/api",
+  },
 
   axios: {
-    BASE_URL: "http://localhost:8010/api",
-  },
-
-  publicRuntimeConfig: {
-    axios: {
-      BASE_URL: "http://localhost:8010/api",
-    },
-  },
-
-  privateRuntimeConfig: {
-    axios: {
-      BASE_URL: process.env.BASE_URL,
-    },
+    /* BASE_URL: "http://localhost:8010/api", */
+    BASE_URL: "https://newratingmovies-backend.herokuapp.com/api",
   },
 
   auth: {

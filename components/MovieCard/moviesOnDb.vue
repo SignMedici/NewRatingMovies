@@ -79,7 +79,7 @@
         sortDirection: 'asc',
         movieForModal:'',
         revele: false,
-        BASE_URL: process.env.BASE_URL,
+        baseURL: process.env.baseURL,
       }
     },
     computed: {
@@ -91,7 +91,7 @@
         rateMovie(value, id){
             axios
             .patch(
-                this.BASE_URL +
+                this.baseURL +
                 "/movies/" +
                 id, {
                 grade: value*2
@@ -101,9 +101,9 @@
             });
         },
         getInfo(filePath, fileToModify, movie){
-          console.log(this.BASE_URL + "/movies/" + movie.movieDbId + "/getInfo");
+          console.log(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo");
           axios
-          .post(this.BASE_URL + "/movies/" + movie.movieDbId + "/getInfo")
+          .post(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
           .then((response) => {
             this.toggleModal(response.data);
           });
@@ -120,21 +120,29 @@
 </script>
 <style scoped>
 .mainContainer{
-    margin-top: 30px;
+    margin-top: 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 .mainLogo{
-    margin-left:0;
-    margin-right:0;
-    text-align: center;
-}
-.mx-auto{
-    margin-bottom: 17px;
+  margin-top: 10px;
+  margin-left:0;
+  margin-right:0;
+  text-align: center;
 }
 .card{
-  margin: 10px;
+  display: flex;
+  margin: 5px;
   border: 0px;
   border-radius: 10px;
   overflow: hidden;
+}
+.imgMovieCard{
+  object-fit: cover;
+  min-height: 450px;
+  width: 100%;
+  height: auto;
 }
 .v-card__text{
     max-height: 200px;
@@ -158,22 +166,11 @@
 .cardInfos{
     background-color: #d29eeb31;
 }
-.mx-auto{
-    min-height: 580px;
-}
 .v-card__actions{
     padding: 0 0 0 7px;
 }
-.v-sheet.v-card.v-sheet--shaped {
-    border: 0px black solid;
-}
 .v-rating{
   padding-bottom: 5px;
-}
-.imgMovieCard{
-    min-height: 450px;
-    width: 100%;
-    height: auto;
 }
 figure{
     margin: 0;
