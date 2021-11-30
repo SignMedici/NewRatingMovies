@@ -96,13 +96,13 @@ export default {
     "@nuxtjs/auth-next",
   ],
 
-  axios: {
+  /* axios: {
     baseURL: process.env.BASE_URL || "http://localhost:8010/api",
-  },
+  }, */
 
   env: {
-    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
-    /* baseURL: "https://newratingmovies-backend.herokuapp.com/api", */
+    /* baseURL: "http://localhost:8010/api", */
+    baseURL: "https://newratingmovies-backend.herokuapp.com/api",
   },
 
   auth: {
