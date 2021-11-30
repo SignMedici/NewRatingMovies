@@ -102,7 +102,7 @@ export default {
 
   env: {
     /* baseURL: "http://localhost:8010/api", */
-    baseURL: "https://newratingmovies-backend.herokuapp.com/api",
+    baseURL: process.env.BASE_URL,
   },
 
   auth: {
