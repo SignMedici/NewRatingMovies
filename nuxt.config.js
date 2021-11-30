@@ -103,6 +103,7 @@ export default {
   env: {
     /* BASE_URL: "http://localhost:8010/api", */
     BASE_URL: "https://newratingmovies-backend.herokuapp.com/api",
+    API_PIC_URL: "http://image.tmdb.org/t/p/w500",
   },
 
   axios: {

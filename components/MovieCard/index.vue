@@ -60,7 +60,7 @@
         director: '',
         overview: '',
         strGenre: '',
-        url: 'http://image.tmdb.org/t/p/w500',
+        url: process.env.API_PIC_URL,
         defaultPicUrl: '../../assets/No_Picture.png',
         movieForModal:'',
         revele: false,

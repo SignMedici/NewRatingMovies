@@ -77,7 +77,7 @@ export default {
   props: ["movie", "revele", "toggleModal"],
   data() {
     return {
-      url: "http://image.tmdb.org/t/p/w500",
+      url: "process.env.API_PIC_URL",
       defaultPicUrl: "../../assets/No_Picture.png",
       modalMovie: "",
     };

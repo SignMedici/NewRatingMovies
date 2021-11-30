@@ -71,7 +71,7 @@
       return {
         title: '',
         grade: 0,
-        url: 'http://image.tmdb.org/t/p/w500',
+        url: process.env.API_PIC_URL,
         movies: [],
         emptyIcon: 'mdi-heart-outline',
         fullIcon: 'mdi-heart',
@@ -79,7 +79,7 @@
         sortDirection: 'asc',
         movieForModal:'',
         revele: false,
-        baseURL: process.env.baseURL,
+        baseURL: process.env.BASE_URL,
       }
     },
     computed: {
