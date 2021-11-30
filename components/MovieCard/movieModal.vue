@@ -151,7 +151,7 @@ img {
   font-weight: normal;
   color:#f2c43c;
   float: right;
-  margin-top: 13px;
+  margin-top: 12px;
 }
 .voteIcon{
   margin-bottom: 3px;
@@ -176,13 +176,13 @@ img {
   font-weight: 400;
 }
 table{
-  font-size: 8px;
+  font-size: 15px;
 }
 table span{
   color: #9042b4;
 }
 .overview{
-  height: 255px;
+  height: 265px;
   overflow:auto;
   text-align: justify;
   padding: 0 10px 0 0;

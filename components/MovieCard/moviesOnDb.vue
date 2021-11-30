@@ -119,10 +119,8 @@
 </script>
 <style scoped>
 .mainContainer{
-    margin-top: 30px;
     width: 100%;
-    margin: 0;
-    padding: 0;
+    padding-top: 20px;
 }
 .mainLogo{
   margin-top: 10px;
