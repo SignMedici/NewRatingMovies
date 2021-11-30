@@ -101,14 +101,14 @@ export default {
   }, */
 
   env: {
-    /* BASE_URL: "http://localhost:8010/api", */
-    BASE_URL: "https://newratingmovies-backend.herokuapp.com/api",
+    BASE_URL: "http://localhost:8010/api",
+    /* BASE_URL: "http://newratingmovies-backend.herokuapp.com/api", */
     API_PIC_URL: "http://image.tmdb.org/t/p/w500",
   },
 
   /* axios: {
     BASE_URL: "http://localhost:8010/api",
-    BASE_URL: "https://newratingmovies-backend.herokuapp.com/api",
+    BASE_URL: "http://newratingmovies-backend.herokuapp.com/api",
   }, */
 
   auth: {
@@ -125,9 +125,9 @@ export default {
           autoFetch: true,
         },
         endpoints: {
-          login: { url: "auth/login", method: "post" },
+          login: { url: "/auth/login", method: "post" },
           logout: false,
-          user: { url: "auth/user", method: "get" },
+          user: { url: "/auth/user", method: "get" },
         },
       },
     },
