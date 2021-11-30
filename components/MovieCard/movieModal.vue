@@ -77,7 +77,7 @@ export default {
   props: ["movie", "revele", "toggleModal"],
   data() {
     return {
-      url: "process.env.API_PIC_URL",
+      url: process.env.API_PIC_URL,
       defaultPicUrl: "../../assets/No_Picture.png",
       modalMovie: "",
     };

@@ -97,18 +97,18 @@ export default {
   ],
 
   /* axios: {
-    BASE_URL: process.env.BASE_URL || "http://localhost:8010/api",
+    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
   }, */
 
   env: {
-    BASE_URL: "http://localhost:8010/api",
-    /* BASE_URL: "http://newratingmovies-backend.herokuapp.com/api", */
+    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
+    /* baseURL: "http://newratingmovies-backend.herokuapp.com/api", */
     API_PIC_URL: "http://image.tmdb.org/t/p/w500",
   },
 
   /* axios: {
-    BASE_URL: "http://localhost:8010/api",
-    BASE_URL: "http://newratingmovies-backend.herokuapp.com/api",
+    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
+    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
   }, */
 
   auth: {

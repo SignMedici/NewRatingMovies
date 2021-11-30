@@ -45,7 +45,7 @@ export default {
   },
   methods: {
     async login() {
-      console.log(process.env.BASE_URL);
+      console.log(process.env.baseURL);
       try {
         let response = await this.$auth.loginWith("local", {
           data: this.loginData

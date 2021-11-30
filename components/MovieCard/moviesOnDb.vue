@@ -79,7 +79,7 @@
         sortDirection: 'asc',
         movieForModal:'',
         revele: false,
-        baseURL: process.env.BASE_URL,
+        baseURL: `${process.env.baseURL}`,
       }
     },
     computed: {
@@ -101,7 +101,6 @@
             });
         },
         getInfo(filePath, fileToModify, movie){
-          console.log(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo");
           axios
           .post(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
           .then((response) => {
