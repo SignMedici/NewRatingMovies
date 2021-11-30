@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container class="mainLogo">
+    <v-container class="grey lighten-5 mainLogo" id="logo">
       <img src="../../assets/logo_big.png">
     </v-container>
     <v-card>
