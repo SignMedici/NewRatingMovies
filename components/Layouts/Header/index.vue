@@ -64,7 +64,7 @@
               </nuxt-link>
             </v-tab>
             <v-tab class="nav-item logout" @click="logout">
-              <nuxt-link class="nav-link active" aria-current="page" :to="{ name: 'index', hash: "#logo"}">
+              <nuxt-link class="nav-link active" aria-current="page" to="#">
                 Déconnexion
               </nuxt-link>
             </v-tab>
