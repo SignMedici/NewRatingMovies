@@ -1,43 +1,39 @@
 <template>
   <div>
     <nuxt-link :to="{ name: 'movies-search'}" class="btn btn-success mb-2 me-2">
-      Add Movie
+      Ajouter
     </nuxt-link>
     <nuxt-link :to="{ name: 'movies-metadata',hash:'#logo'}" class="btn btn-success mb-2">
-      Change metadata
+      Modifier metadata
     </nuxt-link>
     <table class="table table-striped borderless text-center">
       <thead>
         <tr>
           <th class="text-left">
-            Title
+            Titre
           </th>
           <th class="text-left">
-            Grade
+            Vote
           </th>
           <th class="text-left">
-            Release Date
+            Sortie
           </th>
           <th class="text-left">
-            Director
+            Producteur
           </th>
           <th class="text-left">
-            Overview
+            Résumé
           </th>
-          <th class="text-left">
-            Update
-          </th>
-          <th class="text-left">
-            Delete
-          </th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody v-if="getMovies.length > 0">
         <tr v-for="movie in getMovies" :key="movie._id">
             <td >{{ movie.title }}</td>
-            <td>{{ movie.grade }}</td>
-            <td>{{ movie.date }}</td>
-            <td>{{ movie.director }}</td>
+            <td>{{ movie.vote_average }}</td>
+            <td class="noWrap">{{ movie.release_date }}</td>
+            <td class="noWrap">{{ movie.director }}</td>
             <td class="overview">{{ movie.overview }}</td>
             <td class="align-middle">
                 <nuxt-link :to="{ name: 'admin-movies-updateMovie-id', params: { id: movie._id }}">
@@ -57,7 +53,7 @@
       </tbody>
       <tbody v-else>
         <tr>
-            <td align="center" colspan="3">No record found.</td>
+            <td align="center" colspan="3">Aucun film dans la base de données.</td>
         </tr>
       </tbody>
     </table>
@@ -70,19 +66,6 @@ import axios from "axios";
 export default {
   data(){
     return {
-      headers: [
-        {
-          text: 'Title',
-          align: 'start',
-          sortable: false,
-          value: 'title',
-        },
-        { text: 'Genres', value: 'genre' },
-        { text: 'Grade', value: 'grade' },
-        { text: 'Picture URL', value: 'daposterte' },
-        { text: 'Director', value: 'director' },
-        { text: 'Overview', value: 'overview' },
-      ],
       baseURL: process.env.baseURL,
     }
   },
@@ -118,5 +101,8 @@ export default {
   }
   td{
     color: #fff;
+  }
+  .noWrap{
+    white-space: nowrap;
   }
 </style>

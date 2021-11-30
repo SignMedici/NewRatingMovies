@@ -3,12 +3,12 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Admin</th>
-          <th scope="col">Update</th>
-          <th scope="col">Delete</th>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Adresse Email</th>
+          <th scope="col">Admin?</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>

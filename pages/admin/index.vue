@@ -8,11 +8,11 @@
         dark
         flat
       >
-       <div class="adminTitle">
+       <div class="adminTitle mb-4">
          <svg style="width:50px;height:50px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M12 1L21 5V11C21 16.55 17.16 21.74 12 23C6.84 21.74 3 16.55 3 11V5L12 1M16 14H8V15.5C8 15.77 8.19 15.96 8.47 16L8.57 16H15.43C15.74 16 15.95 15.84 16 15.59L16 15.5V14M17 8L17 8L14.33 10.67L12 8.34L9.67 10.67L7 8L7 8L8 13H16L17 8Z" />
         </svg>
-         Admin Page</div>
+         Admininistration</div>
 
       <v-spacer></v-spacer>
 
@@ -45,7 +45,7 @@
         v-for="item in items"
         :key="item"
       >
-        <v-card flat v-if="item === 'users'" class="tableMain">
+        <v-card flat v-if="item === 'utilisateurs'" class="tableMain">
           <Admin-UserAdmin />
         </v-card>
         <v-card flat v-else class="tableMain">
@@ -68,7 +68,7 @@ export default {
       return {
         tab: null,
         items: [
-          'users', 'movies',
+          'utilisateurs', 'films',
         ],
       }
     },
@@ -76,10 +76,12 @@ export default {
 </script>
 <style scoped>
 .mainLogo{
-  margin-bottom: 30px;
+    margin: 10px 0 30px 0;
+    padding: 0;
+    text-align: center;
 }
 .theme--dark.v-toolbar.v-sheet {
-   background-color: #9042b4;
+  background-color: #9042b4;
 }
 .table{
   color: #fff;
@@ -94,7 +96,6 @@ export default {
   font-weight: 500;
   font-size: 50px;
   margin-top: 20px;
-  padding: 20px;
 }
 .v-tabs:not(.v-tabs--vertical) .v-tab {
     white-space: normal;

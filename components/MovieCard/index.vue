@@ -27,8 +27,8 @@
                 <div v-else class="mb-2"><br></div>
                 <!-- Button -->
                 <v-card-actions>
-                  <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 registerButton">Add</button>
-                  <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 registerButton">Select</button>
+                  <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 registerButton">Ajouter</button>
+                  <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 registerButton">Sélectionner</button>
                 </v-card-actions>
               </v-card>
             </v-col>
