@@ -79,7 +79,7 @@
         sortDirection: 'asc',
         movieForModal:'',
         revele: false,
-        baseURL: process.env.baseURL,
+        BASE_URL: process.env.BASE_URL,
       }
     },
     computed: {
@@ -91,7 +91,7 @@
         rateMovie(value, id){
             axios
             .patch(
-                this.baseURL +
+                this.BASE_URL +
                 "/movies/" +
                 id, {
                 grade: value*2
@@ -101,9 +101,9 @@
             });
         },
         getInfo(filePath, fileToModify, movie){
-          console.log(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo");
+          console.log(this.BASE_URL + "/movies/" + movie.movieDbId + "/getInfo");
           axios
-          .post(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
+          .post(this.BASE_URL + "/movies/" + movie.movieDbId + "/getInfo")
           .then((response) => {
             this.toggleModal(response.data);
           });

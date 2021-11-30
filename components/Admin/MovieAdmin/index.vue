@@ -83,14 +83,14 @@ export default {
         { text: 'Director', value: 'director' },
         { text: 'Overview', value: 'overview' },
       ],
-      baseURL: process.env.baseURL,
+      BASE_URL: process.env.BASE_URL,
     }
   },
   methods: {
     deleteMovie(id){
       if(confirm("Still OK to delete this movie")){
         axios
-            .delete(this.baseURL + "/movies/delete/" + id)
+            .delete(this.BASE_URL + "/movies/delete/" + id)
             .then(async(response) => {
               await this.$store.commit('DELETE_MOVIE', id);
               alert ("Movie successfully deleted");

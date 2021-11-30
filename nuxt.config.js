@@ -97,12 +97,12 @@ export default {
   ],
 
   /* axios: {
-    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
+    BASE_URL: process.env.BASE_URL || "http://localhost:8010/api",
   }, */
 
   env: {
-    /* baseURL: "http://localhost:8010/api", */
-    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
+    /* BASE_URL: "http://localhost:8010/api", */
+    BASE_URL: process.env.BASE_URL || "http://localhost:8010/api",
   },
 
   auth: {
