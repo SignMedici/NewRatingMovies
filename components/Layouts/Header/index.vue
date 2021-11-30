@@ -44,7 +44,7 @@
           </v-tabs>
         </template>
         <template v-slot:extension v-else>
-          <v-tabs align-with-title class="navTab">
+          <v-tabs align-with-title class="navTab" id="navTab">
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/">
               <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
@@ -54,18 +54,19 @@
               </nuxt-link>
             </v-tab>
             <v-tab>
-              <nuxt-link class="nav-link active" aria-current="page" to="/profile">
-                Mon Profile
+              <nuxt-link class="nav-link active" aria-current="page" :to="{ name: 'profile', hash: "#logo"}">
+                Mon Profil
               </nuxt-link>
             </v-tab>
             <v-tab v-if="getUserInfo.isAdmin == true">
-              <nuxt-link class="nav-link active" aria-current="page" to="/admin">
+              <nuxt-link class="nav-link active" aria-current="page" :to="{ name: 'admin', hash: "#logo"}">
                 Administration
               </nuxt-link>
             </v-tab>
             <v-tab class="nav-item logout" @click="logout">
-              <nuxt-link class="nav-link active" aria-current="page" to="#"
-                  >Déconnexion</nuxt-link>
+              <nuxt-link class="nav-link active" aria-current="page" :to="{ name: 'index', hash: "#logo"}">
+                Déconnexion
+              </nuxt-link>
             </v-tab>
           </v-tabs>
         </template>
