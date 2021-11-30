@@ -120,7 +120,7 @@
 </script>
 <style scoped>
 .mainContainer{
-    margin-top: 10px;
+    margin-top: 30px;
     width: 100%;
     margin: 0;
     padding: 0;
