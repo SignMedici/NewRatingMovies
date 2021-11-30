@@ -79,7 +79,7 @@
         sortDirection: 'asc',
         movieForModal:'',
         revele: false,
-        baseURL: `${process.env.baseURL}`,
+        BACKEND_URL: `${process.env.BACKEND_URL}`,
       }
     },
     computed: {
@@ -91,7 +91,7 @@
         rateMovie(value, id){
             axios
             .patch(
-                this.baseURL +
+                this.BACKEND_URL +
                 "/movies/" +
                 id, {
                 grade: value*2
@@ -102,7 +102,7 @@
         },
         getInfo(filePath, fileToModify, movie){
           axios
-          .post(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
+          .post(this.BACKEND_URL + "/movies/" + movie.movieDbId + "/getInfo")
           .then((response) => {
             this.toggleModal(response.data);
           });

@@ -112,19 +112,19 @@ export default {
         value => !!value || 'Required.',
     ],
     movie: [],
-    baseURL: process.env.baseURL,
+    BACKEND_URL: process.env.BACKEND_URL,
   }),
   methods:{
     getMovie(){
         axios
-        .get(this.baseURL + this.$route.params.id)
+        .get(this.BACKEND_URL + this.$route.params.id)
         .then(async (response) => {
           this.movie = response.data;
         });
     },
    updateMovie(){
        axios
-        .patch(this.baseURL + this.$route.params.id, {
+        .patch(this.BACKEND_URL + this.$route.params.id, {
           title: this.title,
           genre: this.genre,
           grade: this.grade,
