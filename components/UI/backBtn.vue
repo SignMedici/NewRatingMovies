@@ -33,9 +33,9 @@ export default {
 <style>
 .backBtn{
   padding: 0;
-  color: #A52199;
+  color:#fff;
 }
 .backBtn:hover{
-  color:#fff;
+  color: #A52199;
 }
 </style>
