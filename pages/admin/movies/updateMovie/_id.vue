@@ -124,7 +124,7 @@ export default {
     },
    updateMovie(){
        axios
-        .patch(this.baseURL + this.$route.params.id, {
+        .patch(this.baseURL + "/movies" + this.$route.params.id, {
           title: this.title,
           genre: this.genre,
           grade: this.grade,

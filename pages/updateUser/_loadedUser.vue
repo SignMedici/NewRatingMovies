@@ -29,6 +29,7 @@ export default {
 
     data() {
       return {
+        baseURL: process.env.baseURL,
         name: "",
         email: "",
         isAdmin: "",
@@ -55,8 +56,8 @@ export default {
         },
         updateUserLoaded(){
             this.$axios
-                .patch("http://localhost:8010/api/user/update/" + this.$route.params.userId, { 
-                    name: this.name, 
+                .patch(this.baseURL + "/user/update/" + this.$route.params.userId, {
+                    name: this.name,
                     email: this.email,
                     isAdmin: this.isAdmin,
                 })
