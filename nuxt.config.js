@@ -108,8 +108,7 @@ export default {
 
   axios: {
     /* baseURL: "http://localhost:8010/api", */
-    baseURL: process.env.BACKEND_URL || "http://localhost:8010/api",
-    /* baseURL: "http://newratingmovies-backend.herokuapp.com/api", */
+    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
   },
 
   auth: {
