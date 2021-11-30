@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "BACKEND_URL": ".",
+    "baseURL": ".",
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"],

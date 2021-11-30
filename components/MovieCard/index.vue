@@ -64,7 +64,7 @@
         defaultPicUrl: '../../assets/No_Picture.png',
         movieForModal:'',
         revele: false,
-        BACKEND_URL: process.env.BACKEND_URL,
+        baseURL: process.env.baseURL,
       }
     },
     computed :{
@@ -83,9 +83,9 @@
       },
 
       getInfo(filePath, fileToModify, movie){
-        console.log(this.BACKEND_URL + "/movies/" + movie.id + "/getInfo");
+        console.log(this.baseURL + "/movies/" + movie.id + "/getInfo");
         axios
-        .post(this.BACKEND_URL + "/movies/" + movie.id + "/getInfo")
+        .post(this.baseURL + "/movies/" + movie.id + "/getInfo")
         .then((response) => {
           this.selectedMovie = response.data;
           if(filePath === null){
@@ -116,7 +116,7 @@
           }
 
           axios
-          .post(this.BACKEND_URL + "/movies/" + info.movieDbId + "/metadata", {
+          .post(this.baseURL + "/movies/" + info.movieDbId + "/metadata", {
             'format': fileToModify.type,
             'path': filePath + fileToModify.name,
             'selectedMovie': info
@@ -130,7 +130,7 @@
 
       addMovie(){
         axios
-        .post(this.BACKEND_URL + "/movies", this.selectedMovie)
+        .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
           await this.$store.commit('ADD_MOVIE', this.selectedMovie);
           alert ("Movie successfully added");

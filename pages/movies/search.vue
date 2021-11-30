@@ -51,14 +51,14 @@
       rules: [
         value => !!value || 'Required.',
       ],
-      BACKEND_URL: process.env.BACKEND_URL,
+      baseURL: process.env.baseURL,
     }),
     methods:{
       getSearchResult(){
         if (this.title !== ''){
           axios
             .post(
-                this.BACKEND_URL +
+                this.baseURL +
                 "/movies/search/" +
                 this.title.replace(" ", "+")
             )
