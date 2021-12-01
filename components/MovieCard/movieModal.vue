@@ -187,4 +187,21 @@ table span{
   text-align: justify;
   padding: 0 10px 0 0;
 }
+.overview::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+.overview::-webkit-scrollbar
+{
+  width: 8px;
+}
+
+.overview::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  /* background-color: rgba(82,15,73,1); */
+  background-color: #9042b4;
+}
 </style>
