@@ -28,7 +28,7 @@
                 </figure>
               </div>
               <div class="cardInfos">
-                <v-card-title v-if="movie.title.length > 25">{{ movie.title.substring(0,22) }}...</v-card-title>
+                <v-card-title v-if="movie.title.length > 22">{{ movie.title.substring(0,22) }}...</v-card-title>
                 <v-card-title v-else>{{ movie.title }}</v-card-title>
                 <div class="text-subtitle-1">
                     {{ movie.release_date.substring(0,4) }}
@@ -147,13 +147,13 @@
     font-size: 18px;
 }
 .v-card__title{
-    padding: 16px 16px 0 16px;
+    padding: 10px 10px 0 10px;
     color: #9042b4;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 600;
 }
 .text-subtitle-1{
-    padding: 0 0 0 14px;
+    padding: 0 0 0 10px;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     color: #9042b4;
@@ -163,7 +163,7 @@
     background-color: #d29eeb31;
 }
 .v-card__actions{
-    padding: 0 0 0 7px;
+    padding: 0;
 }
 .v-rating{
   padding-bottom: 5px;

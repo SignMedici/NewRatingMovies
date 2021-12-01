@@ -1,36 +1,41 @@
 <template>
   <div>
-    <div class="mt-4">
-      <v-container class="grey lighten-5">
-        <v-row>
+    <div>
+      <v-container class="grey lighten-5 mainContainer">
+        <v-row  no-gutters>
             <v-col
                 v-for="movie in getResult" :key="movie.id"
                 cols="12"
                 sm="3"
             >
-                <v-card
-                    class="card mx-auto"
-                    max-width="300"
-                >
-                <!-- Poster -->
-                <button class="imgMovieCard" @click="getInfo(null,null,movie)">
-                  <img v-if="movie.poster_path" :srcset="url+movie.poster_path" />
-                  <img v-else class="defaultPic" src="../../assets/No-Image-Placeholder.png" />
-                </button>
-                <!-- Title -->
-                <v-card-title class="text-title" v-if="movie.title.length > 25">{{ movie.title.substring(0,22) }}...</v-card-title>
-                <v-card-title class="text-title" v-else>{{ movie.title }}</v-card-title>
-                <!-- Year -->
-                <div v-if="movie.release_date" class="text-subtitle-1 ms-1 mb-2">
-                  {{ /[^-]*/.exec(movie.release_date)[0] }}
-                </div>
-                <div v-else class="mb-2"><br></div>
-                <!-- Button -->
-                <v-card-actions>
-                  <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 registerButton">Ajouter</button>
-                  <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 registerButton">Sélectionner</button>
-                </v-card-actions>
-              </v-card>
+              <div class="card">
+                <v-card>
+                  <div class="hover10">
+                    <figure>
+                      <!-- Poster -->
+                      <button class="imgMovieCard" @click="getInfo(null,null,movie)">
+                        <img v-if="movie.poster_path" :srcset="url+movie.poster_path" class="imgMovieCard" />
+                        <img v-else class="defaultPic" src="../../assets/No-Image-Placeholder.png" />
+                      </button>
+                    </figure>
+                  </div>
+                  <div class="cardInfos">
+                    <!-- Title -->
+                    <v-card-title v-if="movie.title.length > 22">{{ movie.title.substring(0,22) }}...</v-card-title>
+                    <v-card-title v-else>{{ movie.title }}</v-card-title>
+                    <!-- Year -->
+                    <div v-if="movie.release_date" class="text-subtitle-1 ms-1 mb-2">
+                      {{ movie.release_date.substring(0,4) }}
+                    </div>
+                    <div v-else class="mb-2"><br></div>
+                    <!-- Button -->
+                    <v-card-actions>
+                      <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 confirmButton">Ajouter</button>
+                      <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 confirmButton">Sélectionner</button>
+                    </v-card-actions>
+                  </div>
+                </v-card>
+              </div>
             </v-col>
         </v-row>
       </v-container>
@@ -146,40 +151,33 @@
   }
 </script>
 <style scoped>
+.mainContainer{
+    width: 100%;
+    padding-top: 20px;
+}
+.mainLogo{
+  margin-top: 10px;
+  margin-left:0;
+  margin-right:0;
+  text-align: center;
+}
 .card{
-  height: auto;
-  margin: 0;
-  border: 0;
+  display: flex;
+  margin: 5px;
+  border: 0px;
   border-radius: 10px;
+  overflow: hidden;
 }
 .imgMovieCard{
   object-fit: cover;
-  overflow: hidden;
-  margin: 0;
-  text-align:center;
-}
-img{
-  width: auto;
-  height: 450px;
-  -webkit-filter: sepia(0);
-	filter: sepia(0);
-	-webkit-transition: .6s ease-in-out;
-	transition: .6s ease-in-out;
-  cursor: pointer;
-}
-img:hover{
-  -webkit-filter: sepia(100%);
-	filter: sepia(100%);
+  min-height: 450px;
+  width: 100%;
+  height: auto;
 }
 .defaultPic{
-  width:100%;
-  height:auto;
-}
-button{
-  margin: 0 auto;
-}
-.text-title{
-  padding: 16;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
 }
 .v-card__text{
     max-height: 200px;
@@ -187,16 +185,53 @@ button{
     font-size: 18px;
 }
 .v-card__title{
-    padding: 16px 16px 0 16px;
+    padding: 10px 10px 0 10px;
     color: #9042b4;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 600;
 }
 .text-subtitle-1{
-    padding: 0 0 0 14px;
+    padding: 0 0 0 6px;
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     color: #9042b4;
     font-size: 17px;
+}
+.v-card__actions{
+    padding: 0;
+}
+.v-card__actions button{
+  margin: 0 auto 10px auto;
+  color: #fff;
+  background-color: #A52199;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 17px;
+}
+.cardInfos{
+    background-color: #d29eeb31;
+}
+figure{
+    margin: 0;
+}
+.favoriteMovie{
+    font-size: 64px;
+    position: absolute;
+    top: -15px;
+    right: 5px;
+    color: #ffffff;
+}
+
+/* Blur + Gray Scale */
+.hover10 figure img {
+	-webkit-filter: sepia(0);
+	filter: sepia(0);
+	-webkit-transition: .6s ease-in-out;
+	transition: .6s ease-in-out;
+  cursor: pointer;
+}
+.hover10 figure:hover img {
+	-webkit-filter: sepia(100%);
+	filter: sepia(100%);
 }
 </style>
