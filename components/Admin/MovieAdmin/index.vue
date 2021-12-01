@@ -96,7 +96,7 @@ export default {
   .overviewTxt{
     display:flex;
     width: 300px;
-    height: 265px;
+    height: 225px;
     overflow:auto;
     text-align: justify;
     padding: 0 8px;
