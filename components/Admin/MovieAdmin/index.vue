@@ -99,7 +99,27 @@ export default {
     height: 265px;
     overflow:auto;
     text-align: justify;
-    padding: 5px;
+    padding: 0 8px;
+  }
+  .overviewTxt::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  .overviewTxt::-webkit-scrollbar
+  {
+    width: 8px;
+    border-radius: 10px;
+  }
+
+  .overviewTxt::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    /* background-color: rgba(82,15,73,1); */
+    background-color: #9042b4;
   }
   th{
     padding:15px;
