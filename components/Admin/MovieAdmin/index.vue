@@ -91,7 +91,7 @@ export default {
 </script>
 <style scoped>
   .overview{
-    padding: 5px;
+    padding: 15px;
   }
   .overviewTxt{
     display:flex;
@@ -99,7 +99,10 @@ export default {
     height: 265px;
     overflow:auto;
     text-align: justify;
-    padding-right: 5px;
+    padding: 5px;
+  }
+  th{
+    padding:15px;
   }
   tr{
     font-family: 'Lato', sans-serif;
@@ -109,6 +112,7 @@ export default {
   }
   td{
     color: #fff;
+    padding:15px;
   }
   .noWrap{
     white-space: nowrap;
