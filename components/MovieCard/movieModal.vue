@@ -46,18 +46,18 @@
 
               <div class="people">
                 <table>
-                  <tr>
+                  <tr v-show="movie.director">
                     <td><span>Réalisateur</span></td>
                     <td>
                       <!-- Director -->
-                      <div v-if="movie.director" class="casting">{{ movie.director }}</div>
+                      <div class="casting">{{ movie.director }}</div>
                     </td>
                   </tr>
-                  <tr>
+                  <tr v-if="movie.casting">
                     <td><span>Acteurs</span></td>
                     <td>
                       <!-- Actors -->
-                      <div v-if="movie.casting" class="casting">{{ movie.casting }}</div>
+                      <div class="casting">{{ movie.casting }}</div>
                     </td>
                   </tr>
                 </table>

@@ -88,7 +88,6 @@
       },
 
       getInfo(filePath, fileToModify, movie){
-        console.log(this.baseURL + "/movies/" + movie.id + "/getInfo");
         axios
         .post(this.baseURL + "/movies/" + movie.id + "/getInfo")
         .then((response) => {
@@ -97,11 +96,9 @@
             this.toggleModal(this.selectedMovie);
           }
           else if(this.btnTxt==='add'){
-            console.log('getinfo - add - ok');
             this.addMovie();
           }
           else if(this.btnTxt==='select'){
-            console.log('getinfo - select - ok');
             this.selectedMovie.poster = this.url + this.selectedMovie.poster;
             this.modifyMetaData(filePath, fileToModify);
           }
@@ -134,6 +131,7 @@
       },
 
       addMovie(){
+        console.log(this.selectedMovie);
         axios
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {

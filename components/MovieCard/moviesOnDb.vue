@@ -12,7 +12,7 @@
             <v-card>
               <div class="hover10">
                 <figure>
-                  <img  @click="getInfo(null,null,movie)" class="imgMovieCard" :srcset="url+movie.poster_path" >
+                  <img  @click="toggleModal(movie)" class="imgMovieCard" :srcset="url+movie.poster_path" >
                   <v-rating v-if="isAuthenticated"
                       class="favoriteMovie"
                       hover
@@ -97,13 +97,6 @@
             .then(async (response) => {
                 this.$store.commit('UPDATE_MOVIE',response.data);
             });
-        },
-        getInfo(filePath, fileToModify, movie){
-          axios
-          .post(this.baseURL + "/movies/" + movie.movieDbId + "/getInfo")
-          .then((response) => {
-            this.toggleModal(response.data);
-          });
         },
         toggleModal(movie) {
           this.revele = !this.revele;
