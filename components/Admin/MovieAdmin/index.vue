@@ -54,7 +54,7 @@
       </tbody>
       <tbody v-else>
         <tr>
-            <td align="center" colspan="3">Aucun film dans la base de données.</td>
+            <td align="center" colspan="6">Aucun film dans la base de données.</td>
         </tr>
       </tbody>
     </table>
