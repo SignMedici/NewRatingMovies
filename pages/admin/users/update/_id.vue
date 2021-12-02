@@ -58,16 +58,16 @@ export default {
     methods: {
       updateUser(){
         this.$axios
-            .patch(this.baseURL + "/user/update/"+ this.$route.params.userId, {
-                name: this.name,
-                email: this.email,
-                isAdmin: this.isAdmin,
-            })
-            .then(async (response) => {
-            this.$store.commit('UPDATE_USER', response.data);
-                this.$router.push('/admin/users');
-            });
-        },
+        .patch(this.baseURL + "/user/update/"+ this.$route.params.userId, {
+          name: this.name,
+          email: this.email,
+          isAdmin: this.isAdmin,
+        })
+        .then(async (response) => {
+          this.$store.commit('UPDATE_USER', response.data);
+          this.$router.push('/admin/users');
+        });
+      },
     },
     computed: {
       roleIsAdmin(){

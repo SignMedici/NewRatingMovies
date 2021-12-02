@@ -1,9 +1,7 @@
 <template>
   <div v-if="isAdmin === true">
     <div>
-      <v-container class="grey lighten-5 mainLogo" id="logo">
-        <img src="../../assets/logo_big.png">
-      </v-container>
+      <UIBigLogo />
       <v-card>
         <v-toolbar
           dark

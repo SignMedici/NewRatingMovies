@@ -1,10 +1,10 @@
 <template>
   <div v-if="isAdmin === true">
     <div>
-      <nuxt-link :to="{ name: 'movies-search', hash: '#logo' }" class="btn btn-success mb-2 me-2">
+      <nuxt-link :to="{ name: 'movie-add', hash: '#logo' }" class="btn btn-success mb-2 me-2">
         Ajouter
       </nuxt-link>
-      <nuxt-link :to="{ name: 'movies-metadata',hash:'#logo'}" class="btn btn-success mb-2">
+      <nuxt-link :to="{ name: 'movie-metadata',hash:'#logo'}" class="btn btn-success mb-2">
         Modifier metadata
       </nuxt-link>
     </div>

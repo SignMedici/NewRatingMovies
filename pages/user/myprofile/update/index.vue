@@ -3,7 +3,7 @@
     <UIBigLogo />
     <v-container class="grey lighten-5 loginForm">
       <!-- Back button -->
-      <UIBackBtn :path="'profile'" />
+      <UIBackBtn :path="'user-myprofile'" />
       <!-- Page logo and title -->
       <div class="pageLogoTitle">
         <svg style="width:65px;height:65px" viewBox="0 0 24 24">
@@ -67,7 +67,7 @@ export default {
             })
             .then(async (response) => {
             this.$store.commit('UPDATE_USER', response.data);
-                this.$router.push('/profile');
+                this.$router.push('/user/myprofile');
             });
         }
     }
@@ -75,10 +75,6 @@ export default {
 </script>
 
 <style scoped>
-.backBtn{
-  padding: 0;
-  color: #A52199;
-}
 .loginForm{
   width: 700px;
   padding: 30px;
