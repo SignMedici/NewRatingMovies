@@ -111,11 +111,6 @@ export default {
 }
 </script>
 <style scoped>
-.mainLogo{
-    margin: 10px 0 25px 0;
-    padding: 0;
-    text-align: center;
-}
 .backBtn{
   padding: 0;
   color: #A52199;

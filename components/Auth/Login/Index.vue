@@ -1,8 +1,6 @@
 <template>
   <div>
-     <v-container class="grey lighten-5 mainLogo" id="logo">
-      <img src="../../../assets/logo_big.png">
-    </v-container>
+    <UIBigLogo />
     <v-container class="grey lighten-5 loginForm">
       <div class="pageLogoTitle">
         <svg style="width:65px;height:65px" viewBox="0 0 24 24">
@@ -59,11 +57,6 @@ export default {
 };
 </script>
 <style scoped>
-.mainLogo{
-    margin-left:0;
-    margin-right:0;
-    text-align: center;
-}
 .loginForm{
   width: 600px;
   padding: 30px;

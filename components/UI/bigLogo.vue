@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <img src="../../assets/logo_big.png">
-  </div>
+  <v-container class="grey lighten-5 mainLogo" id="logo">
+    <img :src="require(`~/assets/logo_big.png`)" />
+  </v-container>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style>
-
+.mainLogo{
+    margin: 10px 0 25px 0;
+    padding: 0;
+    text-align: center;
+}
 </style>

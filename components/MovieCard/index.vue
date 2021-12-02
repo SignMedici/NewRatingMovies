@@ -155,12 +155,6 @@
     width: 100%;
     padding-top: 20px;
 }
-.mainLogo{
-  margin-top: 10px;
-  margin-left:0;
-  margin-right:0;
-  text-align: center;
-}
 .card{
   display: flex;
   margin: 5px;

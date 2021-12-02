@@ -86,11 +86,6 @@ export default {
 </script>
 
 <style scoped>
-.mainLogo{
-    margin: 10px 0 30px 0;
-    padding: 0;
-    text-align: center;
-}
 .v-toolbar{
   height:150px;
 }

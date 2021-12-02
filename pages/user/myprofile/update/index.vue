@@ -1,8 +1,6 @@
 <template>
   <div v-if="isAuthenticated">
-    <v-container class="grey lighten-5 mainLogo" id="logo">
-      <img src="../../assets/logo_big.png">
-    </v-container>
+    <UIBigLogo />
     <v-container class="grey lighten-5 loginForm">
       <!-- Back button -->
       <UIBackBtn :path="'profile'" />
@@ -77,11 +75,6 @@ export default {
 </script>
 
 <style scoped>
-.mainLogo{
-    margin: 10px 0 25px 0;
-    padding: 0;
-    text-align: center;
-}
 .backBtn{
   padding: 0;
   color: #A52199;

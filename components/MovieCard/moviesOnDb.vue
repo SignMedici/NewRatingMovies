@@ -1,8 +1,6 @@
 <template>
   <div>
-    <v-container class="grey lighten-5 mainLogo" id="logo">
-      <img src="../../assets/logo_big.png">
-    </v-container>
+    <UIBigLogo />
     <v-container class="grey lighten-5 mainContainer">
       <v-row no-gutters>
         <v-col
@@ -121,12 +119,6 @@
 .mainContainer{
     width: 100%;
     padding-top: 20px;
-}
-.mainLogo{
-  margin-top: 10px;
-  margin-left:0;
-  margin-right:0;
-  text-align: center;
 }
 .card{
   display: flex;

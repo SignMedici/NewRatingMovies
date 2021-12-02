@@ -1,8 +1,6 @@
 <template>
   <div v-if="isAdmin === true">
-    <v-container class="grey lighten-5 mainLogo" id="logo">
-      <img src="../../assets/logo_big.png">
-    </v-container>
+    <UIBigLogo />
     <v-container class="grey lighten-5 loginForm">
       <!-- Back button -->
       <UIBackBtn :path="'admin'" />
@@ -90,11 +88,6 @@
   }
 </script>
 <style scoped>
-.mainLogo{
-    margin: 10px 0 25px 0;
-    padding: 0;
-    text-align: center;
-}
 .loginForm{
   width: 600px;
   padding: 30px;
