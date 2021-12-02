@@ -94,6 +94,7 @@ export default {
     // '@nuxtjs/proxy',
     "@nuxtjs/axios",
     "@nuxtjs/auth-next",
+    "@nuxtjs/toast",
   ],
 
   /* axios: {
@@ -150,6 +151,11 @@ export default {
         },
       },
     },
+  },
+  //Toast alerts settings
+  toast: {
+    position: "top-center",
+    duration: 2500,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

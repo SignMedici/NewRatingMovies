@@ -58,9 +58,8 @@ export default {
           email: this.registerData.email,
           password: this.registerData.password,
         });
-        console.log(user);
       } catch (err) {
-        console.log(err);
+        this.$toast.error(err);
       }
       this.$router.push("/auth/login");
     },

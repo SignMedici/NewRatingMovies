@@ -110,7 +110,7 @@ const store = {
           commit("GET_USERS", response.data);
         })
         .catch((err) => {
-          console.log(err);
+          this.$toast.error(err);
         });
     },
     deleteUser({ commit }, _id) {

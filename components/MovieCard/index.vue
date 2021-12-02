@@ -83,7 +83,7 @@
         if(inDb == "Add OK"){
           this.getInfo(filePath, fileToModify, movie);
         }else{
-          alert("Already in your database.");
+          this.$toast.error("Fait déjà partie de vos films.");
         }
       },
 
@@ -124,20 +124,17 @@
             'selectedMovie': info
           })
           .then(async(response) => {
-            console.log(response.data);
             this.$router.go(0);
           });
         }
       },
 
       addMovie(){
-        console.log(this.selectedMovie);
         axios
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
           await this.$store.commit('ADD_MOVIE', this.selectedMovie);
-          alert ("Movie successfully added");
-          this.$router.go(0);
+          this.$toast.success("Ajout effectuée avec succès.");
         });
       },
 

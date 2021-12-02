@@ -48,9 +48,8 @@ export default {
           data: this.loginData
         });
         this.$router.push("/");
-        console.log(response);
       } catch (err) {
-        console.log(err);
+        this.$toast.error(err);
       }
     }
   }

@@ -22,11 +22,6 @@
 export default {
   name:"backBtn",
   props: ['path'],
-  methods: {
-    created(){
-      console.log(path);
-    }
-  }
 }
 </script>
 
