@@ -18,18 +18,22 @@
           <input type="text" class="form-control" v-model="title">
         </div>
         <div class="my-3">
-          <label>Date de sortie</label>
+          <label>Date de sortie <small>(format: YYYY-MM-DD)</small></label>
           <input type="text" class="form-control" v-model="release_date">
         </div>
         <div>
-          <label>Vote</label>
-          <input type="number" class="form-control" v-model="vote_average" step=0.1 min="0" max="10">
+          <label>Genre</label>
+          <input type="text" class="form-control" v-model="strGenres">
         </div>
         <div class="my-3">
+          <label>Note</label>
+          <input type="number" class="form-control" v-model="vote_average" step=0.1 min="0" max="10">
+        </div>
+        <div>
           <label>Producteur</label>
           <input type="text" class="form-control" v-model="director">
         </div>
-        <div>
+        <div class="mt-3">
           <label>Résumé</label>
           <textarea class="form-control" v-model="overview" rows="4" />
         </div>
@@ -46,6 +50,7 @@ export default {
     title: '',
     vote_average: '',
     release_date: '',
+    strGenres: '',
     poster_path: '',
     overview: '',
     director: '',
@@ -70,7 +75,8 @@ export default {
           vote_average: this.vote_average,
           release_date: this.release_date,
           director: this.director,
-          overview: this.overview
+          overview: this.overview,
+          strGenres: this.strGenres,
         })
         .then(async (response) => {
           this.$store.commit('UPDATE_MOVIE', response.data);
@@ -98,6 +104,7 @@ export default {
       if(movieToUpdate){
         this.title = movieToUpdate.title;
         this.vote_average = movieToUpdate.vote_average;
+        this.strGenres = movieToUpdate.strGenres;
         this.release_date = movieToUpdate.release_date;
         this.overview = movieToUpdate.overview;
         this.director = movieToUpdate.director;
