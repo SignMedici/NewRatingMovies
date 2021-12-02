@@ -155,7 +155,8 @@ export default {
   //Toast alerts settings
   toast: {
     position: "top-center",
-    duration: 2500,
+    duration: 2000,
+    className: "toast",
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

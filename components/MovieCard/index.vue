@@ -83,7 +83,7 @@
         if(inDb == "Add OK"){
           this.getInfo(filePath, fileToModify, movie);
         }else{
-          this.$toast.error("Fait déjà partie de vos films.");
+          this.$toast.info("Fait déjà partie de vos films.");
         }
       },
 

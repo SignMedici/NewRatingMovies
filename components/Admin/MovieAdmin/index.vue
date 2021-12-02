@@ -15,7 +15,7 @@
             Titre
           </th>
           <th class="text-left">
-            Vote
+            Note
           </th>
           <th class="text-left">
             Sortie
