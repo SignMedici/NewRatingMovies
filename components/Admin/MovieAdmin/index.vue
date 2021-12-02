@@ -23,7 +23,7 @@
           <th class="text-left">
             Producteur
           </th>
-          <th class="text-left">
+          <th class="text-left ps-4">
             Résumé
           </th>
           <th></th>
