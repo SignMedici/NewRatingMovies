@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isAdmin === true">
     <div>
       <nuxt-link :to="{ name: 'movies-search', hash: '#logo' }" class="btn btn-success mb-2 me-2">
         Ajouter
@@ -86,6 +86,19 @@ export default {
     getMovies() {
       return this.$store.getters.getMovies;
     },
+    isAdmin(){
+      let user = this.$store.getters.getUserInfo;
+      if(user){
+        if(user.isAdmin)
+          return this.$store.getters.getUserInfo.isAdmin;
+        else{
+          this.$router.push("/");
+        }
+      }
+      else{
+        this.$router.push("/");
+      }
+    }
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isAdmin === true">
     <v-container class="grey lighten-5 mainLogo" id="logo">
       <img src="../../assets/logo_big.png">
     </v-container>
@@ -90,7 +90,21 @@
           });
       }
     },
-
+    computed: {
+      isAdmin(){
+        let user = this.$store.getters.getUserInfo;
+        if(user){
+          if(user.isAdmin)
+            return this.$store.getters.getUserInfo.isAdmin;
+          else{
+            this.$router.push("/");
+          }
+        }
+        else{
+          this.$router.push("/");
+        }
+      }
+    }
   }
 </script>
 <style scoped>

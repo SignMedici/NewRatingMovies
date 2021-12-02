@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isAuthenticated">
     <v-container class="grey lighten-5 mainLogo" id="logo">
       <img src="../../assets/logo_big.png">
     </v-container>
@@ -26,10 +26,6 @@
             <div class="mb-3" :class="['input-group', isEmailValid()]">
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email">
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Admin?</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" v-model="isAdmin">
-            </div>
             <button type="submit" class="btn confirmButton">Valider</button>
         </form>
       </v-container>
@@ -44,22 +40,21 @@ export default {
         baseURL: process.env.baseURL,
         name: "",
         email: "",
-        isAdmin: "",
         msg: "",
         reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
     },
     created(){
-        this.$route.params.userId;
         let userLoadedUpdate = this.$store.getters.getUserInfo;
         this.name = userLoadedUpdate.name;
         this.email = userLoadedUpdate.email;
-        this.isAdmin = userLoadedUpdate.isAdmin;
-        // this.name = userLoadedUpdate.name;
     },
     computed: {
         getUserInfo() {
             return this.$store.getters.getUserInfo;
+        },
+        isAuthenticated() {
+          return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
         },
     },
     methods: {
@@ -68,18 +63,17 @@ export default {
         },
         updateUserLoaded(){
             this.$axios
-                .patch(this.baseURL + "/user/update/" + this.$route.params.userId, {
-                    name: this.name,
-                    email: this.email,
-                    isAdmin: this.isAdmin,
-                })
-                .then(async (response) => {
-                this.$store.commit('UPDATE_USER', response.data);
-                    this.$router.push('/profile');
-                });
+            .patch(this.baseURL + "/user/update/" + this.$route.params.userId, {
+                name: this.name,
+                email: this.email,
+            })
+            .then(async (response) => {
+            this.$store.commit('UPDATE_USER', response.data);
+                this.$router.push('/profile');
+            });
         }
     }
-};
+}
 </script>
 
 <style scoped>

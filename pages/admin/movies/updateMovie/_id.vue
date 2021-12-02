@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isAdmin === true">
     <v-container class="grey lighten-5 mainLogo" id="logo">
       <img src="../../../../assets/logo_big.png">
     </v-container>
@@ -65,7 +65,7 @@ export default {
           this.movie = response.data;
         });
     },
-   updateMovie(){
+    updateMovie(){
        axios
         .patch(this.baseURL + "/movies" + this.$route.params.id, {
           title: this.title,
@@ -79,13 +79,34 @@ export default {
         });
     }
   },
+  computed:{
+    isAdmin(){
+      let user = this.$store.getters.getUserInfo;
+      if(user){
+        if(user.isAdmin)
+          return this.$store.getters.getUserInfo.isAdmin;
+        else{
+          this.$router.push("/");
+        }
+      }
+      else{
+        this.$router.push("/");
+      }
+    }
+  },
   created(){
       let movieToUpdate = this.$store.getters.getMovieById(this.$route.params.id);
-      this.title = movieToUpdate.title;
-      this.vote_average = movieToUpdate.vote_average;
-      this.release_date = movieToUpdate.release_date;
-      this.overview = movieToUpdate.overview;
-      this.director = movieToUpdate.director;
+      if(movieToUpdate){
+        this.title = movieToUpdate.title;
+        this.vote_average = movieToUpdate.vote_average;
+        this.release_date = movieToUpdate.release_date;
+        this.overview = movieToUpdate.overview;
+        this.director = movieToUpdate.director;
+      }
+      else{
+        this.$router.push("/");
+      }
+
   }
 }
 </script>

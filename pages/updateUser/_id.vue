@@ -1,5 +1,5 @@
 <template>
-<div>
+  <div v-if="roleIsAdmin === true">
     <v-container class="grey lighten-5 mainLogo" id="logo">
       <img src="../../assets/logo_big.png">
     </v-container>
@@ -47,10 +47,15 @@ export default {
     },
     created(){
         let userUpdate = this.$store.getters.getUserById(this.$route.params.userId);
-        this.name = userUpdate.name;
-        this.email = userUpdate.email;
-        this.isAdmin = userUpdate.isAdmin;
 
+        if(userUpdate){
+          this.name = userUpdate.name;
+          this.email = userUpdate.email;
+          this.isAdmin = userUpdate.isAdmin;
+        }
+        else{
+          this.$router.push("/admin");
+        }
     },
     methods: {
       updateUser(){
@@ -65,6 +70,21 @@ export default {
                 this.$router.push('/admin/users');
             });
         },
+    },
+    computed: {
+      roleIsAdmin(){
+        let user = this.$store.getters.getUserInfo;
+        if(user){
+          if(user.isAdmin)
+            return this.$store.getters.getUserInfo.isAdmin;
+          else{
+            this.$router.push("/");
+          }
+        }
+        else{
+          this.$router.push("/");
+        }
+      }
     }
 }
 </script>
