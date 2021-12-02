@@ -54,7 +54,7 @@
               </nuxt-link>
             </v-tab>
             <v-tab>
-              <nuxt-link class="nav-link active" aria-current="page" to="/profile">
+              <nuxt-link class="nav-link active" aria-current="page" to="/user/myprofile">
                 Mon Profil
               </nuxt-link>
             </v-tab>

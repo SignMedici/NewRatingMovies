@@ -19,7 +19,7 @@
           <td>
             <nuxt-link
               :to="{
-                name: 'updateUser-id',
+                name: 'admin-users-update-id',
                 params: { userId: user._id },
                 hash: '#logo',
               }"
