@@ -18,6 +18,7 @@
           ></v-img>
         </template>
         <v-spacer></v-spacer>
+        <UIFlags />
         <v-btn icon>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
