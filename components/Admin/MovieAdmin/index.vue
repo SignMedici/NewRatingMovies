@@ -109,7 +109,7 @@ export default {
   .overviewTxt{
     display:flex;
     width: 300px;
-    height: 225px;
+    max-height: 225px;
     overflow:auto;
     text-align: justify;
     padding: 0 8px;
