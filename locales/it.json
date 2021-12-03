@@ -1,3 +1,9 @@
 {
-  "message": "Benvenuto"
+  "welcome": "Benvenuto",
+  "layoutHeaderTabTitleHome": "Home",
+  "layoutHeaderTabTitleLogin": "Accedere",
+  "layoutHeaderTabTitleRegister": "Registrare",
+  "layoutHeaderTabTitleProfile": "Mio Profilo",
+  "layoutHeaderTabTitleAdmin": "Admin",
+  "layoutHeaderTabTitleLogout": "Uscire"
 }

@@ -1,6 +1,3 @@
-import colors from "vuetify/es5/util/colors";
-import i18n from "./config/i18n";
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -87,31 +84,31 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
-    // nuxt-i18n - translation module
+
+    // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
     [
       "@nuxtjs/i18n",
       {
-        vueI18nLoader: true,
-        defaultLocale: "fr",
+        lazy: true,
         locales: [
-          {
-            code: "en",
-            name: "English",
-          },
-          {
-            code: "fr",
-            name: "Français",
-          },
-          {
-            code: "nl",
-            name: "Nederlands",
-          },
-          {
-            code: "it",
-            name: "Italiano",
-          },
+          { code: "en", iso: "en-US", file: "en.json", name: "English" },
+          { code: "fr", iso: "fr-BE", file: "fr.json", name: "Français" },
+          { code: "nl", iso: "nl-BE", file: "nl.json", name: "Nederlands" },
+          { code: "it", iso: "it-IT", file: "it.json", name: "Italiano" },
         ],
-        vueI18n: i18n,
+        langDir: "locales/",
+        /* locale: "fr", */
+        defaultLocale: "fr",
+        /* fallbackLocale: "fr", */
+        loadLanguagesAsync: true,
+        detectBrowserLanguage: {
+          useCookie: true,
+          fallbackLocale: "fr",
+          cookieKey: "route_path",
+          locale: "fr",
+          /* alwaysRedirect: true, */
+        },
+        vueI18nLoader: true,
       },
     ],
   ],
@@ -191,22 +188,5 @@ export default {
     position: "top-center",
     duration: 2000,
     className: "toast",
-  },
-
-  //Translation module
-  i18n: {
-    locales: [
-      { code: "en", iso: "en-US", file: "en.json", dir: "ltr" },
-      { code: "fr", iso: "fr-BE", file: "fr.json", dir: "ltl" },
-      { code: "nl", iso: "nl-BE", file: "nl.json", dir: "ltl" },
-      { code: "it", iso: "it-IT", file: "it.json", dir: "ltl" },
-    ],
-    defaultLocale: "fr",
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: "i18n_redirected",
-      redirectOn: "root", // recommended
-    },
-    vueI18n: i18n,
   },
 };

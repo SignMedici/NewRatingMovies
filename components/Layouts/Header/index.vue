@@ -29,17 +29,17 @@
                 <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12,3L20,9V21H15V14H9V21H4V9L12,3Z" />
                 </svg>
-                Accueil
+                {{ $t('layoutHeaderTabTitleHome') }}
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/auth/login">
-                Connexion
+                {{ $t('layoutHeaderTabTitleLogin') }}
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/auth/register">
-                Inscription
+                {{ $t('layoutHeaderTabTitleRegister') }}
               </nuxt-link>
             </v-tab>
           </v-tabs>
@@ -51,21 +51,22 @@
                 <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12,3L20,9V21H15V14H9V21H4V9L12,3Z" />
                 </svg>
-                  Accueil
+                  {{ $t('layoutHeaderTabTitleHome') }}
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/user/myprofile">
-                Mon Profil
+                {{ $t('layoutHeaderTabTitleProfile') }}
               </nuxt-link>
             </v-tab>
             <v-tab v-if="getUserInfo.isAdmin == true">
               <nuxt-link class="nav-link active" aria-current="page" to="/admin">
-                Administration</nuxt-link>
+                {{ $t("layoutHeaderTabTitleAdmin") }}
+              </nuxt-link>
             </v-tab>
             <v-tab class="nav-item logout" @click="logout">
               <nuxt-link class="nav-link active" aria-current="page" to="#">
-                Déconnexion
+                {{ $t('layoutHeaderTabTitleLogout') }}
               </nuxt-link>
             </v-tab>
           </v-tabs>
