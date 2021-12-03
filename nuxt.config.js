@@ -135,8 +135,7 @@ export default {
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  vuetify: {
-    customVariables: ["~/assets/variables.scss"],
+  /* vuetify: {
     theme: {
       dark: true,
       themes: {
@@ -151,7 +150,7 @@ export default {
         },
       },
     },
-  },
+  }, */
   //Toast alerts settings
   toast: {
     position: "top-center",
