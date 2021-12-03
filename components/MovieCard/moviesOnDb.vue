@@ -31,7 +31,7 @@
                 <div class="text-subtitle-1">
                     {{ movie.release_date.substring(0,4) }}
                 </div>
-                <v-card-actions class="pa-4">
+                <v-card-actions>
                   <v-rating v-if="isAuthenticated"
                     background-color="red lighten-3"
                     color="red"
@@ -40,15 +40,6 @@
                     size="18"
                     :value= "movie.grade/2"
                     @input="rateMovie($event, movie._id)"
-                  ></v-rating>
-                  <v-rating v-else
-                    background-color="red lighten-3"
-                    color="red"
-                    hover
-                    length="5"
-                    size="18"
-                    :value= "movie.grade/2"
-                    readonly
                   ></v-rating>
                 </v-card-actions>
               </div>
