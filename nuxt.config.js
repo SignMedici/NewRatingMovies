@@ -1,4 +1,5 @@
 import colors from "vuetify/es5/util/colors";
+import i18n from "./config/i18n";
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -86,6 +87,33 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
+    // nuxt-i18n - translation module
+    [
+      "@nuxtjs/i18n",
+      {
+        vueI18nLoader: true,
+        defaultLocale: "fr",
+        locales: [
+          {
+            code: "en",
+            name: "English",
+          },
+          {
+            code: "fr",
+            name: "Français",
+          },
+          {
+            code: "nl",
+            name: "Nederlands",
+          },
+          {
+            code: "it",
+            name: "Italiano",
+          },
+        ],
+        vueI18n: i18n,
+      },
+    ],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -107,6 +135,12 @@ export default {
     API_PIC_URL: "http://image.tmdb.org/t/p/w500",
   },
 
+  // Build Configuration: https://go.nuxtjs.dev/config-build
+  build: {
+    extend(config, ctx) {},
+  },
+
+  //Axios
   axios: {
     /* baseURL: "http://localhost:8010/api", */
     baseURL: "http://newratingmovies-backend.herokuapp.com/api",
@@ -151,6 +185,7 @@ export default {
       }, */
     },
   },
+
   //Toast alerts settings
   toast: {
     position: "top-center",
@@ -158,8 +193,20 @@ export default {
     className: "toast",
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    extend(config, ctx) {},
+  //Translation module
+  i18n: {
+    locales: [
+      { code: "en", iso: "en-US", file: "en.json", dir: "ltr" },
+      { code: "fr", iso: "fr-BE", file: "fr.json", dir: "ltl" },
+      { code: "nl", iso: "nl-BE", file: "nl.json", dir: "ltl" },
+      { code: "it", iso: "it-IT", file: "it.json", dir: "ltl" },
+    ],
+    defaultLocale: "fr",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "root", // recommended
+    },
+    vueI18n: i18n,
   },
 };
