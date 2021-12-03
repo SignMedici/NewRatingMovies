@@ -17,7 +17,7 @@
                       class="favoriteMovie"
                       hover
                       length="1"
-                      size="54"
+                      size="40"
                       :empty-icon="emptyIcon"
                       :full-icon="fullIcon"
                       color="yellow darken-3"
@@ -28,7 +28,10 @@
               <div class="cardInfos">
                 <v-card-title v-if="movie.title.length > 22">{{ movie.title.substring(0,22) }}...</v-card-title>
                 <v-card-title v-else>{{ movie.title }}</v-card-title>
-                <div class="text-subtitle-1">
+                <div v-if="isAuthenticated" class="text-subtitle-1">
+                    {{ movie.release_date.substring(0,4) }}
+                </div>
+                <div v-else class="text-subtitle-1 mb-2">
                     {{ movie.release_date.substring(0,4) }}
                 </div>
                 <v-card-actions>
@@ -48,7 +51,7 @@
         </v-col>
       </v-row>
     </v-container>
-    <UIBtnTop />
+    <UIBtnTop :showAt="500" />
     <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" />
   </div>
 </template>
@@ -101,10 +104,6 @@
   }
 </script>
 <style scoped>
-.mainContainer{
-    width: 100%;
-    display: block;
-}
 .card{
   display: flex;
   margin: 5px;
@@ -151,7 +150,7 @@ figure{
 .favoriteMovie{
     font-size: 64px;
     position: absolute;
-    top: -15px;
+    top: -20px;
     right: 5px;
     color: #ffffff;
 }
