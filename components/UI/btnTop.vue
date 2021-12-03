@@ -21,7 +21,7 @@ export default {
     },
     //shows the button when scrolling down
     handleScroll () {
-      if (document.body.scrollTop > 250 || document.documentElement.scrollTop > 250) {
+      if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
         this.mybutton.style.display = "block";
       } else {
         this.mybutton.style.display = "none";
