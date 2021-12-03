@@ -6,7 +6,8 @@
 
 <style>
 .mainLogo{
-    margin: 10px 0 25px 0;
+    display:block;
+    margin: 20px 0;
     padding: 0;
     text-align: center;
 }

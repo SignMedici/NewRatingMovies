@@ -57,6 +57,7 @@
         </v-col>
       </v-row>
     </v-container>
+    <UIBtnTop />
     <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" />
   </div>
 </template>
@@ -111,7 +112,7 @@
 <style scoped>
 .mainContainer{
     width: 100%;
-    padding-top: 20px;
+    display: block;
 }
 .card{
   display: flex;

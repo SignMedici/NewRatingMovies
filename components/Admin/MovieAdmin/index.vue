@@ -58,6 +58,7 @@
         </tr>
       </tbody>
     </table>
+    <UIBtnTop />
   </div>
 </template>
 
