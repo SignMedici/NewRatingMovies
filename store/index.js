@@ -134,7 +134,6 @@ const store = {
         });
     },
     updateUser({ commit }, user) {
-      console.log(user);
       /* this.$axios
         .patch(process.env.baseURL + "/users/update/" + id, user)
         .then((response) => {
