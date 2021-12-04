@@ -3,45 +3,49 @@
     <UIBigLogo />
     <v-container class="grey lighten-5 mainContainer">
       <v-row no-gutters>
-        <v-col
-            v-for="movie in movies" :key="movie.id"
-            cols="12"
-            sm="3"
-        >
+        <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="3">
           <div class="card">
             <v-card>
               <div class="hover10">
                 <figure>
-                  <img  @click="toggleModal(movie)" class="imgMovieCard" :srcset="url+movie.poster_path" >
-                  <v-rating v-if="isAuthenticated"
-                      class="favoriteMovie"
-                      hover
-                      length="1"
-                      size="40"
-                      :empty-icon="emptyIcon"
-                      :full-icon="fullIcon"
-                      color="yellow darken-3"
-                      background-color="grey darken-1"
+                  <img
+                    @click="toggleModal(movie)"
+                    class="imgMovieCard"
+                    :srcset="url + movie.poster_path"
+                  />
+                  <v-rating
+                    v-if="isAuthenticated"
+                    class="favoriteMovie"
+                    hover
+                    length="1"
+                    size="40"
+                    :empty-icon="emptyIcon"
+                    :full-icon="fullIcon"
+                    color="yellow darken-3"
+                    background-color="grey darken-1"
                   ></v-rating>
                 </figure>
               </div>
               <div class="cardInfos">
-                <v-card-title v-if="movie.title.length > 22">{{ movie.title.substring(0,22) }}...</v-card-title>
+                <v-card-title v-if="movie.title.length > 22"
+                  >{{ movie.title.substring(0, 22) }}...</v-card-title
+                >
                 <v-card-title v-else>{{ movie.title }}</v-card-title>
                 <div v-if="isAuthenticated" class="text-subtitle-1">
-                    {{ movie.release_date.substring(0,4) }}
+                  {{ movie.release_date.substring(0, 4) }}
                 </div>
                 <div v-else class="text-subtitle-1 mb-2">
-                    {{ movie.release_date.substring(0,4) }}
+                  {{ movie.release_date.substring(0, 4) }}
                 </div>
                 <v-card-actions>
-                  <v-rating v-if="isAuthenticated"
+                  <v-rating
+                    v-if="isAuthenticated"
                     background-color="red lighten-3"
                     color="red"
                     hover
                     length="5"
                     size="18"
-                    :value= "movie.grade/2"
+                    :value="movie.grade / 2"
                     @input="rateMovie($event, movie._id)"
                   ></v-rating>
                 </v-card-actions>
@@ -52,124 +56,125 @@
       </v-row>
     </v-container>
     <UIBtnTop :showAt="500" />
-    <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" />
+    <MovieModal
+      :revele="revele"
+      :toggleModal="toggleModal"
+      :movie="movieForModal"
+    />
   </div>
 </template>
 <script>
-  import axios from "axios";
-  import MovieModal from "./movieModal";
+import axios from "axios";
+import MovieModal from "./movieModal";
 
-  export default{
-    data(){
-      return {
-        title: '',
-        grade: 0,
-        url: process.env.API_PIC_URL,
-        movies: [],
-        emptyIcon: 'mdi-heart-outline',
-        fullIcon: 'mdi-heart',
-        sortBy: 'title',
-        sortDirection: 'asc',
-        movieForModal:'',
-        revele: false,
-        baseURL: `${process.env.baseURL}`,
-      }
+export default {
+  data() {
+    return {
+      title: "",
+      grade: 0,
+      url: process.env.API_PIC_URL,
+      movies: [],
+      emptyIcon: "mdi-heart-outline",
+      fullIcon: "mdi-heart",
+      sortBy: "title",
+      sortDirection: "asc",
+      movieForModal: "",
+      revele: false,
+      baseURL: `${process.env.baseURL}`,
+    };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
-    computed: {
-      isAuthenticated() {
-        return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
-      },
+  },
+  methods: {
+    rateMovie(value, id) {
+      axios
+        .patch(this.baseURL + "/movies/" + id, {
+          grade: value * 2,
+        })
+        .then(async (response) => {
+          this.$store.commit("UPDATE_MOVIE", response.data);
+        });
     },
-    methods: {
-        rateMovie(value, id){
-            axios
-            .patch(
-                this.baseURL +
-                "/movies/" +
-                id, {
-                grade: value*2
-            })
-            .then(async (response) => {
-                this.$store.commit('UPDATE_MOVIE',response.data);
-            });
-        },
-        toggleModal(movie) {
-          this.revele = !this.revele;
-          this.movieForModal = movie;
-        },
+    toggleModal(movie) {
+      this.revele = !this.revele;
+      this.movieForModal = movie;
     },
-    created() {
-        this.movies = this.$store.getters.getMovies;
-    }
-  }
+  },
+  created() {
+    this.movies = this.$store.getters.getMovies;
+  },
+};
 </script>
 <style scoped>
-.card{
+.card {
   display: flex;
   margin: 5px;
   border: 0px;
   border-radius: 10px;
   overflow: hidden;
 }
-.imgMovieCard{
+.imgMovieCard {
   object-fit: cover;
   min-height: 450px;
   width: 100%;
   height: auto;
 }
-.v-card__text{
-    max-height: 200px;
-    font-family: 'Lato', sans-serif;
-    font-size: 18px;
+.v-card__text {
+  max-height: 200px;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
 }
-.v-card__title{
-    padding: 10px 10px 0 10px;
-    color: #9042b4;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: 600;
+.v-card__title {
+  padding: 10px 10px 0 10px;
+  color: #9042b4;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 600;
 }
-.text-subtitle-1{
-    padding: 0 0 0 10px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    color: #9042b4;
-    font-size: 17px;
+.text-subtitle-1 {
+  padding: 0 0 0 10px;
+  font-family: "Lato", sans-serif;
+  font-weight: 600;
+  color: #9042b4;
+  font-size: 17px;
 }
-.cardInfos{
-    background-color: #d29eeb31;
+.cardInfos {
+  background-color: #d29eeb31;
 }
-.v-card__actions{
-    padding: 0;
+.v-card__actions {
+  padding: 0;
 }
-.v-rating{
+.v-rating {
   padding-bottom: 5px;
 }
-figure{
-    margin: 0;
+figure {
+  margin: 0;
 }
-.favoriteMovie{
-    font-size: 64px;
-    position: absolute;
-    top: -20px;
-    right: 5px;
-    color: #ffffff;
+.favoriteMovie {
+  font-size: 64px;
+  position: absolute;
+  top: -20px;
+  right: 5px;
+  color: #ffffff;
 }
 .v-icon.v-icon.v-icon--link {
-    cursor: pointer;
-    outline: none;
-    color: #9042b4;
+  cursor: pointer;
+  outline: none;
+  color: #9042b4;
 }
 
 /* Blur + Gray Scale */
 .hover10 figure img {
-	-webkit-filter: sepia(0);
-	filter: sepia(0);
-	-webkit-transition: .6s ease-in-out;
-	transition: .6s ease-in-out;
+  -webkit-filter: sepia(0);
+  filter: sepia(0);
+  -webkit-transition: 0.6s ease-in-out;
+  transition: 0.6s ease-in-out;
   cursor: pointer;
 }
 .hover10 figure:hover img {
-	-webkit-filter: sepia(100%);
-	filter: sepia(100%);
+  -webkit-filter: sepia(100%);
+  filter: sepia(100%);
 }
 </style>

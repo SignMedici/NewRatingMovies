@@ -52,6 +52,12 @@ export default {
         this.$toast.error(err);
       }
     }
+  },
+  mounted() {
+    console.log(this.$i18n.locale);
+  },
+  created(){
+    this.$i18n.setLocale('it');
   }
 };
 </script>

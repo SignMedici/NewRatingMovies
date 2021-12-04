@@ -5,12 +5,19 @@ const store = {
       result: [],
       users: [],
       user: [],
+      siteLang: "fr",
     };
   },
   getters: {
+    // App
     isAuthenticated(state) {
       return state.auth.loggedIn; // auth object as default will be added in vuex state, when you initialize nuxt auth
     },
+    getSiteLang(state) {
+      return state.siteLang;
+    },
+
+    // Users
     getUserInfo(state) {
       return state.auth.user;
     },
@@ -24,6 +31,8 @@ const store = {
       let index = state.users.findIndex((obj) => obj._id == id);
       return state.users[index];
     },
+
+    // Movies
     getMovies(state) {
       return state.movies;
     },
@@ -44,8 +53,13 @@ const store = {
     },
   },
   mutations: {
-    //Movie
-    GET_MOVIES: (state, allMovies) => {
+    // Site language
+    SET_LANG: (state, langCode) => {
+      state.siteLang = langCode;
+    },
+
+    // Movies
+    SET_MOVIES: (state, allMovies) => {
       state.movies = allMovies;
     },
     ADD_MOVIE: (state, movie) => {
@@ -72,7 +86,7 @@ const store = {
       state.result.push(result);
     },
 
-    //user
+    // Users
     GET_USERS: (state, users) => {
       state.users = users;
     },
@@ -95,11 +109,17 @@ const store = {
   },
   actions: {
     async nuxtServerInit({ commit }) {
+      // get all movies
       const response = await this.$axios
         .get(process.env.baseURL + "/movies")
         .then((response) => {
-          commit("GET_MOVIES", response.data);
+          commit("SET_MOVIES", response.data);
         });
+
+      // Site language
+      if (this.$cookiz.get("siteLang")) {
+        commit("SET_LANG", this.$cookiz.get("siteLang"));
+      }
     },
 
     //user
@@ -113,9 +133,20 @@ const store = {
           this.$toast.error(err);
         });
     },
+    updateUser({ commit }, user) {
+      console.log(user);
+      /* this.$axios
+        .patch(process.env.baseURL + "/users/update/" + id, user)
+        .then((response) => {
+          commit("UPDATE_USER", response.data);
+        })
+        .catch((err) => {
+          this.$toast.error(err);
+        }); */
+    },
     deleteUser({ commit }, _id) {
       this.$axios
-        .delete(process.env.baseURL + "/user/delete/" + _id)
+        .delete(process.env.baseURL + "/user/delete/" + id)
         .then((response) => {
           commit("DELETE_USER", response.data);
         });
