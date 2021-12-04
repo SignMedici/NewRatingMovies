@@ -16,8 +16,8 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Adresse email</th>
+          <th scope="col">{{ $t('nickname') }}</th>
+          <th scope="col">{{ $t('emailAddress') }}</th>
           <th></th>
         </tr>
       </thead>
