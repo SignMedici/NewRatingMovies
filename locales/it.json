@@ -10,5 +10,7 @@
   "password": "Password",
   "confirm": "Continua",
   "nickname": "Soprannome",
-  "language": "Lingua"
+  "language": "Lingua",
+  "modifyUser": "Modifica un utente",
+  "modifyMyProfile": "Modificare mio profilo"
 }

@@ -10,5 +10,7 @@
   "password": "Wachtwoordconfirmer",
   "confirm": "Doorgaan",
   "nickname": "Bijnaam",
-  "language": "Taal"
+  "language": "Taal",
+  "modifyUser": "Een gebruiker bewerken",
+  "modifyMyProfile": "Mijn profiel bewerken"
 }
