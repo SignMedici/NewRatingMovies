@@ -106,6 +106,9 @@ export default {
       return this.$store.getters.getUserInfo;
     },
   },
+  created(){
+    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+  }
 };
 </script>
 

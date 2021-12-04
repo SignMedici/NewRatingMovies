@@ -4,14 +4,14 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Adresse Email</th>
+          <th scope="col">{{ $t('nickname') }}</th>
+          <th scope="col">{{ $t('emailAddress') }}</th>
           <th scope="col">Admin?</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="user in getterUsers" :key="user.id">
+        <tr v-for="user in getterUsers" :key="user._id">
           <td>{{ user._id }}</td>
           <td>{{ user.nickname }}</td>
           <td>{{ user.email }}</td>
@@ -20,7 +20,7 @@
             <nuxt-link
               :to="{
                 name: 'admin-users-update-id',
-                params: { userId: user._id },
+                params: { id: user._id },
                 hash: '#logo',
               }"
             >
@@ -83,6 +83,7 @@ export default {
   },
   created(){
     this.getUsers();
+    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
   }
 }
 </script>
