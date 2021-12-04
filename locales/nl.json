@@ -1,9 +1,14 @@
 {
   "welcome": "Welkom",
-  "layoutHeaderTabTitleHome": "Home",
-  "layoutHeaderTabTitleLogin": "Inloggen",
-  "layoutHeaderTabTitleRegister": "Inschrijven",
-  "layoutHeaderTabTitleProfile": "Mijn Profiel",
-  "layoutHeaderTabTitleAdmin": "Admin",
-  "layoutHeaderTabTitleLogout": "Uitloggen"
+  "home": "Home",
+  "login": "Inloggen",
+  "register": "Inschrijven",
+  "myProfile": "Mijn Profiel",
+  "admin": "Admin",
+  "logout": "Uitloggen",
+  "emailAddress": "E-mailadres",
+  "password": "Wachtwoordconfirmer",
+  "confirm": "Doorgaan",
+  "nickname": "Bijnaam",
+  "language": "Taal"
 }

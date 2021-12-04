@@ -25,7 +25,7 @@ export default {
 
       if(this.$store.getters.getUserInfo){
         await this.$store.dispatch("updateUser", {
-          id: this.$store.getters.getUserInfo.id,
+          _id: this.$store.getters.getUserInfo.id,
           language: langCode
         });
       }

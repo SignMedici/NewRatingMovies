@@ -1,9 +1,14 @@
 {
   "welcome": "Welcome",
-  "layoutHeaderTabTitleHome": "Home",
-  "layoutHeaderTabTitleLogin": "Login",
-  "layoutHeaderTabTitleRegister": "Register",
-  "layoutHeaderTabTitleProfile": "My Profile",
-  "layoutHeaderTabTitleAdmin": "Admin",
-  "layoutHeaderTabTitleLogout": "Logout"
+  "home": "Home",
+  "login": "Login",
+  "register": "Register",
+  "myProfile": "My Profile",
+  "admin": "Admin",
+  "logout": "Logout",
+  "emailAddress": "Email address",
+  "password": "Password",
+  "confirm": "Confirm",
+  "nickname": "Nickname",
+  "language": "Language"
 }

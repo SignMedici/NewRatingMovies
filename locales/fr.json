@@ -1,9 +1,14 @@
 {
   "welcome": "Bienvenue",
-  "layoutHeaderTabTitleHome": "Accueil",
-  "layoutHeaderTabTitleLogin": "Connexion",
-  "layoutHeaderTabTitleRegister": "Inscription",
-  "layoutHeaderTabTitleProfile": "Mon Profil",
-  "layoutHeaderTabTitleAdmin": "Administration",
-  "layoutHeaderTabTitleLogout": "Déconnexion"
+  "home": "Accueil",
+  "login": "Connexion",
+  "register": "Inscription",
+  "myProfile": "Mon Profil",
+  "admin": "Administration",
+  "logout": "Déconnexion",
+  "emailAddress": "Adresse email",
+  "password": "Mot de passe",
+  "confirm": "Valider",
+  "nickname": "Surnom",
+  "language": "Langue"
 }

@@ -29,17 +29,17 @@
                 <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12,3L20,9V21H15V14H9V21H4V9L12,3Z" />
                 </svg>
-                {{ $t('layoutHeaderTabTitleHome') }}
+                {{ $t('home') }}
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/auth/login">
-                {{ $t('layoutHeaderTabTitleLogin') }}
+                {{ $t('login') }}
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/auth/register">
-                {{ $t('layoutHeaderTabTitleRegister') }}
+                {{ $t('register') }}
               </nuxt-link>
             </v-tab>
           </v-tabs>
@@ -51,22 +51,22 @@
                 <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12,3L20,9V21H15V14H9V21H4V9L12,3Z" />
                 </svg>
-                  {{ $t('layoutHeaderTabTitleHome') }}
+                  {{ $t('home') }}
               </nuxt-link>
             </v-tab>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/user/myprofile">
-                {{ $t('layoutHeaderTabTitleProfile') }}
+                {{ $t('myProfile') }}
               </nuxt-link>
             </v-tab>
             <v-tab v-if="getUserInfo.isAdmin == true">
               <nuxt-link class="nav-link active" aria-current="page" to="/admin">
-                {{ $t("layoutHeaderTabTitleAdmin") }}
+                {{ $t("admin") }}
               </nuxt-link>
             </v-tab>
             <v-tab class="nav-item logout" @click="logout">
               <nuxt-link class="nav-link active" aria-current="page" to="#">
-                {{ $t('layoutHeaderTabTitleLogout') }}
+                {{ $t('logout') }}
               </nuxt-link>
             </v-tab>
           </v-tabs>
@@ -92,6 +92,9 @@ export default {
   },
   methods: {
     async logout() {
+      if(this.$cookiz.set('siteLang')){
+        this.$cookiz.remove('siteLang');
+      }
       await this.$auth.logout(); // this method will logout the user and make token to false on the local storage of the user browser
     },
   },

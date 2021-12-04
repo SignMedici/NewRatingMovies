@@ -105,6 +105,7 @@ export default {
   },
   created() {
     this.movies = this.$store.getters.getMovies;
+    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
   },
 };
 </script>

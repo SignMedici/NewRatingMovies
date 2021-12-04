@@ -134,18 +134,18 @@ const store = {
         });
     },
     updateUser({ commit }, user) {
-      /* this.$axios
-        .patch(process.env.baseURL + "/users/update/" + id, user)
+      this.$axios
+        .patch(process.env.baseURL + "/users/" + user._id, user)
         .then((response) => {
           commit("UPDATE_USER", response.data);
         })
         .catch((err) => {
           this.$toast.error(err);
-        }); */
+        });
     },
-    deleteUser({ commit }, _id) {
+    deleteUser({ commit }, id) {
       this.$axios
-        .delete(process.env.baseURL + "/user/delete/" + id)
+        .delete(process.env.baseURL + "/user/" + id)
         .then((response) => {
           commit("DELETE_USER", response.data);
         });
