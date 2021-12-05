@@ -19,5 +19,7 @@
   "vote": "Note",
   "releaseDate": "Date de sortie",
   "director": "Réalisateur",
-  "overview": "Résumé"
+  "overview": "Résumé",
+  "choose": "Choisir",
+  "casting": "Acteurs"
 }

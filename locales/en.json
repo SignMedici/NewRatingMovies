@@ -19,5 +19,7 @@
   "vote": "Vote",
   "releaseDate": "Release Date",
   "director": "Director",
-  "overview": "Overview"
+  "overview": "Overview",
+  "choose": "Choose",
+  "casting": "Casting"
 }

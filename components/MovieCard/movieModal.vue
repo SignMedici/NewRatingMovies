@@ -47,14 +47,14 @@
               <div class="people">
                 <table>
                   <tr v-show="movie.director">
-                    <td><span>Réalisateur</span></td>
+                    <td><span>{{ $t('director') }}</span></td>
                     <td>
                       <!-- Director -->
                       <div class="casting">{{ movie.director }}</div>
                     </td>
                   </tr>
                   <tr v-if="movie.casting">
-                    <td><span>Acteurs</span></td>
+                    <td><span>{{ $t('casting') }}</span></td>
                     <td>
                       <!-- Actors -->
                       <div class="casting">{{ movie.casting }}</div>
@@ -87,6 +87,9 @@ export default {
       this.$emit("close");
     },
   },
+  created() {
+    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+  }
 };
 </script>
 <style scoped>

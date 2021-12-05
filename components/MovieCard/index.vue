@@ -30,8 +30,8 @@
                     <div v-else class="mb-2"><br></div>
                     <!-- Button -->
                     <v-card-actions>
-                      <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 confirmButton">Ajouter</button>
-                      <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 confirmButton">Sélectionner</button>
+                      <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 confirmButton">{{ $t('add') }}</button>
+                      <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 confirmButton">{{ $t('choose') }}</button>
                     </v-card-actions>
                   </div>
                 </v-card>
@@ -143,6 +143,9 @@
         this.movieForModal = movie;
       },
     },
+    created() {
+      this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    }
   }
 </script>
 <style scoped>
