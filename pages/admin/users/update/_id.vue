@@ -32,7 +32,6 @@
 
 <script>
 export default {
-
     data() {
       return {
         errors: [],
@@ -42,34 +41,6 @@ export default {
         isAdmin: "",
         baseURL: process.env.baseURL,
       }
-    },
-    created(){
-      let userUpdate = this.$store.getters.getUserById(this.$route.params.userId);
-
-      if(userUpdate){
-        this.nickname = userUpdate.nickname;
-        this.email = userUpdate.email;
-        this.isAdmin = userUpdate.isAdmin;
-      }
-      else{
-        this.$router.push("/admin");
-      }
-
-      this.$i18n.setLocale(this.$cookiz.get('siteLang'));
-    },
-    methods: {
-      updateUser(){
-        this.$axios
-        .patch(this.baseURL + "/user/update/"+ this.$route.params.userId, {
-          nickname: this.nickname,
-          email: this.email,
-          isAdmin: this.isAdmin,
-        })
-        .then(async (response) => {
-          this.$store.commit('UPDATE_USER', response.data);
-          this.$router.push('/admin/users');
-        });
-      },
     },
     computed: {
       roleIsAdmin(){
@@ -85,7 +56,34 @@ export default {
           this.$router.push("/");
         }
       }
-    }
+    },
+    methods: {
+      updateUser(){
+        this.$axios
+        .patch(this.baseURL + "/users/"+ this.$route.params.id, {
+          nickname: this.nickname,
+          email: this.email,
+          isAdmin: this.isAdmin,
+        })
+        .then(async (response) => {
+          this.$store.commit('UPDATE_USER', response.data);
+          this.$router.push('/admin/users');
+        });
+      },
+    },
+    created(){
+      let userUpdate = this.$store.getters.getUserById(this.$route.params.id);
+      if(userUpdate){
+        this.nickname = userUpdate.nickname;
+        this.email = userUpdate.email;
+        this.isAdmin = userUpdate.isAdmin;
+      }
+      else{
+        this.$router.push("/admin");
+      }
+
+      this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    },
 }
 </script>
 

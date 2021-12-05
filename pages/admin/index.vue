@@ -36,7 +36,7 @@
             :key="item"
 
           >
-            <v-card v-if="item === 'utilisateurs'" class="tableMain">
+            <v-card v-if="item === $t('users')" class="tableMain">
               <Admin-UserAdmin />
             </v-card>
             <v-card v-else class="tableMain">

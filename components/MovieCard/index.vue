@@ -130,11 +130,16 @@
       },
 
       addMovie(){
+        console.log(this.baseURL + "/movies");
         axios
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
+          console.log("Added in db");
           await this.$store.commit('ADD_MOVIE', this.selectedMovie);
           this.$toast.success("Ajout effectuée avec succès.");
+        })
+        .catch((err) => {
+          this.$toast.error(err);
         });
       },
 

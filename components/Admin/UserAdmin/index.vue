@@ -19,7 +19,7 @@
           <td>
             <nuxt-link
               :to="{
-                name: 'admin-users-update-id',
+                name: `admin-users-update-id___${locale}`,
                 params: { id: user._id },
                 hash: '#logo',
               }"
@@ -54,6 +54,11 @@
 
 <script>
 export default {
+  data(){
+    return{
+      locale: ''
+    }
+  },
   methods: {
     getUsers() {
       this.$store.dispatch('getUsers');
@@ -83,7 +88,8 @@ export default {
   },
   created(){
     this.getUsers();
-    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    this.locale = this.$cookiz.get('siteLang');
+    this.$i18n.setLocale(this.locale);
   }
 }
 </script>

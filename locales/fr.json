@@ -28,5 +28,7 @@
   "modifyMKV": "Modifier un MKV",
   "modifyTitleMetadata": "Pour changer le titre d'un film MKV",
   "users": "Utilisateurs",
-  "movies": "Films"
+  "movies": "Films",
+  "firstFolderPath": "D'abord, le chemin du répertoire",
+  "thenChooseConcernedFile": "Ensuite, le fichier concerné"
 }

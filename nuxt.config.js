@@ -90,6 +90,7 @@ export default {
       "@nuxtjs/i18n",
       {
         lazy: true,
+        /* strategy: "no_prefix", */
         locales: [
           { code: "en", iso: "en-US", file: "en.json", name: "English" },
           { code: "fr", iso: "fr-BE", file: "fr.json", name: "Français" },

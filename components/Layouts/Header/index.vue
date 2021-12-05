@@ -55,7 +55,7 @@
               </nuxt-link>
             </v-tab>
             <v-tab>
-              <nuxt-link class="nav-link active" aria-current="page" to="/user/myprofile">
+              <nuxt-link class="nav-link active" aria-current="page" to="/myprofile">
                 {{ $t('myProfile') }}
               </nuxt-link>
             </v-tab>
@@ -87,7 +87,7 @@
 export default {
   data() {
     return {
-
+      locale: ''
     }
   },
   methods: {
@@ -107,7 +107,8 @@ export default {
     },
   },
   created(){
-    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    this.locale = this.$cookiz.get('siteLang');
+    this.$i18n.setLocale(this.locale);
   }
 };
 </script>

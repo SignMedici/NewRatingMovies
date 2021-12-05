@@ -13,14 +13,18 @@
       </div>
       <!-- Form -->
       <v-container data-app>
-        <div class="mb-3">
-          <span class="pageDesc">{{ $t('modifyTitleMetadata') }}</span>
+        <span class="pageDesc">{{ $t('modifyTitleMetadata') }}</span>
+        <div>
+          <label for="path">{{ $t('firstFolderPath') }}</label>
           <input
+            name="path"
             type="path"
             v-model="path"
-            class="form-control my-3"
+            class="form-control"
           />
+          <label for="file">{{ $t('thenChooseConcernedFile') }}</label>
           <input
+            name="file"
             type="file"
             class="form-control"
             @change="getSearchResult($event)"
@@ -109,6 +113,10 @@
   }
 </script>
 <style scoped>
+label{
+  color: #fff;
+  margin-top: 15px;
+}
 .backBtn{
   padding: 0;
   color: white;

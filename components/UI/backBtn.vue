@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Back button -->
-    <nuxt-link :to="{ name: `${path}`, hash: '#logo' }" class="btn backBtn">
+    <nuxt-link :to="{ name: `${path}___${locale}`, hash: '#logo' }" class="btn backBtn">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="40"
@@ -22,6 +22,14 @@
 export default {
   name:"backBtn",
   props: ['path'],
+  data(){
+    return{
+      locale: ''
+    }
+  },
+  created(){
+    this.locale = this.$cookiz.get('siteLang');
+  }
 }
 </script>
 

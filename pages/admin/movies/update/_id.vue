@@ -34,7 +34,7 @@
           <input type="text" class="form-control" v-model="director">
         </div>
         <div class="mt-3">
-          <label>{{ $t('director') }}</label>
+          <label>{{ $t('overview') }}</label>
           <textarea class="form-control" v-model="overview" rows="4" />
         </div>
         <button type="submit" class="btn confirmButton mt-5">{{ $t('confirm') }}</button>
@@ -70,7 +70,7 @@ export default {
     },
     updateMovie(){
        axios
-        .patch(this.baseURL + "/movies" + this.$route.params.id, {
+        .patch(this.baseURL + "/movies/" + this.$route.params.id, {
           title: this.title,
           vote_average: this.vote_average,
           release_date: this.release_date,

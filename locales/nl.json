@@ -28,5 +28,7 @@
   "modifyMKV": "Een MKV bewerken",
   "modifyTitleMetadata": "Om de titel van een MKV film te veranderen",
   "users": "Gebruikers",
-  "movies": "Films"
+  "movies": "Films",
+  "firstFolderPath": "Eerst het pad van de map",
+  "thenChooseConcernedFile": "Dan, het betrokken bestand"
 }
