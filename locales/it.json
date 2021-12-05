@@ -12,7 +12,7 @@
   "nickname": "Soprannome",
   "language": "Lingua",
   "modifyUser": "Modifica un utente",
-  "modifyMyProfile": "Modificare mio profilo",
+  "modifyMyProfile": "Modifica mio profilo",
   "add": "Aggiungere",
   "title": "Titolo",
   "vote": "Voto",
@@ -20,5 +20,7 @@
   "director": "Regista",
   "overview": "Sintesi",
   "choose": "Scegliere",
-  "casting": "Attori"
+  "casting": "Attori",
+  "modifyMovie": "Modifica un film"
+
 }

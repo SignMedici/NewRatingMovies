@@ -9,16 +9,16 @@
         <svg style="width:65px;height:65px" viewBox="0 0 24 24">
             <path fill="currentColor" d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z" />
         </svg><br>
-        Modifier un film
+        {{ $t('modifyMovie') }}
       </div>
       <!-- Form -->
       <form method="post" @submit.prevent="updateMovie()">
         <div>
-          <label>Titre</label>
+          <label>{{ $t('title') }}</label>
           <input type="text" class="form-control" v-model="title">
         </div>
         <div class="my-3">
-          <label>Date de sortie <small>(format: YYYY-MM-DD)</small></label>
+          <label>{{ $t('releaseDate') }} <small>(Format: YYYY-MM-DD)</small></label>
           <input type="text" class="form-control" v-model="release_date">
         </div>
         <div>
@@ -26,18 +26,18 @@
           <input type="text" class="form-control" v-model="strGenres">
         </div>
         <div class="my-3">
-          <label>Note</label>
+          <label>{{ $t('vote') }}</label>
           <input type="number" class="form-control" v-model="vote_average" step=0.1 min="0" max="10">
         </div>
         <div>
-          <label>Producteur</label>
+          <label>{{ $t('director') }}</label>
           <input type="text" class="form-control" v-model="director">
         </div>
         <div class="mt-3">
-          <label>Résumé</label>
+          <label>{{ $t('director') }}</label>
           <textarea class="form-control" v-model="overview" rows="4" />
         </div>
-        <button type="submit" class="btn confirmButton mt-5">Valider</button>
+        <button type="submit" class="btn confirmButton mt-5">{{ $t('confirm') }}</button>
       </form>
     </v-container>
   </div>
@@ -100,18 +100,21 @@ export default {
     }
   },
   created(){
-      let movieToUpdate = this.$store.getters.getMovieById(this.$route.params.id);
-      if(movieToUpdate){
-        this.title = movieToUpdate.title;
-        this.vote_average = movieToUpdate.vote_average;
-        this.strGenres = movieToUpdate.strGenres;
-        this.release_date = movieToUpdate.release_date;
-        this.overview = movieToUpdate.overview;
-        this.director = movieToUpdate.director;
-      }
-      else{
-        this.$router.push("/");
-      }
+    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+
+    let movieToUpdate = this.$store.getters.getMovieById(this.$route.params.id);
+
+    if(movieToUpdate){
+      this.title = movieToUpdate.title;
+      this.vote_average = movieToUpdate.vote_average;
+      this.strGenres = movieToUpdate.strGenres;
+      this.release_date = movieToUpdate.release_date;
+      this.overview = movieToUpdate.overview;
+      this.director = movieToUpdate.director;
+    }
+    else{
+      this.$router.push("/");
+    }
 
   }
 }
