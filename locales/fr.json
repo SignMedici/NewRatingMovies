@@ -22,5 +22,9 @@
   "overview": "Résumé",
   "choose": "Choisir",
   "casting": "Acteurs",
-  "modifyMovie": "Modifier un film"
+  "modifyMovie": "Modifier un film",
+  "administration": "Administration",
+  "addMovie": "Ajouter un film",
+  "modifyMKV": "Modifier un MKV",
+  "modifyTitleMetadata": "Pour changer le titre d'un film MKV"
 }

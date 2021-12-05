@@ -21,6 +21,9 @@
   "overview": "Sintesi",
   "choose": "Scegliere",
   "casting": "Attori",
-  "modifyMovie": "Modifica un film"
-
+  "modifyMovie": "Modifica un film",
+  "administration": "Amministrazione",
+  "addMovie": "Aggiungere un film",
+  "modifyMKV": "Modifica di un MKV",
+  "modifyTitleMetadata": "Per cambiare il titolo in un film MKV"
 }

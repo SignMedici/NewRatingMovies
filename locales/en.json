@@ -22,5 +22,9 @@
   "overview": "Overview",
   "choose": "Choose",
   "casting": "Casting",
-  "modifyMovie": "Modify a movie"
+  "modifyMovie": "Modify a movie",
+  "administration": "Administration",
+  "addMovie": "Add a movie",
+  "modifyMKV": "Modify an MKV",
+  "modifyTitleMetadata": "To modify the title of a MKV movie"
 }

@@ -22,5 +22,9 @@
   "overview": "Overzicht",
   "choose": "Kiezen",
   "casting": "Actoren",
-  "modifyMovie": "Een film bewerken"
+  "modifyMovie": "Een film bewerken",
+  "administration": "Administratie",
+  "addMovie": "Een film toevoegen",
+  "modifyMKV": "Een MKV bewerken",
+  "modifyTitleMetadata": "Om de titel van een MKV film te veranderen"
 }
