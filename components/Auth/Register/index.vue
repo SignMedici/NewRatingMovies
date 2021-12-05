@@ -8,7 +8,7 @@
         </svg><br>
         {{ $t('register') }}
       </div>
-      <form @submit.prevent="register">
+      <form @submit.prevent="register" class="mt-3">
         <input
           type="text"
           :placeholder="$t('nickname')"
@@ -31,7 +31,7 @@
           class="form-control"
           id="password"
         />
-        <select  class="form-select mt-2" aria-label="Prefered language" v-model="registerData.language">
+        <select  class="form-select langField" aria-label="Prefered language" v-model="registerData.language">
           <option selected disabled>{{ $t('language') }}</option>
           <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code">{{ locale.name }}</option>
         </select>
@@ -80,7 +80,6 @@ export default {
   padding: 30px;
   background-color: #ffffff20;
   border-radius: 14px;
-  margin-top: 20px;
 }
 .loginTitle{
   color: #ffffff79;
@@ -93,12 +92,14 @@ export default {
   color: #fff;
   background-color: #A52199;
   font-family: 'Lato', sans-serif;
-  margin-top: 10px;
   font-weight: 500;
   font-size: 17px;
 }
 .fields{
   margin: 10px 0;
+}
+.langField{
+  margin-top: 10px;
 }
 #name {
   color:#A52199;
