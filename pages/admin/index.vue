@@ -22,7 +22,7 @@
               <v-tabs-slider color="yellow"></v-tabs-slider>
 
               <v-tab
-                v-for="item in items"
+                v-for="item in [$t('users'),$t('movies')]"
                 :key="item"
               >
                 {{ item }}
@@ -32,7 +32,7 @@
         </v-toolbar>
         <v-tabs-items v-model="tab">
           <v-tab-item
-            v-for="item in items"
+            v-for="item in [$t('users'),$t('movies')]"
             :key="item"
 
           >
@@ -60,9 +60,19 @@ export default {
   data () {
     return {
       tab: null,
-      items: [
+      itemsFR: [
         'utilisateurs', 'films',
       ],
+      itemsEN: [
+        'users', 'movies',
+      ],
+      itemsIT: [
+        'utenti', 'film',
+      ],
+      itemsNL: [
+        'gebruikers', 'films',
+      ],
+      language: ''
     }
   },
   computed: {
@@ -82,6 +92,7 @@ export default {
   },
   created() {
     this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    this.language = this.$store.getters.getSiteLang;
   }
 }
 </script>

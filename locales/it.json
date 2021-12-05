@@ -26,5 +26,7 @@
   "administration": "Amministrazione",
   "addMovie": "Aggiungere un film",
   "modifyMKV": "Modifica di un MKV",
-  "modifyTitleMetadata": "Per cambiare il titolo in un film MKV"
+  "modifyTitleMetadata": "Per cambiare il titolo in un film MKV",
+  "users": "Utenti",
+  "movies": "Film"
 }
