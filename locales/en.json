@@ -12,5 +12,12 @@
   "nickname": "Nickname",
   "language": "Language",
   "modifyUser": "Modify a user",
-  "modifyMyProfile": "Modify my profile"
+  "modifyMyProfile": "Modify my profile",
+  "add": "Add",
+  "modifyMetadata": "Modify metadata",
+  "title": "Title",
+  "vote": "Vote",
+  "releaseDate": "Release Date",
+  "director": "Director",
+  "overview": "Overview"
 }

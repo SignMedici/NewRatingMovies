@@ -12,5 +12,12 @@
   "nickname": "Bijnaam",
   "language": "Taal",
   "modifyUser": "Een gebruiker bewerken",
-  "modifyMyProfile": "Mijn profiel bewerken"
+  "modifyMyProfile": "Mijn profiel bewerken",
+  "add": "Toevoegen",
+  "modifyMetadata": "Metadata veranderen",
+  "title": "Titel",
+  "vote": "Nota",
+  "releaseDate": "Releasedatum",
+  "director": "Regisseur",
+  "overview": "Overzicht"
 }

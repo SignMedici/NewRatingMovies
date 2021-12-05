@@ -12,5 +12,12 @@
   "nickname": "Surnom",
   "language": "Langue",
   "modifyUser": "Modifier un utilisateur",
-  "modifyMyProfile": "Modifier mon profil"
+  "modifyMyProfile": "Modifier mon profil",
+  "add":"Ajouter",
+  "modifyMetadata": "Modifier metadata",
+  "title": "Titre",
+  "vote": "Note",
+  "releaseDate": "Date de sortie",
+  "director": "Réalisateur",
+  "overview": "Résumé"
 }

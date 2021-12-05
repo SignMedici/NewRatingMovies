@@ -2,29 +2,29 @@
   <div v-if="isAdmin === true">
     <div>
       <nuxt-link :to="{ name: 'movie-add', hash: '#logo' }" class="btn btn-success mb-2 me-2">
-        Ajouter
+        {{ $t('add') }}
       </nuxt-link>
       <nuxt-link :to="{ name: 'movie-metadata',hash:'#logo'}" class="btn btn-success mb-2">
-        Modifier metadata
+        {{ $t('modifyMetadata') }}
       </nuxt-link>
     </div>
     <table class="table table-striped borderless">
       <thead>
         <tr>
           <th class="text-left">
-            Titre
+            {{ $t('title') }}
           </th>
           <th class="text-left">
-            Note
+            {{ $t('vote') }}
           </th>
           <th class="text-left">
-            Sortie
+            {{ $t('releaseDate') }}
           </th>
           <th class="text-left">
-            Producteur
+            {{ $t('director') }}
           </th>
           <th class="text-left ps-4">
-            Résumé
+            {{ $t('overview') }}
           </th>
           <th></th>
         </tr>
@@ -101,6 +101,9 @@ export default {
       }
     }
   },
+  created() {
+    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+  }
 };
 </script>
 <style scoped>
