@@ -11,14 +11,9 @@
         fade-img-on-scroll
         scroll-target="#scrolling-techniques-3"
       >
-        <template v-slot:img="{ props }">
-          <v-img
-            v-bind="props"
-            gradient="to top right, rgba(100,115,201,.1), rgba(25,32,72,.1)"
-          ></v-img>
-        </template>
         <v-spacer></v-spacer>
         <UIFlags />
+        <!-- Favorite icon -->
         <v-btn icon>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
