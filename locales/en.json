@@ -42,5 +42,7 @@
   "deleteDone": "Movie successfully deleted.",
   "useInfoOK": "Still OK to use the details of this movie",
   "for": "for",
-  "enterTitle": "Please enter a title."
+  "enterTitle": "Please enter a title.",
+  "noMovieCatalog": "No movie in the catalog.",
+  "noUserInDB": "No user in the database."
 }

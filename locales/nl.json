@@ -42,5 +42,7 @@
   "deleteDone": "Movie successfully deleted.",
   "useInfoOK": "Nog steeds OK om de details van deze film te gebruiken",
   "for": "voor",
-  "enterTitle": "Voer een titel in."
+  "enterTitle": "Voer een titel in.",
+  "noMovieCatalog": "Geen film in de catalogus.",
+  "noUserInDB": "Geen gebruiker in de database."
 }

@@ -11,7 +11,7 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody>
+      <tbody v-if="getterUsers.length > 0">
         <tr v-for="user in getterUsers" :key="user._id">
           <td>{{ user._id }}</td>
           <td>{{ user.nickname }}</td>
@@ -52,6 +52,11 @@
               </svg>
             </button>
           </td>
+        </tr>
+      </tbody>
+      <tbody v-else>
+        <tr>
+            <td align="center" colspan="6">{{ $t('noUserInDB') }}</td>
         </tr>
       </tbody>
     </table>

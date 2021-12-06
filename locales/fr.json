@@ -42,5 +42,7 @@
   "deleteDone": "Supprimé avec succès.",
   "useInfoOK": "Toujours OK d'utiliser les informations de ce film",
   "for": "pour",
-  "enterTitle": "Entrer un titre."
+  "enterTitle": "Entrer un titre.",
+  "noMovieCatalog": "Aucun film dans le catalogue.",
+  "noUserInDB": "Aucun utilisateur dans la base de données."
 }
