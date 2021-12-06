@@ -5,7 +5,7 @@
         <div class="modalContent">
           <div>
             <!-- Poster -->
-            <img v-if="movie.poster_path" :srcset="url + movie.poster_path" />
+            <img v-if="movie[siteLang].poster_path" :srcset="url + movie[siteLang].poster_path" />
             <img
               v-else
               class="defaultPic"
@@ -15,8 +15,8 @@
           <div class="movieDesc">
             <div>
               <!-- Title -->
-              <span v-if="movie.title.length <= 33" class="bigTitle">{{ movie.title}}</span>
-              <span v-else class="smallTitle">{{ movie.title}}</span>
+              <span v-if="movie[siteLang].title.length <= 33" class="bigTitle">{{ movie[siteLang].title}}</span>
+              <span v-else class="smallTitle">{{ movie[siteLang].title}}</span>
               <!-- Vote -->
               <span v-if="movie.vote_average" class="vote">
                 <svg
@@ -63,7 +63,7 @@
                 </table>
               </div>
               <!-- Overview -->
-              <div v-if="movie.overview" class="overview">{{ movie.overview }}</div>
+              <div v-if="movie[siteLang].overview" class="overview">{{ movie[siteLang].overview }}</div>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@
 <script>
 export default {
   name: "Modal",
-  props: ["movie", "revele", "toggleModal"],
+  props: ["movie", "revele", "toggleModal", "siteLang"],
   data() {
     return {
       url: process.env.API_PIC_URL,

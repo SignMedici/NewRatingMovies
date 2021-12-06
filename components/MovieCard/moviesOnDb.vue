@@ -11,7 +11,7 @@
                   <img
                     @click="toggleModal(movie)"
                     class="imgMovieCard"
-                    :srcset="url + movie.poster_path"
+                    :srcset="url + movie[siteLang].poster_path"
                   />
                   <v-rating
                     v-if="isAuthenticated"
@@ -27,10 +27,10 @@
                 </figure>
               </div>
               <div class="cardInfos">
-                <v-card-title v-if="movie.title.length > 22"
-                  >{{ movie.title.substring(0, 22) }}...</v-card-title
+                <v-card-title v-if="movie[siteLang].title.length > 22"
+                  >{{ movie[siteLang].title.substring(0, 22) }}...</v-card-title
                 >
-                <v-card-title v-else>{{ movie.title }}</v-card-title>
+                <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
                 <div v-if="isAuthenticated" class="text-subtitle-1">
                   {{ movie.release_date.substring(0, 4) }}
                 </div>
@@ -60,6 +60,7 @@
       :revele="revele"
       :toggleModal="toggleModal"
       :movie="movieForModal"
+      :siteLang="siteLang"
     />
   </div>
 </template>
@@ -81,6 +82,7 @@ export default {
       movieForModal: "",
       revele: false,
       baseURL: `${process.env.baseURL}`,
+      siteLang: ''
     };
   },
   computed: {
@@ -105,7 +107,8 @@ export default {
   },
   created() {
     this.movies = this.$store.getters.getMovies;
-    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    this.siteLang = this.$cookiz.get('siteLang');
+    this.$i18n.setLocale(this.siteLang);
   },
 };
 </script>

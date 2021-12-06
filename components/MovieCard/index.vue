@@ -14,15 +14,15 @@
                     <figure>
                       <!-- Poster -->
                       <button class="imgMovieCard" @click="getInfo(null,null,movie)">
-                        <img v-if="movie.poster_path" :srcset="url+movie.poster_path" class="imgMovieCard" />
+                        <img v-if="movie.language.poster_path" :srcset="url+movie.language.poster_path" class="imgMovieCard" />
                         <img v-else class="defaultPic" src="../../assets/No-Image-Placeholder.png" />
                       </button>
                     </figure>
                   </div>
                   <div class="cardInfos">
                     <!-- Title -->
-                    <v-card-title v-if="movie.title.length > 22">{{ movie.title.substring(0,22) }}...</v-card-title>
-                    <v-card-title v-else>{{ movie.title }}</v-card-title>
+                    <v-card-title v-if="movie.language.title.length > 22">{{ movie.title.substring(0,22) }}...</v-card-title>
+                    <v-card-title v-else>{{ movie.language.title }}</v-card-title>
                     <!-- Year -->
                     <div v-if="movie.release_date" class="text-subtitle-1 ms-1 mb-2">
                       {{ movie.release_date.substring(0,4) }}
@@ -40,7 +40,7 @@
         </v-row>
       </v-container>
     </div>
-    <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" />
+    <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :language="language" />
   </div>
 </template>
 
@@ -70,6 +70,7 @@
         movieForModal:'',
         revele: false,
         baseURL: process.env.baseURL,
+        language: ''
       }
     },
     computed :{
@@ -147,7 +148,13 @@
       },
     },
     created() {
-      this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+      if(this.$cookiz.get('siteLang')){
+        this.language = this.$cookiz.get('siteLang')
+      }
+      else{
+        this.language = 'fr'
+      }
+      this.$i18n.setLocale(this.language);
     }
   }
 </script>
