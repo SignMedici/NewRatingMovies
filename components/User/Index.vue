@@ -18,6 +18,7 @@
           <th scope="col">#</th>
           <th scope="col">{{ $t('nickname') }}</th>
           <th scope="col">{{ $t('emailAddress') }}</th>
+          <th scope="col">{{ $t('language') }}</th>
           <th></th>
         </tr>
       </thead>
@@ -26,6 +27,10 @@
           <td>{{ getUserInfo.id }}</td>
           <td>{{ getUserInfo.nickname }}</td>
           <td>{{ getUserInfo.email }}</td>
+          <td v-if="getUserInfo.language === 'fr'">{{ $t('french') }}</td>
+          <td v-if="getUserInfo.language === 'en'">{{ $t('english') }}</td>
+          <td v-if="getUserInfo.language === 'nl'">{{ $t('dutch') }}</td>
+          <td v-if="getUserInfo.language === 'it'">{{ $t('italian') }}</td>
           <td>
             <nuxt-link :to="{ name: `myprofile-update-id___${locale}`, params: { id: getUserInfo.id }, hash: '#logo' }">
               <button>

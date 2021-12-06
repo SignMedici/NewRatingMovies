@@ -92,6 +92,12 @@ const store = {
       state.users[index] = data;
     },
 
+    UPDATE_LOGGED_USER: (state, data) => {
+      if (data.nickname) state.auth.user["nickname"] = data.nickname;
+      if (data.email) state.auth.user["email"] = data.email;
+      if (data.language) state.auth.user["language"] = data.language;
+    },
+
     DELETE_USER: (state, idToRemove) => {
       state.users.splice(
         state.users

@@ -15,14 +15,20 @@
       <v-container data-app>
         <form @submit.prevent="updateUserLoaded">
             <div class="mb-3">
-              <label for="name" class="form-label">{{ $t('nickname') }}</label>
-              <input type="text" class="form-control" id="nickname" aria-describedby="nickname" v-model="nickname">
+              <label for="nickname" class="form-label">{{ $t('nickname') }}</label>
+              <input type="text" class="form-control" name="nickname" aria-describedby="nickname" v-model="nickname">
             </div>
             <div>
-              <label for="exampleInputEmail1" class="form-label">{{ $t('emailAddress') }}</label>
+              <label for="email" class="form-label">{{ $t('emailAddress') }}</label>
             </div>
-            <div class="mb-3" :class="['input-group', isEmailValid()]">
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email">
+            <div :class="['input-group', isEmailValid()]">
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" v-model="email">
+            </div>
+            <div class="my-3">
+              <label for="myLanguage" class="form-label">{{ $t('language')}}</label>
+              <select  class="form-select langField" name="myLanguage" aria-label="Prefered language" v-model="language" required>
+                <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code">{{ $t(locale.name) }}</option>
+              </select>
             </div>
             <button type="submit" class="btn confirmButton">{{ $t('confirm') }}</button>
         </form>
@@ -38,6 +44,7 @@ export default {
         baseURL: process.env.baseURL,
         nickname: "",
         email: "",
+        language:"",
         reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
     },
@@ -45,6 +52,7 @@ export default {
         let userLoadedUpdate = this.$store.getters.getUserInfo;
         this.nickname = userLoadedUpdate.nickname;
         this.email = userLoadedUpdate.email;
+        this.language = userLoadedUpdate.language;
         this.$i18n.setLocale(this.$cookiz.get('siteLang'));
     },
     computed: {
@@ -61,10 +69,14 @@ export default {
           .patch(this.baseURL + "/users/" + this.$route.params.id, {
               nickname: this.nickname,
               email: this.email,
+              language: this.language
           })
           .then((response) => {
             this.$store.commit('UPDATE_USER', response.data);
-            this.$toast.success("Profile modifié avec succès.")
+            this.$store.commit('UPDATE_LOGGED_USER', response.data);
+            this.$store.commit('SET_LANG', this.language);
+            this.$cookiz.set('siteLang', this.language);
+            this.$toast.success("Profile modifié avec succès.");
             this.$router.push('/myprofile');
           })
           .catch((err) => {

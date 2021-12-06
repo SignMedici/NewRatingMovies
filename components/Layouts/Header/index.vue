@@ -7,7 +7,7 @@
         dark
         shrink-on-scroll
         prominent
-        src="https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+        :src="bannerURL"
         fade-img-on-scroll
         scroll-target="#scrolling-techniques-3"
       >
@@ -87,12 +87,13 @@
 export default {
   data() {
     return {
+      bannerURL: process.env.BANNER_PIC_URL,
       locale: ''
     }
   },
   methods: {
     async logout() {
-      if(this.$cookiz.set('siteLang')){
+      if(this.$cookiz.get('siteLang')){
         this.$cookiz.remove('siteLang');
       }
       await this.$auth.logout(); // this method will logout the user and make token to false on the local storage of the user browser
