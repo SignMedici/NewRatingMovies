@@ -51,9 +51,7 @@ export default {
   cursor: pointer; /* Add a mouse pointer on hover */
   bottom: 0;  /* Place the button at the bottom of the page */
   right: 0; /* Place the button 30px from the right */
-  height:100%;
-  margin: auto 0;
-  padding-right: 110px;
+  padding: 0 110px 110px 0;
 }
 #toTop{
   border-radius:5px;

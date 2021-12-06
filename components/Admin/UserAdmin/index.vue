@@ -15,7 +15,8 @@
           <td>{{ user._id }}</td>
           <td>{{ user.nickname }}</td>
           <td>{{ user.email }}</td>
-          <td>{{ user.isAdmin }}</td>
+          <td v-if="user.isAdmin"><img class="true" src="@/assets/true.png" alt="true.png"></td>
+          <td v-else><img class="false" src="@/assets/false.png" alt="true.png"></td>
           <td>
             <nuxt-link
               :to="{
@@ -103,5 +104,15 @@ tr {
 }
 td {
   color: #fff;
+}
+.true{
+  height: 20px;
+  width: auto;
+  margin-left: 20px;
+}
+.false{
+  height: 18px;
+  width: auto;
+  margin-left: 20px;
 }
 </style>

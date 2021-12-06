@@ -31,8 +31,8 @@
           class="form-control"
           id="password"
         />
-        <select  class="form-select langField" aria-label="Prefered language" v-model="registerData.language">
-          <option selected disabled>{{ $t('language') }}</option>
+        <select  class="form-select langField" aria-label="Prefered language" v-model="registerData.language" required>
+          <option selected value="">{{ $t('language') }}</option>
           <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code">{{ locale.name }}</option>
         </select>
         <button type="submit" class="btn w-100 registerButton mt-3">{{ $t('confirm') }}</button>

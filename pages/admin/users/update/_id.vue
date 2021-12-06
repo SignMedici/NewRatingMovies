@@ -21,10 +21,12 @@
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email">
             </div>
             <div>
-              <label for="exampleInputPassword1" class="form-label">Admin?</label>
-              <input type="text" class="form-control" id="exampleInputPassword1" v-model="isAdmin">
+              <label for="flexCheckDefault" class="form-check-label">Admin?</label>
+              <div class="form-check mt-1">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="isAdmin">
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary confirmButton mt-5">{{ $t('confirm') }}</button>
+            <button type="submit" class="btn btn-primary confirmButton mt-4">{{ $t('confirm') }}</button>
         </form>
     </v-container>
   </div>
