@@ -48,9 +48,6 @@ export default {
         this.$i18n.setLocale(this.$cookiz.get('siteLang'));
     },
     computed: {
-        getUserInfo() {
-            return this.$store.getters.getUserInfo;
-        },
         isAuthenticated() {
           return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
         },
@@ -60,15 +57,19 @@ export default {
              return (this.email == "")? "" : (this.reg.test(this.email)) ? 'has-success' : 'has-error';
         },
         updateUserLoaded(){
-            this.$axios
-            .patch(this.baseURL + "/user/" + this.$route.params.userId, {
-                nickname: this.nickname,
-                email: this.email,
-            })
-            .then(async (response) => {
+          this.$axios
+          .patch(this.baseURL + "/users/" + this.$route.params.id, {
+              nickname: this.nickname,
+              email: this.email,
+          })
+          .then((response) => {
             this.$store.commit('UPDATE_USER', response.data);
-                this.$router.push('/user/myprofile');
-            });
+            this.$toast.success("Profile modifié avec succès.")
+            this.$router.push('/myprofile');
+          })
+          .catch((err) => {
+            this.$toast.error(err);
+          });
         }
     }
 }

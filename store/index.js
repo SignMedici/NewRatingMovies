@@ -4,7 +4,6 @@ const store = {
       movies: [],
       result: [],
       users: [],
-      user: [],
       siteLang: "fr",
     };
   },
@@ -19,9 +18,6 @@ const store = {
 
     // Users
     getUserInfo(state) {
-      return state.auth.user;
-    },
-    getUserInfoById: (state) => {
       return state.auth.user;
     },
     getterUsers(state) {
