@@ -51,6 +51,7 @@
         value => !!value || 'Required.',
       ],
       baseURL: process.env.baseURL,
+      language: ''
     }),
     methods:{
       getSearchResult(){
@@ -59,7 +60,9 @@
             .post(
                 this.baseURL +
                 "/movies/search/" +
-                this.title.replace(" ", "+")
+                this.title.replace(" ", "+") +
+                "/" +
+                this.language
             )
             .then(async (response) => {
               await this.$store.commit('SET_RESULT',response.data);
@@ -86,7 +89,8 @@
       }
     },
     created() {
-      this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+      this.language = this.$cookiz.get('siteLang');
+      this.$i18n.setLocale(this.language);
     }
   }
 </script>
