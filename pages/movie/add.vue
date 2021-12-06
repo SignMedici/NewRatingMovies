@@ -66,7 +66,7 @@
               this.results = "OK";
             });
         }else{
-          alert('Please enter a title.');
+          this.$toast.info(this.$t('enterTitle'));
         }
       }
     },

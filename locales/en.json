@@ -37,5 +37,10 @@
   "italian": "Italian",
   "alreadyInCatalog": "Already in your catalog.",
   "addDone": "Successfully added.",
-  "updateDone": "Successfully updated."
+  "updateDone": "Successfully updated.",
+  "deleteMovieOK": "Still OK to delete this movie from the catalog?",
+  "deleteDone": "Movie successfully deleted.",
+  "useInfoOK": "Still OK to use the details of this movie",
+  "for": "for",
+  "enterTitle": "Please enter a title."
 }

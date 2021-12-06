@@ -109,8 +109,8 @@
 
         let info = this.selectedMovie;
 
-        if (confirm("Still OK to use the information about this movie?\n   " + info.title + " - " + info.release_date.substring(0, 4) +
-            "\non\n   " + fileToModify.name)){
+        if (confirm(`${this.$t('useInfoOK')}\n   ` + info.title + " - " + info.release_date.substring(0, 4) +
+            `\n${this.$t('for')}\n   ` + fileToModify.name)){
 
           //if the path doesn't end by a slash, add it
           if(filePath.slice(-1) !== '/') {
@@ -134,7 +134,7 @@
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
           await this.$store.commit('ADD_MOVIE', this.selectedMovie);
-          this.$toast.success($t('addDone'));
+          this.$toast.success(this.$t('addDone'));
         })
         .catch((err) => {
           this.$toast.error(err);

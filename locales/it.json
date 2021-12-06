@@ -37,5 +37,10 @@
   "italian": "italiano",
   "alreadyInCatalog": "Già nel catalogo.",
   "addDone": "Aggiunto con successo.",
-  "updateDone": "Aggiornamento riuscito."
+  "updateDone": "Aggiornamento riuscito.",
+  "deleteMovieOK": "Sempre OK per togliere questo film dal catalogo?",
+  "deleteDone": "Rimosso con successo.",
+  "useInfoOK": "Sempre OK di usare i dati di questo film",
+  "for": "per",
+  "enterTitle": "Specificare un titolo."
 }
