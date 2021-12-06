@@ -1,6 +1,8 @@
 <template>
   <div>
-    <UIBigLogo />
+    <div>
+      <UIBigLogo />
+    </div>
     <div class="formTopMargin">
       <v-container class="grey lighten-5 loginForm">
         <div class="loginTitle">
