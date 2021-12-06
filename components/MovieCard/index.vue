@@ -83,7 +83,7 @@
         if(inDb == "Add OK"){
           this.getInfo(filePath, fileToModify, movie);
         }else{
-          this.$toast.info("Fait déjà partie de vos films.");
+          this.$toast.info($t('alreadyInCatalog'));
         }
       },
 
@@ -134,7 +134,7 @@
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
           await this.$store.commit('ADD_MOVIE', this.selectedMovie);
-          this.$toast.success("Ajout effectuée avec succès.");
+          this.$toast.success($t('addDone'));
         })
         .catch((err) => {
           this.$toast.error(err);

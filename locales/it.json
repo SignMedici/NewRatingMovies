@@ -34,5 +34,8 @@
   "french": "francese",
   "english": "inglese",
   "dutch": "olandese",
-  "italian": "italiano"
+  "italian": "italiano",
+  "alreadyInCatalog": "Già nel catalogo.",
+  "addDone": "Aggiunto con successo.",
+  "updateDone": "Aggiornamento riuscito."
 }

@@ -76,7 +76,7 @@ export default {
             this.$store.commit('UPDATE_LOGGED_USER', response.data);
             this.$store.commit('SET_LANG', this.language);
             this.$cookiz.set('siteLang', this.language);
-            this.$toast.success("Profile modifié avec succès.");
+            this.$toast.success($t('updateDone'));
             this.$router.push('/myprofile');
           })
           .catch((err) => {
