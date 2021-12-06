@@ -98,7 +98,6 @@ export default {
           { code: "it", iso: "it-IT", file: "it.json", name: "Italiano" },
         ],
         langDir: "locales/",
-        /* locale: "fr", */
         defaultLocale: "fr",
         /* fallbackLocale: "fr", */
         loadLanguagesAsync: true,
@@ -107,7 +106,6 @@ export default {
           fallbackLocale: "fr",
           cookieKey: "route_path",
           locale: "fr",
-          /* alwaysRedirect: true, */
         },
         vueI18nLoader: true,
       },
@@ -129,8 +127,8 @@ export default {
   }, */
 
   env: {
-    /* baseURL: "http://localhost:8010/api", */
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    baseURL: "http://localhost:8010/api",
+    /* baseURL: "http://newratingmovies-backend.herokuapp.com/api", */
     API_PIC_URL: "http://image.tmdb.org/t/p/w500",
   },
 
@@ -141,8 +139,8 @@ export default {
 
   //Axios
   axios: {
-    /* baseURL: "http://localhost:8010/api", */
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    baseURL: "http://localhost:8010/api",
+    /* baseURL: "http://newratingmovies-backend.herokuapp.com/api", */
   },
 
   auth: {

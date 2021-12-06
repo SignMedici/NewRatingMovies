@@ -130,7 +130,6 @@
       },
 
       addMovie(){
-        console.log(this.baseURL + "/movies");
         axios
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
