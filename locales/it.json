@@ -30,5 +30,9 @@
   "users": "Utenti",
   "movies": "Film",
   "firstFolderPath": "Prima il percorso della cartella",
-  "thenChooseConcernedFile": "Poi il file interessato"
+  "thenChooseConcernedFile": "Poi il file interessato",
+  "french": "francese",
+  "english": "inglese",
+  "dutch": "olandese",
+  "italian": "italiano"
 }

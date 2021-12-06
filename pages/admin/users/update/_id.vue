@@ -21,6 +21,13 @@
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email">
             </div>
             <div>
+              <label for="language" class="form-label">{{ $t('language') }}</label>
+              <select name="language" class="form-select langField" aria-label="Prefered language" v-model="language" required>
+                <option selected :value="language">{{ language}}</option>
+                <option v-for="locale in this.$i18n.locales" :key="$t(locale.name)" :value="locale.code">{{ $t(locale.name) }}</option>
+              </select>
+            </div>
+            <div class="mt-2">
               <label for="flexCheckDefault" class="form-check-label">Admin?</label>
               <div class="form-check mt-1">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="isAdmin">
@@ -40,6 +47,7 @@ export default {
         user: [],
         nickname: "",
         email: "",
+        language: '',
         isAdmin: "",
         baseURL: process.env.baseURL,
       }
@@ -65,6 +73,7 @@ export default {
         .patch(this.baseURL + "/users/"+ this.$route.params.id, {
           nickname: this.nickname,
           email: this.email,
+          language: this.language,
           isAdmin: this.isAdmin,
         })
         .then(async (response) => {
@@ -78,6 +87,7 @@ export default {
       if(userUpdate){
         this.nickname = userUpdate.nickname;
         this.email = userUpdate.email;
+        this.language = this.language;
         this.isAdmin = userUpdate.isAdmin;
       }
       else{

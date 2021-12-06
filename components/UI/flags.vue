@@ -20,9 +20,13 @@ export default {
   },
   methods: {
     async selectLang(langCode) {
+      // Save new site language in store
       this.$store.commit("SET_LANG", langCode);
+
+      // Set the value to the cookie 'siteLang'
       this.$cookiz.set('siteLang', langCode);
 
+      // Update the language of the user in DB
       if(this.$store.getters.getUserInfo){
         await this.$store.dispatch("updateUser", {
           _id: this.$store.getters.getUserInfo.id,

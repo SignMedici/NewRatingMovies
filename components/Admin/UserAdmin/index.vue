@@ -6,6 +6,7 @@
           <th scope="col">#</th>
           <th scope="col">{{ $t('nickname') }}</th>
           <th scope="col">{{ $t('emailAddress') }}</th>
+          <th scope="col">{{ $t('language') }}</th>
           <th scope="col">Admin?</th>
           <th scope="col"></th>
         </tr>
@@ -15,6 +16,10 @@
           <td>{{ user._id }}</td>
           <td>{{ user.nickname }}</td>
           <td>{{ user.email }}</td>
+          <td v-if="user.language === 'fr'">{{ $t('french') }}</td>
+          <td v-if="user.language === 'en'">{{ $t('english') }}</td>
+          <td v-if="user.language === 'nl'">{{ $t('dutch') }}</td>
+          <td v-if="user.language === 'it'">{{ $t('italian') }}</td>
           <td v-if="user.isAdmin"><img class="true" src="@/assets/true.png" alt="true.png"></td>
           <td v-else><img class="false" src="@/assets/false.png" alt="true.png"></td>
           <td>

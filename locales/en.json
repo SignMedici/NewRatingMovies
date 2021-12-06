@@ -30,5 +30,9 @@
   "users": "Users",
   "movies": "Movies",
   "firstFolderPath": "First the folder path",
-  "thenChooseConcernedFile": "Then the concerned file"
+  "thenChooseConcernedFile": "Then the concerned file",
+  "french": "French",
+  "english": "English",
+  "dutch": "Dutch",
+  "italian": "Italian"
 }

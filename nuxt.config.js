@@ -92,10 +92,10 @@ export default {
         lazy: true,
         /* strategy: "no_prefix", */
         locales: [
-          { code: "en", iso: "en-US", file: "en.json", name: "English" },
-          { code: "fr", iso: "fr-BE", file: "fr.json", name: "Français" },
-          { code: "nl", iso: "nl-BE", file: "nl.json", name: "Nederlands" },
-          { code: "it", iso: "it-IT", file: "it.json", name: "Italiano" },
+          { code: "en", iso: "en-US", file: "en.json", name: "english" },
+          { code: "fr", iso: "fr-BE", file: "fr.json", name: "french" },
+          { code: "nl", iso: "nl-BE", file: "nl.json", name: "dutch" },
+          { code: "it", iso: "it-IT", file: "it.json", name: "italian" },
         ],
         langDir: "locales/",
         defaultLocale: "fr",

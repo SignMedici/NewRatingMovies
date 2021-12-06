@@ -60,18 +60,6 @@ export default {
   data () {
     return {
       tab: null,
-      itemsFR: [
-        'utilisateurs', 'films',
-      ],
-      itemsEN: [
-        'users', 'movies',
-      ],
-      itemsIT: [
-        'utenti', 'film',
-      ],
-      itemsNL: [
-        'gebruikers', 'films',
-      ],
       language: ''
     }
   },

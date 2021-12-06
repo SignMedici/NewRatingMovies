@@ -30,5 +30,9 @@
   "users": "Gebruikers",
   "movies": "Films",
   "firstFolderPath": "Eerst het pad van de map",
-  "thenChooseConcernedFile": "Dan, het betrokken bestand"
+  "thenChooseConcernedFile": "Dan, het betrokken bestand",
+  "french": "Frans",
+  "english": "Engels",
+  "dutch": "Nederlands",
+  "italian": "Italiaans"
 }
