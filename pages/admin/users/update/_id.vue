@@ -22,7 +22,7 @@
             </div>
             <div>
               <label for="language" class="form-label">{{ $t('language') }}</label>
-              <select name="language" class="form-select langField" aria-label="Prefered language" v-model="language" required>
+              <select name="language" class="form-select langField" aria-label="Prefered language" v-model="userLang" required>
                 <option selected :value="language">{{ language}}</option>
                 <option v-for="locale in this.$i18n.locales" :key="$t(locale.name)" :value="locale.code">{{ $t(locale.name) }}</option>
               </select>
@@ -47,7 +47,7 @@ export default {
         user: [],
         nickname: "",
         email: "",
-        language: '',
+        userLang: '',
         isAdmin: "",
         baseURL: process.env.baseURL,
       }
@@ -73,7 +73,7 @@ export default {
         .patch(this.baseURL + "/users/"+ this.$route.params.id, {
           nickname: this.nickname,
           email: this.email,
-          language: this.language,
+          language: this.userLang,
           isAdmin: this.isAdmin,
         })
         .then(async (response) => {
@@ -87,14 +87,20 @@ export default {
       if(userUpdate){
         this.nickname = userUpdate.nickname;
         this.email = userUpdate.email;
-        this.language = this.language;
+        this.userLang = userUpdate.language;
         this.isAdmin = userUpdate.isAdmin;
       }
       else{
         this.$router.push("/admin");
       }
 
-      this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+      if(this.$cookiz.get('siteLang')){
+        this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+      }
+      else{
+        this.$i18n.setLocale('fr');
+      }
+
     },
 }
 </script>
