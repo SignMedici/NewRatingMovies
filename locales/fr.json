@@ -59,8 +59,8 @@
   "music" : "Musical",
   "mystery" : "Mystère",
   "romance" : "Romance",
-  "sci-fi" : "Science-Fiction",
-  "tvMovie" : "Téléfilm",
+  "sciencefiction" : "Science-Fiction",
+  "tvmovie" : "Téléfilm",
   "thriller" : "Thriller",
   "war" : "Guerre",
   "western" : "Western"
