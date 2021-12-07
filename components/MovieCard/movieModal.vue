@@ -43,7 +43,7 @@
               </div>
               <!-- Genres -->
               <div>
-                <span v-if="movie.genre" v-for="genre in movie.genre">{{ $t(genre) }}</span>
+                <span class="genre" v-if="movie.genre" v-for="movieGenre in movie.genre">{{ $t(movieGenre) }}</span>
               </div>
 
               <!-- People -->
@@ -91,12 +91,19 @@ export default {
     },
   },
   created() {
-    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    let siteLang = '';
+    if(this.$cookiz.get('siteLang')){
+      siteLang = this.$cookiz.get('siteLang')
+    }
+    else{
+      siteLang = 'fr'
+    }
+    this.$i18n.setLocale(siteLang);
   }
 };
 </script>
 <style scoped>
-span+span::before{
+.genre+.genre::before{
   content: ", ";
 }
 img {
