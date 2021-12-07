@@ -14,7 +14,7 @@
                     <figure>
                       <!-- Poster -->
                       <button class="imgMovieCard" @click="getInfo(null,null,movie)">
-                        <img v-if="movie.language.poster_path" :srcset="url+movie.language.poster_path" class="imgMovieCard" />
+                        <img v-if="movie[language].poster_path" :srcset="url+movie[language].poster_path" class="imgMovieCard" />
                         <img v-else class="defaultPic" src="../../assets/No-Image-Placeholder.png" />
                       </button>
                     </figure>
