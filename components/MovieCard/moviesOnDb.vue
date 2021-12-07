@@ -91,13 +91,13 @@ export default {
     },
   },
   methods: {
-    rateMovie(value, id) {
+   rateMovie(value, id) {
       axios
         .patch(this.baseURL + "/movies/" + id, {
           grade: value * 2,
         })
         .then(async (response) => {
-          this.$store.commit("UPDATE_MOVIE", response.data);
+          await this.$store.commit("UPDATE_MOVIE", response.data);
         });
     },
     toggleModal(movie) {

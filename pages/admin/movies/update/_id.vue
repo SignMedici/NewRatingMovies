@@ -64,7 +64,7 @@ export default {
     getMovie(){
         axios
         .get(this.baseURL + this.$route.params.id)
-        .then(async (response) => {
+        .then((response) => {
           this.movie = response.data;
         });
     },
@@ -78,8 +78,8 @@ export default {
           overview: this.overview,
           strGenres: this.strGenres,
         })
-        .then(async (response) => {
-          this.$store.commit('UPDATE_MOVIE', response.data);
+        .then(async(response) => {
+          await this.$store.commit('UPDATE_MOVIE', response.data);
           this.$router.push('/admin/movies');
         });
     }

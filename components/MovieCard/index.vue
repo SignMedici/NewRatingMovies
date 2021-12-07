@@ -124,7 +124,7 @@
             'path': filePath + fileToModify.name,
             'selectedMovie': info
           })
-          .then(async(response) => {
+          .then((response) => {
             this.$router.go(0);
           });
         }
