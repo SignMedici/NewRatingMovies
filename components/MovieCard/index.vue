@@ -14,15 +14,15 @@
                     <figure>
                       <!-- Poster -->
                       <button class="imgMovieCard" @click="getInfo(null,null,movie)">
-                        <img v-if="movie[language].poster_path" :srcset="url+movie[language].poster_path" class="imgMovieCard" />
+                        <img v-if="movie[siteLang].poster_path" :srcset="url+movie[siteLang].poster_path" class="imgMovieCard" />
                         <img v-else class="defaultPic" src="../../assets/No-Image-Placeholder.png" />
                       </button>
                     </figure>
                   </div>
                   <div class="cardInfos">
                     <!-- Title -->
-                    <v-card-title v-if="movie[language].title.length > 22">{{ movie[language].title.substring(0,22) }}...</v-card-title>
-                    <v-card-title v-else>{{ movie[language].title }}</v-card-title>
+                    <v-card-title v-if="movie[siteLang].title.length > 22">{{ movie[siteLang].title.substring(0,22) }}...</v-card-title>
+                    <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
                     <!-- Year -->
                     <div v-if="movie.release_date" class="text-subtitle-1 ms-1 mb-2">
                       {{ movie.release_date.substring(0,4) }}
@@ -40,7 +40,7 @@
         </v-row>
       </v-container>
     </div>
-    <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :language="language" />
+    <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :siteLang="siteLang" />
   </div>
 </template>
 
@@ -70,7 +70,7 @@
         movieForModal:'',
         revele: false,
         baseURL: process.env.baseURL,
-        language: ''
+        siteLang: ''
       }
     },
     computed :{
@@ -149,12 +149,12 @@
     },
     created() {
       if(this.$cookiz.get('siteLang')){
-        this.language = this.$cookiz.get('siteLang')
+        this.siteLang = this.$cookiz.get('siteLang')
       }
       else{
-        this.language = 'fr'
+        this.siteLang = 'fr'
       }
-      this.$i18n.setLocale(this.language);
+      this.$i18n.setLocale(this.siteLang);
     }
   }
 </script>

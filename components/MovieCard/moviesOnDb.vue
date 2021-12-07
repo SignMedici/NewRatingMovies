@@ -107,7 +107,12 @@ export default {
   },
   created() {
     this.movies = this.$store.getters.getMovies;
-    this.siteLang = this.$cookiz.get('siteLang');
+    if(this.$cookiz.get('siteLang')){
+      this.siteLang = this.$cookiz.get('siteLang')
+    }
+    else{
+      this.siteLang = 'fr'
+    }
     this.$i18n.setLocale(this.siteLang);
   },
 };
