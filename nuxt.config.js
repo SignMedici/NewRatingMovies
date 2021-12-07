@@ -122,10 +122,6 @@ export default {
     ["cookie-universal-nuxt", { alias: "cookiz" }],
   ],
 
-  /* axios: {
-    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
-  }, */
-
   env: {
     /* baseURL: "http://localhost:8010/api", */
     baseURL: "http://newratingmovies-backend.herokuapp.com/api",
