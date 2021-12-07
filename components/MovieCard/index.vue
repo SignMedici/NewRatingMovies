@@ -21,8 +21,8 @@
                   </div>
                   <div class="cardInfos">
                     <!-- Title -->
-                    <v-card-title v-if="movie.language.title.length > 22">{{ movie.title.substring(0,22) }}...</v-card-title>
-                    <v-card-title v-else>{{ movie.language.title }}</v-card-title>
+                    <v-card-title v-if="movie[language].title.length > 22">{{ movie[language].title.substring(0,22) }}...</v-card-title>
+                    <v-card-title v-else>{{ movie[language].title }}</v-card-title>
                     <!-- Year -->
                     <div v-if="movie.release_date" class="text-subtitle-1 ms-1 mb-2">
                       {{ movie.release_date.substring(0,4) }}
