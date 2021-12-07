@@ -42,8 +42,11 @@
                 {{ movie.release_date.substring(0, 4) }}
               </div>
               <!-- Genres -->
-              <div v-if="movie.strGenres"class="genres">{{ movie.strGenres }}</div>
+              <div>
+                <span v-if="movie.genre" v-for="genre in movie.genre">{{ $t(genre) }}</span>
+              </div>
 
+              <!-- People -->
               <div class="people">
                 <table>
                   <tr v-show="movie.director">
@@ -93,6 +96,9 @@ export default {
 };
 </script>
 <style scoped>
+span+span::before{
+  content: ", ";
+}
 img {
   float: left;
   width: auto;

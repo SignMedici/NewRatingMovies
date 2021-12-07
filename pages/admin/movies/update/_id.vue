@@ -21,10 +21,10 @@
           <label>{{ $t('releaseDate') }} <small>(Format: YYYY-MM-DD)</small></label>
           <input type="text" class="form-control" v-model="release_date">
         </div>
-        <div>
+        <!-- <div>
           <label>Genre</label>
-          <input type="text" class="form-control" v-model="strGenres">
-        </div>
+          <input type="text" class="form-control" v-model="genre">
+        </div> -->
         <div class="my-3">
           <label>{{ $t('vote') }}</label>
           <input type="number" class="form-control" v-model="vote_average" step=0.1 min="0" max="10">
@@ -50,7 +50,7 @@ export default {
     title: '',
     vote_average: '',
     release_date: '',
-    strGenres: '',
+    genres: '',
     poster_path: '',
     overview: '',
     director: '',
@@ -77,7 +77,7 @@ export default {
           release_date: this.release_date,
           director: this.director,
           overview: this.overview,
-          strGenres: this.strGenres,
+          genres: this.genre,
         })
         .then(async(response) => {
           await this.$store.commit('UPDATE_MOVIE', response.data);
@@ -114,7 +114,7 @@ export default {
     if(movieToUpdate){
       this.title = movieToUpdate[this.siteLang].title;
       this.vote_average = movieToUpdate.vote_average;
-      this.strGenres = movieToUpdate.strGenres;
+      this.genre = movieToUpdate.genre;
       this.release_date = movieToUpdate.release_date;
       this.overview = movieToUpdate[this.siteLang].overview;
       this.director = movieToUpdate.director;
