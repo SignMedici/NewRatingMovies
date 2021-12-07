@@ -59,6 +59,7 @@ export default {
     ],
     movie: [],
     baseURL: process.env.baseURL,
+    siteLang: ''
   }),
   methods:{
     getMovie(){
@@ -100,16 +101,22 @@ export default {
     }
   },
   created(){
-    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    if(this.$cookiz.get('siteLang')){
+      this.siteLang = this.$cookiz.get('siteLang')
+    }
+    else{
+      this.siteLang = 'fr'
+    }
+    this.$i18n.setLocale(this.siteLang);
 
     let movieToUpdate = this.$store.getters.getMovieById(this.$route.params.id);
 
     if(movieToUpdate){
-      this.title = movieToUpdate.title;
+      this.title = movieToUpdate[this.siteLang].title;
       this.vote_average = movieToUpdate.vote_average;
       this.strGenres = movieToUpdate.strGenres;
       this.release_date = movieToUpdate.release_date;
-      this.overview = movieToUpdate.overview;
+      this.overview = movieToUpdate[this.siteLang].overview;
       this.director = movieToUpdate.director;
     }
     else{
