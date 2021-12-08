@@ -1,5 +1,5 @@
 <template>
-  <transition name="bloc-modal" v-if="revele">
+  <transition name="bloc-modal" v-if="revele" id="movieModal">
     <div class="modal-backdrop" @click="toggleModal">
       <div class="modal">
         <div class="modalContent">

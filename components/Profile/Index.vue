@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="myprofile">
     <UIBigLogo />
     <v-card>
       <v-toolbar
@@ -71,6 +71,10 @@ export default {
 </script>
 
 <style scoped>
+#myprofile{
+  height:100%;
+  display:block;
+}
 .peopleLogo{
   width:40px;
   height:40px;

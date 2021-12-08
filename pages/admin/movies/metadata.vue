@@ -35,7 +35,7 @@
 
     </v-container>
     <div v-if="this.results !== ''">
-      <MovieCardLight :btnTxt="this.btnTxt" :fileToModify="this.file" :filePath="this.path" />
+      <MovieCard :btnTxt="this.btnTxt" :fileToModify="this.file" :filePath="this.path" />
     </div>
   </div>
 </template>

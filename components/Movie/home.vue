@@ -1,5 +1,5 @@
-<template lang="">
-  <div>
+<template>
+  <div id="movieHome">
     <v-container class="grey lighten-5 mainContainer">
       <v-row no-gutters>
         <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="3">
