@@ -23,8 +23,10 @@
         </div>
         <div>
           <label>Genre</label>
-          <div class="genreSelector" v-for="genre in movieGenres">
-            <!-- {{ $t(genre) }} -->
+          <div>
+            <select multiple v-model="genre" class="form-select genreSelector" size="5">
+              <option v-for="movieGenre in movieGenres" v-bind:value="movieGenre">{{ $t(movieGenre) }}</option>
+            </select>
           </div>
         </div>
         <div class="my-3">
@@ -52,7 +54,7 @@ export default {
     title: '',
     vote_average: '',
     release_date: '',
-    genres: '',
+    genre: [],
     poster_path: '',
     overview: '',
     director: '',
@@ -73,19 +75,19 @@ export default {
         });
     },
     updateMovie(){
-       axios
-        .patch(this.baseURL + "/movies/" + this.$route.params.id, {
-          title: this.title,
-          vote_average: this.vote_average,
-          release_date: this.release_date,
-          director: this.director,
-          overview: this.overview,
-          genres: this.genre,
-        })
-        .then(async(response) => {
-          await this.$store.commit('UPDATE_MOVIE', response.data);
-          this.$router.push('/admin/movies');
-        });
+      axios
+      .patch(this.baseURL + "/movies/" + this.$route.params.id, {
+        title: this.title,
+        vote_average: this.vote_average,
+        release_date: this.release_date,
+        director: this.director,
+        overview: this.overview,
+        genre: this.genre,
+      })
+      .then(async(response) => {
+        await this.$store.commit('UPDATE_MOVIE', response.data);
+        this.$router.push('/admin/movies');
+      });
     }
   },
   computed:{
@@ -152,6 +154,13 @@ export default {
 .form{
   display:block;
   margin-top: 20px;
+}
+.genreSelector{
+  width:100%;
+  background-color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 5px;
 }
 .confirmButton{
   color: #fff;
