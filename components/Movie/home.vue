@@ -1,6 +1,5 @@
-<template>
+<template lang="">
   <div>
-    <UIBigLogo />
     <v-container class="grey lighten-5 mainContainer">
       <v-row no-gutters>
         <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="3">
@@ -55,7 +54,6 @@
         </v-col>
       </v-row>
     </v-container>
-    <UIBtnTop :showAt="500" />
     <MovieModal
       :revele="revele"
       :toggleModal="toggleModal"
@@ -66,7 +64,6 @@
 </template>
 <script>
 import axios from "axios";
-import MovieModal from "./movieModal";
 
 export default {
   data() {
@@ -79,10 +76,10 @@ export default {
       fullIcon: "mdi-heart",
       sortBy: "title",
       sortDirection: "asc",
+      baseURL: `${process.env.baseURL}`,
+      siteLang: '',
       movieForModal: "",
       revele: false,
-      baseURL: `${process.env.baseURL}`,
-      siteLang: ''
     };
   },
   computed: {

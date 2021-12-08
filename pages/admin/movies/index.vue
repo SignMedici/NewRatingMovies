@@ -1,6 +1,6 @@
 <template>
   <div v-if="isAdmin === true">
-    <Admin-MovieAdmin />
+    <AdminMovies />
   </div>
 </template>
 <script>

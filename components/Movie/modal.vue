@@ -9,7 +9,7 @@
             <img
               v-else
               class="defaultPic"
-              src="../../assets/No-Image-Placeholder.png"
+              :srcset="noPic"
             />
           </div>
           <div class="movieDesc">
@@ -81,7 +81,7 @@ export default {
   data() {
     return {
       url: process.env.API_PIC_URL,
-      defaultPicUrl: "../../assets/No_Picture.png",
+      noPic: process.env.NO_PIC,
       modalMovie: "",
     };
   },
@@ -91,14 +91,7 @@ export default {
     },
   },
   created() {
-    let siteLang = '';
-    if(this.$cookiz.get('siteLang')){
-      siteLang = this.$cookiz.get('siteLang')
-    }
-    else{
-      siteLang = 'fr'
-    }
-    this.$i18n.setLocale(siteLang);
+    this.$i18n.setLocale(this.siteLang);
   }
 };
 </script>

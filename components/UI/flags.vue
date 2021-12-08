@@ -32,6 +32,12 @@ export default {
           _id: this.$store.getters.getUserInfo.id,
           language: langCode
         });
+
+        // and the profile in store
+        this.$store.commit('UPDATE_LOGGED_USER', {
+          _id: this.$store.getters.getUserInfo.id,
+          language: langCode
+        });
       }
     }
   }

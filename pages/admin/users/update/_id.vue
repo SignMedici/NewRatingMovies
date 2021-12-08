@@ -21,10 +21,9 @@
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" v-model="email">
             </div>
             <div>
-              <label for="language" class="form-label">{{ $t('language') }}</label>
-              <select name="language" class="form-select langField" aria-label="Prefered language" v-model="userLang" required>
-                <option selected :value="language">{{ language}}</option>
-                <option v-for="locale in this.$i18n.locales" :key="$t(locale.name)" :value="locale.code">{{ $t(locale.name) }}</option>
+              <label for="myLanguage" class="form-label">{{ $t('language')}}</label>
+              <select  class="form-select langField" name="myLanguage" aria-label="Prefered language" v-model="userLang" required>
+                <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code">{{ $t(locale.name) }}</option>
               </select>
             </div>
             <div class="mt-2">

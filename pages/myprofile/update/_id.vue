@@ -26,7 +26,7 @@
             </div>
             <div class="my-3">
               <label for="myLanguage" class="form-label">{{ $t('language')}}</label>
-              <select  class="form-select langField" name="myLanguage" aria-label="Prefered language" v-model="language" required>
+              <select  class="form-select langField" name="myLanguage" aria-label="Prefered language" v-model="userLang" required>
                 <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code">{{ $t(locale.name) }}</option>
               </select>
             </div>
@@ -44,16 +44,9 @@ export default {
         baseURL: process.env.baseURL,
         nickname: "",
         email: "",
-        language:"",
+        userLang:"",
         reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
       }
-    },
-    created(){
-        let userLoadedUpdate = this.$store.getters.getUserInfo;
-        this.nickname = userLoadedUpdate.nickname;
-        this.email = userLoadedUpdate.email;
-        this.language = userLoadedUpdate.language;
-        this.$i18n.setLocale(this.$cookiz.get('siteLang'));
     },
     computed: {
         isAuthenticated() {
@@ -69,13 +62,13 @@ export default {
           .patch(this.baseURL + "/users/" + this.$route.params.id, {
               nickname: this.nickname,
               email: this.email,
-              language: this.language
+              language: this.userLang
           })
           .then((response) => {
             this.$store.commit('UPDATE_USER', response.data);
             this.$store.commit('UPDATE_LOGGED_USER', response.data);
-            this.$store.commit('SET_LANG', this.language);
-            this.$cookiz.set('siteLang', this.language);
+            this.$store.commit('SET_LANG', this.userLang);
+            this.$cookiz.set('siteLang', this.userLang);
             this.$toast.success(this.$t('updateDone'));
             this.$router.push('/myprofile');
           })
@@ -83,7 +76,22 @@ export default {
             this.$toast.error(err);
           });
         }
-    }
+    },
+    created(){
+        let userLoadedUpdate = this.$store.getters.getUserInfo;
+        this.nickname = userLoadedUpdate.nickname;
+        this.email = userLoadedUpdate.email;
+        this.userLang = userLoadedUpdate.language;
+
+        let language = '';
+        if(this.$cookiz.get('siteLang')){
+          language = this.$cookiz.get('siteLang')
+        }
+        else{
+          language = 'fr'
+        }
+        this.$i18n.setLocale(language);
+        },
 }
 </script>
 

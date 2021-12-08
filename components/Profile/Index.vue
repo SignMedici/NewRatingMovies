@@ -59,7 +59,12 @@ export default {
     },
   },
   created() {
-    this.locale = this.$cookiz.get('siteLang');
+    if(this.$cookiz.get('siteLang')){
+      this.locale = this.$cookiz.get('siteLang')
+    }
+    else{
+      this.locale = 'fr'
+    }
     this.$i18n.setLocale(this.locale);
   }
 };

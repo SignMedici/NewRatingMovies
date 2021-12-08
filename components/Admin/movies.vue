@@ -1,10 +1,10 @@
 <template>
   <div v-if="isAdmin === true">
     <div>
-      <nuxt-link :to="{ name: `movie-add___${siteLang}`, hash: '#logo' }" class="btn btn-success mb-2 me-2">
+      <nuxt-link :to="{ name: `admin-movies-add___${siteLang}`, hash: '#logo' }" class="btn btn-success mb-2 me-2">
         {{ $t('add') }}
       </nuxt-link>
-      <nuxt-link :to="{ name: `movie-metadata___${siteLang}`,hash:'#logo'}" class="btn btn-success mb-2">
+      <nuxt-link :to="{ name: `admin-movies-metadata___${siteLang}`,hash:'#logo'}" class="btn btn-success mb-2">
         {{ $t('modifyMetadata') }}
       </nuxt-link>
     </div>
