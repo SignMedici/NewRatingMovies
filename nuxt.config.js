@@ -122,9 +122,11 @@ export default {
     ["cookie-universal-nuxt", { alias: "cookiz" }],
   ],
 
-  /* axios: {
-    baseURL: process.env.BASE_URL || "http://localhost:8010/api",
-  }, */
+  //Axios
+  axios: {
+    /* baseURL: "http://localhost:8010/api", */
+    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+  },
 
   env: {
     /* baseURL: "http://localhost:8010/api", */
@@ -159,12 +161,6 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extend(config, ctx) {},
-  },
-
-  //Axios
-  axios: {
-    /* baseURL: "http://localhost:8010/api", */
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
   },
 
   auth: {
