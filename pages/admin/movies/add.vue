@@ -15,7 +15,7 @@
       <v-form method="post" @submit.prevent="getSearchResult()" class="form" >
         <input
           type="title"
-          placeholder="Title of the movie"
+          :placeholder="$t('titleMovie')"
           v-model="title"
           class="form-control"
           id="title"
@@ -34,15 +34,10 @@
 </template>
 
 <script>
-  import moment from 'moment';
   import { mapState } from 'vuex';
   import axios from "axios";
-  import MovieCard from '@/components/MovieCard/index';
 
   export default {
-    components:{
-        MovieCard
-    },
     data: () => ({
       btnTxt:'add',
       title: '',
@@ -76,6 +71,7 @@
     computed: {
       isAdmin(){
         let user = this.$store.getters.getUserInfo;
+
         if(user){
           if(user.isAdmin)
             return this.$store.getters.getUserInfo.isAdmin;
@@ -96,7 +92,6 @@
         this.siteLang = 'fr'
       }
       this.$i18n.setLocale(this.siteLang);
-      this.siteLang = this.$cookiz.get('siteLang');
     }
   }
 </script>

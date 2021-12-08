@@ -37,10 +37,10 @@
 
           >
             <v-card v-if="item === $t('users')" class="tableMain">
-              <Admin-UserAdmin />
+              <AdminUsers />
             </v-card>
             <v-card v-else class="tableMain">
-              <Admin-MovieAdmin />
+              <AdminMovies />
             </v-card>
           </v-tab-item>
         </v-tabs-items>
@@ -51,12 +51,7 @@
 
 
 <script>
-import UserAdmin from '@/components/Admin/UserAdmin/index';
-
 export default {
-  components:{
-        UserAdmin
-  },
   data () {
     return {
       tab: null,

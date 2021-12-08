@@ -35,21 +35,16 @@
 
     </v-container>
     <div v-if="this.results !== ''">
-      <MovieCard :btnTxt="this.btnTxt" :fileToModify="this.file" :filePath="this.path" />
+      <MovieCardLight :btnTxt="this.btnTxt" :fileToModify="this.file" :filePath="this.path" />
     </div>
   </div>
 </template>
 
 <script>
-  import moment from 'moment';
   import { mapState } from 'vuex';
   import axios from "axios";
-  import MovieCard from '@/components/MovieCard/index';
 
   export default {
-    components:{
-        MovieCard
-    },
     data: () => ({
       path: '/mnt/Seagate-4To/__Videos/Films',
       btnTxt:'select',

@@ -1,6 +1,6 @@
 <template>
   <div v-if="isAdmin === true">
-    <Admin-UserAdmin />
+    <AdminUsers />
   </div>
 </template>
 

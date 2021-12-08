@@ -63,5 +63,6 @@
   "tvmovie" : "Televisione Film",
   "thriller" : "Thriller",
   "war" : "Guerra",
-  "western" : "Western"
+  "western" : "Western",
+  "titleMovie": "Titolo del film"
 }

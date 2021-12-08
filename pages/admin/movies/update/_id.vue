@@ -21,10 +21,12 @@
           <label>{{ $t('releaseDate') }} <small>(Format: YYYY-MM-DD)</small></label>
           <input type="text" class="form-control" v-model="release_date">
         </div>
-        <!-- <div>
+        <div>
           <label>Genre</label>
-          <input type="text" class="form-control" v-model="genre">
-        </div> -->
+          <div class="genreSelector" v-for="genre in movieGenres">
+            <!-- {{ $t(genre) }} -->
+          </div>
+        </div>
         <div class="my-3">
           <label>{{ $t('vote') }}</label>
           <input type="number" class="form-control" v-model="vote_average" step=0.1 min="0" max="10">
@@ -59,7 +61,8 @@ export default {
     ],
     movie: [],
     baseURL: process.env.baseURL,
-    siteLang: ''
+    siteLang: '',
+    movieGenres: process.env.MOVIE_GENRES,
   }),
   methods:{
     getMovie(){

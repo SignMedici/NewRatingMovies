@@ -15,7 +15,7 @@
                       <!-- Poster -->
                       <button class="imgMovieCard" @click="getInfo(null,null,movie)">
                         <img v-if="movie[siteLang].poster_path" :srcset="url+movie[siteLang].poster_path" class="imgMovieCard" />
-                        <img v-else class="defaultPic" src="../../assets/No-Image-Placeholder.png" />
+                        <img v-else class="defaultPic" :src="`${noPic}`" />
                       </button>
                     </figure>
                   </div>
@@ -46,13 +46,9 @@
 
 <script>
   import axios from "axios";
-  import MovieModal from "./movieModal";
 
   export default{
     props: ['btnTxt','fileToModify','filePath'],
-    components: {
-      MovieModal,
-    },
     data(){
       return {
         movieDbId: 0,
@@ -66,7 +62,7 @@
         overview: '',
         strGenre: '',
         url: process.env.API_PIC_URL,
-        defaultPicUrl: '../../assets/No_Picture.png',
+        noPic: process.env.NO_PIC,
         movieForModal:'',
         revele: false,
         baseURL: process.env.baseURL,
@@ -75,7 +71,7 @@
     },
     computed :{
       getResult(){
-          return this.$store.getters.getResult;
+        return this.$store.getters.getResult;
       },
     },
     methods:{
