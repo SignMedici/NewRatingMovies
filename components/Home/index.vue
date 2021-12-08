@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="homeComp">
     <UIBigLogo />
     <MovieHome />
     <UIBtnTop :showAt="500" />

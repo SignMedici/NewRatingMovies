@@ -1,45 +1,43 @@
 <template>
-  <div>
-    <div>
-      <v-container class="grey lighten-5 mainContainer">
-        <v-row  no-gutters>
-            <v-col
-                v-for="movie in getResult" :key="movie.id"
-                cols="12"
-                sm="3"
-            >
-              <div class="card">
-                <v-card>
-                  <div class="hover10">
-                    <figure>
-                      <!-- Poster -->
-                      <button class="imgMovieCard" @click="getInfo(null,null,movie)">
-                        <img v-if="movie[siteLang].poster_path" :srcset="url+movie[siteLang].poster_path" class="imgMovieCard" />
-                        <img v-else class="defaultPic" :src="`${noPic}`" />
-                      </button>
-                    </figure>
+  <div id="movieCard">
+    <v-container class="grey lighten-5 mainContainer">
+      <v-row  no-gutters>
+          <v-col
+              v-for="movie in getResult" :key="movie.id"
+              cols="12"
+              sm="3"
+          >
+            <div class="card">
+              <v-card>
+                <div class="hover10">
+                  <figure>
+                    <!-- Poster -->
+                    <button class="imgMovieCard" @click="getInfo(null,null,movie)">
+                      <img v-if="movie[siteLang].poster_path" :srcset="url+movie[siteLang].poster_path" class="imgMovieCard" />
+                      <img v-else class="defaultPic" :src="`${noPic}`" />
+                    </button>
+                  </figure>
+                </div>
+                <div class="cardInfos">
+                  <!-- Title -->
+                  <v-card-title v-if="movie[siteLang].title.length > 22">{{ movie[siteLang].title.substring(0,22) }}...</v-card-title>
+                  <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
+                  <!-- Year -->
+                  <div v-if="movie.release_date" class="text-subtitle-1 ms-1 mb-2">
+                    {{ movie.release_date.substring(0,4) }}
                   </div>
-                  <div class="cardInfos">
-                    <!-- Title -->
-                    <v-card-title v-if="movie[siteLang].title.length > 22">{{ movie[siteLang].title.substring(0,22) }}...</v-card-title>
-                    <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
-                    <!-- Year -->
-                    <div v-if="movie.release_date" class="text-subtitle-1 ms-1 mb-2">
-                      {{ movie.release_date.substring(0,4) }}
-                    </div>
-                    <div v-else class="mb-2"><br></div>
-                    <!-- Button -->
-                    <v-card-actions>
-                      <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 confirmButton">{{ $t('add') }}</button>
-                      <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 confirmButton">{{ $t('choose') }}</button>
-                    </v-card-actions>
-                  </div>
-                </v-card>
-              </div>
-            </v-col>
-        </v-row>
-      </v-container>
-    </div>
+                  <div v-else class="mb-2"><br></div>
+                  <!-- Button -->
+                  <v-card-actions>
+                    <button v-if="btnTxt==='add'" type="submit" @click="checkIsInDB(filePath, fileToModify, movie)" class="btn w-50 confirmButton">{{ $t('add') }}</button>
+                    <button v-else-if="btnTxt==='select'" type="submit" @click="getInfo(filePath, fileToModify, movie)" class="btn w-50 confirmButton">{{ $t('choose') }}</button>
+                  </v-card-actions>
+                </div>
+              </v-card>
+            </div>
+          </v-col>
+      </v-row>
+    </v-container>
     <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :siteLang="siteLang" />
   </div>
 </template>
