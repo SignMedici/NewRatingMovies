@@ -13,30 +13,37 @@
       </div>
       <!-- Form -->
       <form method="post" @submit.prevent="updateMovie()">
+        <!-- Title -->
         <div>
           <label>{{ $t('title') }}</label>
           <input type="text" class="form-control" v-model="title">
         </div>
+        <!-- Release date -->
         <div class="my-3">
           <label>{{ $t('releaseDate') }} <small>(Format: YYYY-MM-DD)</small></label>
           <input type="text" class="form-control" v-model="release_date">
         </div>
+        <!-- Genre -->
         <div>
           <label>Genre</label>
           <UIGenreSelector :movieGenre="genre" :allGenres="movieGenres" :newGenre.sync="genre" />
         </div>
+        <!-- Vote -->
         <div class="my-3">
           <label>{{ $t('vote') }}</label>
           <input type="number" class="form-control" v-model="vote_average" step=0.1 min="0" max="10">
         </div>
+        <!-- Director -->
         <div>
           <label>{{ $t('director') }}</label>
           <input type="text" class="form-control" v-model="director">
         </div>
+        <!-- Overview -->
         <div class="mt-3">
           <label>{{ $t('overview') }}</label>
           <textarea class="form-control" v-model="overview" rows="4" />
         </div>
+        <!-- Submit button -->
         <button type="submit" class="btn confirmButton mt-5">{{ $t('confirm') }}</button>
       </form>
     </v-container>
@@ -64,13 +71,6 @@ export default {
     movieGenres: process.env.MOVIE_GENRES,
   }),
   methods:{
-    getMovie(){
-        axios
-        .get(this.baseURL + this.$route.params.id)
-        .then((response) => {
-          this.movie = response.data;
-        });
-    },
     updateMovie(){
       let updatedFilm = {
         vote_average: this.vote_average,
@@ -83,8 +83,6 @@ export default {
           poster_path: this.poster_path,
         }
       };
-
-      console.log(updatedFilm);
 
       axios
       .patch(this.baseURL + "/movies/" + this.$route.params.id, updatedFilm)
@@ -110,14 +108,6 @@ export default {
     }
   },
   created(){
-    if(this.$cookiz.get('siteLang')){
-      this.siteLang = this.$cookiz.get('siteLang')
-    }
-    else{
-      this.siteLang = 'fr'
-    }
-    this.$i18n.setLocale(this.siteLang);
-
     let movieToUpdate = this.$store.getters.getMovieById(this.$route.params.id);
 
     if(movieToUpdate){
@@ -133,6 +123,14 @@ export default {
       this.$router.push("/admin");
     }
 
+    /* language configuration for this page*/
+    if(this.$cookiz.get('siteLang')){
+      this.siteLang = this.$cookiz.get('siteLang')
+    }
+    else{
+      this.siteLang = 'fr'
+    }
+    this.$i18n.setLocale(this.siteLang);
   }
 }
 </script>
