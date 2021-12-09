@@ -76,7 +76,7 @@ export default {
     deleteMovie(id){
       if(confirm(this.$t('deleteMovieOK'))){
         axios
-            .delete(this.baseURL + "/movies/delete/" + id)
+            .delete(this.baseURL + "/movies/" + id)
             .then(async(response) => {
               await this.$store.commit('DELETE_MOVIE', id);
               alert (this.$t('deleteDone'));

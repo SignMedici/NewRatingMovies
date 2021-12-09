@@ -72,20 +72,26 @@ export default {
         });
     },
     updateMovie(){
-      console.log(this.genre);
-      /* axios
-      .patch(this.baseURL + "/movies/" + this.$route.params.id, {
-        title: this.title,
+      let updatedFilm = {
         vote_average: this.vote_average,
         release_date: this.release_date,
         director: this.director,
-        overview: this.overview,
         genre: this.genre,
-      })
+        [this.siteLang]:{
+          title: this.title,
+          overview: this.overview,
+          poster_path: this.poster_path,
+        }
+      };
+
+      console.log(updatedFilm);
+
+      axios
+      .patch(this.baseURL + "/movies/" + this.$route.params.id, updatedFilm)
       .then(async(response) => {
         await this.$store.commit('UPDATE_MOVIE', response.data);
-        this.$router.push('/admin/movies');
-      }); */
+        this.$router.push('/admin');
+      });
     }
   },
   computed:{
@@ -121,9 +127,10 @@ export default {
       this.release_date = movieToUpdate.release_date;
       this.overview = movieToUpdate[this.siteLang].overview;
       this.director = movieToUpdate.director;
+      this.poster_path = movieToUpdate[this.siteLang].poster_path;
     }
     else{
-      this.$router.push("/");
+      this.$router.push("/admin");
     }
 
   }
