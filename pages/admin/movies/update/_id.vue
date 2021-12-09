@@ -23,11 +23,7 @@
         </div>
         <div>
           <label>Genre</label>
-          <div>
-            <select multiple v-model="genre" class="form-select genreSelector" size="5">
-              <option v-for="movieGenre in movieGenres" v-bind:value="movieGenre">{{ $t(movieGenre) }}</option>
-            </select>
-          </div>
+          <UIGenreSelector :movieGenre="genre" :allGenres="movieGenres" :newGenre.sync="genre" />
         </div>
         <div class="my-3">
           <label>{{ $t('vote') }}</label>
@@ -55,6 +51,7 @@ export default {
     vote_average: '',
     release_date: '',
     genre: [],
+    newGenre:[],
     poster_path: '',
     overview: '',
     director: '',
@@ -75,7 +72,8 @@ export default {
         });
     },
     updateMovie(){
-      axios
+      console.log(this.genre);
+      /* axios
       .patch(this.baseURL + "/movies/" + this.$route.params.id, {
         title: this.title,
         vote_average: this.vote_average,
@@ -87,7 +85,7 @@ export default {
       .then(async(response) => {
         await this.$store.commit('UPDATE_MOVIE', response.data);
         this.$router.push('/admin/movies');
-      });
+      }); */
     }
   },
   computed:{
@@ -161,6 +159,7 @@ export default {
   border: 0;
   border-radius: 10px;
   padding: 5px;
+  overflow:auto;
 }
 .confirmButton{
   color: #fff;
