@@ -134,7 +134,6 @@ export default {
     API_PIC_URL: "http://image.tmdb.org/t/p/w500",
     BANNER_PIC_URL:
       "https://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    NO_PIC: "assets/no_picture.png",
     MOVIE_GENRES: [
       "action",
       "adventure",

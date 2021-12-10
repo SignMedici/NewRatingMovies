@@ -14,7 +14,7 @@
                     <!-- Poster -->
                     <button class="imgMovieCard" @click="getInfo(null,null,movie)">
                       <img v-if="movie[siteLang].poster_path" :srcset="url+movie[siteLang].poster_path" class="imgMovieCard" />
-                      <img v-else class="defaultPic" :src="`${noPic}`" />
+                      <img v-else class="defaultPic" src="~/assets/no_picture.png" alt="default picture"/>
                     </button>
                   </figure>
                 </div>
@@ -60,7 +60,6 @@
         overview: '',
         strGenre: '',
         url: process.env.API_PIC_URL,
-        noPic: process.env.NO_PIC,
         movieForModal:'',
         revele: false,
         baseURL: process.env.baseURL,

@@ -6,11 +6,10 @@
           <div>
             <!-- Poster -->
             <img v-if="movie[siteLang].poster_path" :srcset="url + movie[siteLang].poster_path" />
-            <img
-              v-else
-              class="defaultPic"
-              :srcset="noPic"
-            />
+            <div v-else class="defaultPicContainer">
+              <img  class="defaultPic" src="~/assets/no_picture.png" alt="default picture" />
+            </div>
+
           </div>
           <div class="movieDesc">
             <div>
@@ -81,7 +80,7 @@ export default {
   data() {
     return {
       url: process.env.API_PIC_URL,
-      noPic: process.env.NO_PIC,
+      noPic: "~/assets/no_picture.png",
       modalMovie: "",
     };
   },
@@ -102,10 +101,22 @@ export default {
 img {
   float: left;
   width: auto;
+  max-width: 300px;
   height: 450px;
   border: 0;
   border-radius: 10px;
   background-color: whitesmoke;
+}
+.defaultPicContainer{
+  width: 300px;
+  height: 450px;
+  background-color: whitesmoke;
+  border: 0;
+  border-radius: 10px;
+}
+.defaultPic{
+  width:300px;
+  height: auto;
 }
 .modal-backdrop {
   position: fixed;
