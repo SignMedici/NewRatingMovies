@@ -14,7 +14,7 @@
 body
 {
     height: 100%;
-    /* min-height: 1400px; */
+    min-height: 1180px;
     margin: 0;
     padding: 0;
     background-repeat: no-repeat;

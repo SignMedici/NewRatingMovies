@@ -1,7 +1,7 @@
 <template>
   <div v-if="isAdmin === true">
     <UIBigLogo />
-    <v-container class="grey lighten-5 loginForm">
+    <v-container class="grey lighten-5 loginForm" ref="updateForm">
       <!-- Back button -->
       <UIBackBtn :path="'admin'" />
       <!-- Page logo and title -->
@@ -90,6 +90,8 @@ export default {
         await this.$store.commit('UPDATE_MOVIE', response.data);
         this.$router.push('/admin');
       });
+
+      this.$refs.updateForm.refresh();
     }
   },
   computed:{
@@ -108,6 +110,16 @@ export default {
     }
   },
   created(){
+    /* language configuration for this page */
+    if(this.$cookiz.get('siteLang')){
+      this.siteLang = this.$cookiz.get('siteLang')
+    }
+    else{
+      this.siteLang = 'fr'
+    }
+    this.$i18n.setLocale(this.siteLang);
+
+    /* Get movie data from store */
     let movieToUpdate = this.$store.getters.getMovieById(this.$route.params.id);
 
     if(movieToUpdate){
@@ -122,15 +134,6 @@ export default {
     else{
       this.$router.push("/admin");
     }
-
-    /* language configuration for this page*/
-    if(this.$cookiz.get('siteLang')){
-      this.siteLang = this.$cookiz.get('siteLang')
-    }
-    else{
-      this.siteLang = 'fr'
-    }
-    this.$i18n.setLocale(this.siteLang);
   }
 }
 </script>
