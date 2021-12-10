@@ -7,7 +7,7 @@
           <th scope="col">{{ $t('nickname') }}</th>
           <th scope="col">{{ $t('emailAddress') }}</th>
           <th scope="col">{{ $t('language') }}</th>
-          <th scope="col">Admin?</th>
+          <th scope="col">{{ $t('admin') }}</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -106,6 +106,9 @@ export default {
 </script>
 
 <style scoped>
+th{
+  text-align: left;
+}
 tr {
   font-family: "Lato", sans-serif;
   font-weight: 600;
