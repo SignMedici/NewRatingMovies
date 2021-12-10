@@ -90,8 +90,6 @@ export default {
         await this.$store.commit('UPDATE_MOVIE', response.data);
         this.$router.push('/admin');
       });
-
-      this.$refs.updateForm.refresh();
     }
   },
   computed:{
