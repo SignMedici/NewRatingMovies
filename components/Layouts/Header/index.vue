@@ -56,7 +56,7 @@
             </v-tab>
             <v-tab v-if="getUserInfo.isAdmin == true">
               <nuxt-link class="nav-link active" aria-current="page" to="/admin">
-                {{ $t("admin") }}
+                {{ $t("administration") }}
               </nuxt-link>
             </v-tab>
             <v-tab class="nav-item logout" @click="logout">
