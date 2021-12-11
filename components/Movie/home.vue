@@ -2,7 +2,7 @@
   <div id="movieHome">
     <v-container class="grey lighten-5 mainContainer">
       <v-row no-gutters>
-        <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="3">
+        <v-col v-for="movie in movies" :key="movie._id" cols="12" sm="3">
           <div class="card">
             <v-card>
               <div class="hover10">
@@ -17,11 +17,11 @@
                     class="favoriteMovie"
                     hover
                     length="1"
-                    size="40"
+                    size="35"
+                    background-color="purple lighten-1"
+                    color="purple"
                     :empty-icon="emptyIcon"
                     :full-icon="fullIcon"
-                    color="yellow darken-3"
-                    background-color="grey darken-1"
                   ></v-rating>
                 </figure>
               </div>
@@ -36,18 +36,9 @@
                 <div v-else class="text-subtitle-1 mb-2">
                   {{ movie.release_date.substring(0, 4) }}
                 </div>
-                <v-card-actions>
-                  <v-rating
-                    v-if="isAuthenticated"
-                    background-color="red lighten-3"
-                    color="red"
-                    hover
-                    length="5"
-                    size="18"
-                    :value="movie.grade / 2"
-                    @input="rateMovie($event, movie._id)"
-                  ></v-rating>
-                </v-card-actions>
+                <div v-if="isAuthenticated">
+                  <UIRatingStars :myRates="myRates" :movieDbId="movie.movieDbId" />
+                </div>
               </div>
             </v-card>
           </div>
@@ -56,6 +47,7 @@
     </v-container>
     <MovieModal
       :revele="revele"
+  color: #ffffff;
       :toggleModal="toggleModal"
       :movie="movieForModal"
       :siteLang="siteLang"
@@ -69,17 +61,16 @@ export default {
   data() {
     return {
       title: "",
-      grade: 0,
       url: process.env.API_PIC_URL,
       movies: [],
       emptyIcon: "mdi-heart-outline",
       fullIcon: "mdi-heart",
       sortBy: "title",
       sortDirection: "asc",
-      baseURL: `${process.env.baseURL}`,
       siteLang: '',
       movieForModal: "",
       revele: false,
+      myRates: []
     };
   },
   computed: {
@@ -88,15 +79,6 @@ export default {
     },
   },
   methods: {
-   rateMovie(value, id) {
-      axios
-        .patch(this.baseURL + "/movies/" + id, {
-          grade: value * 2,
-        })
-        .then(async (response) => {
-          await this.$store.commit("UPDATE_MOVIE", response.data);
-        });
-    },
     toggleModal(movie) {
       this.revele = !this.revele;
       this.movieForModal = movie;
@@ -104,6 +86,11 @@ export default {
   },
   created() {
     this.movies = this.$store.getters.getMovies;
+
+    if(this.$store.getters.getUserInfo){
+      this.myRates = this.$store.getters.getUserInfo.myRates;
+    }
+
     if(this.$cookiz.get('siteLang')){
       this.siteLang = this.$cookiz.get('siteLang')
     }
@@ -155,6 +142,9 @@ export default {
 .v-rating {
   padding-bottom: 5px;
 }
+.v-icon {
+
+}
 figure {
   margin: 0;
 }
@@ -163,14 +153,11 @@ figure {
   position: absolute;
   top: -20px;
   right: 5px;
-  color: #ffffff;
 }
 .v-icon.v-icon.v-icon--link {
   cursor: pointer;
   outline: none;
-  color: #9042b4;
 }
-
 /* Blur + Gray Scale */
 .hover10 figure img {
   -webkit-filter: sepia(0);
