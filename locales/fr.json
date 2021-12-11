@@ -65,9 +65,5 @@
   "war" : "Guerre",
   "western" : "Western",
   "titleMovie": "Titre du film",
-  "pleaseLogoutLogin": "Veuillez vous déconnecter et vous connecter à nouevau.",
-  "rateDone": "Vote effectué.",
-  "rateDeleted": "Vote effacé.",
-  "favoriteAdded": "Favoris ajouté.",
-  "favoriteDeleted": "Favoris retiré."
+  "pleaseLogoutLogin": "Veuillez vous déconnecter et vous connecter à nouevau."
 }
