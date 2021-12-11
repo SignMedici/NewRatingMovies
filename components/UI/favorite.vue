@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="favoriteIcon">
     <button @click="toggleFavorite">
       <img v-if="favStatus" class="movieFavIcon" src="~/assets/favFull.png"/>
       <img v-else class="movieFavIcon"  src="~/assets/favEmpty.png"/>
@@ -37,12 +37,6 @@ export default {
         .patch(this.baseURL + "/users/" + userId + "/" + this.movieDbId)
         .then(async (response) => {
           await this.$store.commit("UPDATE_FAVORITE", response.data);
-          if(this.favStatus == 0){
-            this.$toast.success(this.$t('favoriteDeleted'));
-          }
-          else{
-            this.$toast.success(this.$t('favoriteAdded'));
-          }
         });
       }
       else{
@@ -68,6 +62,6 @@ export default {
   position: absolute;
   top: 15px;
   right: 15px;
-  height: 25px;
+  height: 30px;
 }
 </style>

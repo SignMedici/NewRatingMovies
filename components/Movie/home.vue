@@ -12,9 +12,7 @@
                     class="imgMovieCard"
                     :srcset="url + movie[siteLang].poster_path"
                   />
-                  <div v-if="isAuthenticated">
-                    <UIFavorite :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
-                  </div>
+                  <UIFavorite v-if="isAuthenticated" :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
                 </figure>
               </div>
               <div class="cardInfos">
@@ -143,6 +141,7 @@ export default {
 
 }
 figure {
+  display: flex;
   margin: 0;
 }
 .v-icon.v-icon.v-icon--link {
