@@ -80,20 +80,7 @@ const store = {
       );
       state.movies[index] = movieToUpdate;
     },
-    RATE_MOVIE: (state, myRate) => {
-      let index = state.auth.user.myRates.findIndex(
-        (rate) => rate.movieDbId === myRate.movieDbId
-      );
 
-      if (index > -1) {
-        state.auth.user.myRates[index].movieDbId = myRate.rate;
-      } else {
-        state.auth.user.myRates.push({
-          movieDbId: myRate.movieDbId,
-          rate: myRate.rate,
-        });
-      }
-    },
     SET_RESULT: (state, result) => {
       state.result = [];
       state.result.push(result);
@@ -124,6 +111,31 @@ const store = {
           .indexOf(idToRemove),
         1
       );
+    },
+
+    RATE_MOVIE: (state, myRate) => {
+      let index = state.auth.user.myRates.findIndex(
+        (rate) => rate.movieDbId === myRate.movieDbId
+      );
+
+      if (index > -1) {
+        state.auth.user.myRates[index].movieDbId = myRate.rate;
+      } else {
+        state.auth.user.myRates.push({
+          movieDbId: myRate.movieDbId,
+          rate: myRate.rate,
+        });
+      }
+    },
+
+    UPDATE_FAVORITE: (state, movieDbId) => {
+      let index = state.auth.user.myFavorites.indexOf(movieDbId);
+
+      if (index >= 0) {
+        state.auth.user.myFavorites.splice(index, 1);
+      } else {
+        state.auth.user.myFavorites.push(movieDbId);
+      }
     },
   },
   actions: {

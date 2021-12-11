@@ -67,5 +67,7 @@
   "titleMovie": "Title van de film",
   "pleaseLogoutLogin": "Log even uit en opniew inloggen.",
   "rateDone": "Stem gedaan.",
-  "rateDeleted": "Stem uitgewist."
+  "rateDeleted": "Stem uitgewist.",
+  "favoriteAdded": "Favoriet toegevoegd.",
+  "favoriteDeleted": "Favoriet uitgewist."
 }

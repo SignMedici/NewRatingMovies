@@ -84,6 +84,7 @@ export default {
     }
 
     if(this.$store.getters.getUserInfo){
+      console.log(this.$store.getters.getUserInfo.myFavorites);
       this.myFavorites = this.$store.getters.getUserInfo.myFavorites;
     }
 

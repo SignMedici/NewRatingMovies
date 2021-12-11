@@ -1,29 +1,53 @@
-<template lang="">
+<template>
   <div>
-    <v-rating
-    v-model="favStatus"
-      class="favoriteMovie"
-      hover
-      length="1"
-      size="35"
-      background-color="purple lighten-1"
-      color="purple"
-    ></v-rating>
+    <button @click="toggleFavorite">
+      <img v-if="favStatus" class="movieFavIcon" src="~/assets/favFull.png"/>
+      <img v-else class="movieFavIcon"  src="~/assets/favEmpty.png"/>
+    </button>
   </div>
 </template>
 <script>
+import axios from "axios";
+
 export default {
   props:["myFavorites","movieDbId"],
   data(){
     return {
-      favStatus: 0,
+      favStatus: false,
       baseURL: process.env.baseURL,
     }
   },
   methods:{
     toggleFavorite(){
-      //Add and remove favorite
+      //Change value of the icon to make it full or empty
+      if (this.favStatus === false){
+        console.log("make it full");
+        this.favStatus = true;
+      }
+      else{
+        console.log("make it empty");
+        this.favStatus = false;
+      }
 
+      //Add & remove the favorite
+      let userId = this.$store.getters.getUserInfo.id;
+
+      if(userId){
+        axios
+        .patch(this.baseURL + "/users/" + userId + "/" + this.movieDbId)
+        .then(async (response) => {
+          await this.$store.commit("UPDATE_FAVORITE", response.data);
+          if(this.favStatus == 0){
+            this.$toast.success(this.$t('favoriteDeleted'));
+          }
+          else{
+            this.$toast.success(this.$t('favoriteAdded'));
+          }
+        });
+      }
+      else{
+        this.$toast.error(this.$t('pleaseLogoutLogin'));
+      }
     }
   },
   created(){
@@ -40,10 +64,10 @@ export default {
 }
 </script>
 <style scoped>
-  .favoriteMovie {
-  font-size: 64px;
+.movieFavIcon {
   position: absolute;
-  top: -20px;
-  right: 5px;
+  top: 15px;
+  right: 15px;
+  height: 25px;
 }
 </style>

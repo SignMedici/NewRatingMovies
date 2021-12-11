@@ -67,5 +67,7 @@
   "titleMovie": "Titre du film",
   "pleaseLogoutLogin": "Veuillez vous déconnecter et vous connecter à nouevau.",
   "rateDone": "Vote effectué.",
-  "rateDeleted": "Vote effacé."
+  "rateDeleted": "Vote effacé.",
+  "favoriteAdded": "Favoris ajouté.",
+  "favoriteDeleted": "Favoris retiré."
 }
