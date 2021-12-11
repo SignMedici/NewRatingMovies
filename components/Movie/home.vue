@@ -12,17 +12,9 @@
                     class="imgMovieCard"
                     :srcset="url + movie[siteLang].poster_path"
                   />
-                  <v-rating
-                    v-if="isAuthenticated"
-                    class="favoriteMovie"
-                    hover
-                    length="1"
-                    size="35"
-                    background-color="purple lighten-1"
-                    color="purple"
-                    :empty-icon="emptyIcon"
-                    :full-icon="fullIcon"
-                  ></v-rating>
+                  <div v-if="isAuthenticated">
+                    <UIFavorite :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
+                  </div>
                 </figure>
               </div>
               <div class="cardInfos">
@@ -47,7 +39,6 @@
     </v-container>
     <MovieModal
       :revele="revele"
-  color: #ffffff;
       :toggleModal="toggleModal"
       :movie="movieForModal"
       :siteLang="siteLang"
@@ -70,7 +61,8 @@ export default {
       siteLang: '',
       movieForModal: "",
       revele: false,
-      myRates: []
+      myRates: [],
+      myFavorites: []
     };
   },
   computed: {
@@ -89,6 +81,10 @@ export default {
 
     if(this.$store.getters.getUserInfo){
       this.myRates = this.$store.getters.getUserInfo.myRates;
+    }
+
+    if(this.$store.getters.getUserInfo){
+      this.myFavorites = this.$store.getters.getUserInfo.myFavorites;
     }
 
     if(this.$cookiz.get('siteLang')){
@@ -147,12 +143,6 @@ export default {
 }
 figure {
   margin: 0;
-}
-.favoriteMovie {
-  font-size: 64px;
-  position: absolute;
-  top: -20px;
-  right: 5px;
 }
 .v-icon.v-icon.v-icon--link {
   cursor: pointer;
