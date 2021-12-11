@@ -64,5 +64,7 @@
   "thriller" : "Thriller",
   "war" : "Guerra",
   "western" : "Western",
-  "titleMovie": "Titolo del film"
+  "titleMovie": "Titolo del film",
+  "pleaseLogoutLogin": "Esci e accedi di nuovo.",
+  "ratingDone": "Voto fatto."
 }

@@ -64,5 +64,7 @@
   "thriller" : "Thriller",
   "war" : "Oorlog",
   "western" : "Western",
-  "titleMovie": "Title van de film"
+  "titleMovie": "Title van de film",
+  "pleaseLogoutLogin": "Log even uit en opniew inloggen.",
+  "ratingDone": "Stem gedaan."
 }

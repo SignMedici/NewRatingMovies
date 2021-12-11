@@ -79,6 +79,7 @@ export default {
     },
     created(){
         let userLoadedUpdate = this.$store.getters.getUserInfo;
+
         this.nickname = userLoadedUpdate.nickname;
         this.email = userLoadedUpdate.email;
         this.userLang = userLoadedUpdate.language;

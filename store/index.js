@@ -17,12 +17,15 @@ const store = {
     },
 
     // Users
+    // Get logged user
     getUserInfo(state) {
       return state.auth.user;
     },
+    // Get all users
     getterUsers(state) {
       return state.users;
     },
+    // Get user by id
     getUserById: (state) => (id) => {
       let index = state.users.findIndex((obj) => obj._id == id);
       return state.users[index];
@@ -76,6 +79,20 @@ const store = {
         (obj) => obj.id == movieToUpdate["id"]
       );
       state.movies[index] = movieToUpdate;
+    },
+    RATE_MOVIE: (state, myRate) => {
+      let index = state.auth.user.myRates.findIndex(
+        (rate) => rate.movieDbId === myRate.movieDbId
+      );
+
+      if (index > -1) {
+        state.auth.user.myRates[index].movieDbId = myRate.rate;
+      } else {
+        state.auth.user.myRates.push({
+          movieDbId: myRate.movieDbId,
+          rate: myRate.rate,
+        });
+      }
     },
     SET_RESULT: (state, result) => {
       state.result = [];

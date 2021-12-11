@@ -84,8 +84,6 @@ export default {
         }
       };
 
-      console.log(updatedFilm);
-
       axios
       .patch(this.baseURL + "/movies/" + this.$route.params.id, updatedFilm)
       .then(async(response) => {

@@ -64,5 +64,7 @@
   "thriller" : "Thriller",
   "war" : "Guerre",
   "western" : "Western",
-  "titleMovie": "Titre du film"
+  "titleMovie": "Titre du film",
+  "pleaseLogoutLogin": "Veuillez vous déconnecter et vous connecter à nouevau.",
+  "ratingDone": "Vote effectué."
 }
