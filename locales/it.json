@@ -67,5 +67,7 @@
   "titleMovie": "Titolo del film",
   "pleaseLogoutLogin": "Esci e accedi di nuovo.",
   "rateDone": "Voto fatto.",
-  "rateDeleted": "Voto cancellato."
+  "rateDeleted": "Voto cancellato.",
+  "favoriteAdded": "Favorito aggiunto.",
+  "favoriteDeleted": "Favorito cancellato."
 }

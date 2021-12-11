@@ -67,5 +67,7 @@
   "titleMovie": "Title of the movie",
   "pleaseLogoutLogin": "Please log out and log back in.",
   "rateDone": "Rate done.",
-  "rateDeleted": "Rate deleted."
+  "rateDeleted": "Rate deleted.",
+  "favoriteAdded": "Favorite added.",
+  "favoriteDeleted": "Favorite removed."
 }

@@ -1,0 +1,73 @@
+<template>
+  <div>
+    <button @click="toggleFavorite">
+      <img v-if="favStatus" class="movieFavIcon" src="~/assets/favFull.png"/>
+      <img v-else class="movieFavIcon"  src="~/assets/favEmpty.png"/>
+    </button>
+  </div>
+</template>
+<script>
+import axios from "axios";
+
+export default {
+  props:["myFavorites","movieDbId"],
+  data(){
+    return {
+      favStatus: false,
+      baseURL: process.env.baseURL,
+    }
+  },
+  methods:{
+    toggleFavorite(){
+      //Change value of the icon to make it full or empty
+      if (this.favStatus === false){
+        console.log("make it full");
+        this.favStatus = true;
+      }
+      else{
+        console.log("make it empty");
+        this.favStatus = false;
+      }
+
+      //Add & remove the favorite
+      let userId = this.$store.getters.getUserInfo.id;
+
+      if(userId){
+        axios
+        .patch(this.baseURL + "/users/" + userId + "/" + this.movieDbId)
+        .then(async (response) => {
+          await this.$store.commit("UPDATE_FAVORITE", response.data);
+          if(this.favStatus == 0){
+            this.$toast.success(this.$t('favoriteDeleted'));
+          }
+          else{
+            this.$toast.success(this.$t('favoriteAdded'));
+          }
+        });
+      }
+      else{
+        this.$toast.error(this.$t('pleaseLogoutLogin'));
+      }
+    }
+  },
+  created(){
+    if(this.myFavorites.length > 0){
+
+      for(let i = 0; i < this.myFavorites.length; i++){
+        if (this.myFavorites[i] === this.movieDbId){
+          this.favStatus = 1;
+          break
+        }
+      }
+    }
+  }
+}
+</script>
+<style scoped>
+.movieFavIcon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  height: 25px;
+}
+</style>

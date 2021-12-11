@@ -42,8 +42,6 @@ export default {
           else{
             this.$toast.success(this.$t('rateDone'));
           }
-
-
         });
       }
       else{
