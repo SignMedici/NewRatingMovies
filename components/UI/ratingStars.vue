@@ -1,20 +1,18 @@
 <template lang="">
-  <div>
-    <v-card-actions>
-      <v-rating
-        dense
-        clearable
-        half-increments
-        :value="rate"
-        hover
-        size="18"
-        class="ms-2"
-        color="warning"
-        background-color="warning lighten-1"
-        @input="rateMovie($event)"
-      ></v-rating>
-    </v-card-actions>
-  </div>
+  <v-card-actions>
+    <v-rating
+      dense
+      clearable
+      half-increments
+      :value="rate"
+      hover
+      size="18"
+      class="ms-1 mb-2"
+      color="warning"
+      background-color="warning lighten-1"
+      @input="rateMovie($event)"
+    ></v-rating>
+  </v-card-actions>
 </template>
 <script>
 import axios from "axios";
