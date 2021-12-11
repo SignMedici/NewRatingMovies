@@ -66,5 +66,6 @@
   "western" : "Western",
   "titleMovie": "Titre du film",
   "pleaseLogoutLogin": "Veuillez vous déconnecter et vous connecter à nouevau.",
-  "ratingDone": "Vote effectué."
+  "rateDone": "Vote effectué.",
+  "rateDeleted": "Vote effacé."
 }

@@ -66,5 +66,6 @@
   "western" : "Western",
   "titleMovie": "Title van de film",
   "pleaseLogoutLogin": "Log even uit en opniew inloggen.",
-  "ratingDone": "Stem gedaan."
+  "rateDone": "Stem gedaan.",
+  "rateDeleted": "Stem uitgewist."
 }

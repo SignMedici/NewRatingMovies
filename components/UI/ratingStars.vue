@@ -36,7 +36,14 @@ export default {
         .patch(this.baseURL + "/users/" + userId + "/" + this.movieDbId + "/" + rate)
         .then(async (response) => {
           await this.$store.commit("RATE_MOVIE", response.data);
-          this.$toast.success(this.$t('ratingDone'))
+          if(rate == 0){
+            this.$toast.success(this.$t('rateDeleted'));
+          }
+          else{
+            this.$toast.success(this.$t('rateDone'));
+          }
+
+
         });
       }
       else{

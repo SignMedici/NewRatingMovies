@@ -66,5 +66,6 @@
   "western" : "Western",
   "titleMovie": "Title of the movie",
   "pleaseLogoutLogin": "Please log out and log back in.",
-  "ratingDone": "Rate done."
+  "rateDone": "Rate done.",
+  "rateDeleted": "Rate deleted."
 }
