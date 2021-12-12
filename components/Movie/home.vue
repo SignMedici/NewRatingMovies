@@ -1,46 +1,51 @@
 <template>
-  <div id="movieHome">
-    <v-container class="grey lighten-5 mainContainer">
-      <v-row no-gutters>
-        <v-col v-for="movie in movies" :key="movie._id" cols="12" sm="3">
-          <div class="card">
-            <v-card>
-              <div class="hover10">
-                <figure>
-                  <img
-                    @click="toggleModal(movie)"
-                    class="imgMovieCard"
-                    :srcset="url + movie[siteLang].poster_path"
-                  />
-                  <UIFavorite v-if="isAuthenticated" :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
-                </figure>
-              </div>
-              <div class="cardInfos">
-                <v-card-title v-if="movie[siteLang].title.length > 22"
-                  >{{ movie[siteLang].title.substring(0, 22) }}...</v-card-title
-                >
-                <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
-                <div v-if="isAuthenticated" class="text-subtitle-1">
-                  {{ movie.release_date.substring(0, 4) }}
+  <div>
+    <div id="movieHome" v-if="movies.length > 0">
+      <v-container class="grey lighten-5 mainContainer">
+        <v-row no-gutters>
+          <v-col v-for="movie in movies" :key="movie._id" cols="12" sm="3">
+            <div class="card">
+              <v-card>
+                <div class="hover10">
+                  <figure>
+                    <img
+                      @click="toggleModal(movie)"
+                      class="imgMovieCard"
+                      :srcset="url + movie[siteLang].poster_path"
+                    />
+                    <UIFavorite v-if="isAuthenticated" :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
+                  </figure>
                 </div>
-                <div v-else class="text-subtitle-1 mb-2">
-                  {{ movie.release_date.substring(0, 4) }}
+                <div class="cardInfos">
+                  <v-card-title v-if="movie[siteLang].title.length > 22"
+                    >{{ movie[siteLang].title.substring(0, 22) }}...</v-card-title
+                  >
+                  <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
+                  <div v-if="isAuthenticated" class="text-subtitle-1">
+                    {{ movie.release_date.substring(0, 4) }}
+                  </div>
+                  <div v-else class="text-subtitle-1 mb-2">
+                    {{ movie.release_date.substring(0, 4) }}
+                  </div>
+                  <div v-if="isAuthenticated">
+                    <UIRatingStars :myRates="myRates" :movieDbId="movie.movieDbId" />
+                  </div>
                 </div>
-                <div v-if="isAuthenticated">
-                  <UIRatingStars :myRates="myRates" :movieDbId="movie.movieDbId" />
-                </div>
-              </div>
-            </v-card>
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-    <MovieModal
-      :revele="revele"
-      :toggleModal="toggleModal"
-      :movie="movieForModal"
-      :siteLang="siteLang"
-    />
+              </v-card>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+      <MovieModal
+        :revele="revele"
+        :toggleModal="toggleModal"
+        :movie="movieForModal"
+        :siteLang="siteLang"
+      />
+    </div>
+    <div v-else class="noMovieInDB">
+      <img src="~/assets/No-Movie.png" alt="no-movie.png">
+    </div>
   </div>
 </template>
 <script>
@@ -159,5 +164,8 @@ figure {
 .hover10 figure:hover img {
   -webkit-filter: sepia(100%);
   filter: sepia(100%);
+}
+.noMovieInDB{
+  text-align: center;
 }
 </style>
