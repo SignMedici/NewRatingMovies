@@ -73,7 +73,16 @@ export default {
     },
   },
   created() {
-    this.$i18n.setLocale(this.$cookiz.get('siteLang'));
+    let siteLang = '';
+
+    if(this.$cookiz.get('siteLang')){
+      siteLang = this.$cookiz.get('siteLang')
+    }
+    else{
+      siteLang = 'fr'
+    }
+
+    this.$i18n.setLocale(siteLang);
   }
 };
 </script>
