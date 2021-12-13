@@ -27,7 +27,7 @@
                   <div v-else class="text-subtitle-1">
                     {{ movie.release_date.substring(0, 4) }}
                   </div>
-                  <div v-if="isAuthenticated" class="mt-2">
+                  <div v-if="isAuthenticated">
                     <UIRatingStars :myRates="myRates" :movieDbId="movie.movieDbId" />
                   </div>
                 </div>
