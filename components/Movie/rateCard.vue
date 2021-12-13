@@ -24,10 +24,10 @@
                   <div v-if="isAuthenticated" class="text-subtitle-1">
                     {{ movie.release_date.substring(0, 4) }}
                   </div>
-                  <div v-else class="text-subtitle-1 mb-2">
+                  <div v-else class="text-subtitle-1">
                     {{ movie.release_date.substring(0, 4) }}
                   </div>
-                  <div v-if="isAuthenticated">
+                  <div v-if="isAuthenticated" class="mt-2">
                     <UIRatingStars :myRates="myRates" :movieDbId="movie.movieDbId" />
                   </div>
                 </div>
