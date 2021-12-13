@@ -13,7 +13,7 @@
                       class="imgMovieCard"
                       :srcset="url + movie[siteLang].poster_path"
                     />
-                    <UIFavorite v-if="isAuthenticated" :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
+                    <UIFavoriteIcon v-if="isAuthenticated" :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
                   </figure>
                 </div>
                 <div class="cardInfos">
@@ -52,11 +52,11 @@
 import axios from "axios";
 
 export default {
+  props:['movies'],
   data() {
     return {
       title: "",
       url: process.env.API_PIC_URL,
-      movies: [],
       emptyIcon: "mdi-heart-outline",
       fullIcon: "mdi-heart",
       sortBy: "title",
@@ -80,14 +80,11 @@ export default {
     },
   },
   created() {
-    this.movies = this.$store.getters.getMovies;
-
     if(this.$store.getters.getUserInfo){
       this.myRates = this.$store.getters.getUserInfo.myRates;
     }
 
     if(this.$store.getters.getUserInfo){
-      console.log(this.$store.getters.getUserInfo.myFavorites);
       this.myFavorites = this.$store.getters.getUserInfo.myFavorites;
     }
 

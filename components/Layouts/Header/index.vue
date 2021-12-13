@@ -12,11 +12,15 @@
         scroll-target="#scrolling-techniques-3"
       >
         <v-spacer></v-spacer>
-        <UIFlags />
         <!-- Favorite icon -->
-        <v-btn icon>
-          <v-icon>mdi-heart</v-icon>
+        <v-btn icon v-if="isAuthenticated">
+          <nuxt-link class="nav-link active" aria-current="page" :to="{name: `user-favorites___${locale}`,hash: '#logo'}" >
+            <img class="HeaderFavIcon" src="~/assets/favFull.png">
+          </nuxt-link>
         </v-btn>
+
+        <UIFlags />
+
         <template v-slot:extension v-if="!isAuthenticated">
           <v-tabs align-with-title class="navTab">
             <v-tab>
@@ -143,5 +147,9 @@ export default {
 }
 .logout{
   text-align: right;
+}
+.HeaderFavIcon{
+  height: 30px;
+  width: auto;
 }
 </style>

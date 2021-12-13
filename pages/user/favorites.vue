@@ -1,0 +1,96 @@
+<template>
+  <div v-if="isAuthenticated">
+    <UIBigLogo />
+    <v-container class="grey lighten-5 loginForm">
+      <!-- Back button -->
+      <UIBackBtn :path="'index'" />
+      <!-- Page logo and title -->
+      <div class="pageLogoTitle">
+        <img class="favLogo" src="~/assets/favorites.png">
+        <br>
+        {{ $t('myFavorites') }}
+      </div>
+    </v-container>
+    <!-- Movies cards -->
+    <div class="my-5">
+      <MovieRateCard :movies="getUserFavorites" />
+    </div>
+    <!-- Modal hen click on card -->
+    <MovieModal
+      :revele="revele"
+      :toggleModal="toggleModal"
+      :movie="movieForModal"
+      :siteLang="siteLang"
+    />
+    <UIBtnTop :showAt="450" />
+  </div>
+</template>
+
+<script>
+export default {
+  data(){
+    return{
+      siteLang: '',
+      movieForModal: "",
+      revele: false,
+    }
+  },
+  computed: {
+    getUserFavorites() {
+      if(this.$store.getters.getUserInfo){
+        return this.$store.getters.getUserFavorites;
+      }
+      else{
+        this.$router.push("/");
+      }
+    },
+    isAuthenticated() {
+      if (this.$store.getters.isAuthenticated){
+        return this.$store.getters.isAuthenticated; // check if there is an authenticated user
+      }
+      else{
+        this.$router.push("/");
+      }
+    },
+  },
+  methods:{
+    toggleModal(movie) {
+      this.revele = !this.revele;
+      this.movieForModal = movie;
+    },
+  },
+  created() {
+    if(this.$cookiz.get('siteLang')){
+      this.siteLang = this.$cookiz.get('siteLang')
+    }
+    else{
+      this.siteLang = 'fr'
+    }
+    this.$i18n.setLocale(this.siteLang);
+  }
+}
+</script>
+
+<style scoped>
+.favs{
+  color:#fff;
+}
+.loginForm{
+  width: 600px;
+  padding: 30px;
+  background-color: #ffffff20;
+  border-radius: 14px;
+  margin-top: 20px;
+}
+.pageLogoTitle{
+  color: #ffffff79;
+  font-family: 'Ubuntu', sans-serif;
+  text-align: center;
+  font-weight: 500;
+  font-size: 50px;
+}
+.favLogo{
+  height: 65px;
+  width:auto;
+}
+</style>

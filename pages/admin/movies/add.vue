@@ -28,7 +28,7 @@
       </v-form>
     </v-container>
     <div v-if="this.results !== ''">
-      <MovieCard :btnTxt="this.btnTxt" />
+      <MovieBtnCard :btnTxt="this.btnTxt" />
     </div>
   </div>
 </template>

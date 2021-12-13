@@ -65,5 +65,6 @@
   "war" : "Guerra",
   "western" : "Western",
   "titleMovie": "Titolo del film",
-  "pleaseLogoutLogin": "Esci e accedi di nuovo."
+  "pleaseLogoutLogin": "Esci e accedi di nuovo.",
+  "myFavorites": "I miei favoriti"
 }
