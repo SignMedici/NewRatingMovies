@@ -65,5 +65,6 @@
   "war" : "Oorlog",
   "western" : "Western",
   "titleMovie": "Title van de film",
-  "pleaseLogoutLogin": "Log even uit en opniew inloggen."
+  "pleaseLogoutLogin": "Log even uit en opniew inloggen.",
+  "myFavorites": "Mijn favorieten"
 }

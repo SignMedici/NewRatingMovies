@@ -30,6 +30,23 @@ const store = {
       let index = state.users.findIndex((obj) => obj._id == id);
       return state.users[index];
     },
+    // get movie information of user favorites
+    getUserFavorites(state) {
+      let userFavorites = [];
+
+      if (state.auth.user) {
+        let userFav = state.auth.user.myFavorites;
+        userFav.forEach((movieDbId) => {
+          state.movies.forEach((movie) => {
+            if (movie.movieDbId === movieDbId) {
+              userFavorites.push(movie);
+            }
+          });
+        });
+      }
+      console.log(userFavorites);
+      return userFavorites;
+    },
 
     // Movies
     getMovies(state) {

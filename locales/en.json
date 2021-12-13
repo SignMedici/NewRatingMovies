@@ -65,5 +65,6 @@
   "war" : "War",
   "western" : "Western",
   "titleMovie": "Title of the movie",
-  "pleaseLogoutLogin": "Please log out and log back in."
+  "pleaseLogoutLogin": "Please log out and log back in.",
+  "myFavorites": "My favorites"
 }
