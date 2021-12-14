@@ -1,8 +1,8 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: "%s - ratingMovies",
-    title: "ratingMovies",
+    titleTemplate: "%s",
+    title: "Rating Movies",
     htmlAttrs: {
       lang: "fr",
     },

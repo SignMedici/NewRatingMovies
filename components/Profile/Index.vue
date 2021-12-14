@@ -1,7 +1,7 @@
 <template>
   <div id="myprofile">
     <UIBigLogo />
-    <v-card>
+    <v-card class="margin">
       <v-toolbar
         dark
         flat
@@ -96,5 +96,8 @@ tr{
 td{
   color: #fff;
   border-bottom-color: #9042b4;
+}
+.margin{
+  margin-top: 32px;
 }
 </style>
