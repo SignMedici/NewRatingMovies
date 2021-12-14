@@ -16,7 +16,7 @@
             <input
               type="email"
               :placeholder="$t('emailAddress')"
-              class="form-control"
+              class="fields form-control mb-2"
               id="email"
               v-model="loginData.email"
               aria-describedby="emailHelp"
@@ -93,15 +93,6 @@ export default {
   font-size: 17px;
 }
 .fields{
-  margin-top: 10px;
-}
-#email {
-  color:#A52199;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  font-size: 17px;
-}
-#password {
   color:#A52199;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
