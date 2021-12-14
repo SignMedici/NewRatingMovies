@@ -16,13 +16,13 @@
             type="text"
             :placeholder="$t('nickname')"
             v-model="registerData.nickname"
-            class="form-control"
+            class="fields form-control"
             id="nickname"
           />
           <input
             type="email"
             :placeholder="$t('emailAddress')"
-            class="fields form-control"
+            class="fields form-control my-2"
             id="email"
             v-model="registerData.email"
             aria-describedby="emailHelp"
@@ -31,14 +31,14 @@
             type="password"
             :placeholder="$t('password')"
             v-model="registerData.password"
-            class="form-control"
+            class="fields form-control mb-2"
             id="password"
           />
-          <select  class="form-select langField" aria-label="Prefered language" v-model="registerData.language" required>
-            <option selected value="">{{ $t('language') }}</option>
-            <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code">{{ $t(locale.name) }}</option>
+          <select  class="form-select" aria-label="Prefered language" v-model="registerData.language" required :class="registerData.language==='' ? 'language' : 'fields'">
+            <option selected value="" class="language">{{ $t('language') }}</option>
+            <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code" class="fields">{{ $t(locale.name) }}</option>
           </select>
-          <button type="submit" class="btn w-100 registerButton mt-3">{{ $t('confirm') }}</button>
+          <button type="submit" class="btn w-100 registerButton mt-3">{{ $t('toRegister') }}</button>
         </form>
       </v-container>
     </div>
@@ -113,27 +113,16 @@ export default {
   font-size: 17px;
 }
 .fields{
-  margin: 10px 0;
-}
-.langField{
-  margin-top: 10px;
-}
-#name {
   color:#A52199;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 17px;
 }
-#email {
-  color:#A52199;
+.language{
+  color:#6C757D;
   font-family: 'Lato', sans-serif;
   font-weight: 500;
   font-size: 17px;
-}
-#password {
-  color:#A52199;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  font-size: 17px;
+
 }
 </style>

@@ -66,5 +66,7 @@
   "western" : "Western",
   "titleMovie": "Title of the movie",
   "pleaseLogoutLogin": "Please log out and log back in.",
-  "myFavorites": "My favorites"
+  "myFavorites": "My favorites",
+  "toRegister": "Register",
+  "toLogIn": "Login"
 }

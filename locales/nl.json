@@ -66,5 +66,7 @@
   "western" : "Western",
   "titleMovie": "Title van de film",
   "pleaseLogoutLogin": "Log even uit en opniew inloggen.",
-  "myFavorites": "Mijn favorieten"
+  "myFavorites": "Mijn favorieten",
+  "toRegister": "Registreren",
+  "toLogIn": "Inloggen"
 }
