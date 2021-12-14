@@ -7,7 +7,7 @@
 <style>
 #logo{
     display:block;
-    margin: 20px 0;
+    margin: 30px 0;
     padding: 0;
     text-align: center;
 }
