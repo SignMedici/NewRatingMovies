@@ -1,8 +1,8 @@
 <template>
   <div id="favoriteIcon">
     <button @click="toggleFavorite">
-      <img v-if="favStatus" class="movieFavIcon" src="~/assets/favMinus.png"/>
-      <img v-else class="movieFavIcon"  src="~/assets/favPlus.png"/>
+      <img v-if="favStatus" class="movieFavIcon" src="~/assets/favIcons/favMinus.png"/>
+      <img v-else class="movieFavIcon"  src="~/assets/favIcons/favPlus.png"/>
     </button>
   </div>
 </template>

@@ -6,7 +6,7 @@
       <UIBackBtn :path="'index'" />
       <!-- Page logo and title -->
       <div class="pageLogoTitle">
-        <img class="favLogo" src="~/assets/favorites.png">
+        <img class="favLogo" src="~/assets/favIcons/favorites.png">
         <br>
         {{ $t('myFavorites') }}
       </div>

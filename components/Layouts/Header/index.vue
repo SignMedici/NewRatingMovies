@@ -15,7 +15,7 @@
         <!-- Favorite icon -->
         <v-btn icon v-if="isAuthenticated">
           <nuxt-link class="nav-link active" aria-current="page" :to="{name: `user-favorites___${locale}`,hash: '#logo'}" >
-            <img class="HeaderFavIcon" src="~/assets/favFull.png">
+            <img class="HeaderFavIcon" src="~/assets/favIcons/favFull.png">
           </nuxt-link>
         </v-btn>
 
