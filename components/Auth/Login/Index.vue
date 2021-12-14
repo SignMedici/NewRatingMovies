@@ -27,6 +27,7 @@
               v-model="loginData.password"
               class="fields form-control"
               id="password"
+              autocomplete="on"
             />
           </div>
           <button type="submit" class="btn w-100 confirmButton mt-3">{{ $t('toLogIn') }}</button>

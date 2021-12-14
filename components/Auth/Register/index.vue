@@ -33,6 +33,7 @@
             v-model="registerData.password"
             class="fields form-control mb-2"
             id="password"
+            autocomplete="on"
           />
           <select  class="form-select" aria-label="Prefered language" v-model="registerData.language" required :class="registerData.language==='' ? 'language' : 'fields'">
             <option selected value="" class="language">{{ $t('language') }}</option>

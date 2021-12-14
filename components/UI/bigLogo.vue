@@ -1,5 +1,5 @@
 <template>
-  <v-container class="grey lighten-5" id="logo">
+  <v-container class="grey lighten-5 mainLogo" id="logo">
     <img :src="require(`~/assets/ratingMoviesLogo.png`)" alt="Rating Movies Logo" />
   </v-container>
 </template>

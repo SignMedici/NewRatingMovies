@@ -80,7 +80,7 @@ export default {
   padding: 30px;
   background-color: #ffffff20;
   border-radius: 14px;
-  margin-top: 20px;
+  margin-top: 32px;
 }
 .pageLogoTitle{
   color: #ffffff79;
