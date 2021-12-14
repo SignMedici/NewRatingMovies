@@ -124,7 +124,7 @@ export default {
   font-weight: 600;
 }
 .text-subtitle-1 {
-  padding: 0 0 0 10px;
+  padding-left: 10px;
   font-family: "Lato", sans-serif;
   font-weight: 600;
   color: #9042b4;

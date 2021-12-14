@@ -8,8 +8,6 @@
         :value="rate"
         hover
         size="18"
-        color="warning"
-        background-color="warning lighten-1"
         @input="rateMovie($event)"
       ></v-rating>
     </v-card-actions>
@@ -62,6 +60,7 @@ export default {
 </script>
 <style scoped>
 .v-card__actions{
-  padding: 8px 0;
+  padding: 0 0 5px 0;
+  margin-left: 5px;
 }
 </style>
