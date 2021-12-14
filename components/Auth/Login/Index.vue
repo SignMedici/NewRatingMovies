@@ -29,7 +29,7 @@
               id="password"
             />
           </div>
-          <button type="submit" class="btn w-100 confirmButton mt-3">{{ $t('confirm') }}</button>
+          <button type="submit" class="btn w-100 confirmButton mt-3">{{ $t('toLogIn') }}</button>
         </form>
       </v-container>
     </div>
