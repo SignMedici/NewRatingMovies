@@ -1,11 +1,11 @@
 <template>
-  <v-container class="grey lighten-5 mainLogo" id="logo">
-    <img :src="require(`~/assets/ratingMoviesLogo.svg`)" alt="Rating Movies Logo" />
+  <v-container class="grey lighten-5" id="logo">
+    <img :src="require(`~/assets/ratingMoviesLogo.png`)" alt="Rating Movies Logo" />
   </v-container>
 </template>
 
 <style>
-.mainLogo{
+#logo{
     display:block;
     margin: 20px 0;
     padding: 0;
