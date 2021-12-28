@@ -1,8 +1,18 @@
 <template>
   <v-container class="grey lighten-5 mainLogo" id="logo">
-    <img :src="require(`~/assets/ratingMoviesLogo.png`)" alt="Rating Movies Logo" />
+    <img :src="logoURL" alt="Rating Movies Logo" />
   </v-container>
 </template>
+
+<script>
+export default {
+  data(){
+    return {
+      logoURL: "@/assets/ratingMoviesLogo.png"
+    }
+  }
+}
+</script>
 
 <style>
 #logo{

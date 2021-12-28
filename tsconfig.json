@@ -3,6 +3,14 @@
     "types": [
       "@nuxt/types",
       "@nuxtjs/i18n",
-    ]
-  }
+      "@nuxt/test-utils",
+      "jest"
+    ],
+  },
+  "exclude": [
+    "*.config.js","node_modules", ".nuxt", "dist"
+  ],
+  "include": [
+    "**/*"
+  ]
 }
