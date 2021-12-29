@@ -1,7 +1,7 @@
 <template>
   <div v-if="isAuthenticated">
     <UIBigLogo />
-    <v-container class="grey lighten-5 loginForm">
+    <v-container class="grey lighten-5 square">
       <!-- Back button -->
       <UIBackBtn :path="'myprofile'" />
       <!-- Page logo and title -->
@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style scoped>
-.loginForm{
+.square{
   width: 700px;
   padding: 30px;
   background-color: #ffffff20;
@@ -126,5 +126,15 @@ export default {
 }
 label{
   color:white;
+}
+
+@media (max-width: 620px){
+  .square{
+    width: 92%;
+  }
+  .pageLogoTitle{
+    font-size: calc(24px + (50 - 24) * ((100vw - 300px) / (620 - 300))); /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+    white-space: nowrap;
+  }
 }
 </style>

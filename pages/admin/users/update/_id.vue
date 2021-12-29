@@ -1,7 +1,7 @@
 <template>
   <div v-if="roleIsAdmin === true">
     <UIBigLogo />
-    <v-container class="grey lighten-5 loginForm">
+    <v-container class="grey lighten-5 square">
       <!-- Back button -->
       <UIBackBtn :path="'admin'" />
       <!-- Page logo and title -->
@@ -109,7 +109,7 @@ export default {
   padding: 0;
   color: #A52199;
 }
-.loginForm{
+.square{
   width: 600px;
   padding: 30px;
   background-color: #ffffff20;
@@ -121,7 +121,8 @@ export default {
   font-family: 'Ubuntu', sans-serif;
   text-align: center;
   font-weight: 500;
-  font-size: 50px;
+  font-size: calc(40px + (60 - 40) * ((100vw - 1024px) / (4096 - 1024)));
+  white-space: nowrap;
 }
 .confirmButton{
   color: #fff;
@@ -133,5 +134,16 @@ export default {
 }
 label{
   color: white;
+}
+
+@media (max-width: 620px){
+  .square{
+    width: 92%;
+  }
+  .pageLogoTitle{
+    font-size: calc(14px + (50 - 14) * ((100vw - 300px) / (620 - 300))); /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+    white-space: nowrap;
+    margin-bottom: 30px;
+  }
 }
 </style>
