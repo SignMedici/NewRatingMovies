@@ -170,7 +170,7 @@ export default {
   width: auto;
 }
 
-@media(max-width: 1024px){
+@media(max-width: 800px){
   span{
     display: none;
   }

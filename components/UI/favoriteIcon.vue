@@ -43,12 +43,14 @@ export default {
     }
   },
   created(){
-    if(this.myFavorites.length > 0){
+    if(this.myFavorites){
+      if(this.myFavorites.length > 0){
 
-      for(let i = 0; i < this.myFavorites.length; i++){
-        if (this.myFavorites[i] === this.movieDbId){
-          this.favStatus = 1;
-          break
+        for(let i = 0; i < this.myFavorites.length; i++){
+          if (this.myFavorites[i] === this.movieDbId){
+            this.favStatus = 1;
+            break
+          }
         }
       }
     }

@@ -36,10 +36,12 @@
 
         >
           <v-card v-if="item === $t('users')" class="tableMain">
-            <AdminUsers />
+            <AdminUsersDesktop class="desktop" />
+            <AdminUsersMobile class="mobile" />
           </v-card>
           <v-card v-else class="tableMain">
-            <AdminMovies />
+            <AdminMoviesDesktop class="desktop" />
+            <AdminMoviesMobile class="mobile" />
           </v-card>
         </v-tab-item>
       </v-tabs-items>
@@ -96,7 +98,7 @@ export default {
   font-family: 'Ubuntu', sans-serif;
   text-align: center;
   font-weight: 500;
-  font-size: 50px;
+  font-size: calc(40px + (60 - 40) * ((100vw - 1024px) / (4096 - 1024))); /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
 }
 .v-tabs:not(.v-tabs--vertical) .v-tab {
     white-space: normal;
@@ -107,5 +109,24 @@ export default {
 }
 .margin{
   margin-top: 32px;
+}
+.mobile{
+  display: none;
+}
+
+@media(max-width: 1024px){
+  .desktop{
+    display:none;
+  }
+  .mobile{
+    display:block;
+  }
+  .tableMain {
+    margin-top: 10px;
+    padding: 10px;
+  }
+  .adminTitle{
+    font-size: calc(30px + (50 - 30) * ((100vw - 300px) / (620 - 300))); /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+  }
 }
 </style>
