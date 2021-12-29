@@ -4,7 +4,7 @@
       <UIBigLogo />
     </div>
     <div class="formTopMargin">
-      <v-container class="grey lighten-5 loginForm">
+      <v-container class="grey lighten-5 square">
         <div class="loginTitle">
           <svg style="width:65px;height:65px" viewBox="0 0 24 24">
               <path fill="currentColor" d="M21.7 14.4L20.7 15.4L18.6 13.3L19.6 12.3C19.8 12.1 20.2 12.1 20.4 12.3L21.7 13.6C21.9 13.8 21.9 14.1 21.7 14.4M12 19.9L18.1 13.8L20.2 15.9L14.1 22H12V19.9M10 19.1L21 8.1V5L12 1L3 5V11C3 15.8 5.9 20.3 10 22.3V19.1Z" />
@@ -93,7 +93,7 @@ export default {
   display:block;
   padding-top: 17px;
 }
-.loginForm{
+.square{
   width: 600px;
   padding: 30px;
   background-color: #ffffff20;
@@ -125,5 +125,15 @@ export default {
   font-weight: 500;
   font-size: 17px;
 
+}
+
+@media (max-width: 620px){
+  .square{
+    width: 92%;
+  }
+  .pageLogoTitle{
+    font-size: calc(24px + (50 - 24) * ((100vw - 300px) / (620 - 300))); /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+    white-space: nowrap;
+  }
 }
 </style>

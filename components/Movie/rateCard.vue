@@ -99,12 +99,16 @@ export default {
 };
 </script>
 <style scoped>
+.mainContainer{
+  display: flex;
+}
 .card {
   display: flex;
   margin: 5px;
   border: 0px;
   border-radius: 10px;
   overflow: hidden;
+  max-width: 300px;
 }
 .imgMovieCard {
   object-fit: cover;
