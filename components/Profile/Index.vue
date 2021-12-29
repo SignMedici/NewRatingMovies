@@ -119,4 +119,18 @@ span{
   bottom:0;
   right:0;
 }
+
+@media(max-width: 1024px){
+  .profileInfo{
+    display : block;
+    text-align: center;
+  }
+  .v-card{
+    margin: auto;
+  }
+  .portrait{
+    width: 40%;
+    margin-bottom: 40px;
+  }
+}
 </style>
