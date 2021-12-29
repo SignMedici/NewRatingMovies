@@ -22,7 +22,7 @@
         <UIFlags />
 
         <template v-slot:extension v-if="!isAuthenticated">
-          <v-tabs align-with-title class="navTab">
+          <v-tabs align-with-title class="navTab" hide-slider>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/">
                 <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@
           </v-tabs>
         </template>
         <template v-slot:extension v-else>
-          <v-tabs align-with-title class="navTab" id="navTab">
+          <v-tabs align-with-title class="navTab" id="navTab" hide-slider>
             <v-tab>
               <nuxt-link class="nav-link active" aria-current="page" to="/">
                 <svg style="width:18px;height:18px;margin-bottom:5px" viewBox="0 0 24 24">
