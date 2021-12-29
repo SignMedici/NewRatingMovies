@@ -37,7 +37,6 @@
       </v-card>
     </div>
     <div v-else align="center">{{ $t('noMovieCatalog') }}</div>
-    <UIBtnTop :showAt="300"/>
   </div>
 </template>
 <script>
