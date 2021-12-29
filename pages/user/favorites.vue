@@ -22,7 +22,7 @@
       :movie="movieForModal"
       :siteLang="siteLang"
     />
-    <UIBtnTop :showAt="450" />
+    <UIBtnTop :showAt="300" />
   </div>
 </template>
 

@@ -58,7 +58,7 @@
         </tr>
       </tbody>
     </table>
-    <UIBtnTop :showAt="500"/>
+    <UIBtnTop :showAt="300"/>
   </div>
 </template>
 

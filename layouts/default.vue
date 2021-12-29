@@ -11,10 +11,14 @@
 * {
     box-sizing: border-box;
 }
+html{
+  min-width: 100%;
+  min-height: 150%;
+}
 body
 {
     height: 100%;
-    min-height: 1180px;
+    width: 100%;
     margin: 0;
     padding: 0;
     background-repeat: no-repeat;

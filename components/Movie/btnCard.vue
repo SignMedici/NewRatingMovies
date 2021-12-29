@@ -165,7 +165,6 @@
 }
 .imgMovieCard{
   object-fit: cover;
-  min-height: 450px;
   width: 100%;
   height: auto;
 }
@@ -228,5 +227,11 @@ figure{
 .hover10 figure:hover img {
 	-webkit-filter: sepia(100%);
 	filter: sepia(100%);
+}
+
+@media(min-width: 1251px){
+  .imgMovieCard{
+    min-height: 412px;
+  }
 }
 </style>

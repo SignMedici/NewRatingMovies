@@ -1,7 +1,7 @@
 <template>
   <div v-if="isAdmin === true">
     <UIBigLogo />
-    <v-container class="grey lighten-5 loginForm">
+    <v-container class="grey lighten-5 square">
       <!-- Back button -->
       <UIBackBtn :path="'admin'" />
       <!-- Page logo and title -->
@@ -96,7 +96,7 @@
   }
 </script>
 <style scoped>
-.loginForm{
+.square{
   width: 600px;
   padding: 30px;
   background-color: #ffffff20;
@@ -117,5 +117,15 @@
 .searchBtn{
   margin: auto 0 auto 20px;
   color: white;
+}
+
+@media (max-width: 620px){
+  .square{
+    width: 92%;
+  }
+  .pageLogoTitle{
+    font-size: calc(24px + (50 - 24) * ((100vw - 300px) / (620 - 300))); /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
+    white-space: nowrap;
+  }
 }
 </style>
