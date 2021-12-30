@@ -38,14 +38,13 @@
           <v-card v-if="item === $t('users')" class="tableMain">
             <AdminUsersDesktop class="desktop" />
             <AdminUsersMobile class="mobile" />
-            <UIBtnTop :showAt="300"/>
           </v-card>
           <v-card v-else class="tableMain">
             <AdminMoviesDesktop class="desktop" />
             <AdminMoviesMobile class="mobile" />
-            <UIBtnTop :showAt="300"/>
           </v-card>
         </v-tab-item>
+        <UIBtnTop :showAt="300"/>
       </v-tabs-items>
     </v-card>
   </div>

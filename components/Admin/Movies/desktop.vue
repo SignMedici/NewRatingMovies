@@ -58,7 +58,6 @@
         </tr>
       </tbody>
     </table>
-    <UIBtnTop :showAt="300"/>
   </div>
 </template>
 
