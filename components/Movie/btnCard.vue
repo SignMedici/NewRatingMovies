@@ -38,7 +38,8 @@
           </v-col>
       </v-row>
     </v-container>
-    <MovieModal :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :siteLang="siteLang" />
+    <MovieModalDesktop :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :siteLang="siteLang" class="desktop" />
+    <MovieModalMobile :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :siteLang="siteLang" class="mobile" />
   </div>
 </template>
 
@@ -228,10 +229,22 @@ figure{
 	-webkit-filter: sepia(100%);
 	filter: sepia(100%);
 }
+.desktop{
+  display:block;
+}
+.mobile{
+  display: none;
+}
 
 @media(min-width: 1251px){
   .imgMovieCard{
     min-height: 412px;
+  }
+  .desktop{
+    display:none;
+  }
+  .mobile{
+    display:block;
   }
 }
 </style>

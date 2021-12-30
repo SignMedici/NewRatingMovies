@@ -36,11 +36,19 @@
           </v-col>
         </v-row>
       </v-container>
-      <MovieModal
+      <MovieModalDesktop
         :revele="revele"
         :toggleModal="toggleModal"
         :movie="movieForModal"
         :siteLang="siteLang"
+        class="desktop"
+      />
+      <MovieModalMobile
+        :revele="revele"
+        :toggleModal="toggleModal"
+        :movie="movieForModal"
+        :siteLang="siteLang"
+        class="mobile"
       />
     </div>
     <div v-else class="noMovieInDB">
@@ -166,10 +174,22 @@ figure {
 .noMovieInDB{
   text-align: center;
 }
+.desktop{
+  display:block;
+}
+.mobile{
+  display: none;
+}
 
 @media(min-width: 1251px){
   .imgMovieCard{
     min-height: 412px;
+  }
+  .desktop{
+    display:none;
+  }
+  .mobile{
+    display:block;
   }
 }
 </style>

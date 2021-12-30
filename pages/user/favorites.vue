@@ -16,11 +16,19 @@
       <MovieRateCard :movies="getUserFavorites" />
     </div>
     <!-- Modal hen click on card -->
-    <MovieModal
+    <MovieModalDesktop
       :revele="revele"
       :toggleModal="toggleModal"
       :movie="movieForModal"
       :siteLang="siteLang"
+      class="desktop"
+    />
+    <MovieModalMobile
+      :revele="revele"
+      :toggleModal="toggleModal"
+      :movie="movieForModal"
+      :siteLang="siteLang"
+      class="mobile"
     />
     <UIBtnTop :showAt="300" />
   </div>
@@ -93,6 +101,12 @@ export default {
   height: 65px;
   width:auto;
 }
+.desktop{
+  display:block;
+}
+.mobile{
+  display: none;
+}
 
 @media (max-width: 620px){
   .square{
@@ -101,6 +115,12 @@ export default {
   .pageLogoTitle{
     font-size: calc(24px + (50 - 24) * ((100vw - 300px) / (620 - 300))); /* font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width]))); */
     white-space: nowrap;
+  }
+  .desktop{
+    display:none;
+  }
+  .mobile{
+    display:block;
   }
 }
 </style>

@@ -111,6 +111,9 @@ export default {
 .margin{
   margin-top: 32px;
 }
+.desktop{
+  display:block;
+}
 .mobile{
   display: none;
 }

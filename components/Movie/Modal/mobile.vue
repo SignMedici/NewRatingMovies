@@ -1,68 +1,60 @@
 <template>
-  <transition name="bloc-modal" v-if="revele" id="movieModal">
+  <transition name="bloc-modal" v-if="revele" id="movieModalMobile">
     <div class="modal-backdrop" @click="toggleModal">
       <div class="modal">
         <div class="modalContent">
-          <div>
+          <div class="d-flex w-100">
             <!-- Poster -->
-            <img v-if="movie[siteLang].poster_path" :srcset="url + movie[siteLang].poster_path" />
+            <img v-if="movie[siteLang].poster_path" :srcset="url + movie[siteLang].poster_path" class="m-auto"/>
             <div v-else class="defaultPicContainer">
               <img  class="defaultPic" src="~/assets/no_picture.png" alt="default picture" />
             </div>
 
           </div>
-          <div class="movieDesc">
+          <div class="d-block mt-4">
             <div>
               <!-- Title -->
               <span v-if="movie[siteLang].title.length <= 33" class="bigTitle">{{ movie[siteLang].title}}</span>
               <span v-else class="smallTitle">{{ movie[siteLang].title}}</span>
-              <!-- Vote -->
-              <span v-if="movie.vote_average" class="vote">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-heart-fill voteIcon"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                  />
-                </svg>
-                {{ movie.vote_average }}
-              </span>
             </div>
             <!-- Movie details -->
             <div class="movieData">
               <!-- Year -->
-              <div v-if="movie.release_date" class="year">
+              <div v-if="movie.release_date" class="year mt-2">
                 {{ movie.release_date.substring(0, 4) }}
+                <!-- Vote -->
+                <span v-if="movie.vote_average" class="vote">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-heart-fill voteIcon"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                    />
+                  </svg>
+                  {{ movie.vote_average }}
+                </span>
               </div>
               <!-- Genres -->
-              <div>
-                <span class="genre" v-if="movie.genre" v-for="movieGenre in movie.genre">{{ $t(movieGenre) }}</span>
-              </div>
+              <span class="genre" v-if="movie.genre" v-for="movieGenre in movie.genre">{{ $t(movieGenre) }}</span>
 
               <!-- People -->
               <div class="people">
-                <table>
-                  <tr v-show="movie.director">
-                    <td><span>{{ $t('director') }}</span></td>
-                    <td>
-                      <!-- Director -->
-                      <div class="casting">{{ movie.director }}</div>
-                    </td>
-                  </tr>
-                  <tr v-if="movie.casting">
-                    <td><span>{{ $t('casting') }}</span></td>
-                    <td>
-                      <!-- Actors -->
-                      <div class="casting">{{ movie.casting }}</div>
-                    </td>
-                  </tr>
-                </table>
+                <!-- Director -->
+                <div v-show="movie.director">
+                  <span>{{ $t('director') }}</span><br>
+                  <div class="casting">{{ movie.director }}</div>
+                </div>
+                <!-- Actors -->
+                <div v-if="movie.casting">
+                  <span>{{ $t('casting') }}</span><br>
+                  <div class="casting">{{ movie.casting }}</div>
+                </div>
               </div>
               <!-- Overview -->
               <div v-if="movie[siteLang].overview" class="overview">{{ movie[siteLang].overview }}</div>
@@ -95,38 +87,43 @@ export default {
 };
 </script>
 <style scoped>
+.genre{
+  color: #fff;
+}
 .genre+.genre::before{
   content: ", ";
 }
 img {
-  float: left;
-  width: auto;
   max-width: 300px;
-  height: 450px;
+  width:100%;
+  height: auto;
   border: 0;
   border-radius: 10px;
   background-color: whitesmoke;
 }
 .defaultPicContainer{
-  width: 300px;
-  height: 450px;
+  display:flex;
+  margin:auto;
   background-color: whitesmoke;
   border: 0;
   border-radius: 10px;
 }
 .defaultPic{
-  width:300px;
+  width:100%;
+  max-width: 300px;
+  height: 450px;
   height: auto;
+  text-align: center;
 }
 .modal-backdrop {
-  position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
+  padding: 20px;
   width: 100%;
-  height: 100%;
-  display: flex;
+  height: auto;
+  display: block;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -134,25 +131,17 @@ img {
 }
 .modal {
   position: relative;
-  width: 900px;
-  height: 490px;
-  display: flex;
+  display: block;
   border: 0;
   border-radius: 10px;
-  overflow: hidden;
+  overflow: auto;
 }
 .modalContent{
-  display:flex;
+  display: block;
   background-color: #492e4e;
-  padding:20px;
-  width:100%;
-}
-.poster{
-  width: 350px;
-}
-.movieDesc {
-  display:block;
-  margin-left:20px;
+  padding: 20px;
+  width: 100%;
+  height: auto;
 }
 .bigTitle {
   color: #9042b4;
@@ -171,7 +160,6 @@ img {
   font-weight: normal;
   color:#f2c43c;
   float: right;
-  margin-top: 12px;
 }
 .voteIcon{
   margin-bottom: 3px;
@@ -189,23 +177,21 @@ img {
   font-size: 14px;
 }
 .people{
-  margin: 25px 0;
+  margin-top: 15px;
 }
 .people .casting{
   padding-left: 10px;
   font-weight: 400;
 }
-table{
-  font-size: 15px;
-}
-table span{
+span{
   color: #9042b4;
 }
 .overview{
-  height: 265px;
+  height: 200px;
   overflow:auto;
   text-align: justify;
-  padding: 0 10px 0 0;
+  margin-top: 15px;
+  padding-right: 10px;
 }
 .overview::-webkit-scrollbar-track
 {
