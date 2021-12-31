@@ -12,10 +12,15 @@
     text-align: center;
 }
 
+img{
+  width: auto;
+  max-height: 150px;
+}
+
 @media (max-width: 1024px) {
-  #logo img{
-    width:80%;
-    height: auto;
+  img{
+    max-height: 100px;
+    width: auto;
   }
 }
 </style>
