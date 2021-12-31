@@ -1,13 +1,12 @@
 <template>
   <div>
     <!-- Back button -->
-    <nuxt-link :to="{ name: `${path}___${locale}`, hash: '#logo' }" class="btn backBtn">
+    <nuxt-link :to="{ name: `${path}___${locale}`, hash: '#logo' }" class="backBtn">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="40"
         height="40"
         fill="currentColor"
-        class="bi bi-caret-left-fill"
         viewBox="0 0 16 16"
       >
       <path
@@ -33,7 +32,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .backBtn{
   padding: 0;
   color:#fff;
