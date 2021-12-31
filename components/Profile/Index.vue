@@ -130,6 +130,7 @@ span{
   }
   .portrait{
     width: 40%;
+    max-width: 200px;
     margin-bottom: 40px;
   }
 }
