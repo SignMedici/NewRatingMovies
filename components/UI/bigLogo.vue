@@ -4,7 +4,7 @@
   </v-container>
 </template>
 
-<style>
+<style scoped>
 #logo{
     display:block;
     margin: 30px 0;
@@ -12,13 +12,13 @@
     text-align: center;
 }
 
-img{
+#logo img{
   width: auto;
   max-height: 150px;
 }
 
 @media (max-width: 1024px) {
-  img{
+  #logo img{
     max-height: 100px;
     width: auto;
   }
