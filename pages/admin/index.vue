@@ -109,7 +109,7 @@ export default {
   padding-left: 20px;
 }
 .margin{
-  margin-top: 32px;
+  margin-top: 42px;
 }
 .desktop{
   display:block;

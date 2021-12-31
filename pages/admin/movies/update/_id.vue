@@ -44,7 +44,7 @@
           <textarea class="form-control" v-model="overview" rows="4" />
         </div>
         <!-- Submit button -->
-        <button type="submit" class="btn confirmButton mt-5">{{ $t('confirm') }}</button>
+        <button type="submit" class="btn confirmButton mt-5">{{ $t('modify') }}</button>
       </form>
     </v-container>
   </div>

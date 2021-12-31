@@ -97,7 +97,7 @@ export default {
   font-size: 32px;
   color:#FEFEFE;
   text-align: center;
-  margin: 50px 0 70px 0;
+  margin: 30px 0 50px 0;
 }
 span{
   padding-left: 15px;

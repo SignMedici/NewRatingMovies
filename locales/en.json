@@ -68,5 +68,6 @@
   "pleaseLogoutLogin": "Please log out and log back in.",
   "myFavorites": "My favorites",
   "toRegister": "Register",
-  "toLogIn": "Login"
+  "toLogIn": "Login",
+  "modify": "Modify"
 }

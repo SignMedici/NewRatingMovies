@@ -32,7 +32,7 @@
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" v-model="isAdmin">
               </div>
             </div>
-            <button type="submit" class="btn btn-primary confirmButton mt-4">{{ $t('confirm') }}</button>
+            <button type="submit" class="btn btn-primary confirmButton mt-4">{{ $t('modify') }}</button>
         </form>
     </v-container>
   </div>
