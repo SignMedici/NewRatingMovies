@@ -224,4 +224,10 @@ table span{
   /* background-color: rgba(82,15,73,1); */
   background-color: #9042b4;
 }
+
+@media(max-width: 1024px){
+  .modal-backdrop{
+    display:none;
+  }
+}
 </style>

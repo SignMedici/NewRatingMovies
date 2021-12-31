@@ -142,6 +142,7 @@ img {
   padding: 20px;
   width: 100%;
   height: auto;
+  border-radius: 10px;
 }
 .bigTitle {
   color: #9042b4;
@@ -209,5 +210,11 @@ span{
   border-radius: 10px;
   /* background-color: rgba(82,15,73,1); */
   background-color: #9042b4;
+}
+
+@media(min-width: 1025px){
+  .modal-backdrop{
+    display:none;
+  }
 }
 </style>
