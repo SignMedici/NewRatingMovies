@@ -1,5 +1,5 @@
 <template>
-  <div v-if="roleIsAdmin === true">
+  <div v-if="roleIsAdmin">
     <UIBigLogo />
     <v-container class="grey lighten-5 square">
       <!-- Back button -->
@@ -56,7 +56,7 @@ export default {
         let user = this.$store.getters.getUserInfo;
         if(user){
           if(user.isAdmin)
-            return this.$store.getters.getUserInfo.isAdmin;
+            return user.isAdmin;
           else{
             this.$router.push("/");
           }
@@ -82,7 +82,7 @@ export default {
       },
     },
     created(){
-      let userUpdate = this.$store.getters.getUserById(this.$route.params.id);
+      let userUpdate = this.$store.getters['usersStore/getUserById'](this.$route.params.id);
       if(userUpdate){
         this.nickname = userUpdate.nickname;
         this.email = userUpdate.email;

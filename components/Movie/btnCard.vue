@@ -69,12 +69,12 @@
     },
     computed :{
       getResult(){
-        return this.$store.getters.getResult;
+        return this.$store.getters['moviesStore/getResult'];
       },
     },
     methods:{
       checkIsInDB(filePath, fileToModify, movie){
-        let inDb = this.$store.getters.idInDb(movie.id);
+        let inDb = this.$store.getters['moviesStore/idInDb'](movie.id);
         if(inDb == "Add OK"){
           this.getInfo(filePath, fileToModify, movie);
         }else{

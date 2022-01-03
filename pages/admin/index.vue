@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAdmin === true">
+  <div v-if="roleIsAdmin">
     <UIBigLogo />
     <v-card class="margin">
       <v-toolbar
@@ -60,11 +60,11 @@ export default {
     }
   },
   computed: {
-    isAdmin(){
+    roleIsAdmin(){
       let user = this.$store.getters.getUserInfo;
       if(user){
         if(user.isAdmin)
-          return this.$store.getters.getUserInfo.isAdmin;
+          return user.isAdmin;
         else{
           this.$router.push("/");
         }

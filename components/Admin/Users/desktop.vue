@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAdmin === true">
+  <div v-if="roleIsAdmin">
     <table class="table m-0">
       <thead>
         <tr>
@@ -11,8 +11,8 @@
           <th scope="col"></th>
         </tr>
       </thead>
-      <tbody v-if="getterUsers.length > 0">
-        <tr v-for="user in getterUsers" :key="user._id">
+      <tbody v-if="allUsers.length > 0">
+        <tr v-for="user in allUsers" :key="user._id">
           <td>{{ user._id }}</td>
           <td>{{ user.nickname }}</td>
           <td>{{ user.email }}</td>
@@ -71,24 +71,23 @@ export default {
     }
   },
   methods: {
-    getUsers() {
-      this.$store.dispatch('getUsers');
-    },
     deleteUser(_id) {
-      this.$store.dispatch('deleteUser', _id);
+      this.$store.dispatch['usersStore/deleteUser'](_id);
       this.$router.push('/admin/users');
     }
   },
   computed: {
-    getterUsers(){
-        return this.$store.getters.getterUsers;
+    allUsers(){
+        return this.$store.getters['usersStore/getUsers'];
     },
-    isAdmin(){
+    roleIsAdmin(){
       let user = this.$store.getters.getUserInfo;
       if(user){
-        if(user.isAdmin)
-          return this.$store.getters.getUserInfo.isAdmin;
+        if(user.isAdmin){
+          return user.isAdmin;
+        }
         else{
+
           this.$router.push("/");
         }
       }
@@ -98,7 +97,6 @@ export default {
     }
   },
   created(){
-    this.getUsers();
     this.locale = this.$cookiz.get('siteLang');
     this.$i18n.setLocale(this.locale);
   }

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAdmin === true">
+  <div v-if="roleIsAdmin">
     <div>
       <nuxt-link :to="{ name: `admin-movies-add___${siteLang}`, hash: '#logo' }" class="btn btn-success mb-2 me-2">
         {{ $t('add') }}
@@ -72,26 +72,22 @@ export default {
     }
   },
   methods: {
-    deleteMovie(id){
+    async deleteMovie(id){
       if(confirm(this.$t('deleteMovieOK'))){
-        axios
-            .delete(this.baseURL + "/movies/" + id)
-            .then(async(response) => {
-              await this.$store.commit('DELETE_MOVIE', id);
-              alert (this.$t('deleteDone'));
-        });
+        await this.$store.actions['moviesStore/deleteMovie'](id);
+        alert (this.$t('deleteDone'));
       }
     }
   },
   computed: {
     getMovies() {
-      return this.$store.getters.getMovies;
+      return this.$store.getters['moviesStore\getMovies'];
     },
-    isAdmin(){
+    roleIsAdmin(){
       let user = this.$store.getters.getUserInfo;
       if(user){
         if(user.isAdmin)
-          return this.$store.getters.getUserInfo.isAdmin;
+          return user.isAdmin;
         else{
           this.$router.push("/");
         }

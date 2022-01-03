@@ -6,13 +6,14 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
+
 export default {
   computed: {
     getMovies(){
-      return this.$store.getters.getMovies;
+      return this.$store.getters['moviesStore/getMovies'];
     }
   },
-
 }
 </script>
 

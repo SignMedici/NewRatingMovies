@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAdmin === true">
+  <div v-if="roleIsAdmin">
     <UIBigLogo />
     <v-container class="grey lighten-5 square" ref="updateForm">
       <!-- Back button -->
@@ -93,7 +93,7 @@ export default {
     }
   },
   computed:{
-    isAdmin(){
+    roleIsAdmin(){
       let user = this.$store.getters.getUserInfo;
       if(user){
         if(user.isAdmin)
