@@ -1,6 +1,7 @@
 <template>
   <div v-if="roleIsAdmin">
-    <table class="table m-0">
+    {{ getUsers }}
+<!--     <table class="table m-0">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -59,7 +60,7 @@
             <td align="center" colspan="6">{{ $t('noUserInDB') }}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
   </div>
 </template>
 
@@ -77,22 +78,15 @@ export default {
     }
   },
   computed: {
-    allUsers(){
-        return this.$store.getters['usersStore/getUsers'];
+    getUsers(){
+      return this.$store.getters['usersStore/getUsers'];
     },
     roleIsAdmin(){
-      let user = this.$store.getters.getUserInfo;
-      if(user){
-        if(user.isAdmin){
-          return user.isAdmin;
-        }
-        else{
-
-          this.$router.push("/");
-        }
+      if (this.$store.getters.roleIsAdmin === true){
+        return true;
       }
       else{
-        this.$router.push("/");
+        this.$router.push('/')
       }
     }
   },

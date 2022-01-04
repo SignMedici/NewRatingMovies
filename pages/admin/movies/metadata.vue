@@ -89,18 +89,13 @@
     },
     computed: {
       roleIsAdmin(){
-        let user = this.$store.getters.getUserInfo;
-        if(user){
-          if(user.isAdmin)
-            return this.$store.getters.getUserInfo.isAdmin;
-          else{
-            this.$router.push("/");
-          }
-        }
-        else{
-          this.$router.push("/");
-        }
+      if (this.$store.getters.roleIsAdmin === true){
+        return true;
       }
+      else{
+        this.$router.push('/')
+      }
+    }
     },
     created() {
       this.$i18n.setLocale(this.$cookiz.get('siteLang'));

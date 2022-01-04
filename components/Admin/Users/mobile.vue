@@ -70,19 +70,14 @@ export default {
   },
   computed: {
     allUsers(){
-        return this.$store.getters['usersStore/getUsers'];
+      return this.$store.getters['usersStore/getUsers'];
     },
     roleIsAdmin(){
-      let user = this.$store.getters['usersStore/getUserInfo'];
-      if(user){
-        if(user.isAdmin)
-          return user.isAdmin;
-        else{
-          this.$router.push("/");
-        }
+      if (this.$store.getters.roleIsAdmin === true){
+        return true;
       }
       else{
-        this.$router.push("/");
+        this.$router.push('/')
       }
     }
   },

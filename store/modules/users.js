@@ -1,7 +1,11 @@
+import axios from "axios";
+
 //State
-const state = () => ({
-  users: [],
-});
+const state = () => {
+  return {
+    users: [],
+  };
+};
 
 //Mutations
 const mutations = {
@@ -15,12 +19,6 @@ const mutations = {
     state.users[index] = data;
   },
 
-  UPDATE_LOGGED_USER: (state, data) => {
-    if (data.nickname) state.auth.user["nickname"] = data.nickname;
-    if (data.email) state.auth.user["email"] = data.email;
-    if (data.language) state.auth.user["language"] = data.language;
-  },
-
   DELETE_USER: (state, idToRemove) => {
     state.users.splice(
       state.users
@@ -30,31 +28,6 @@ const mutations = {
         .indexOf(idToRemove),
       1
     );
-  },
-
-  RATE_MOVIE: (state, myRate) => {
-    let index = state.auth.user.myRates.findIndex(
-      (rate) => rate.movieDbId === myRate.movieDbId
-    );
-
-    if (index > -1) {
-      state.auth.user.myRates[index].movieDbId = myRate.rate;
-    } else {
-      state.auth.user.myRates.push({
-        movieDbId: myRate.movieDbId,
-        rate: myRate.rate,
-      });
-    }
-  },
-
-  UPDATE_FAVORITE: (state, movieDbId) => {
-    let index = state.auth.user.myFavorites.indexOf(movieDbId);
-
-    if (index >= 0) {
-      state.auth.user.myFavorites.splice(index, 1);
-    } else {
-      state.auth.user.myFavorites.push(movieDbId);
-    }
   },
 };
 
@@ -91,6 +64,7 @@ const actions = {
 const getters = {
   // Get all users
   getUsers(state) {
+    console.log("state-getUsers", state.users);
     return state.users;
   },
   // Get user by id
