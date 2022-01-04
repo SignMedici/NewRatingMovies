@@ -84,7 +84,10 @@ export default {
   created(){
     this.locale = this.$cookiz.get('siteLang');
     this.$i18n.setLocale(this.locale);
-  }
+  },
+  async beforeCreate() {
+    await this.$store.dispatch('usersStore/setUsers');
+  },
 }
 </script>
 

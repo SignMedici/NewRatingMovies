@@ -1,7 +1,6 @@
 <template>
   <div v-if="roleIsAdmin">
-    {{ getUsers }}
-<!--     <table class="table m-0">
+    <table class="table m-0">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -60,7 +59,7 @@
             <td align="center" colspan="6">{{ $t('noUserInDB') }}</td>
         </tr>
       </tbody>
-    </table> -->
+    </table>
   </div>
 </template>
 
@@ -78,7 +77,7 @@ export default {
     }
   },
   computed: {
-    getUsers(){
+    allUsers(){
       return this.$store.getters['usersStore/getUsers'];
     },
     roleIsAdmin(){
@@ -93,7 +92,10 @@ export default {
   created(){
     this.locale = this.$cookiz.get('siteLang');
     this.$i18n.setLocale(this.locale);
-  }
+  },
+  async beforeCreate() {
+    await this.$store.dispatch('usersStore/setUsers');
+  },
 }
 </script>
 

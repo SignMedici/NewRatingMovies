@@ -1,5 +1,3 @@
-import axios from "axios";
-
 //State
 const state = () => {
   return {
@@ -33,8 +31,8 @@ const mutations = {
 
 //Actions
 const actions = {
-  setUsers({ commit }) {
-    this.$axios
+  async setUsers({ commit }) {
+    const response = await this.$axios
       .get(process.env.baseURL + "/users")
       .then((response) => {
         commit("SET_USERS", response.data);
@@ -43,8 +41,8 @@ const actions = {
         this.$toast.error(err);
       });
   },
-  updateUser({ commit }, user) {
-    this.$axios
+  async updateUser({ commit }, user) {
+    const response = await this.$axios
       .patch(process.env.baseURL + "/users/" + user._id, user)
       .then((response) => {
         commit("UPDATE_USER", response.data);
@@ -53,10 +51,12 @@ const actions = {
         this.$toast.error(err);
       });
   },
-  deleteUser({ commit }, id) {
-    this.$axios.delete(process.env.baseURL + "/user/" + id).then((response) => {
-      commit("DELETE_USER", response.data);
-    });
+  async deleteUser({ commit }, id) {
+    const response = await this.$axios
+      .delete(process.env.baseURL + "/user/" + id)
+      .then((response) => {
+        commit("DELETE_USER", response.data);
+      });
   },
 };
 
@@ -64,7 +64,6 @@ const actions = {
 const getters = {
   // Get all users
   getUsers(state) {
-    console.log("state-getUsers", state.users);
     return state.users;
   },
   // Get user by id
