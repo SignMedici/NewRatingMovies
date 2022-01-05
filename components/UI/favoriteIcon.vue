@@ -34,7 +34,7 @@ export default {
         axios
         .patch(this.baseURL + "/users/" + userId + "/" + this.movieDbId)
         .then(async (response) => {
-          await this.$store.commit("UPDATE_FAVORITE", response.data);
+          await this.$store.commit("usersStore/UPDATE_FAVORITE", response.data);
         });
       }
       else{

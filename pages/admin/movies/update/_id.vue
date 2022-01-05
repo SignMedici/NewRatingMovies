@@ -87,7 +87,7 @@ export default {
       axios
       .patch(this.baseURL + "/movies/" + this.$route.params.id, updatedFilm)
       .then(async(response) => {
-        await this.$store.commit('UPDATE_MOVIE', response.data);
+        await this.$store.commit('usersStore/UPDATE_MOVIE', response.data);
         this.$router.push('/admin');
       });
     }

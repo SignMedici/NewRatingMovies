@@ -30,7 +30,7 @@
                 <option v-for="locale in this.$i18n.locales" v-bind:value="locale.code">{{ $t(locale.name) }}</option>
               </select>
             </div>
-            <button type="submit" class="btn confirmButton">{{ $t('confirm') }}</button>
+            <button type="submit" class="btn confirmButton">{{ $t('modify') }}</button>
         </form>
       </v-container>
     </v-container>
@@ -65,7 +65,7 @@ export default {
               language: this.userLang
           })
           .then((response) => {
-            this.$store.commit('UPDATE_USER', response.data);
+            this.$store.commit('usersStore/UPDATE_USER', response.data);
             this.$store.commit('UPDATE_LOGGED_USER', response.data);
             this.$store.commit('SET_LANG', this.userLang);
             this.$cookiz.set('siteLang', this.userLang);

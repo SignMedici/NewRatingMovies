@@ -128,7 +128,7 @@
         axios
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
-          await this.$store.commit('ADD_MOVIE', this.selectedMovie);
+          await this.$store.commit('moviesStore/ADD_MOVIE', this.selectedMovie);
           this.$toast.success(this.$t('addDone'));
         })
         .catch((err) => {

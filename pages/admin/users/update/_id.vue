@@ -71,7 +71,7 @@ export default {
           isAdmin: this.isAdmin,
         })
         .then(async (response) => {
-          await this.$store.commit('UPDATE_USER', response.data);
+          await this.$store.commit('usersStore/UPDATE_USER', response.data);
           this.$router.push('/admin/users');
         });
       },
