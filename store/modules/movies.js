@@ -13,9 +13,16 @@ const mutations = {
   SET_MOVIES: (state, allMovies) => {
     state.movies = allMovies;
   },
+
   ADD_MOVIE: (state, movie) => {
     state.movies.push(movie);
   },
+
+  UPDATE_MOVIE: (state, movieToUpdate) => {
+    let index = state.movies.findIndex((obj) => obj.id == movieToUpdate["id"]);
+    state.movies[index] = movieToUpdate;
+  },
+
   DELETE_MOVIE: (state, idToRemove) => {
     state.movies.splice(
       state.movies
@@ -25,10 +32,6 @@ const mutations = {
         .indexOf(idToRemove),
       1
     );
-  },
-  UPDATE_MOVIE: (state, movieToUpdate) => {
-    let index = state.movies.findIndex((obj) => obj.id == movieToUpdate["id"]);
-    state.movies[index] = movieToUpdate;
   },
 
   SET_RESULT: (state, result) => {
@@ -46,13 +49,57 @@ const actions = {
         commit("SET_MOVIES", response.data);
       });
   },
-  deleteMovie({ commit }) {
-    axios
-      .delete(process.env.baseURL + "/movies/" + id)
-      .then(async (response) => {
-        await commit("DELETE_MOVIE", id);
-        alert(this.$t("deleteDone"));
+
+  async addMovie({ commit }, data) {
+    const response = await axios
+      .post(process.env.baseURL + "/movies", data)
+      .then((response) => {
+        commit("ADD_MOVIE", data);
+        this.$toast.success(this.$t("addDone"));
+      })
+      .catch((err) => {
+        this.$toast.error(err);
       });
+  },
+
+  async updateMovie({ commit }, data) {
+    const response = await axios
+      .patch(process.env.baseURL + "/movies/" + data.id, data.newInfo)
+      .then((response) => {
+        commit("UPDATE_MOVIE", response.data);
+        this.$toast.success(this.$t("updateDone"));
+        this.$router.push("/admin");
+      })
+      .catch((err) => {
+        this.$toast.error(err);
+      });
+  },
+
+  async deleteMovie({ commit }, id) {
+    console.log("store deletemovie: ", id);
+    const response = await axios
+      .delete(process.env.baseURL + "/movies/" + id)
+      .then((response) => {
+        commit("DELETE_MOVIE", id);
+        this.$toast.success(this.$t("deleteDone"));
+      })
+      .catch((err) => {
+        this.$toast.error(err);
+      });
+  },
+  async getSearchResults() {
+    /* const response = await axios
+    .post(
+        process.env.baseURL +
+        "/movies/search/" +
+        this.title.replace(" ", "+") +
+        "/" +
+        this.siteLang
+    )
+    .then((response) => {
+      commit('SET_RESULT',response.data);
+      this.results = "OK";
+    }); */
   },
 };
 

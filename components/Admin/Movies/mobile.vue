@@ -52,8 +52,7 @@ export default {
   methods: {
     async deleteMovie(id){
       if(confirm(this.$t('deleteMovieOK'))){
-        await this.$store.actions['moviesStore/deleteMovie'](id);
-        alert (this.$t('deleteDone'));
+        await this.$store.dispatch('moviesStore/deleteMovie', id);
       }
     }
   },

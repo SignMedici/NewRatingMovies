@@ -84,11 +84,9 @@ export default {
         }
       };
 
-      axios
-      .patch(this.baseURL + "/movies/" + this.$route.params.id, updatedFilm)
-      .then(async(response) => {
-        await this.$store.commit('UPDATE_MOVIE', response.data);
-        this.$router.push('/admin');
+      this.$store.dispatch('moviesStore/updateMovie', {
+        id : this.$route.params.id,
+        newInfo : updatedFilm
       });
     }
   },
@@ -113,7 +111,7 @@ export default {
     this.$i18n.setLocale(this.siteLang);
 
     /* Get movie data from store */
-    let movieToUpdate = this.$store.getters.getMovieById(this.$route.params.id);
+    let movieToUpdate = this.$store.getters['moviesStore/getMovieById'](this.$route.params.id);
 
     if(movieToUpdate){
       this.title = movieToUpdate[this.siteLang].title;

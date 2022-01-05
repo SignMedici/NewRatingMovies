@@ -28,7 +28,7 @@ export default {
 
       // Update the language of the user in DB
       if(this.$store.getters.getUserInfo){
-        this.$store.dispatch("updateUser", {
+        this.$store.dispatch("usersStore/updateUser", {
           _id: this.$store.getters.getUserInfo.id,
           language: langCode
         });
