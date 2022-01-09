@@ -39,6 +39,7 @@
   "addDone": "Successfully added.",
   "updateDone": "Successfully updated.",
   "deleteMovieOK": "Still OK to delete this movie from the catalog?",
+  "deleteUserOK": "Still OK to delete this user?",
   "deleteDone": "Successfully deleted.",
   "useInfoOK": "Still OK to use the details of this movie",
   "for": "for",

@@ -75,6 +75,7 @@ export default {
     async deleteMovie(id){
       if(confirm(this.$t('deleteMovieOK'))){
         await this.$store.dispatch('moviesStore/deleteMovie', id);
+        this.$toast.success(this.$t("deleteDone"));
       }
     }
   },

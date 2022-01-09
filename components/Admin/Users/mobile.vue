@@ -63,8 +63,11 @@ export default {
     }
   },
   methods: {
-    deleteUser(_id) {
-      this.$store.dispatch('usersStore/deleteUser', _id);
+    async deleteUser(_id) {
+      if(confirm(this.$t('deleteUserOK'))){
+        await this.$store.dispatch('usersStore/deleteUser', _id);
+        this.$toast.success(this.$t("deleteDone"));
+      }
     }
   },
   computed: {

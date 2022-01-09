@@ -47,7 +47,6 @@ const actions = {
       .patch(process.env.baseURL + "/users/" + user._id, user)
       .then((response) => {
         commit("UPDATE_USER", response.data);
-        this.$toast.success(this.$t("updateDone"));
       })
       .catch((err) => {
         this.$toast.error(err);
@@ -59,7 +58,6 @@ const actions = {
       .delete(process.env.baseURL + "/users/" + id)
       .then((response) => {
         commit("DELETE_USER", response.data);
-        this.$toast.success(this.$t("deleteDone"));
       })
       .catch((err) => {
         this.$toast.error(err);

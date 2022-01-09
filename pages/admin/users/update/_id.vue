@@ -62,14 +62,16 @@ export default {
     }
     },
     methods: {
-      updateUser(){
-        this.$store.dispatch('usersStore/updateUser', {
+      async updateUser(){
+        await this.$store.dispatch('usersStore/updateUser', {
           _id: this.$route.params.id,
           nickname: this.nickname,
           email: this.email,
           language: this.userLang,
           isAdmin: this.isAdmin,
         });
+        this.$toast.success(this.$t("updateDone"));
+        this.$router.push("/admin");
       },
     },
     created(){

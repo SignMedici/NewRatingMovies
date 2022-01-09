@@ -24,7 +24,6 @@ const mutations = {
   },
 
   DELETE_MOVIE: (state, idToRemove) => {
-    console.log("movie-store", idToRemove);
     state.movies.splice(
       state.movies
         .map(function (movie) {
@@ -56,7 +55,6 @@ const actions = {
       .post(process.env.baseURL + "/movies", data)
       .then((response) => {
         commit("ADD_MOVIE", data);
-        this.$toast.success(this.$t("addDone"));
       })
       .catch((err) => {
         this.$toast.error(err);
@@ -68,8 +66,6 @@ const actions = {
       .patch(process.env.baseURL + "/movies/" + data.id, data.newInfo)
       .then((response) => {
         commit("UPDATE_MOVIE", response.data);
-        this.$toast.success(this.$t("updateDone"));
-        this.$router.push("/admin");
       })
       .catch((err) => {
         this.$toast.error(err);
@@ -79,9 +75,8 @@ const actions = {
   async deleteMovie({ commit }, id) {
     const response = await axios
       .delete(process.env.baseURL + "/movies/" + id)
-      .then(async (response) => {
-        await commit("DELETE_MOVIE", id);
-        this.$toast.success(this.$t("deleteDone"));
+      .then((response) => {
+        commit("DELETE_MOVIE", id);
       })
       .catch((err) => {
         this.$toast.error(err);

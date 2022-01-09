@@ -72,7 +72,10 @@ export default {
   },
   methods: {
     async deleteUser(_id) {
-      await this.$store.dispatch('usersStore/deleteUser', _id);
+      if(confirm(this.$t('deleteUserOK'))){
+        await this.$store.dispatch('usersStore/deleteUser', _id);
+        this.$toast.success(this.$t("deleteDone"));
+      }
     }
   },
   computed: {

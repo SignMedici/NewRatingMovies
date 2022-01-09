@@ -71,7 +71,7 @@ export default {
     movieGenres: process.env.MOVIE_GENRES,
   }),
   methods:{
-    updateMovie(){
+    async updateMovie(){
       let updatedFilm = {
         vote_average: this.vote_average,
         release_date: this.release_date,
@@ -84,10 +84,13 @@ export default {
         }
       };
 
-      this.$store.dispatch('moviesStore/updateMovie', {
+      await this.$store.dispatch('moviesStore/updateMovie', {
         id : this.$route.params.id,
         newInfo : updatedFilm
       });
+
+      this.$toast.success(this.$t("updateDone"));
+      this.$router.push("/admin");
     }
   },
   computed:{
