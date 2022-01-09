@@ -63,16 +63,12 @@ export default {
     },
     methods: {
       updateUser(){
-        this.$axios
-        .patch(this.baseURL + "/users/"+ this.$route.params.id, {
+        this.$store.dispatch('usersStore/updateUser', {
+          _id: this.$route.params.id,
           nickname: this.nickname,
           email: this.email,
           language: this.userLang,
           isAdmin: this.isAdmin,
-        })
-        .then(async (response) => {
-          await this.$store.commit('UPDATE_USER', response.data);
-          this.$router.push('/admin/users');
         });
       },
     },

@@ -24,6 +24,7 @@ const mutations = {
   },
 
   DELETE_MOVIE: (state, idToRemove) => {
+    console.log("movie-store", idToRemove);
     state.movies.splice(
       state.movies
         .map(function (movie) {
@@ -76,30 +77,30 @@ const actions = {
   },
 
   async deleteMovie({ commit }, id) {
-    console.log("store deletemovie: ", id);
     const response = await axios
       .delete(process.env.baseURL + "/movies/" + id)
-      .then((response) => {
-        commit("DELETE_MOVIE", id);
+      .then(async (response) => {
+        await commit("DELETE_MOVIE", id);
         this.$toast.success(this.$t("deleteDone"));
       })
       .catch((err) => {
         this.$toast.error(err);
       });
   },
-  async getSearchResults() {
-    /* const response = await axios
-    .post(
+
+  //Get search results from API
+  async getSearchResults({ commit }, data) {
+    const response = await axios
+      .post(
         process.env.baseURL +
-        "/movies/search/" +
-        this.title.replace(" ", "+") +
-        "/" +
-        this.siteLang
-    )
-    .then((response) => {
-      commit('SET_RESULT',response.data);
-      this.results = "OK";
-    }); */
+          "/movies/search/" +
+          data.title +
+          "/" +
+          data.language
+      )
+      .then((response) => {
+        commit("SET_RESULT", response.data);
+      });
   },
 };
 

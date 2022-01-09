@@ -64,8 +64,7 @@ export default {
   },
   methods: {
     deleteUser(_id) {
-      this.$store.dispatch['usersStore/deleteUser'](_id);
-      this.$router.push('/admin/users');
+      this.$store.dispatch('usersStore/deleteUser', _id);
     }
   },
   computed: {

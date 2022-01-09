@@ -81,7 +81,6 @@
           this.$toast.info($t('alreadyInCatalog'));
         }
       },
-
       getInfo(filePath, fileToModify, movie){
         axios
         .post(this.baseURL + "/movies/" + movie.id + "/getInfo")
@@ -103,7 +102,6 @@
       modifyMetaData(filePath, fileToModify){
 
         let info = this.selectedMovie;
-
         if (confirm(`${this.$t('useInfoOK')}\n   ` + info.title + " - " + info.release_date.substring(0, 4) +
             `\n${this.$t('for')}\n   ` + fileToModify.name)){
 
@@ -128,7 +126,7 @@
         axios
         .post(this.baseURL + "/movies", this.selectedMovie)
         .then(async(response) => {
-          await this.$store.commit('ADD_MOVIE', this.selectedMovie);
+          await this.$store.commit('moviesStore/ADD_MOVIE', this.selectedMovie);
           this.$toast.success(this.$t('addDone'));
         })
         .catch((err) => {

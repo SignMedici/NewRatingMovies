@@ -75,16 +75,11 @@
         }
 
         //get results from api
-        axios
-          .post(
-              this.baseURL +
-              "/movies/search/" +
-              this.search.replaceAll(" ", "+")
-          )
-          .then(async (response) => {
-            await this.$store.commit('SET_RESULT',response.data);
-            this.results = "OK";
-          });
+        this.$store.dispatch('moviesStore/getSearchResults',{
+          title: this.search.replaceAll(" ", "+"),
+          language: this.$cookiz.get('siteLang')
+        });
+        this.results = "OK";
       }
     },
     computed: {

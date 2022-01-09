@@ -60,7 +60,7 @@
                 this.siteLang
             )
             .then(async (response) => {
-              await this.$store.commit('SET_RESULT',response.data);
+              await this.$store.commit('moviesStore/SET_RESULT',response.data);
               this.results = "OK";
             });
         }else{
