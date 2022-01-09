@@ -55,6 +55,32 @@ const store = {
         commit("SET_LANG", this.$cookiz.get("siteLang"));
       }
     },
+
+    //Rate movies
+    async rateMovie({ commit }, [userId, movieDbId, rate]) {
+      const response = await this.$axios
+        .patch(
+          process.env.baseURL +
+            "/users/" +
+            userId +
+            "/" +
+            movieDbId +
+            "/" +
+            rate
+        )
+        .then((response) => {
+          commit("RATE_MOVIE", response.data);
+        });
+    },
+
+    //Update favorite
+    async updateFavorite({ commit }, [userId, movieDbId]) {
+      const response = await this.$axios
+        .patch(process.env.baseURL + "/users/" + userId + "/" + movieDbId)
+        .then((response) => {
+          commit("UPDATE_FAVORITE", response.data);
+        });
+    },
   },
 
   getters: {

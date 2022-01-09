@@ -49,20 +49,10 @@
       siteLang: ''
     }),
     methods:{
-      getSearchResult(){
+      async getSearchResult(){
         if (this.title !== ''){
-          axios
-            .post(
-                this.baseURL +
-                "/movies/search/" +
-                this.title.replace(" ", "+") +
-                "/" +
-                this.siteLang
-            )
-            .then(async (response) => {
-              await this.$store.commit('moviesStore/SET_RESULT',response.data);
-              this.results = "OK";
-            });
+          await this.$store.dispatch('moviesStore/getSearchResults', [this.title.replace(" ", "+"), this.siteLang])
+          this.results = "OK";
         }else{
           this.$toast.info(this.$t('enterTitle'));
         }

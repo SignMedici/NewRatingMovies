@@ -31,11 +31,7 @@ export default {
       let userId = this.$store.getters.getUserInfo.id;
 
       if(userId){
-        axios
-        .patch(this.baseURL + "/users/" + userId + "/" + this.movieDbId)
-        .then(async (response) => {
-          await this.$store.commit("UPDATE_FAVORITE", response.data);
-        });
+        this.$store.dispatch('updateFavorite', [userId, this.movieDbId]);
       }
       else{
         this.$toast.error(this.$t('pleaseLogoutLogin'));

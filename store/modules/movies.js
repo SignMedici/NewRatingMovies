@@ -84,15 +84,9 @@ const actions = {
   },
 
   //Get search results from API
-  async getSearchResults({ commit }, data) {
+  async getSearchResults({ commit }, [title, language]) {
     const response = await axios
-      .post(
-        process.env.baseURL +
-          "/movies/search/" +
-          data.title +
-          "/" +
-          data.language
-      )
+      .post(process.env.baseURL + "/movies/search/" + title + "/" + language)
       .then((response) => {
         commit("SET_RESULT", response.data);
       });

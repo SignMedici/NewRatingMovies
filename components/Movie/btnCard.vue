@@ -122,16 +122,9 @@
         }
       },
 
-      addMovie(){
-        axios
-        .post(this.baseURL + "/movies", this.selectedMovie)
-        .then(async(response) => {
-          await this.$store.commit('moviesStore/ADD_MOVIE', this.selectedMovie);
-          this.$toast.success(this.$t('addDone'));
-        })
-        .catch((err) => {
-          this.$toast.error(err);
-        });
+      async addMovie(){
+        await this.$store.dispatch('moviesStore/addMovie', this.selectedMovie)
+        this.$toast.success(this.$t('addDone'));
       },
 
       toggleModal(movie) {
