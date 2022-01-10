@@ -19,8 +19,10 @@ const mutations = {
   },
 
   UPDATE_MOVIE: (state, movieToUpdate) => {
-    let index = state.movies.findIndex((obj) => obj.id == movieToUpdate["id"]);
-    state.movies[index] = movieToUpdate;
+    let index = state.movies.findIndex((obj) => obj._id === movieToUpdate.id);
+    Object.keys(movieToUpdate.newInfo).forEach((key) => {
+      state.movies[index][key] = movieToUpdate.newInfo[key];
+    });
   },
 
   DELETE_MOVIE: (state, idToRemove) => {
@@ -65,7 +67,7 @@ const actions = {
     const response = await axios
       .patch(process.env.baseURL + "/movies/" + data.id, data.newInfo)
       .then((response) => {
-        commit("UPDATE_MOVIE", response.data);
+        commit("UPDATE_MOVIE", data);
       })
       .catch((err) => {
         this.$toast.error(err);

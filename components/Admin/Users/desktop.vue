@@ -1,5 +1,5 @@
 <template>
-  <div v-if="roleIsAdmin">
+  <div v-if="roleIsAdmin" id="adminUsersDesktop">
     <table class="table m-0">
       <thead>
         <tr>
@@ -102,6 +102,9 @@ export default {
 </script>
 
 <style scoped>
+#adminUsersDesktop{
+  display: block;
+}
 th{
   text-align: left;
 }
@@ -123,5 +126,11 @@ td {
   height: 18px;
   width: auto;
   margin-left: 20px;
+}
+
+@media(max-width: 1024px){
+  #adminUsersDesktop{
+    display: none;
+  }
 }
 </style>

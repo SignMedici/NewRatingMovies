@@ -13,8 +13,10 @@ const mutations = {
   },
 
   UPDATE_USER: (state, data) => {
-    let index = state.users.findIndex((obj) => obj.id == data["id"]);
-    state.users[index] = data;
+    let index = state.users.findIndex((obj) => obj._id === data._id);
+    Object.keys(data).forEach((key) => {
+      state.users[index][key] = data[key];
+    });
   },
 
   DELETE_USER: (state, idToRemove) => {

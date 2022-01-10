@@ -73,6 +73,20 @@ const store = {
         });
     },
 
+    //Update logged user
+    async updateLoggedUser({ commit }, [id, newData]) {
+      const response = await this.$axios
+        .patch(process.env.baseURL + "/users/" + id, newData)
+        .then((response) => {
+          commit("usersStore/UPDATE_USER", response.data);
+          commit("UPDATE_LOGGED_USER", response.data);
+          commit("SET_LANG", this.userLang);
+        })
+        .catch((err) => {
+          this.$toast.error(err);
+        });
+    },
+
     //Update favorite
     async updateFavorite({ commit }, [userId, movieDbId]) {
       const response = await this.$axios

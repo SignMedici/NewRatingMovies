@@ -36,12 +36,12 @@
 
         >
           <v-card v-if="item === $t('users')" class="tableMain">
-            <AdminUsersDesktop class="desktop" />
-            <AdminUsersMobile class="mobile" />
+            <AdminUsersDesktop />
+            <AdminUsersMobile />
           </v-card>
           <v-card v-else class="tableMain">
-            <AdminMoviesDesktop class="desktop" />
-            <AdminMoviesMobile class="mobile" />
+            <AdminMoviesDesktop />
+            <AdminMoviesMobile />
           </v-card>
         </v-tab-item>
         <UIBtnTop :showAt="300"/>
@@ -56,7 +56,7 @@ export default {
   data () {
     return {
       tab: null,
-      language: ''
+      language: '',
     }
   },
   computed: {
