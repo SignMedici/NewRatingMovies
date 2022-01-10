@@ -75,10 +75,10 @@
         }
 
         //get results from api
-        this.$store.dispatch('moviesStore/getSearchResults',{
-          title: this.search.replaceAll(" ", "+"),
-          language: this.$cookiz.get('siteLang')
-        });
+        this.$store.dispatch('moviesStore/getSearchResults',[
+          this.search.replaceAll(" ", "+"),
+          this.$cookiz.get('siteLang')
+        ]);
         this.results = "OK";
       }
     },

@@ -78,9 +78,12 @@ const store = {
       const response = await this.$axios
         .patch(process.env.baseURL + "/users/" + id, newData)
         .then((response) => {
-          commit("usersStore/UPDATE_USER", response.data);
+          commit("usersStore/UPDATE_USER", {
+            _id: id,
+            ...newData,
+          });
           commit("UPDATE_LOGGED_USER", response.data);
-          commit("SET_LANG", this.userLang);
+          commit("SET_LANG", newData.language);
         })
         .catch((err) => {
           this.$toast.error(err);
