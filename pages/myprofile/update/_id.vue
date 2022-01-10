@@ -57,24 +57,18 @@ export default {
         isEmailValid: function() {
              return (this.email == "")? "" : (this.reg.test(this.email)) ? 'has-success' : 'has-error';
         },
-        updateUserLoaded(){
-          this.$axios
-          .patch(this.baseURL + "/users/" + this.$route.params.id, {
+        async updateUserLoaded(){
+          await this.$store.dispatch('updateLoggedUser',[
+            this.$route.params.id,
+            {
               nickname: this.nickname,
               email: this.email,
               language: this.userLang
-          })
-          .then((response) => {
-            this.$store.commit('usersStore/UPDATE_USER', response.data);
-            this.$store.commit('UPDATE_LOGGED_USER', response.data);
-            this.$store.commit('SET_LANG', this.userLang);
-            this.$cookiz.set('siteLang', this.userLang);
-            this.$toast.success(this.$t('updateDone'));
-            this.$router.push('/myprofile');
-          })
-          .catch((err) => {
-            this.$toast.error(err);
-          });
+            }
+          ]);
+          await this.$cookiz.set('siteLang', this.userLang);
+          await this.$toast.success(this.$t('updateDone'));
+          this.$router.push('/myprofile');
         }
     },
     created(){

@@ -13,8 +13,10 @@ const mutations = {
   },
 
   UPDATE_USER: (state, data) => {
-    let index = state.users.findIndex((obj) => obj.id == data["id"]);
-    state.users[index] = data;
+    let index = state.users.findIndex((obj) => obj._id === data._id);
+    Object.keys(data).forEach((key) => {
+      state.users[index][key] = data[key];
+    });
   },
 
   DELETE_USER: (state, idToRemove) => {
@@ -41,6 +43,7 @@ const actions = {
         this.$toast.error(err);
       });
   },
+
   async updateUser({ commit }, user) {
     const response = await this.$axios
       .patch(process.env.baseURL + "/users/" + user._id, user)
@@ -51,11 +54,15 @@ const actions = {
         this.$toast.error(err);
       });
   },
+
   async deleteUser({ commit }, id) {
     const response = await this.$axios
-      .delete(process.env.baseURL + "/user/" + id)
+      .delete(process.env.baseURL + "/users/" + id)
       .then((response) => {
         commit("DELETE_USER", response.data);
+      })
+      .catch((err) => {
+        this.$toast.error(err);
       });
   },
 };

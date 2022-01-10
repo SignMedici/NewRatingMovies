@@ -1,5 +1,5 @@
 <template>
-  <div v-if="roleIsAdmin">
+  <div v-if="roleIsAdmin" id="adminMoviesDesktop">
     <div>
       <nuxt-link :to="{ name: `admin-movies-add___${siteLang}`, hash: '#logo' }" class="btn btn-success mb-2 me-2">
         {{ $t('add') }}
@@ -74,8 +74,8 @@ export default {
   methods: {
     async deleteMovie(id){
       if(confirm(this.$t('deleteMovieOK'))){
-        await this.$store.actions['moviesStore/deleteMovie'](id);
-        alert (this.$t('deleteDone'));
+        await this.$store.dispatch('moviesStore/deleteMovie', id);
+        this.$toast.success(this.$t("deleteDone"));
       }
     }
   },
@@ -104,48 +104,57 @@ export default {
 };
 </script>
 <style scoped>
-  .overview{
-    padding: 15px;
-  }
-  .overviewTxt{
-    display:flex;
-    width: 300px;
-    max-height: 225px;
-    overflow:auto;
-    text-align: justify;
-    padding: 0 8px;
-  }
-  .overviewTxt::-webkit-scrollbar-track
-  {
-    border-radius: 10px;
-    background-color: #F5F5F5;
-  }
+#adminMoviesDesktop{
+  display: block;
+}
+.overview{
+  padding: 15px;
+}
+.overviewTxt{
+  display:flex;
+  width: 300px;
+  max-height: 225px;
+  overflow:auto;
+  text-align: justify;
+  padding: 0 8px;
+}
+.overviewTxt::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
 
-  .overviewTxt::-webkit-scrollbar
-  {
-    width: 8px;
-  }
+.overviewTxt::-webkit-scrollbar
+{
+  width: 8px;
+}
 
-  .overviewTxt::-webkit-scrollbar-thumb
-  {
-    border-radius: 10px;
-    /* background-color: rgba(82,15,73,1); */
-    background-color: #9042b4;
+.overviewTxt::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  /* background-color: rgba(82,15,73,1); */
+  background-color: #9042b4;
+}
+th{
+  padding:15px;
+}
+tr{
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: #9042b4;
+  font-size: 17px;
+}
+td{
+  color: #fff;
+  padding:15px;
+}
+.noWrap{
+  white-space: nowrap;
+}
+
+@media(max-width: 1024px){
+  #adminMoviesDesktop{
+    display: none;
   }
-  th{
-    padding:15px;
-  }
-  tr{
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    color: #9042b4;
-    font-size: 17px;
-  }
-  td{
-    color: #fff;
-    padding:15px;
-  }
-  .noWrap{
-    white-space: nowrap;
-  }
+}
 </style>

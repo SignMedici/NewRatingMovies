@@ -25,15 +25,11 @@ export default {
     }
   },
   methods: {
-    rateMovie(rate) {
+    async rateMovie(rate) {
       let userId = this.$store.getters.getUserInfo.id;
 
       if(userId){
-        axios
-        .patch(this.baseURL + "/users/" + userId + "/" + this.movieDbId + "/" + rate)
-        .then(async (response) => {
-          await this.$store.commit("RATE_MOVIE", response.data);
-        });
+        await this.$store.dispatch('rateMovie', [userId, this.movieDbId, rate]);
       }
       else{
         this.$toast.error(this.$t('pleaseLogoutLogin'));

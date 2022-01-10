@@ -39,6 +39,7 @@
   "addDone": "Aggiunto con successo.",
   "updateDone": "Aggiornamento riuscito.",
   "deleteMovieOK": "Sempre OK per togliere questo film dal catalogo?",
+  "deleteUserOK": "Sempre OK per cancellare questo utente?",
   "deleteDone": "Rimosso con successo.",
   "useInfoOK": "Sempre OK di usare i dati di questo film",
   "for": "per",

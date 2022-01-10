@@ -52,8 +52,8 @@ export default {
   methods: {
     async deleteMovie(id){
       if(confirm(this.$t('deleteMovieOK'))){
-        await this.$store.actions['moviesStore/deleteMovie'](id);
-        alert (this.$t('deleteDone'));
+        await this.$store.dispatch('moviesStore/deleteMovie', id);
+        this.$toast.success(this.$t("deleteDone"));
       }
     }
   },
@@ -82,47 +82,56 @@ export default {
 };
 </script>
 <style scoped>
-  .v-card{
-    border: 1px white solid;
-    margin: 10px 0;
-    padding: 10px;
-  }
-  .overviewTxt{
-    display:flex;
-    max-height: 150px;
-    overflow:auto;
-    text-align: justify;
-    padding: 0 8px 0 15px;
-    margin-bottom: 15px;
-  }
-  .overviewTxt::-webkit-scrollbar-track
-  {
-    border-radius: 10px;
-    background-color: #F5F5F5;
-  }
+#adminMoviesMobile{
+  display:block;
+}
+.v-card{
+  border: 1px white solid;
+  margin: 10px 0;
+  padding: 10px;
+}
+.overviewTxt{
+  display:flex;
+  max-height: 150px;
+  overflow:auto;
+  text-align: justify;
+  padding: 0 8px 0 15px;
+  margin-bottom: 15px;
+}
+.overviewTxt::-webkit-scrollbar-track
+{
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
 
-  .overviewTxt::-webkit-scrollbar
-  {
-    width: 8px;
-  }
+.overviewTxt::-webkit-scrollbar
+{
+  width: 8px;
+}
 
-  .overviewTxt::-webkit-scrollbar-thumb
-  {
-    border-radius: 10px;
-    /* background-color: rgba(82,15,73,1); */
-    background-color: #9042b4;
+.overviewTxt::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  /* background-color: rgba(82,15,73,1); */
+  background-color: #9042b4;
+}
+.infoTitle{
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
+  color: #9042b4;
+  font-size: 17px;
+}
+.infoText{
+  color: #fff;
+  padding-left:15px;
+}
+.noWrap{
+  white-space: nowrap;
+}
+
+@media(min-width: 1025px){
+  #adminMoviesMobile{
+    display: none;
   }
-  .infoTitle{
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    color: #9042b4;
-    font-size: 17px;
-  }
-  .infoText{
-    color: #fff;
-    padding-left:15px;
-  }
-  .noWrap{
-    white-space: nowrap;
-  }
+}
 </style>

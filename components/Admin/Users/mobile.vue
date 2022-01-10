@@ -1,5 +1,5 @@
 <template>
-  <div v-if="roleIsAdmin">
+  <div v-if="roleIsAdmin" id="adminUsersMobile">
     <div v-if="allUsers.length > 0">
       <v-card v-for="user in allUsers" :key="user._id">
         <table>
@@ -63,9 +63,11 @@ export default {
     }
   },
   methods: {
-    deleteUser(_id) {
-      this.$store.dispatch['usersStore/deleteUser'](_id);
-      this.$router.push('/admin/users');
+    async deleteUser(_id) {
+      if(confirm(this.$t('deleteUserOK'))){
+        await this.$store.dispatch('usersStore/deleteUser', _id);
+        this.$toast.success(this.$t("deleteDone"));
+      }
     }
   },
   computed: {
@@ -92,6 +94,9 @@ export default {
 </script>
 
 <style scoped>
+#adminUsersMobile{
+  display: block;
+}
 .v-card{
   border: 1px white solid;
   margin: 10px 0;
@@ -116,5 +121,11 @@ export default {
   height: 18px;
   width: auto;
   margin-left: 20px;
+}
+
+@media (min-width: 1025px){
+  #adminUsersMobile{
+    display:none;
+  }
 }
 </style>

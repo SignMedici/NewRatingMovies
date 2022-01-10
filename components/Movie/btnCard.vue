@@ -81,12 +81,11 @@
           this.$toast.info($t('alreadyInCatalog'));
         }
       },
-
-      getInfo(filePath, fileToModify, movie){
-        axios
+      async getInfo(filePath, fileToModify, movie){
+        const response = await axios
         .post(this.baseURL + "/movies/" + movie.id + "/getInfo")
-        .then((response) => {
-          this.selectedMovie = response.data;
+        .then(async (response) => {
+          this.selectedMovie = await response.data;
           if(filePath === null){
             this.toggleModal(this.selectedMovie);
           }
@@ -103,8 +102,7 @@
       modifyMetaData(filePath, fileToModify){
 
         let info = this.selectedMovie;
-
-        if (confirm(`${this.$t('useInfoOK')}\n   ` + info.title + " - " + info.release_date.substring(0, 4) +
+        if (confirm(`${this.$t('useInfoOK')}\n   ` + info[this.siteLang].title + " - " + info.release_date.substring(0, 4) +
             `\n${this.$t('for')}\n   ` + fileToModify.name)){
 
           //if the path doesn't end by a slash, add it
@@ -124,16 +122,9 @@
         }
       },
 
-      addMovie(){
-        axios
-        .post(this.baseURL + "/movies", this.selectedMovie)
-        .then(async(response) => {
-          await this.$store.commit('moviesStore/ADD_MOVIE', this.selectedMovie);
-          this.$toast.success(this.$t('addDone'));
-        })
-        .catch((err) => {
-          this.$toast.error(err);
-        });
+      async addMovie(){
+        await this.$store.dispatch('moviesStore/addMovie', this.selectedMovie)
+        this.$toast.success(this.$t('addDone'));
       },
 
       toggleModal(movie) {
