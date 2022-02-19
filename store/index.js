@@ -82,7 +82,7 @@ const store = {
       };
 
       const response = await this.$axios({
-        method: 'put',
+        method: 'post',
         url: process.env.baseURL + "/users/" + id,
         data:  formData,
         config: config
