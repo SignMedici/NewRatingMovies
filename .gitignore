@@ -90,4 +90,4 @@ sw.*
 *.swp
 
 # vscode config files
-.vscode
+.vscode/

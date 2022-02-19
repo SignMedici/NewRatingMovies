@@ -7,10 +7,11 @@
       "jest"
     ],
   },
+  "allowJs": true,
   "exclude": [
     "*.config.js","node_modules", ".nuxt", "dist"
   ],
   "include": [
     "**/*"
-  ]
+  ],
 }

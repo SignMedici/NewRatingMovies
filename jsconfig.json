@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
+    "target": "es6",
     "baseUrl": ".",
+    "allowJs": false,
     "paths": {
       "~/*": ["./*"],
       "@/*": ["./*"],
@@ -8,7 +10,7 @@
       "@@/*": ["./*"]
     }
   },
-  "exclude": ["node_modules", ".nuxt", "dist"],
+  "exclude": ["node_modules", "**/node_modules/*", ".nuxt", "dist"],
   "json.schemas": [
     {
       "$schema": "https://json.schemastore.org/jsconfig"

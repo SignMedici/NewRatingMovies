@@ -74,20 +74,35 @@ const store = {
     },
 
     //Update logged user
-    async updateLoggedUser({ commit }, [id, newData]) {
-      const response = await this.$axios
-        .patch(process.env.baseURL + "/users/" + id, newData)
-        .then((response) => {
-          commit("usersStore/UPDATE_USER", {
-            _id: id,
-            ...newData,
-          });
-          commit("UPDATE_LOGGED_USER", response.data);
-          commit("SET_LANG", newData.language);
-        })
-        .catch((err) => {
-          this.$toast.error(err);
+    async updateLoggedUser({ commit }, [id, formData]) {
+      let config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+
+      const response = await this.$axios({
+        method: 'put',
+        url: process.env.baseURL + "/users/" + id,
+        data:  formData,
+        config: config
+      })
+      .then((response) => {
+        commit("usersStore/UPDATE_USER", {
+          _id: id,
+          ...newData,
         });
+        commit("UPDATE_LOGGED_USER", response.data);
+        commit("SET_LANG", newData.language);
+      })
+      .catch((err) => {
+        this.$toast.error(err);
+      });
+    },
+
+    // Upload file
+    async uploadPic({ commit }, file) {
+      const response = await this.$axios
     },
 
     //Update favorite
