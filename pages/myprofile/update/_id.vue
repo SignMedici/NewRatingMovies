@@ -78,39 +78,6 @@
                 accept="image/*"
               />
             </div>
-            <div>
-              <label for="email" class="form-label">{{
-                $t("emailAddress")
-              }}</label>
-            </div>
-            <div :class="['input-group', isEmailValid()]">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                aria-describedby="emailHelp"
-                v-model="email"
-              />
-            </div>
-            <div class="my-3">
-              <label for="myLanguage" class="form-label">{{
-                $t("language")
-              }}</label>
-              <select
-                class="form-select langField"
-                name="myLanguage"
-                aria-label="Prefered language"
-                v-model="userLang"
-                required
-              >
-                <option
-                  v-for="locale in this.$i18n.locales"
-                  v-bind:value="locale.code"
-                >
-                  {{ $t(locale.name) }}
-                </option>
-              </select>
-            </div>
             <button type="submit" class="btn confirmButton">
               {{ $t("modify") }}
             </button>
