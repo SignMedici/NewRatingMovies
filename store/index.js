@@ -47,8 +47,9 @@ const store = {
 
   actions: {
     async nuxtServerInit({ dispatch, commit }) {
-      //set all movies
+      //set all movies and all users
       await dispatch("moviesStore/setMovies");
+      await dispatch("usersStore/setUsers");
 
       // Site language
       if (this.$cookiz.get("siteLang")) {
@@ -82,7 +83,7 @@ const store = {
       };
 
       const response = await this.$axios({
-        method: 'put',
+        method: 'post',
         url: process.env.baseURL + "/users/" + id,
         data:  formData,
         config: config
@@ -90,10 +91,10 @@ const store = {
       .then((response) => {
         commit("usersStore/UPDATE_USER", {
           _id: id,
-          ...newData,
+          ...response.data,
         });
         commit("UPDATE_LOGGED_USER", response.data);
-        commit("SET_LANG", newData.language);
+        commit("SET_LANG", formData.get("language"));
       })
       .catch((err) => {
         this.$toast.error(err);
