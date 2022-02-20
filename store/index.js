@@ -42,6 +42,7 @@ const store = {
       if (data.nickname) state.auth.user["nickname"] = data.nickname;
       if (data.email) state.auth.user["email"] = data.email;
       if (data.language) state.auth.user["language"] = data.language;
+      if (data.profilePic) state.auth.user["profilePic"] = data.profilePic;
     },
   },
 
@@ -88,12 +89,12 @@ const store = {
         data:  formData,
         config: config
       })
-      .then((response) => {
-        commit("usersStore/UPDATE_USER", {
+      .then(async (response) => {
+        await commit("usersStore/UPDATE_USER", {
           _id: id,
           ...response.data,
         });
-        commit("UPDATE_LOGGED_USER", response.data);
+        await commit("UPDATE_LOGGED_USER", response.data);
         commit("SET_LANG", formData.get("language"));
       })
       .catch((err) => {

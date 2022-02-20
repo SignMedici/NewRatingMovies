@@ -126,9 +126,12 @@ export default {
   margin-top: 32px;
 }
 .portrait {
+  margin-top: 5px;
   width: 200px;
   height: auto;
-  clip-path: ellipse(50% 50%);
+  max-height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .profileInfo {
   display: flex;

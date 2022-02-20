@@ -134,6 +134,7 @@ export default {
 
       await this.$cookiz.set("siteLang", this.userLang);
       await this.$toast.success(this.$t("updateDone"));
+      await new Promise((resolve) => setTimeout(resolve, 500));
       this.$router.push("/myprofile");
     },
   },
