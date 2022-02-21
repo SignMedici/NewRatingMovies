@@ -46,7 +46,7 @@ const actions = {
 
   async updateUser({ commit }, user) {
     const response = await this.$axios
-      .patch(process.env.baseURL + "/users/" + user._id, user)
+      .post(process.env.baseURL + "/users/" + user._id, user)
       .then((response) => {
         commit("UPDATE_USER", response.data);
       })

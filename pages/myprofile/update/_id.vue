@@ -134,7 +134,7 @@ export default {
 
       await this.$cookiz.set("siteLang", this.userLang);
       await this.$toast.success(this.$t("updateDone"));
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // await new Promise((resolve) => setTimeout(resolve, 300));
       this.$router.push("/myprofile");
     },
   },
@@ -144,6 +144,7 @@ export default {
     this.nickname = userLoadedUpdate.nickname;
     this.email = userLoadedUpdate.email;
     this.userLang = userLoadedUpdate.language;
+    this.profilePic = userLoadedUpdate.profilePic;
 
     let language = "";
     if (this.$cookiz.get("siteLang")) {
