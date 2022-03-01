@@ -5,17 +5,28 @@
         <div class="modalContent">
           <div class="d-flex w-100">
             <!-- Poster -->
-            <img v-if="movie[siteLang].poster_path" :srcset="url + movie[siteLang].poster_path" class="m-auto"/>
+            <img
+              v-if="movie[siteLang].poster_path"
+              :srcset="url + movie[siteLang].poster_path"
+              class="m-auto"
+            />
             <div v-else class="defaultPicContainer">
-              <img  class="defaultPic" src="~/assets/no_picture.png" alt="default picture" />
+              <img
+                class="defaultPic"
+                src="~/assets/no_picture.png"
+                alt="default picture"
+              />
             </div>
-
           </div>
           <div class="d-block mt-4">
             <div>
               <!-- Title -->
-              <span v-if="movie[siteLang].title.length <= 33" class="bigTitle">{{ movie[siteLang].title}}</span>
-              <span v-else class="smallTitle">{{ movie[siteLang].title}}</span>
+              <span
+                v-if="movie[siteLang].title.length <= 33"
+                class="bigTitle"
+                >{{ movie[siteLang].title }}</span
+              >
+              <span v-else class="smallTitle">{{ movie[siteLang].title }}</span>
             </div>
             <!-- Movie details -->
             <div class="movieData">
@@ -41,23 +52,32 @@
                 </span>
               </div>
               <!-- Genres -->
-              <span class="genre" v-if="movie.genre" v-for="movieGenre in movie.genre">{{ $t(movieGenre) }}</span>
+              <span
+                class="genre"
+                v-if="movie.genre"
+                v-for="movieGenre in movie.genre"
+                >{{ $t(movieGenre) }}</span
+              >
 
               <!-- People -->
               <div class="people">
                 <!-- Director -->
                 <div v-show="movie.director">
-                  <span>{{ $t('director') }}</span><br>
+                  <span>{{ $t("director") }}</span
+                  ><br />
                   <div class="casting">{{ movie.director }}</div>
                 </div>
                 <!-- Actors -->
                 <div v-if="movie.casting">
-                  <span>{{ $t('casting') }}</span><br>
+                  <span>{{ $t("casting") }}</span
+                  ><br />
                   <div class="casting">{{ movie.casting }}</div>
                 </div>
               </div>
               <!-- Overview -->
-              <div v-if="movie[siteLang].overview" class="overview">{{ movie[siteLang].overview }}</div>
+              <div v-if="movie[siteLang].overview" class="overview">
+                {{ movie[siteLang].overview }}
+              </div>
             </div>
           </div>
         </div>
@@ -71,7 +91,7 @@ export default {
   props: ["movie", "revele", "toggleModal", "siteLang"],
   data() {
     return {
-      url: process.env.API_PIC_URL,
+      url: process.env.apiPicURL,
       noPic: "~/assets/no_picture.png",
       modalMovie: "",
     };
@@ -83,33 +103,33 @@ export default {
   },
   created() {
     this.$i18n.setLocale(this.siteLang);
-  }
+  },
 };
 </script>
 <style scoped>
-.genre{
+.genre {
   color: #fff;
 }
-.genre+.genre::before{
+.genre + .genre::before {
   content: ", ";
 }
 img {
   max-width: 300px;
-  width:100%;
+  width: 100%;
   height: auto;
   border: 0;
   border-radius: 10px;
   background-color: whitesmoke;
 }
-.defaultPicContainer{
-  display:flex;
-  margin:auto;
+.defaultPicContainer {
+  display: flex;
+  margin: auto;
   background-color: whitesmoke;
   border: 0;
   border-radius: 10px;
 }
-.defaultPic{
-  width:100%;
+.defaultPic {
+  width: 100%;
   max-width: 300px;
   height: 450px;
   height: auto;
@@ -136,7 +156,7 @@ img {
   border-radius: 10px;
   overflow: auto;
 }
-.modalContent{
+.modalContent {
   display: block;
   background-color: #492e4e;
   padding: 20px;
@@ -159,10 +179,10 @@ img {
 .vote {
   font-size: 20px;
   font-weight: normal;
-  color:#f2c43c;
+  color: #f2c43c;
   float: right;
 }
-.voteIcon{
+.voteIcon {
   margin-bottom: 3px;
   margin-right: 5px;
 }
@@ -174,47 +194,44 @@ img {
   font-weight: 600;
   font-size: 18px;
 }
-.genres{
+.genres {
   font-size: 14px;
 }
-.people{
+.people {
   margin-top: 15px;
 }
-.people .casting{
+.people .casting {
   padding-left: 10px;
   font-weight: 400;
 }
-span{
+span {
   color: #9042b4;
 }
-.overview{
+.overview {
   height: 200px;
-  overflow:auto;
+  overflow: auto;
   text-align: justify;
   margin-top: 15px;
   padding-right: 10px;
 }
-.overview::-webkit-scrollbar-track
-{
+.overview::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
-.overview::-webkit-scrollbar
-{
+.overview::-webkit-scrollbar {
   width: 8px;
 }
 
-.overview::-webkit-scrollbar-thumb
-{
+.overview::-webkit-scrollbar-thumb {
   border-radius: 10px;
   /* background-color: rgba(82,15,73,1); */
   background-color: #9042b4;
 }
 
-@media(min-width: 1025px){
-  .modal-backdrop{
-    display:none;
+@media (min-width: 1025px) {
+  .modal-backdrop {
+    display: none;
   }
 }
 </style>

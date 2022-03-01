@@ -96,7 +96,7 @@ export default {
   data() {
     return {
       locale: "",
-      gcsPicURL: process.env.GCS_PIC_URL,
+      gcsPicURL: process.env.gcsPicURL,
       loggedUser: "",
       isLoaded: false,
       isLoading: false,

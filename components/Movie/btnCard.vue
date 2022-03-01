@@ -97,10 +97,10 @@ export default {
       director: "",
       overview: "",
       strGenre: "",
-      url: process.env.API_PIC_URL,
+      url: process.env.apiPicURL,
       movieForModal: "",
       revele: false,
-      baseURL: process.env.BASE_URL,
+      baseURL: process.env.baseURL,
       siteLang: "",
     };
   },

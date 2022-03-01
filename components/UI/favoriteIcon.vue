@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       favStatus: false,
-      baseURL: process.env.BASE_URL,
+      baseURL: process.env.baseURL,
     };
   },
   methods: {

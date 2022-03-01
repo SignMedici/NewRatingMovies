@@ -35,7 +35,7 @@ const mutations = {
 const actions = {
   async setUsers({ commit }) {
     const response = await this.$axios
-      .get(process.env.BASE_URL + "/users")
+      .get(process.env.baseURL + "/users")
       .then((response) => {
         commit("SET_USERS", response.data);
       })
@@ -46,7 +46,7 @@ const actions = {
 
   async updateUser({ commit }, user) {
     const response = await this.$axios
-      .post(process.env.BASE_URL + "/users/" + user._id, user)
+      .post(process.env.baseURL + "/users/" + user._id, user)
       .then((response) => {
         commit("UPDATE_USER", response.data);
       })
@@ -57,7 +57,7 @@ const actions = {
 
   async deleteUser({ commit }, id) {
     const response = await this.$axios
-      .delete(process.env.BASE_URL + "/users/" + id)
+      .delete(process.env.baseURL + "/users/" + id)
       .then((response) => {
         commit("DELETE_USER", response.data);
       })

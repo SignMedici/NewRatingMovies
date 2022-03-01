@@ -87,7 +87,7 @@ export default {
       email: "",
       userLang: "",
       isAdmin: "",
-      baseURL: process.env.BASE_URL,
+      baseURL: process.env.baseURL,
     };
   },
   computed: {

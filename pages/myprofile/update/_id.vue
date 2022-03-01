@@ -101,7 +101,7 @@ export default {
     return {
       showPicUpload: false,
       newPicLoaded: false,
-      baseURL: process.env.BASE_URL,
+      baseURL: process.env.baseURL,
       nickname: "",
       email: "",
       userLang: "",

@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       title: "",
-      url: process.env.API_PIC_URL,
+      url: process.env.apiPicURL,
       emptyIcon: "mdi-heart-outline",
       fullIcon: "mdi-heart",
       sortBy: "title",
@@ -95,7 +95,7 @@ export default {
     },
   },
   created() {
-    console.log("process.env.API_PIC_URL:", process.env.API_PIC_URL);
+    console.log("process.env.apiPicURL:", process.env.apiPicURL);
     if (this.$store.getters.getUserInfo) {
       this.myRates = this.$store.getters.getUserInfo.myRates;
     }

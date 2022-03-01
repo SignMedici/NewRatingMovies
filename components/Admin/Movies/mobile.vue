@@ -87,7 +87,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      baseURL: process.env.BASE_URL,
+      baseURL: process.env.baseURL,
       siteLang: "",
     };
   },

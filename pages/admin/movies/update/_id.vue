@@ -82,7 +82,7 @@ export default {
     director: "",
     rules: [(value) => !!value || "Required."],
     movie: [],
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.baseURL,
     siteLang: "",
     movieGenres: process.env.MOVIE_GENRES,
   }),

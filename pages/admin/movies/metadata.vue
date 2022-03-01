@@ -53,7 +53,7 @@ export default {
     file: "",
     results: "",
     rules: [(value) => !!value || "Required."],
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.baseURL,
   }),
   methods: {
     getSearchResult(event) {

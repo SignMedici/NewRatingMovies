@@ -46,7 +46,7 @@ const mutations = {
 const actions = {
   async setMovies({ commit }) {
     const response = await axios
-      .get(process.env.BASE_URL + "/movies")
+      .get(process.env.baseURL + "/movies")
       .then((response) => {
         commit("SET_MOVIES", response.data);
       });
@@ -54,7 +54,7 @@ const actions = {
 
   async addMovie({ commit }, data) {
     const response = await axios
-      .post(process.env.BASE_URL + "/movies", data)
+      .post(process.env.baseURL + "/movies", data)
       .then((response) => {
         commit("ADD_MOVIE", data);
       })
@@ -65,7 +65,7 @@ const actions = {
 
   async updateMovie({ commit }, data) {
     const response = await axios
-      .patch(process.env.BASE_URL + "/movies/" + data.id, data.newInfo)
+      .patch(process.env.baseURL + "/movies/" + data.id, data.newInfo)
       .then((response) => {
         commit("UPDATE_MOVIE", data);
       })
@@ -76,7 +76,7 @@ const actions = {
 
   async deleteMovie({ commit }, id) {
     const response = await axios
-      .delete(process.env.BASE_URL + "/movies/" + id)
+      .delete(process.env.baseURL + "/movies/" + id)
       .then((response) => {
         commit("DELETE_MOVIE", id);
       })
@@ -88,7 +88,7 @@ const actions = {
   //Get search results from API
   async getSearchResults({ commit }, [title, language]) {
     const response = await axios
-      .post(process.env.BASE_URL + "/movies/search/" + title + "/" + language)
+      .post(process.env.baseURL + "/movies/search/" + title + "/" + language)
       .then((response) => {
         commit("SET_RESULT", response.data);
       });
