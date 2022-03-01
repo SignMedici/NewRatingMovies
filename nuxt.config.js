@@ -92,6 +92,9 @@ export default {
 
   // Environment variables
   env: {
+    baseURL: process.env.baseURL,
+    API_PIC_URL: process.env.API_PIC_URL,
+    BANNER_PIC_URL: process.env.BANNER_PIC_URL,
     MOVIE_GENRES: [
       "action",
       "adventure",
