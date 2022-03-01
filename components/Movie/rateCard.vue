@@ -13,14 +13,22 @@
                       class="imgMovieCard"
                       :srcset="url + movie[siteLang].poster_path"
                     />
-                    <UIFavoriteIcon v-if="isAuthenticated" :myFavorites="myFavorites" :movieDbId="movie.movieDbId"/>
+                    <UIFavoriteIcon
+                      v-if="isAuthenticated"
+                      :myFavorites="myFavorites"
+                      :movieDbId="movie.movieDbId"
+                    />
                   </figure>
                 </div>
                 <div class="cardInfos">
                   <v-card-title v-if="movie[siteLang].title.length > 22"
-                    >{{ movie[siteLang].title.substring(0, 22) }}...</v-card-title
+                    >{{
+                      movie[siteLang].title.substring(0, 22)
+                    }}...</v-card-title
                   >
-                  <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
+                  <v-card-title v-else>{{
+                    movie[siteLang].title
+                  }}</v-card-title>
                   <div v-if="isAuthenticated" class="text-subtitle-1">
                     {{ movie.release_date.substring(0, 4) }}
                   </div>
@@ -28,7 +36,10 @@
                     {{ movie.release_date.substring(0, 4) }}
                   </div>
                   <div v-if="isAuthenticated">
-                    <UIRatingStars :myRates="myRates" :movieDbId="movie.movieDbId" />
+                    <UIRatingStars
+                      :myRates="myRates"
+                      :movieDbId="movie.movieDbId"
+                    />
                   </div>
                 </div>
               </v-card>
@@ -36,17 +47,27 @@
           </v-col>
         </v-row>
       </v-container>
-      <MovieModalMobile :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :siteLang="siteLang" />
-      <MovieModalDesktop :revele="revele" :toggleModal="toggleModal" :movie="movieForModal" :siteLang="siteLang" />
+      <MovieModalMobile
+        :revele="revele"
+        :toggleModal="toggleModal"
+        :movie="movieForModal"
+        :siteLang="siteLang"
+      />
+      <MovieModalDesktop
+        :revele="revele"
+        :toggleModal="toggleModal"
+        :movie="movieForModal"
+        :siteLang="siteLang"
+      />
     </div>
     <div v-else class="noMovieInDB">
-      <img src="~/assets/No-Movie.png" alt="no-movie.png">
+      <img src="~/assets/No-Movie.png" alt="no-movie.png" />
     </div>
   </div>
 </template>
 <script>
 export default {
-  props:['movies'],
+  props: ["movies"],
   data() {
     return {
       title: "",
@@ -55,11 +76,11 @@ export default {
       fullIcon: "mdi-heart",
       sortBy: "title",
       sortDirection: "asc",
-      siteLang: '',
+      siteLang: "",
       movieForModal: "",
       revele: false,
       myRates: [],
-      myFavorites: []
+      myFavorites: [],
     };
   },
   computed: {
@@ -74,26 +95,26 @@ export default {
     },
   },
   created() {
-    if(this.$store.getters.getUserInfo){
+    console.log("process.env.baseURL:", process.env.baseURL);
+    if (this.$store.getters.getUserInfo) {
       this.myRates = this.$store.getters.getUserInfo.myRates;
     }
 
-    if(this.$store.getters.getUserInfo){
+    if (this.$store.getters.getUserInfo) {
       this.myFavorites = this.$store.getters.getUserInfo.myFavorites;
     }
 
-    if(this.$cookiz.get('siteLang')){
-      this.siteLang = this.$cookiz.get('siteLang')
-    }
-    else{
-      this.siteLang = 'fr'
+    if (this.$cookiz.get("siteLang")) {
+      this.siteLang = this.$cookiz.get("siteLang");
+    } else {
+      this.siteLang = "fr";
     }
     this.$i18n.setLocale(this.siteLang);
   },
 };
 </script>
 <style scoped>
-.mainContainer{
+.mainContainer {
   display: flex;
 }
 .card {
@@ -135,7 +156,6 @@ export default {
   padding-bottom: 5px;
 }
 .v-icon {
-
 }
 figure {
   display: flex;
@@ -157,12 +177,12 @@ figure {
   -webkit-filter: sepia(100%);
   filter: sepia(100%);
 }
-.noMovieInDB{
+.noMovieInDB {
   text-align: center;
 }
 
-@media(min-width: 1251px){
-  .imgMovieCard{
+@media (min-width: 1251px) {
+  .imgMovieCard {
     min-height: 412px;
   }
 }
