@@ -75,62 +75,23 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    { src: 'plugins/avatar', mode: 'client' }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/vuetify
-    "@nuxtjs/vuetify",
-
-    // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
-    [
-      "@nuxtjs/i18n",
-      {
-        lazy: true,
-        /* strategy: "no_prefix", */
-        locales: [
-          { code: "en", iso: "en-US", file: "en.json", name: "english" },
-          { code: "fr", iso: "fr-BE", file: "fr.json", name: "french" },
-          { code: "nl", iso: "nl-BE", file: "nl.json", name: "dutch" },
-          { code: "it", iso: "it-IT", file: "it.json", name: "italian" },
-        ],
-        langDir: "locales/",
-        defaultLocale: "fr",
-        /* fallbackLocale: "fr", */
-        loadLanguagesAsync: true,
-        detectBrowserLanguage: {
-          useCookie: true,
-          fallbackLocale: "fr",
-          cookieKey: "route_path",
-          locale: "fr",
-        },
-        vueI18nLoader: true,
-      },
-    ],
-  ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    // '@nuxtjs/proxy',
-    "@nuxtjs/axios",
-    "@nuxtjs/auth-next",
-    "@nuxtjs/toast",
-    ["cookie-universal-nuxt", { alias: "cookiz" }],
-  ],
-
   //Axios
   axios: {
-    // baseURL: "http://localhost:8010/api",
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    baseURL: "http://localhost:8010/api",
+    // baseURL: "http://newratingmovies-backend.herokuapp.com/api",
   },
 
+  // Environment variables
   env: {
-    // baseURL: "http://localhost:8010/api",
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    baseURL: "http://localhost:8010/api",
+    // baseURL: "http://newratingmovies-backend.herokuapp.com/api",
     API_PIC_URL: "http://image.tmdb.org/t/p/w500",
     BANNER_PIC_URL:
       "http://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
@@ -164,9 +125,48 @@ export default {
       if (ctx.isDev) {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
-    },
+    }
   },
 
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  buildModules: [
+    // https://go.nuxtjs.dev/vuetify
+    "@nuxtjs/vuetify",
+
+    // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
+    [
+      "@nuxtjs/i18n",
+      {
+        lazy: true,
+        locales: [
+          { code: "en", iso: "en-US", file: "en.json", name: "english" },
+          { code: "fr", iso: "fr-BE", file: "fr.json", name: "french" },
+          { code: "nl", iso: "nl-BE", file: "nl.json", name: "dutch" },
+          { code: "it", iso: "it-IT", file: "it.json", name: "italian" },
+        ],
+        langDir: "locales/",
+        defaultLocale: "fr",
+        loadLanguagesAsync: true,
+        detectBrowserLanguage: {
+          useCookie: true,
+          fallbackLocale: "fr",
+          cookieKey: "route_path",
+          locale: "fr",
+        },
+        vueI18nLoader: true,
+      },
+    ],
+  ],
+
+  // Modules: https://go.nuxtjs.dev/config-modules
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/auth-next",
+    "@nuxtjs/toast",
+    ["cookie-universal-nuxt", { alias: "cookiz" }],
+  ],
+
+  // Auth
   auth: {
     strategies: {
       local: {
@@ -191,20 +191,8 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
-    /* customVariables: ["~/assets/variables.scss"], */
     theme: {
       dark: true,
-      /* themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
-      }, */
     },
   },
 

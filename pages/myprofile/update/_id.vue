@@ -68,20 +68,27 @@
           </div>
           <div class="form-group">
             <label for="avatar">{{ $t("profilePic") }}</label>
-            <div class="my-2">
-              <input
-                type="file"
-                class="form-control-file"
-                id="avatar"
-                name="avatar"
-                ref="avatar"
-                accept="image/*"
-              />
-            </div>
-            <button type="submit" class="btn confirmButton">
-              {{ $t("modify") }}
+            <button @click="showPicUpload = true" v-if="!showPicUpload">
+              <svg
+                style="width: 20px; height: 20px; color: #22d157"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="currentColor"
+                  d="M21.7,13.35L20.7,14.35L18.65,12.3L19.65,11.3C19.86,11.09 20.21,11.09 20.42,11.3L21.7,12.58C21.91,12.79 21.91,13.14 21.7,13.35M12,18.94L18.06,12.88L20.11,14.93L14.06,21H12V18.94M12,14C7.58,14 4,15.79 4,18V20H10V18.11L14,14.11C13.34,14.03 12.67,14 12,14M12,4A4,4 0 0,0 8,8A4,4 0 0,0 12,12A4,4 0 0,0 16,8A4,4 0 0,0 12,4Z"
+                />
+              </svg>
             </button>
+            <UIPicUpload
+              v-if="showPicUpload"
+              :newProfilePic.sync="profilePic"
+              :newPicLoaded="(newPicLoaded = true)"
+              ref="picUpload"
+            />
           </div>
+          <button type="submit" class="btn confirmButton">
+            {{ $t("modify") }}
+          </button>
         </form>
       </v-container>
     </v-container>
@@ -92,6 +99,8 @@
 export default {
   data() {
     return {
+      showPicUpload: false,
+      newPicLoaded: false,
       baseURL: process.env.baseURL,
       nickname: "",
       email: "",
@@ -113,28 +122,72 @@ export default {
         ? "has-success"
         : "has-error";
     },
-    async updateUserLoaded() {
-      let newAvatar = this.$refs.avatar.files;
-      let formData = new FormData();
+    dataURLtoBlob(dataURL) {
+      // convert base64 to raw binary data held in a string
+      // doesn't handle URLEncoded DataURLs - see SO answer #6850276 for code that does this
+      var byteString = atob(dataURL.split(",")[1]);
 
-      if (newAvatar.length > 0) {
-        formData.append("avatar", newAvatar[0]);
-        this.profilePic = newAvatar[0].name;
+      // separate out the mime component
+      var mimeString = dataURL.split(",")[0].split(":")[1].split(";")[0];
+
+      // write the bytes of the string to an ArrayBuffer
+      var ab = new ArrayBuffer(byteString.length);
+
+      // create a view into the buffer
+      var ia = new Uint8Array(ab);
+
+      // set the bytes of the buffer to the correct values
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
       }
+
+      // write the ArrayBuffer to a blob, and you're done
+      var blob = new Blob([ab], { type: mimeString });
+      return blob;
+    },
+
+    async updateUserLoaded() {
+      let formData = new FormData();
 
       formData.append("nickname", this.nickname);
       formData.append("email", this.email);
       formData.append("userLang", this.userLang);
       formData.append("profilePic", this.profilePic);
 
+      if (this.showPicUpload && this.newPicLoaded) {
+        // Retrieve canvas info
+        var MIME_TYPE = "image/png";
+        let canvas = this.$refs.picUpload
+          .getPic() // Get content of ref vueavatar in child component
+          .getImageScaled(); // get picture with canvas size
+
+        // Get the 2D context
+        // let context = canvas.getContext("2d");
+
+        // convert canvas into data for a PNG file
+        let dataURL = canvas.toDataURL(MIME_TYPE);
+
+        // Convert dataURL to blob
+        var blob = this.dataURLtoBlob(dataURL);
+
+        // Create new PNG file
+        var newPNGFromCanvas = new File([blob], "newprofilePic.png", {
+          type: MIME_TYPE,
+        });
+
+        // Append picture to formData
+        formData.append("avatar", newPNGFromCanvas);
+      }
+
       await this.$store.dispatch("updateLoggedUser", [
         this.$route.params.id,
         formData,
       ]);
-
       await this.$cookiz.set("siteLang", this.userLang);
       await this.$toast.success(this.$t("updateDone"));
-      // await new Promise((resolve) => setTimeout(resolve, 300));
+      if (this.showPicUpload && this.newPicLoaded) {
+        await new Promise((resolve) => setTimeout(resolve, 200));
+      }
       this.$router.push("/myprofile");
     },
   },
