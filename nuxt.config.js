@@ -84,14 +84,14 @@ export default {
 
   //Axios
   axios: {
-    baseURL: "http://localhost:8010/api",
-    // baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    // baseURL: "http://localhost:8010/api",
+    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
   },
 
   // Environment variables
   env: {
-    baseURL: "http://localhost:8010/api",
-    // baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    // baseURL: "http://localhost:8010/api",
+    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
     API_PIC_URL: "http://image.tmdb.org/t/p/w500",
     BANNER_PIC_URL:
       "http://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
