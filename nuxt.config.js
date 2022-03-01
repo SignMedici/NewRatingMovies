@@ -86,8 +86,8 @@ export default {
 
   //Axios
   axios: {
-    baseURL: "http://localhost:8010/api",
-    // baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    // baseURL: "http://localhost:8010/api",
+    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
   },
 
   // Environment variables
@@ -152,7 +152,6 @@ export default {
         vueI18nLoader: true,
       },
     ],
-    '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -161,7 +160,7 @@ export default {
     "@nuxtjs/auth-next",
     "@nuxtjs/toast",
     ["cookie-universal-nuxt", { alias: "cookiz" }],
-    ['@nuxtjs/dotenv', { systemvars: true }]
+    '@nuxtjs/dotenv'
   ],
 
   // Auth
