@@ -86,7 +86,6 @@ export default {
 
   //Axios
   axios: {
-    // baseURL: "http://localhost:8010/api",
     baseURL: process.env.BASE_URL,
   },
 
