@@ -62,7 +62,7 @@ const store = {
     async rateMovie({ commit }, [userId, movieDbId, rate]) {
       const response = await this.$axios
         .patch(
-          process.env.baseURL +
+          process.env.BASE_URL +
             "/users/" +
             userId +
             "/" +
@@ -85,7 +85,7 @@ const store = {
 
       const response = await this.$axios({
         method: 'post',
-        url: process.env.baseURL + "/users/" + id,
+        url: process.env.BASE_URL + "/users/" + id,
         data:  formData,
         config: config
       })
@@ -110,7 +110,7 @@ const store = {
     //Update favorite
     async updateFavorite({ commit }, [userId, movieDbId]) {
       const response = await this.$axios
-        .patch(process.env.baseURL + "/users/" + userId + "/" + movieDbId)
+        .patch(process.env.BASE_URL + "/users/" + userId + "/" + movieDbId)
         .then((response) => {
           commit("UPDATE_FAVORITE", response.data);
         });

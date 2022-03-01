@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       rate: 0,
-      baseURL: process.env.baseURL,
+      baseURL: process.env.BASE_URL,
     };
   },
   methods: {

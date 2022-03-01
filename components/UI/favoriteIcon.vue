@@ -1,8 +1,12 @@
 <template>
   <div id="favoriteIcon">
     <button @click="toggleFavorite">
-      <img v-if="favStatus" class="movieFavIcon" src="~/assets/favIcons/favMinus.png"/>
-      <img v-else class="movieFavIcon"  src="~/assets/favIcons/favPlus.png"/>
+      <img
+        v-if="favStatus"
+        class="movieFavIcon"
+        src="~/assets/favIcons/favMinus.png"
+      />
+      <img v-else class="movieFavIcon" src="~/assets/favIcons/favPlus.png" />
     </button>
   </div>
 </template>
@@ -10,48 +14,45 @@
 import axios from "axios";
 
 export default {
-  props:["myFavorites","movieDbId"],
-  data(){
+  props: ["myFavorites", "movieDbId"],
+  data() {
     return {
       favStatus: false,
-      baseURL: process.env.baseURL,
-    }
+      baseURL: process.env.BASE_URL,
+    };
   },
-  methods:{
-    toggleFavorite(){
+  methods: {
+    toggleFavorite() {
       //Change value of the icon to make it full or empty
-      if (this.favStatus === false){
+      if (this.favStatus === false) {
         this.favStatus = true;
-      }
-      else{
+      } else {
         this.favStatus = false;
       }
 
       //Add & remove the favorite
       let userId = this.$store.getters.getUserInfo.id;
 
-      if(userId){
-        this.$store.dispatch('updateFavorite', [userId, this.movieDbId]);
+      if (userId) {
+        this.$store.dispatch("updateFavorite", [userId, this.movieDbId]);
+      } else {
+        this.$toast.error(this.$t("pleaseLogoutLogin"));
       }
-      else{
-        this.$toast.error(this.$t('pleaseLogoutLogin'));
-      }
-    }
+    },
   },
-  created(){
-    if(this.myFavorites){
-      if(this.myFavorites.length > 0){
-
-        for(let i = 0; i < this.myFavorites.length; i++){
-          if (this.myFavorites[i] === this.movieDbId){
+  created() {
+    if (this.myFavorites) {
+      if (this.myFavorites.length > 0) {
+        for (let i = 0; i < this.myFavorites.length; i++) {
+          if (this.myFavorites[i] === this.movieDbId) {
             this.favStatus = 1;
-            break
+            break;
           }
         }
       }
     }
-  }
-}
+  },
+};
 </script>
 <style scoped>
 .movieFavIcon {

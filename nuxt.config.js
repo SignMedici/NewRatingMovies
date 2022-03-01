@@ -87,14 +87,11 @@ export default {
   //Axios
   axios: {
     // baseURL: "http://localhost:8010/api",
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    baseURL: process.env.BASE_URL,
   },
 
   // Environment variables
   env: {
-    baseURL: process.env.baseURL,
-    API_PIC_URL: process.env.API_PIC_URL,
-    BANNER_PIC_URL: process.env.BANNER_PIC_URL,
     MOVIE_GENRES: [
       "action",
       "adventure",
