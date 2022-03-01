@@ -95,7 +95,7 @@ export default {
     },
   },
   created() {
-    console.log("process.env.API_PIC_URL:", this.url);
+    console.log("process.env.API_PIC_URL:", process.env.API_PIC_URL);
     if (this.$store.getters.getUserInfo) {
       this.myRates = this.$store.getters.getUserInfo.myRates;
     }
