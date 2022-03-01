@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -84,18 +86,12 @@ export default {
 
   //Axios
   axios: {
-    // baseURL: "http://localhost:8010/api",
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
+    baseURL: "http://localhost:8010/api",
+    // baseURL: "http://newratingmovies-backend.herokuapp.com/api",
   },
 
   // Environment variables
   env: {
-    // baseURL: "http://localhost:8010/api",
-    baseURL: "http://newratingmovies-backend.herokuapp.com/api",
-    API_PIC_URL: "http://image.tmdb.org/t/p/w500",
-    BANNER_PIC_URL:
-      "http://images.pexels.com/photos/436413/pexels-photo-436413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    GCS_PIC_URL: "http://storage.googleapis.com/new_rating_movies_profile_pics/",
     MOVIE_GENRES: [
       "action",
       "adventure",
@@ -116,7 +112,7 @@ export default {
       "thriller",
       "war",
       "western",
-    ],
+    ]
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -156,6 +152,7 @@ export default {
         vueI18nLoader: true,
       },
     ],
+    '@nuxtjs/dotenv'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -202,4 +199,9 @@ export default {
     duration: 2000,
     className: "toast",
   },
+
+  // Dov env module options
+  dotenv: {
+    /* module options */
+  }
 };
