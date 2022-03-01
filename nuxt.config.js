@@ -161,6 +161,7 @@ export default {
     "@nuxtjs/auth-next",
     "@nuxtjs/toast",
     ["cookie-universal-nuxt", { alias: "cookiz" }],
+    ['@nuxtjs/dotenv', { systemvars: true }]
   ],
 
   // Auth
