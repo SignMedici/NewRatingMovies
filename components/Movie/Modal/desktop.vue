@@ -3,7 +3,7 @@
     <div class="modal-backdrop" @click="toggleModal">
       <div class="modal">
         <div class="modalContent">
-          <div>
+          <figure>
             <!-- Poster -->
             <img
               v-if="movie[siteLang].poster_path"
@@ -16,33 +16,39 @@
                 alt="default picture"
               />
             </div>
-          </div>
+          </figure>
           <div class="movieDesc">
-            <div>
+            <div class="d-flex justify-content-between align-items-center">
               <!-- Title -->
-              <span
-                v-if="movie[siteLang].title.length <= 33"
-                class="bigTitle"
-                >{{ movie[siteLang].title }}</span
-              >
-              <span v-else class="smallTitle">{{ movie[siteLang].title }}</span>
-              <!-- Vote -->
-              <span v-if="movie.vote_average" class="vote">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  class="bi bi-heart-fill voteIcon"
-                  viewBox="0 0 16 16"
+              <div id="title">
+                <span
+                  v-if="movie[siteLang].title.length <= 33"
+                  class="bigTitle"
+                  >{{ movie[siteLang].title }}</span
                 >
-                  <path
-                    fill-rule="evenodd"
-                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
-                  />
-                </svg>
-                {{ movie.vote_average }}
-              </span>
+                <span v-else class="smallTitle">{{
+                  movie[siteLang].title
+                }}</span>
+              </div>
+              <div id="vote">
+                <!-- Vote -->
+                <span v-if="movie.vote_average" class="vote">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-heart-fill voteIcon"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                    />
+                  </svg>
+                  {{ movie.vote_average }}
+                </span>
+              </div>
             </div>
             <!-- Movie details -->
             <div class="movieData">
@@ -192,7 +198,6 @@ img {
   font-weight: normal;
   color: #f2c43c;
   float: right;
-  margin-top: 12px;
 }
 .voteIcon {
   margin-bottom: 3px;
