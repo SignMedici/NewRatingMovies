@@ -1,10 +1,9 @@
-import axios from "axios";
-
 //State
 const state = () => {
   return {
-    movies: [],
-    result: [],
+    movies: [], // For results coming from DB
+    result: [], // For search results from API and getMovieById
+    nbMoviesDB: 0, // Total number of movies in DB
   };
 };
 
@@ -12,6 +11,19 @@ const state = () => {
 const mutations = {
   SET_MOVIES: (state, allMovies) => {
     state.movies = allMovies;
+  },
+
+  SET_MOVIE: (state, movie) => {
+    let index = state.movies.findIndex((obj) => obj._id === movie._id);
+    if (index >= 0) {
+      state.movies[index] = movie;
+    } else {
+      state.movies.push(movie);
+    }
+  },
+
+  SET_NB_TOTAL_MOVIES: (state, nb) => {
+    state.nbMoviesDB = nb;
   },
 
   ADD_MOVIE: (state, movie) => {
@@ -34,6 +46,7 @@ const mutations = {
         .indexOf(idToRemove),
       1
     );
+    state.nbMoviesDB = state.nbMoviesDB - 1;
   },
 
   SET_RESULT: (state, result) => {
@@ -44,16 +57,30 @@ const mutations = {
 
 //Actions
 const actions = {
-  async setMovies({ commit }) {
-    const response = await axios
-      .get(process.env.baseURL + "/movies")
+  async getMovies({ commit }, [page, size, data]) {
+    const response = await this.$axios
+      .get(
+        process.env.baseURL + `/movies?page=${page}&size=${size}&data=${data}`
+      )
       .then((response) => {
-        commit("SET_MOVIES", response.data);
+        commit("SET_MOVIES", response.data.movies);
+        commit("SET_NB_TOTAL_MOVIES", response.data.nbMovies);
+      });
+  },
+
+  async getMovieById({ commit }, id) {
+    await this.$axios
+      .get(process.env.baseURL + "/movies/" + id)
+      .then((response) => {
+        commit("SET_RESULT", response.data);
+      })
+      .catch((err) => {
+        this.$toast.error(err);
       });
   },
 
   async addMovie({ commit }, data) {
-    const response = await axios
+    const response = await this.$axios
       .post(process.env.baseURL + "/movies", data)
       .then((response) => {
         commit("ADD_MOVIE", data);
@@ -64,7 +91,7 @@ const actions = {
   },
 
   async updateMovie({ commit }, data) {
-    const response = await axios
+    const response = await this.$axios
       .patch(process.env.baseURL + "/movies/" + data.id, data.newInfo)
       .then((response) => {
         commit("UPDATE_MOVIE", data);
@@ -75,7 +102,7 @@ const actions = {
   },
 
   async deleteMovie({ commit }, id) {
-    const response = await axios
+    const response = await this.$axios
       .delete(process.env.baseURL + "/movies/" + id)
       .then((response) => {
         commit("DELETE_MOVIE", id);
@@ -87,8 +114,10 @@ const actions = {
 
   //Get search results from API
   async getSearchResults({ commit }, [title, language]) {
-    const response = await axios
-      .post(process.env.baseURL + "/movies/search/" + title + "/" + language)
+    const response = await this.$axios
+      .post(
+        process.env.baseURL + "/the-movie-db/search/" + title + "/" + language
+      )
       .then((response) => {
         commit("SET_RESULT", response.data);
       });
@@ -99,6 +128,9 @@ const actions = {
 const getters = {
   getMovies(state) {
     return state.movies;
+  },
+  getNbMovies(state) {
+    return state.nbMoviesDB;
   },
   getResult(state) {
     return state.result[0];

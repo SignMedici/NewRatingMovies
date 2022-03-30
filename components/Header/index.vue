@@ -17,7 +17,7 @@
           <nuxt-link
             class="nav-link active"
             aria-current="page"
-            :to="{ name: `user-favorites___${locale}`, hash: '#logo' }"
+            :to="{ name: `users-favorites___${locale}`, hash: '#logo' }"
           >
             <img class="HeaderFavIcon" src="~/assets/favIcons/favFull.png" />
           </nuxt-link>
@@ -104,7 +104,7 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                to="/myprofile"
+                :to="{ name: `users-myprofile___${locale}`, hash: '#logo' }"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -182,10 +182,7 @@ export default {
   },
   methods: {
     async logout() {
-      if (this.$cookiz.get("siteLang")) {
-        this.$cookiz.remove("siteLang");
-      }
-      await this.$auth.logout(); // this method will logout the user and make token to false on the local storage of the user browser
+      await this.$store.dispatch("logout");
     },
   },
   computed: {
@@ -214,17 +211,17 @@ export default {
   font-weight: 600;
 }
 .nav-link:focus {
-  color: #9042b4;
+  color: var(--color-fushia);
   font-family: "Ubuntu", sans-serif;
   font-weight: 600;
 }
 .v-tabs-slider {
-  background-color: #9042b4;
+  background-color: var(--color-fushia);
   height: 100%;
   width: 100%;
 }
 .v-tab:hover {
-  background-color: #9042b4;
+  background-color: var(--color-fushia);
 }
 .nav-link:hover {
   color: #ffffff;

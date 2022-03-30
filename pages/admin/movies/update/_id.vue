@@ -68,8 +68,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
-
 export default {
   data: () => ({
     title: "",
@@ -127,7 +125,7 @@ export default {
     }
     this.$i18n.setLocale(this.siteLang);
 
-    /* Get movie data from store */
+    /* Get movie data */
     let movieToUpdate = this.$store.getters["moviesStore/getMovieById"](
       this.$route.params.id
     );
@@ -149,7 +147,7 @@ export default {
 <style scoped>
 .backBtn {
   padding: 0;
-  color: #a52199;
+  color: var(--color-rose);
 }
 .square {
   width: 700px;
@@ -181,7 +179,7 @@ export default {
 }
 .confirmButton {
   color: #fff;
-  background-color: #a52199;
+  background-color: var(--color-rose);
   font-family: "Lato", sans-serif;
   margin-top: 10px;
   font-weight: 500;
