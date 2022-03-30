@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -69,17 +69,13 @@ export default {
       },
     ],
   },
-  serverMiddleware: [
-    // { path: '/api', handler: '~/api/index.js'},
-  ],
+  serverMiddleware: [],
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: 'plugins/avatar', mode: 'client' }
-  ],
+  plugins: [{ src: "plugins/avatar", mode: "client" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -87,6 +83,13 @@ export default {
   //Axios
   axios: {
     baseURL: process.env.BASE_URL,
+    requestInterceptor: (config, { store }) => {
+      const token = this.$cookiz.get("auth._token.local");
+      if (token) {
+        config.headers.common["access_token"] = token;
+      }
+      return config;
+    },
   },
 
   // Environment variables
@@ -115,16 +118,16 @@ export default {
       "thriller",
       "war",
       "western",
-    ]
+    ],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extend(config, ctx) {
       if (ctx.isDev) {
-        config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
+        config.devtool = ctx.isClient ? "source-map" : "inline-source-map";
       }
-    }
+    },
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -163,7 +166,7 @@ export default {
     "@nuxtjs/auth-next",
     "@nuxtjs/toast",
     ["cookie-universal-nuxt", { alias: "cookiz" }],
-    ['@nuxtjs/dotenv', { systemvars: true }]
+    ["@nuxtjs/dotenv", { systemvars: true }],
   ],
 
   // Auth
@@ -206,5 +209,5 @@ export default {
   // Dov env module options
   dotenv: {
     /* module options */
-  }
+  },
 };
