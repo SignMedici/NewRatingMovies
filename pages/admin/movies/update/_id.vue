@@ -81,7 +81,7 @@ export default {
     rules: [(value) => !!value || "Required."],
     movie: [],
     baseURL: process.env.baseURL,
-    siteLang: "",
+    siteLang: this.$i18n.locale,
     movieGenres: process.env.MOVIE_GENRES,
   }),
   methods: {
@@ -117,14 +117,6 @@ export default {
     },
   },
   created() {
-    /* language configuration for this page */
-    if (this.$cookiz.get("siteLang")) {
-      this.siteLang = this.$cookiz.get("siteLang");
-    } else {
-      this.siteLang = "fr";
-    }
-    this.$i18n.setLocale(this.siteLang);
-
     /* Get movie data */
     let movieToUpdate = this.$store.getters["moviesStore/getMovieById"](
       this.$route.params.id

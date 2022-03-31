@@ -4,9 +4,12 @@
       v-for="locale in availableLocales"
       :key="locale.code"
       :to="switchLocalePath(locale.code)"
-      class = "btn flag"
+      class="btn flag"
     >
-    <img :src="require(`~/assets/flags/${locale.code}.png`)" @click="selectLang(locale.code)" />
+      <img
+        :src="require(`~/assets/flags/${locale.code}.png`)"
+        @click="selectLang(locale.code)"
+      />
     </nuxt-link>
   </div>
 </template>
@@ -20,37 +23,37 @@ export default {
   },
   methods: {
     async selectLang(langCode) {
-      // Save new site language in store
-      await this.$store.commit("SET_LANG", langCode);
+      // Save new site language
+      this.$i18n.locale = langCode;
 
       // Set the value to the cookie 'siteLang'
-      this.$cookiz.set('siteLang', langCode);
+      this.$cookiz.set("siteLang", langCode);
 
       // Update the language of the user in DB
-      if(this.$store.getters.getUserInfo){
+      if (this.$store.getters.getUserInfo) {
         await this.$store.dispatch("usersStore/updateUser", {
           _id: this.$store.getters.getUserInfo.id,
-          language: langCode
+          language: langCode,
         });
 
         // and the profile in store
-        this.$store.commit('UPDATE_LOGGED_USER', {
+        this.$store.commit("UPDATE_LOGGED_USER", {
           _id: this.$store.getters.getUserInfo.id,
-          language: langCode
+          language: langCode,
         });
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.flags{
-  display:flex;
-  float:right;
+.flags {
+  display: flex;
+  float: right;
   margin: 3px 20px 0 0;
 }
-img{
+img {
   height: 23px;
   width: auto;
 }

@@ -54,7 +54,7 @@ export default {
     results: "",
     rules: [(value) => !!value || "Required."],
     baseURL: process.env.baseURL,
-    siteLang: "",
+    siteLang: this.$i18n.locale,
   }),
   methods: {
     async getSearchResult() {
@@ -77,14 +77,6 @@ export default {
         this.$router.push("/");
       }
     },
-  },
-  created() {
-    if (this.$cookiz.get("siteLang")) {
-      this.siteLang = this.$cookiz.get("siteLang");
-    } else {
-      this.siteLang = "fr";
-    }
-    this.$i18n.setLocale(this.siteLang);
   },
 };
 </script>

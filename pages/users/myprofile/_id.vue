@@ -184,6 +184,7 @@ export default {
         formData,
       ]);
       await this.$cookiz.set("siteLang", this.userLang);
+      this.$i18n.locale = this.userLang;
       await this.$toast.success(this.$t("updateDone"));
       if (this.showPicUpload && this.newPicLoaded) {
         await new Promise((resolve) => setTimeout(resolve, 200));
@@ -198,14 +199,6 @@ export default {
     this.email = userLoadedUpdate.email;
     this.userLang = userLoadedUpdate.language;
     this.profilePic = userLoadedUpdate.profilePic;
-
-    let language = "";
-    if (this.$cookiz.get("siteLang")) {
-      language = this.$cookiz.get("siteLang");
-    } else {
-      language = "fr";
-    }
-    this.$i18n.setLocale(language);
   },
 };
 </script>

@@ -75,7 +75,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "plugins/avatar", mode: "client" }],
+  plugins: [{ src: "plugins/avatar", mode: "client" }, "~/plugins/router"],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -156,6 +156,7 @@ export default {
           locale: "fr",
         },
         vueI18nLoader: true,
+        skipSettingLocaleOnNavigate: true,
       },
     ],
   ],

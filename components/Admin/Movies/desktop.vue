@@ -97,12 +97,12 @@
 import { mapState } from "vuex";
 
 export default {
-  props: ["siteLang"],
   data() {
     return {
       baseURL: process.env.baseURL,
       perPage: 5,
       currentPage: 1,
+      siteLang: this.$i18n.locale,
     };
   },
   methods: {

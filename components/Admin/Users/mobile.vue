@@ -90,7 +90,7 @@
 export default {
   data() {
     return {
-      locale: "",
+      locale: this.$i18n.locale,
     };
   },
   methods: {
@@ -112,10 +112,6 @@ export default {
         this.$router.push("/");
       }
     },
-  },
-  created() {
-    this.locale = this.$cookiz.get("siteLang");
-    this.$i18n.setLocale(this.locale);
   },
   async beforeCreate() {
     await this.$store.dispatch("usersStore/setUsers");

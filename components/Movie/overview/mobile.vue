@@ -90,7 +90,7 @@ export default {
       noPic: "~/assets/no_picture.png",
       baseVideoURL: process.env.VIDEO_URL,
       movie: "",
-      siteLang: "",
+      siteLang: this.$i18n.locale,
     };
   },
   created() {
@@ -98,14 +98,6 @@ export default {
     this.movie = this.$store.getters["moviesStore/getMovieById"](
       this.$route.params.id
     );
-
-    // Get siteLang
-    if (this.$cookiz.get("siteLang")) {
-      this.siteLang = this.$cookiz.get("siteLang");
-    } else {
-      this.siteLang = "fr";
-    }
-    this.$i18n.setLocale(this.siteLang);
   },
 };
 </script>

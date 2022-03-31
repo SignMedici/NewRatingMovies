@@ -67,9 +67,6 @@ export default {
       }
     },
   },
-  created() {
-    this.$i18n.setLocale(this.$cookiz.get("siteLang"));
-  },
 };
 </script>
 <style scoped>

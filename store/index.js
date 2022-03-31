@@ -2,17 +2,7 @@ import usersStore from "./modules/users.js";
 import moviesStore from "./modules/movies.js";
 
 const store = {
-  state() {
-    return {
-      siteLang: "fr",
-    };
-  },
-
   mutations: {
-    SET_LANG: (state, langCode) => {
-      state.siteLang = langCode;
-    },
-
     RATE_MOVIE: (state, myRate) => {
       let index = state.auth.user.myRates.findIndex(
         (rate) => rate.movieDbId === myRate.movieDbId
@@ -47,13 +37,19 @@ const store = {
   },
 
   actions: {
-    async nuxtServerInit({ dispatch, commit }) {
+    async nuxtServerInit({ dispatch }) {
       await dispatch("moviesStore/getMovies", [0, 8, "min"]);
 
-      // Site language
+      //Set language
+      let siteLang = "";
+
       if (this.$cookiz.get("siteLang")) {
-        commit("SET_LANG", this.$cookiz.get("siteLang"));
+        siteLang = this.$cookiz.get("siteLang");
+      } else {
+        siteLang = "fr";
       }
+      this.$i18n.locale = siteLang;
+      this.$i18n.finalizePendingLocaleChange();
     },
 
     //Rate movies
@@ -157,11 +153,6 @@ const store = {
         });
       }
       return userFavorites;
-    },
-
-    // get the current language of the webpage
-    getSiteLang(state) {
-      return state.siteLang;
     },
   },
 

@@ -106,9 +106,9 @@ import { mapState } from "vuex";
 
 export default {
   name: "MovieOverview",
-  props: ["siteLang"],
   data() {
     return {
+      siteLang: this.$i18n.locale,
       url: process.env.apiPicURL,
       baseVideoURL: process.env.VIDEO_URL,
       noPic: "~/assets/no_picture.png",
@@ -126,11 +126,14 @@ export default {
 };
 </script>
 <style scoped>
+span {
+  white-space: nowrap;
+}
 .movieDesktop {
   display: block;
 }
 .movieDescription {
-  width: 70%;
+  max-width: 80%;
   min-width: 800px;
   height: auto;
   display: flex;

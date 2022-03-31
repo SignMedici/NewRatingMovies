@@ -26,11 +26,8 @@ export default {
   props: ["path"],
   data() {
     return {
-      locale: "",
+      locale: this.$i18n.locale,
     };
-  },
-  created() {
-    this.locale = this.$cookiz.get("siteLang");
   },
 };
 </script>

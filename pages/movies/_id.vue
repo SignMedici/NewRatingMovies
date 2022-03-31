@@ -9,18 +9,9 @@
 export default {
   data() {
     return {
-      siteLang: "",
+      siteLang: this.$i18n.locale,
       movie: "",
     };
-  },
-  async created() {
-    // Get siteLang
-    if (this.$cookiz.get("siteLang")) {
-      this.siteLang = this.$cookiz.get("siteLang");
-    } else {
-      this.siteLang = "fr";
-    }
-    this.$i18n.setLocale(this.siteLang);
   },
 };
 </script>

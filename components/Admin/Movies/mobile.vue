@@ -90,12 +90,12 @@
 import { mapState } from "vuex";
 
 export default {
-  props: ["siteLang"],
   data() {
     return {
       baseURL: process.env.baseURL,
       perPage: 5,
       currentPage: 1,
+      siteLang: this.$i18n.locale,
     };
   },
   methods: {
@@ -133,14 +133,6 @@ export default {
         this.$router.push("/");
       }
     },
-  },
-  created() {
-    if (this.$cookiz.get("siteLang")) {
-      this.siteLang = this.$cookiz.get("siteLang");
-    } else {
-      this.siteLang = "fr";
-    }
-    this.$i18n.setLocale(this.siteLang);
   },
 };
 </script>

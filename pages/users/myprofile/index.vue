@@ -96,7 +96,7 @@ export default {
   middleware: "isAuthenticated", // it will use `isAuthenticated` middleware
   data() {
     return {
-      locale: "",
+      locale: this.$i18n.locale,
       gcsPicURL: process.env.gcsPicURL,
       loggedUser: "",
       isLoaded: false,
@@ -125,15 +125,6 @@ export default {
       // Code that will run only after the
       // entire view has been rendered
     });
-  },
-  created() {
-    this.loggedUser = this.$store.getters.getUserInfo;
-    if (this.$cookiz.get("siteLang")) {
-      this.locale = this.$cookiz.get("siteLang");
-    } else {
-      this.locale = "fr";
-    }
-    this.$i18n.setLocale(this.locale);
   },
 };
 </script>

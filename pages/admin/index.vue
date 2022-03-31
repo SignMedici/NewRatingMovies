@@ -44,7 +44,7 @@ export default {
   data() {
     return {
       tab: null,
-      language: "",
+      language: this.$i18n.locale,
     };
   },
   computed: {
@@ -55,10 +55,6 @@ export default {
         this.$router.push("/");
       }
     },
-  },
-  created() {
-    this.$i18n.setLocale(this.$cookiz.get("siteLang"));
-    this.language = this.$store.getters.getSiteLang;
   },
 };
 </script>

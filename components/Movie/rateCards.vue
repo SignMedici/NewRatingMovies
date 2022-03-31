@@ -8,7 +8,7 @@
               class="nav-link active"
               aria-current="page"
               :to="{
-                name: `movies-id___${siteLang}`,
+                name: `movies-id___${language}`,
                 params: { id: movie._id },
                 hash: '#logo',
               }"
@@ -19,7 +19,7 @@
                     <figure>
                       <img
                         class="imgMovieCard"
-                        :srcset="url + movie[siteLang].poster_path"
+                        :srcset="url + movie[language].poster_path"
                       />
                       <UIFavoriteIcon
                         v-if="isAuthenticated"
@@ -29,13 +29,13 @@
                     </figure>
                   </div>
                   <div class="cardInfos">
-                    <v-card-title v-if="movie[siteLang].title.length > 22"
+                    <v-card-title v-if="movie[language].title.length > 22"
                       >{{
-                        movie[siteLang].title.substring(0, 22)
+                        movie[language].title.substring(0, 22)
                       }}...</v-card-title
                     >
                     <v-card-title v-else>{{
-                      movie[siteLang].title
+                      movie[language].title
                     }}</v-card-title>
                     <div v-if="isAuthenticated" class="text-subtitle-1">
                       {{ movie.release_date.substring(0, 4) }}
@@ -71,9 +71,9 @@
 import { mapState } from "vuex";
 
 export default {
-  props: ["siteLang"],
   data() {
     return {
+      language: this.$i18n.locale,
       title: "",
       url: process.env.apiPicURL,
       emptyIcon: "mdi-heart-outline",

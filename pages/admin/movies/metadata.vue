@@ -75,7 +75,7 @@ export default {
       //get results from api
       this.$store.dispatch("moviesStore/getSearchResults", [
         this.search.replaceAll(" ", "+"),
-        this.$cookiz.get("siteLang"),
+        this.$i18n.locale,
       ]);
       this.results = "OK";
     },
@@ -88,9 +88,6 @@ export default {
         this.$router.push("/");
       }
     },
-  },
-  created() {
-    this.$i18n.setLocale(this.$cookiz.get("siteLang"));
   },
 };
 </script>

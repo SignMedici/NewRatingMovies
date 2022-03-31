@@ -93,15 +93,7 @@ export default {
     },
   },
   created() {
-    let siteLang = "";
-
-    if (this.$cookiz.get("siteLang")) {
-      siteLang = this.$cookiz.get("siteLang");
-    } else {
-      siteLang = "fr";
-    }
-
-    this.$i18n.setLocale(siteLang);
+    this.$i18n.setLocale(this.$i18n.locale);
   },
 };
 </script>

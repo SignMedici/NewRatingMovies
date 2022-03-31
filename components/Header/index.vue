@@ -177,7 +177,7 @@ export default {
   data() {
     return {
       bannerURL: process.env.bannerPicURL,
-      locale: "",
+      locale: this.$i18n.locale,
     };
   },
   methods: {
@@ -192,14 +192,6 @@ export default {
     getUserInfo() {
       return this.$store.getters.getUserInfo;
     },
-  },
-  created() {
-    if (this.$cookiz.get("siteLang")) {
-      this.locale = this.$cookiz.get("siteLang");
-    } else {
-      this.locale = "fr";
-    }
-    this.$i18n.setLocale(this.locale);
   },
 };
 </script>

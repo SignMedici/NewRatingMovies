@@ -124,12 +124,6 @@ export default {
     } else {
       this.$router.push("/admin");
     }
-
-    if (this.$cookiz.get("siteLang")) {
-      this.$i18n.setLocale(this.$cookiz.get("siteLang"));
-    } else {
-      this.$i18n.setLocale("fr");
-    }
   },
 };
 </script>
