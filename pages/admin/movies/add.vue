@@ -48,14 +48,16 @@
 
 <script>
 export default {
-  data: () => ({
-    btnTxt: "add",
-    title: "",
-    results: "",
-    rules: [(value) => !!value || "Required."],
-    baseURL: process.env.baseURL,
-    siteLang: this.$i18n.locale,
-  }),
+  data() {
+    return {
+      btnTxt: "add",
+      title: "",
+      results: "",
+      rules: [(value) => !!value || "Required."],
+      baseURL: process.env.baseURL,
+      siteLang: this.$i18n.locale,
+    };
+  },
   methods: {
     async getSearchResult() {
       if (this.title !== "") {

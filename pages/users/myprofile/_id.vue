@@ -96,6 +96,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
@@ -110,6 +112,7 @@ export default {
     };
   },
   computed: {
+    ...mapState({ currentUser: (state) => state.auth.user }),
     isAuthenticated() {
       return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
@@ -193,8 +196,7 @@ export default {
     },
   },
   created() {
-    let userLoadedUpdate = this.$store.getters.getUserInfo;
-
+    let userLoadedUpdate = this.currentUser;
     this.nickname = userLoadedUpdate.nickname;
     this.email = userLoadedUpdate.email;
     this.userLang = userLoadedUpdate.language;

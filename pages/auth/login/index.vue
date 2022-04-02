@@ -59,7 +59,8 @@ export default {
           data: this.loginData,
         });
         const userLang = response.data.language;
-        this.$store.commit("SET_LANG", userLang);
+        this.$i18n.locale = userLang;
+        this.$i18n.setLocale(userLang);
         this.$cookiz.set("siteLang", userLang);
         this.$router.push("/");
       } catch (err) {

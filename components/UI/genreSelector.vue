@@ -1,10 +1,7 @@
 <template>
   <v-app>
     <v-container fluid>
-      <v-col
-        cols="12"
-        sm="12"
-      >
+      <v-col cols="12" sm="12">
         <v-select
           v-model="newGenre"
           :items="localGenres"
@@ -13,7 +10,7 @@
           multiple
           outlined
           class="form-control"
-          @input="$emit('update:newGenre', $event);"
+          @input="$emit('update:newGenre', $event)"
         ></v-select>
       </v-col>
     </v-container>
@@ -21,50 +18,39 @@
 </template>
 <script>
 export default {
-  props:['movieGenre','allGenres'],
-  data(){
+  props: ["movieGenre", "allGenres"],
+  data() {
     return {
-      newGenre: this.movieGenre
-    }
+      newGenre: this.movieGenre,
+    };
   },
-  computed : {
-    localGenres(genres){
+  computed: {
+    localGenres(genres) {
       let localGenres = [];
-      this.allGenres.forEach((genre) =>{
+      this.allGenres.forEach((genre) => {
         localGenres.push({
           text: this.$t(genre),
-          value: genre
+          value: genre,
         });
       });
       return localGenres;
-    }
+    },
   },
-  created(){
-    let siteLang = '';
-
-    if(this.$cookiz.get('siteLang')){
-      siteLang = this.$cookiz.get('siteLang')
-    }
-    else{
-      siteLang = 'fr'
-    }
-    this.$i18n.setLocale(siteLang);
-  }
-}
+};
 </script>
 <style scoped>
-#app{
+#app {
   background: none;
   max-height: 250px;
   background-color: #fff;
   border: 0px;
   border-radius: 5px;
 }
-.container--fluid{
-  padding:0;
+.container--fluid {
+  padding: 0;
 }
-.v-select-list{
-  background-color: #2C1033;
+.v-select-list {
+  background-color: #2c1033;
 }
 ::v-deep .v-application--wrap {
   min-height: fit-content;

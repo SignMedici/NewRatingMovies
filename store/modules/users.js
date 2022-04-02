@@ -47,9 +47,6 @@ const actions = {
   async updateUser({ commit }, user) {
     const response = await this.$axios
       .post(process.env.baseURL + "/users/" + user._id, user)
-      .then((response) => {
-        commit("UPDATE_USER", response.data);
-      })
       .catch((err) => {
         this.$toast.error(err);
       });

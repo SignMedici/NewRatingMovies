@@ -69,21 +69,23 @@
 </template>
 <script>
 export default {
-  data: () => ({
-    title: "",
-    vote_average: "",
-    release_date: "",
-    genre: [],
-    newGenre: [],
-    poster_path: "",
-    overview: "",
-    director: "",
-    rules: [(value) => !!value || "Required."],
-    movie: [],
-    baseURL: process.env.baseURL,
-    siteLang: this.$i18n.locale,
-    movieGenres: process.env.MOVIE_GENRES,
-  }),
+  data() {
+    return {
+      title: "",
+      vote_average: "",
+      release_date: "",
+      genre: [],
+      newGenre: [],
+      poster_path: "",
+      overview: "",
+      director: "",
+      rules: [(value) => !!value || "Required."],
+      movie: [],
+      baseURL: process.env.baseURL,
+      siteLang: this.$i18n.locale,
+      movieGenres: process.env.MOVIE_GENRES,
+    };
+  },
   methods: {
     async updateMovie() {
       let updatedFilm = {

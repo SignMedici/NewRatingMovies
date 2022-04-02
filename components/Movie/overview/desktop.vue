@@ -134,7 +134,6 @@ span {
 }
 .movieDescription {
   max-width: 80%;
-  min-width: 800px;
   height: auto;
   display: flex;
   background-color: var(--color-purple);

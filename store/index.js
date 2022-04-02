@@ -40,16 +40,20 @@ const store = {
     async nuxtServerInit({ dispatch }) {
       await dispatch("moviesStore/getMovies", [0, 8, "min"]);
 
-      //Set language
+      // set siteLanguage
       let siteLang = "";
 
       if (this.$cookiz.get("siteLang")) {
+        console.log("storeInit - cookie:", this.$cookiz.get("siteLang"));
         siteLang = this.$cookiz.get("siteLang");
       } else {
+        console.log("storeInit - default: fr");
         siteLang = "fr";
       }
+
       this.$i18n.locale = siteLang;
-      this.$i18n.finalizePendingLocaleChange();
+      this.$i18n.setLocale(siteLang);
+      await this.$i18n.finalizePendingLocaleChange();
     },
 
     //Rate movies
@@ -89,7 +93,7 @@ const store = {
             ...response.data,
           });
           await commit("UPDATE_LOGGED_USER", response.data);
-          commit("SET_LANG", formData.get("language"));
+          this.$i18n.locale = formData.get("language");
         })
         .catch((err) => {
           this.$toast.error(err);
@@ -126,16 +130,7 @@ const store = {
 
     //Check if role is admin
     roleIsAdmin(state) {
-      if (state.auth.user?.isAdmin === true) {
-        return true;
-      } else {
-        return "NotAnAdmin";
-      }
-    },
-
-    //Logged User
-    getUserInfo(state) {
-      return state.auth.user;
+      return state.auth.user?.isAdmin ? true : false;
     },
 
     // get movie information of logged favorites

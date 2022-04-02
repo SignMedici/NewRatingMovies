@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+import { I18N } from "./config";
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -136,29 +138,7 @@ export default {
     "@nuxtjs/vuetify",
 
     // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
-    [
-      "@nuxtjs/i18n",
-      {
-        lazy: true,
-        locales: [
-          { code: "en", iso: "en-US", file: "en.json", name: "english" },
-          { code: "fr", iso: "fr-BE", file: "fr.json", name: "french" },
-          { code: "nl", iso: "nl-BE", file: "nl.json", name: "dutch" },
-          { code: "it", iso: "it-IT", file: "it.json", name: "italian" },
-        ],
-        langDir: "locales/",
-        defaultLocale: "fr",
-        loadLanguagesAsync: true,
-        detectBrowserLanguage: {
-          useCookie: true,
-          fallbackLocale: "fr",
-          cookieKey: "route_path",
-          locale: "fr",
-        },
-        vueI18nLoader: true,
-        skipSettingLocaleOnNavigate: true,
-      },
-    ],
+    ["@nuxtjs/i18n", I18N],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

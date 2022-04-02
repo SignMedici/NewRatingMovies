@@ -121,7 +121,7 @@
                 <span>{{ $t("myProfile") }}</span>
               </nuxt-link>
             </v-tab>
-            <v-tab v-if="getUserInfo.isAdmin == true">
+            <v-tab v-if="auth.user.isAdmin == true">
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
@@ -173,6 +173,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -186,11 +187,9 @@ export default {
     },
   },
   computed: {
+    ...mapState(["auth"]),
     isAuthenticated() {
       return this.$store.getters.isAuthenticated; // check if there is an authenticated user
-    },
-    getUserInfo() {
-      return this.$store.getters.getUserInfo;
     },
   },
 };

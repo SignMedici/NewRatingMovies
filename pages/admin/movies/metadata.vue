@@ -45,15 +45,17 @@
 import { mapState } from "vuex";
 
 export default {
-  data: () => ({
-    path: "/mnt/Seagate-4To/__Videos/Films",
-    btnTxt: "select",
-    search: "",
-    file: "",
-    results: "",
-    rules: [(value) => !!value || "Required."],
-    baseURL: process.env.baseURL,
-  }),
+  data() {
+    return {
+      path: "/mnt/Seagate-4To/__Videos/Films",
+      btnTxt: "select",
+      search: "",
+      file: "",
+      results: "",
+      rules: [(value) => !!value || "Required."],
+      baseURL: process.env.baseURL,
+    };
+  },
   methods: {
     getSearchResult(event) {
       this.file = event.target.files[0];
