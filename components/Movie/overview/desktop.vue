@@ -115,7 +115,7 @@ export default {
   name: "MovieOverview",
   data() {
     return {
-      // siteLang: this.$i18n.locale,
+      siteLang: this.$i18n.locale,
       url: process.env.apiPicURL,
       baseVideoURL: process.env.VIDEO_URL,
       noPic: "~/assets/no_picture.png",
@@ -127,7 +127,6 @@ export default {
     };
   },
   computed: {
-    ...mapState(["siteLang"]),
     ...mapState("moviesStore", ["currentMovie"]),
   },
   methods: {

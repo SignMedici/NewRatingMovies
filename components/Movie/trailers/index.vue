@@ -45,7 +45,6 @@ export default {
         // Calc height of trailers zone
         if (this.trailers.length > 3) {
           elem.style.height = String(this.height * 2 + 76) + "px";
-          console.log("🚀 ~ this.$nextTick ~ this.height", this.height);
         } else {
           elem.style.height = String(this.height + 56) + "px";
         }

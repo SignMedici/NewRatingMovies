@@ -1,18 +1,20 @@
 <template>
-  <v-container class="grey lighten-5 mainLogo" id="logo">
-    <nuxt-link
-      class="me-2"
-      :to="{
-        name: `index___${siteLang}`,
-        hash: '#logo',
-      }"
-    >
-      <img
-        id="bigLogo"
-        :src="require(`~/assets/ratingMoviesLogo.png`)"
-        alt="Rating Movies Logo"
-      />
-    </nuxt-link>
+  <v-container class="grey lighten-5 mainLogo">
+    <div id="logo">
+      <nuxt-link
+        class="me-2"
+        :to="{
+          name: `index___${siteLang}`,
+          hash: '#biglogo',
+        }"
+      >
+        <img
+          id="bigLogo"
+          :src="require(`~/assets/ratingMoviesLogo.png`)"
+          alt="Rating Movies Logo"
+        />
+      </nuxt-link>
+    </div>
   </v-container>
 </template>
 <script>

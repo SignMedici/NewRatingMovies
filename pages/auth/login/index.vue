@@ -59,6 +59,7 @@ export default {
           data: this.loginData,
         });
         const userLang = response.data.language;
+        this.$store.dispatch("setLanguage", userLang);
         this.$i18n.locale = userLang;
         this.$i18n.setLocale(userLang);
         this.$cookiz.set("siteLang", userLang);
