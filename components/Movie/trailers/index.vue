@@ -26,7 +26,9 @@ export default {
   },
   async mounted() {
     this.$nextTick(() => {
+      // Calc size of trailers
       let elem = this.$refs.movieTrailers;
+
       if (typeof elem != "undefined") {
         let totalWidth = elem.getBoundingClientRect().width;
         if (totalWidth < 500) {

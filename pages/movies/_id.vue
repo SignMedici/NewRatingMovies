@@ -1,20 +1,10 @@
 <template>
   <div class="moviePage">
     <UIBigLogo />
-    <MovieOverviewDesktop class="desktop" :siteLang="siteLang" />
-    <MovieOverviewMobile class="mobile" :siteLang="siteLang" />
+    <MovieOverviewDesktop class="desktop" />
+    <MovieOverviewMobile class="mobile" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      siteLang: this.$i18n.locale,
-      movie: "",
-    };
-  },
-};
-</script>
 <style scoped>
 .desktop {
   display: block;

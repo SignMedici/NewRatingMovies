@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     async selectLang(langCode) {
-      console.log("🚀 ~ UIFlag ~ selectLang ~ langCode", langCode);
       // Save new site language
       this.$i18n.locale = langCode;
       this.$i18n.setLocale(langCode);

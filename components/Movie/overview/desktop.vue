@@ -1,12 +1,12 @@
 <template>
-  <div class="movieDesktop">
+  <div class="movieDesktop" v-if="showData">
     <div class="movieDescription">
       <!-- Poster -->
       <div id="poster">
         <figure>
           <img
-            v-if="result[0][siteLang].poster_path"
-            :srcset="url + result[0][siteLang].poster_path"
+            v-if="currentMovie[siteLang].poster_path"
+            :srcset="url + currentMovie[siteLang].poster_path"
           />
           <div v-else class="defaultPicContainer">
             <img
@@ -23,17 +23,17 @@
             <!-- Title -->
             <div id="title">
               <span
-                v-if="result[0][siteLang].title.length <= 33"
+                v-if="currentMovie[siteLang].title.length <= 33"
                 class="bigTitle"
-                >{{ result[0][siteLang].title }}</span
+                >{{ currentMovie[siteLang].title }}</span
               >
               <span v-else class="smallTitle">{{
-                result[0][siteLang].title
+                currentMovie[siteLang].title
               }}</span>
             </div>
             <div id="vote">
               <!-- Vote -->
-              <span v-if="result[0].vote_average" class="vote">
+              <span v-if="currentMovie.vote_average" class="vote">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -47,22 +47,22 @@
                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
                   />
                 </svg>
-                {{ result[0].vote_average }}
+                {{ currentMovie.vote_average }}
               </span>
             </div>
           </div>
           <!-- Movie details -->
           <div class="movieData">
             <!-- Year -->
-            <div v-if="result[0].release_date" class="year">
-              {{ result[0].release_date.substring(0, 4) }}
+            <div v-if="currentMovie.release_date" class="year">
+              {{ currentMovie.release_date.substring(0, 4) }}
             </div>
             <!-- Genres -->
             <div>
               <span
                 class="genre"
-                v-if="result[0].genre"
-                v-for="movieGenre in result[0].genre"
+                v-if="currentMovie.genre"
+                v-for="movieGenre in currentMovie.genre"
                 >{{ $t(movieGenre) }}</span
               >
             </div>
@@ -70,35 +70,42 @@
             <!-- People -->
             <div class="people">
               <table>
-                <tr v-show="result[0].director">
+                <tr v-show="currentMovie.director">
                   <td>
                     <span>{{ $t("director") }}</span>
                   </td>
                   <td>
                     <!-- Director -->
-                    <div class="casting">{{ result[0].director }}</div>
+                    <div class="casting">{{ currentMovie.director }}</div>
                   </td>
                 </tr>
-                <tr v-if="result[0].casting">
+                <tr v-if="currentMovie.casting">
                   <td>
                     <span>{{ $t("casting") }}</span>
                   </td>
                   <td>
                     <!-- Actors -->
-                    <div class="casting">{{ result[0].casting }}</div>
+                    <div class="casting">{{ currentMovie.casting }}</div>
                   </td>
                 </tr>
               </table>
             </div>
             <!-- Overview -->
-            <div v-if="result[0][siteLang].overview" class="overview">
-              {{ result[0][siteLang].overview }}
+            <div v-if="currentMovie[siteLang].overview" class="overview">
+              {{ currentMovie[siteLang].overview }}
             </div>
           </div>
         </div>
       </div>
     </div>
-    <MovieTrailers :trailers="result[0][siteLang].trailers" />
+    <MovieTrailers
+      :trailers="currentMovie[siteLang].trailers.slice(fromIndex, toIndex)"
+    />
+    <UIPaginator
+      :perPage="perPage"
+      :totalItems="currentMovie[siteLang].trailers.length"
+      @changePage="changePageContent"
+    />
   </div>
 </template>
 <script>
@@ -108,20 +115,39 @@ export default {
   name: "MovieOverview",
   data() {
     return {
-      siteLang: this.$i18n.locale,
+      // siteLang: this.$i18n.locale,
       url: process.env.apiPicURL,
       baseVideoURL: process.env.VIDEO_URL,
       noPic: "~/assets/no_picture.png",
+      showData: false,
+      perPage: 6,
+      currentPage: 1,
+      fromIndex: 0,
+      toIndex: 6,
     };
   },
   computed: {
-    ...mapState("moviesStore", ["result"]),
+    ...mapState(["siteLang"]),
+    ...mapState("moviesStore", ["currentMovie"]),
+  },
+  methods: {
+    async changePageContent(page) {
+      this.currentPage = page;
+      this.fromIndex = this.perPage * page - this.perPage;
+      this.toIndex = this.perPage * page;
+      // window.scrollTo({ top: 400 });
+    },
   },
   async created() {
-    await this.$store.dispatch(
+    const response = await this.$store.dispatch(
       "moviesStore/getMovieById",
       this.$route.params.id
     );
+    this.showData = true;
+  },
+  beforeDestroy() {
+    this.showData = false;
+    this.$store.dispatch("moviesStore/resetCurrentMovie");
   },
 };
 </script>

@@ -77,7 +77,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "plugins/avatar", mode: "client" }, "~/plugins/router"],
+  plugins: [
+    { src: "plugins/avatar", mode: "client" },
+    { src: "./plugins/router.js" },
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
