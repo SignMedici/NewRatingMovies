@@ -139,9 +139,6 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     "@nuxtjs/vuetify",
-
-    // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
-    ["@nuxtjs/i18n", I18N],
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -151,6 +148,8 @@ export default {
     "@nuxtjs/toast",
     ["cookie-universal-nuxt", { alias: "cookiz" }],
     ["@nuxtjs/dotenv", { systemvars: true }],
+    // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
+    ["@nuxtjs/i18n", I18N],
   ],
 
   // Auth

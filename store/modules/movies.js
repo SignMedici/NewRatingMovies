@@ -2,7 +2,8 @@
 const state = () => {
   return {
     movies: [], // For results coming from DB
-    result: [], // For search results from API and getMovieById
+    results: [], // For search results from API and getMovieById
+    currentMovie: {}, // movie to display
     nbMoviesDB: 0, // Total number of movies in DB
   };
 };
@@ -11,15 +12,6 @@ const state = () => {
 const mutations = {
   SET_MOVIES: (state, allMovies) => {
     state.movies = allMovies;
-  },
-
-  SET_MOVIE: (state, movie) => {
-    let index = state.movies.findIndex((obj) => obj._id === movie._id);
-    if (index >= 0) {
-      state.movies[index] = movie;
-    } else {
-      state.movies.push(movie);
-    }
   },
 
   SET_NB_TOTAL_MOVIES: (state, nb) => {
@@ -49,9 +41,17 @@ const mutations = {
     state.nbMoviesDB = state.nbMoviesDB - 1;
   },
 
-  SET_RESULT: (state, result) => {
-    state.result = [];
-    state.result.push(result);
+  SET_RESULTS: (state, results) => {
+    state.results = [];
+    state.results.push(results);
+  },
+
+  SET_CURRENT_MOVIE: (state, movie) => {
+    state.currentMovie = movie;
+  },
+
+  RESET_CURRENT_MOVIE: (state) => {
+    state.movie = {};
   },
 };
 
@@ -69,10 +69,10 @@ const actions = {
   },
 
   async getMovieById({ commit }, id) {
-    await this.$axios
+    const response = await this.$axios
       .get(process.env.baseURL + "/movies/" + id)
-      .then((response) => {
-        commit("SET_RESULT", response.data);
+      .then(async (response) => {
+        await commit("SET_CURRENT_MOVIE", response.data);
       })
       .catch((err) => {
         this.$toast.error(err);
@@ -119,8 +119,24 @@ const actions = {
         process.env.baseURL + "/the-movie-db/search/" + title + "/" + language
       )
       .then((response) => {
-        commit("SET_RESULT", response.data);
+        commit("SET_RESULTS", response.data);
       });
+  },
+
+  // check if the concerned movieDBId is in DB
+  async idInDb({ commit }, movieDBId) {
+    const response = await this.$axios
+      .get(process.env.baseURL + "/movies/check/" + movieDBId)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        this.$toast.error(this.$t("alreadyInCatalog"));
+      });
+  },
+
+  resetCurrentMovie({ commit }) {
+    commit("RESET_CURRENT_MOVIE");
   },
 };
 
@@ -132,20 +148,12 @@ const getters = {
   getNbMovies(state) {
     return state.nbMoviesDB;
   },
-  getResult(state) {
-    return state.result[0];
+  getResults(state) {
+    return state.results;
   },
   getMovieById: (state) => (id) => {
     let index = state.movies.findIndex((obj) => obj._id == id);
     return state.movies[index];
-  },
-  idInDb: (state) => (id) => {
-    let index = state.movies.findIndex((obj) => obj.movieDbId == id);
-    if (index == -1) {
-      return "Add OK";
-    } else {
-      return "Already in DB";
-    }
   },
 };
 

@@ -2,7 +2,7 @@
   <div id="movieResults">
     <v-container class="d-flex grey lighten-5">
       <v-row no-gutters>
-        <v-col v-for="movie in getResult" :key="movie.id" cols="12" sm="3">
+        <v-col v-for="movie in results" :key="movie.id" cols="12" sm="3">
           <div class="cardContainer">
             <div class="card">
               <v-card>
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import axios from "axios";
 
 export default {
@@ -97,17 +98,14 @@ export default {
     };
   },
   computed: {
-    getResult() {
-      return this.$store.getters["moviesStore/getResult"];
-    },
+    ...mapState("moviesStore", ["results"]),
   },
   methods: {
-    checkIsInDB(filePath, fileToModify, movie) {
-      let inDb = this.$store.getters["moviesStore/idInDb"](movie.id);
-      if (inDb == "Add OK") {
+    async checkIsInDB(filePath, fileToModify, movie) {
+      let inDb = await this.$store.dispatch("moviesStore/idInDb", movie.id);
+      if (typeof inDb == "undefined") {
         this.getInfo(filePath, fileToModify, movie);
       } else {
-        this.$toast.info($t("alreadyInCatalog"));
       }
     },
     async getInfo(filePath, fileToModify, movie) {

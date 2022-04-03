@@ -1,7 +1,7 @@
 <template>
   <div ref="movieTrailers" v-if="trailers.length > 0">
     <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
-    <div class="trailers" id="trailers" v-for="trailer in trailers">
+    <div class="trailers" v-for="trailer in trailers">
       <iframe
         class="trailer"
         :src="baseVideoURL + trailer.key"
@@ -26,10 +26,10 @@ export default {
   },
   async mounted() {
     this.$nextTick(() => {
-      // Calc size of trailers
       let elem = this.$refs.movieTrailers;
 
       if (typeof elem != "undefined") {
+        // Calc size of each trailer
         let totalWidth = elem.getBoundingClientRect().width;
         if (totalWidth < 500) {
           this.width = totalWidth;
@@ -40,6 +40,14 @@ export default {
         } else {
           this.width = totalWidth / 3;
           this.height = (this.width * 9) / 16;
+        }
+
+        // Calc height of trailers zone
+        if (this.trailers.length > 3) {
+          elem.style.height = String(this.height * 2 + 76) + "px";
+          console.log("🚀 ~ this.$nextTick ~ this.height", this.height);
+        } else {
+          elem.style.height = String(this.height + 56) + "px";
         }
       }
     });
