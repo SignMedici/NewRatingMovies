@@ -20,17 +20,10 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      siteLang: this.$i18n.locale,
-    };
-  },
   computed: {
     getUserFavorites() {
       if (this.$store.getters.getUserInfo) {
         return this.$store.getters.getUserFavorites;
-      } else {
-        this.$router.push("/");
       }
     },
     isAuthenticated() {

@@ -30,7 +30,7 @@ export default {
   methods: {
     // When the user clicks on the button, scroll to the top of the document
     scrollToTop() {
-      window.scrollTo({ top: 0 });
+      document.getElementById("logo").scrollIntoView();
     },
     //shows the button when scrolling down
     handleScroll(showAt) {
