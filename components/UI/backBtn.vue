@@ -2,7 +2,7 @@
   <div>
     <!-- Back button -->
     <nuxt-link
-      :to="{ name: `${path}___${locale}`, hash: '#logo' }"
+      :to="{ name: `${path}___${locale}`, hash: '#bigLogo' }"
       class="backBtn"
     >
       <svg

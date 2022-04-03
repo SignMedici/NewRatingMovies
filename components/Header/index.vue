@@ -17,7 +17,7 @@
           <nuxt-link
             class="nav-link active"
             aria-current="page"
-            :to="{ name: `users-favorites___${locale}`, hash: '#logo' }"
+            :to="{ name: `users-favorites___${siteLang}`, hash: '#bigLogo' }"
           >
             <img class="HeaderFavIcon" src="~/assets/favIcons/favFull.png" />
           </nuxt-link>
@@ -104,7 +104,10 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                :to="{ name: `users-myprofile___${locale}`, hash: '#logo' }"
+                :to="{
+                  name: `users-myprofile___${siteLang}`,
+                  hash: '#bigLogo',
+                }"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +181,7 @@ export default {
   data() {
     return {
       bannerURL: process.env.bannerPicURL,
-      locale: this.$i18n.locale,
+      siteLang: this.$i18n.locale,
     };
   },
   methods: {

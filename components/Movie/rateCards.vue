@@ -10,7 +10,7 @@
               :to="{
                 name: `movies-id___${language}`,
                 params: { id: movie._id },
-                hash: '#logo',
+                hash: '#bigLogo',
               }"
             >
               <div class="card">
@@ -100,10 +100,11 @@ export default {
         this.perPage,
         "min",
       ]);
-      window.scrollTo({ top: 400 });
+      document.getElementById("bigLogo").scrollIntoView();
     },
   },
   async created() {
+    this.$i18n.setLocale(this.$i18n.locale);
     await this.$store.dispatch("moviesStore/getMovies", [0, 8, "min"]);
 
     if (this.$store.getters.getUserInfo) {

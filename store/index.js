@@ -2,7 +2,17 @@ import usersStore from "./modules/users.js";
 import moviesStore from "./modules/movies.js";
 
 const store = {
+  state() {
+    return {
+      siteLang: "fr",
+    };
+  },
+
   mutations: {
+    SET_LANG: (state, langCode) => {
+      state.siteLang = langCode;
+    },
+
     RATE_MOVIE: (state, myRate) => {
       let index = state.auth.user.myRates.findIndex(
         (rate) => rate.movieDbId === myRate.movieDbId
@@ -37,22 +47,22 @@ const store = {
   },
 
   actions: {
-    async nuxtServerInit({ dispatch }) {
+    async nuxtServerInit({ dispatch, commit }) {
       await dispatch("moviesStore/getMovies", [0, 8, "min"]);
 
       // set siteLanguage
       let siteLang = "";
 
       if (this.$cookiz.get("siteLang")) {
-        console.log("storeInit - cookie:", this.$cookiz.get("siteLang"));
-        siteLang = this.$cookiz.get("siteLang");
+        siteLang = await this.$cookiz.get("siteLang");
       } else {
-        console.log("storeInit - default: fr");
         siteLang = "fr";
+        await this.$cookiz.set("siteLang", siteLang);
       }
-
+      commit("SET_LANG", siteLang);
       this.$i18n.locale = siteLang;
-      this.$i18n.setLocale(siteLang);
+      await this.$i18n.setLocale(siteLang);
+      await this.switchLocalePath(siteLang);
       await this.$i18n.finalizePendingLocaleChange();
     },
 
@@ -119,6 +129,11 @@ const store = {
         .then(async (response) => {
           await this.$auth.logout(); // this method will logout the user and make token to false on the local storage of the user browser
         });
+    },
+
+    // Set language
+    async setLanguage({ commit }, langCode) {
+      commit("SET_LANG", langCode);
     },
   },
 

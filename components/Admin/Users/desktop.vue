@@ -31,7 +31,7 @@
               :to="{
                 name: `admin-users-update-id___${siteLang}`,
                 params: { id: user._id },
-                hash: '#logo',
+                hash: '#bigLogo',
               }"
             >
               <svg

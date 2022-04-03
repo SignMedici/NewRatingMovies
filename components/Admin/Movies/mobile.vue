@@ -2,13 +2,13 @@
   <div id="adminMoviesMobile" v-if="roleIsAdmin">
     <div>
       <nuxt-link
-        :to="{ name: `admin-movies-add___${siteLang}`, hash: '#logo' }"
+        :to="{ name: `admin-movies-add___${siteLang}`, hash: '#bigLogo' }"
         class="btn btn-success mb-2 me-2"
       >
         {{ $t("add") }}
       </nuxt-link>
       <nuxt-link
-        :to="{ name: `admin-movies-metadata___${siteLang}`, hash: '#logo' }"
+        :to="{ name: `admin-movies-metadata___${siteLang}`, hash: '#bigLogo' }"
         class="btn btn-success mb-2"
       >
         {{ $t("modifyMetadata") }}
@@ -51,7 +51,7 @@
             :to="{
               name: `admin-movies-update-id___${siteLang}`,
               params: { id: movie._id },
-              hash: '#logo',
+              hash: '#bigLogo',
             }"
           >
             <svg

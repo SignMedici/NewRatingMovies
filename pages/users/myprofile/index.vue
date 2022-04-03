@@ -7,7 +7,7 @@
         :to="{
           name: `users-myprofile-id___${locale}`,
           params: { id: currentUser.id },
-          hash: '#logo',
+          hash: '#bigLogo',
         }"
         class="ms-3"
       >
