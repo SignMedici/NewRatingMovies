@@ -4,7 +4,7 @@
       v-model="page"
       :length="buttonsLength"
       @input="next"
-      :total-visible="7"
+      :total-visible="nbButtons"
       prev-icon="mdi-menu-left"
       next-icon="mdi-menu-right"
       color="var(--color-fushia)"
@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       page: 1,
+      nbButtons: "",
     };
   },
   computed: {
@@ -29,6 +30,10 @@ export default {
     next(page) {
       this.$emit("changePage", page);
     },
+  },
+  beforeMount() {
+    // set number of visible buttons
+    window.innerWidth <= 1024 ? (this.nbButtons = 3) : (this.buttons = 7);
   },
 };
 </script>

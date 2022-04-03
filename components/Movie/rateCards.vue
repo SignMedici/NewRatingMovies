@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="moviesContainer">
     <div v-if="movies.length > 0">
       <v-container class="d-flex grey lighten-5">
         <v-row no-gutters>
@@ -103,17 +103,29 @@ export default {
       document.getElementById("bigLogo").scrollIntoView();
     },
   },
-  async created() {
-    this.$i18n.setLocale(this.$i18n.locale);
-    await this.$store.dispatch("moviesStore/getMovies", [0, 8, "min"]);
+  async mounted() {
+    this.$nextTick(async () => {
+      let elem = this.$refs.moviesContainer;
+      if (typeof elem != "undefined") {
+        let totalWidth = elem.getBoundingClientRect().width;
+        if (totalWidth <= 1024) {
+          this.perPage = 5;
+        }
+      }
+      await this.$store.dispatch("moviesStore/getMovies", [
+        0,
+        this.perPage,
+        "min",
+      ]);
 
-    if (this.$store.getters.getUserInfo) {
-      this.myRates = this.$store.getters.getUserInfo.myRates;
-    }
+      if (this.$store.getters.getUserInfo) {
+        this.myRates = this.$store.getters.getUserInfo.myRates;
+      }
 
-    if (this.$store.getters.getUserInfo) {
-      this.myFavorites = this.$store.getters.getUserInfo.myFavorites;
-    }
+      if (this.$store.getters.getUserInfo) {
+        this.myFavorites = this.$store.getters.getUserInfo.myFavorites;
+      }
+    });
   },
 };
 </script>

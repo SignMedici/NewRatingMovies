@@ -1,7 +1,7 @@
 export default ({ app }) => {
-  app.nuxt.defaultTransition.beforeEnter = async (to, from, next) => {
+  app.nuxt.defaultTransition.beforeEnter = async () => {
     let siteLang = app.$cookiz.get("siteLang");
-    window.history.replaceState("", "", app.switchLocalePath(siteLang));
+    window.history.replaceState("", "", app.switchLocalePath(siteLang)); // Prevent reload
   };
 
   //Optional: wait for locale before scrolling for a smoother transition
