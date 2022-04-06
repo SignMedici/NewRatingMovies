@@ -25,7 +25,7 @@ export default {
     };
   },
   computed: {
-    localGenres(genres) {
+    localGenres() {
       let localGenres = [];
       this.allGenres.forEach((genre) => {
         localGenres.push({

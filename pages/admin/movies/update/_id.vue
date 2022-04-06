@@ -68,6 +68,8 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
@@ -110,6 +112,7 @@ export default {
     },
   },
   computed: {
+    ...mapState("moviesStore", ["currentMovie"]),
     roleIsAdmin() {
       if (this.$store.getters.roleIsAdmin === true) {
         return true;
@@ -118,20 +121,20 @@ export default {
       }
     },
   },
-  created() {
-    /* Get movie data */
-    let movieToUpdate = this.$store.getters["moviesStore/getMovieById"](
+  async created() {
+    let request = await this.$store.dispatch(
+      "moviesStore/getMovieById",
       this.$route.params.id
     );
 
-    if (movieToUpdate) {
-      this.title = movieToUpdate[this.siteLang].title;
-      this.vote_average = movieToUpdate.vote_average;
-      this.genre = movieToUpdate.genre;
-      this.release_date = movieToUpdate.release_date;
-      this.overview = movieToUpdate[this.siteLang].overview;
-      this.director = movieToUpdate.director;
-      this.poster_path = movieToUpdate[this.siteLang].poster_path;
+    if (this.currentMovie) {
+      this.title = this.currentMovie[this.siteLang].title;
+      this.vote_average = this.currentMovie.vote_average;
+      this.genre = this.currentMovie.genre;
+      this.release_date = this.currentMovie.release_date;
+      this.overview = this.currentMovie[this.siteLang].overview;
+      this.director = this.currentMovie.director;
+      this.poster_path = this.currentMovie[this.siteLang].poster_path;
     } else {
       this.$router.push("/admin");
     }

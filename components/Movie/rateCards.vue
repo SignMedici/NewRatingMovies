@@ -11,7 +11,7 @@
                 localePath({
                   name: 'movies-id',
                   params: { id: movie._id },
-                  hash: '#bigLogo',
+                  hash: '#logo',
                 })
               "
             >
@@ -102,7 +102,7 @@ export default {
         this.perPage,
         "min",
       ]);
-      document.getElementById("bigLogo").scrollIntoView();
+      document.getElementById("logo").scrollIntoView();
     },
   },
   async mounted() {
