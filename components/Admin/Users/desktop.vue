@@ -28,11 +28,13 @@
           </td>
           <td>
             <nuxt-link
-              :to="{
-                name: `admin-users-update-id___${siteLang}`,
-                params: { id: user._id },
-                hash: '#bigLogo',
-              }"
+              :to="
+                localePath({
+                  name: 'admin-users-update-id',
+                  params: { id: user._id },
+                  hash: '#logo',
+                })
+              "
             >
               <svg
                 style="width: 24px; height: 24px; color: #22d157"

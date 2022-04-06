@@ -3,15 +3,17 @@
     <div v-if="movies.length > 0">
       <v-container class="d-flex grey lighten-5">
         <v-row no-gutters>
-          <v-col v-for="movie in movies" :key="movie._id" cols="12" sm="3">
+          <v-col v-for="movie in movies" :key="movie._id" cols="6" md="3">
             <nuxt-link
               class="nav-link active"
               aria-current="page"
-              :to="{
-                name: `movies-id___${language}`,
-                params: { id: movie._id },
-                hash: '#bigLogo',
-              }"
+              :to="
+                localePath({
+                  name: 'movies-id',
+                  params: { id: movie._id },
+                  hash: '#bigLogo',
+                })
+              "
             >
               <div class="card">
                 <v-card>

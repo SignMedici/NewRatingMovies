@@ -2,13 +2,13 @@
   <div v-if="roleIsAdmin" id="adminMoviesDesktop">
     <div>
       <nuxt-link
-        :to="{ name: `admin-movies-add___${siteLang}`, hash: '#bigLogo' }"
+        :to="localePath({ name: 'admin-movies-add', hash: '#logo' })"
         class="btn btn-success mb-2 me-2"
       >
         {{ $t("add") }}
       </nuxt-link>
       <nuxt-link
-        :to="{ name: `admin-movies-metadata___${siteLang}`, hash: '#bigLogo' }"
+        :to="localePath({ name: 'admin-movies-metadata', hash: '#logo' })"
         class="btn btn-success mb-2"
       >
         {{ $t("modifyMetadata") }}
@@ -48,11 +48,13 @@
             <div class="d-flex">
               <nuxt-link
                 class="me-2"
-                :to="{
-                  name: `admin-movies-update-id___${siteLang}`,
-                  params: { id: movie._id },
-                  hash: '#bigLogo',
-                }"
+                :to="
+                  localePath({
+                    name: 'admin-movies-update-id',
+                    params: { id: movie._id },
+                    hash: '#logo',
+                  })
+                "
               >
                 <svg
                   style="width: 24px; height: 24px; color: #22d157"

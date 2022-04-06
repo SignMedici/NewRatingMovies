@@ -17,7 +17,7 @@
           <nuxt-link
             class="nav-link active"
             aria-current="page"
-            :to="{ path: localePath('/users/favorites'), hash: '#logo' }"
+            :to="localePath({ name: 'users-favorites', hash: '#logo' })"
           >
             <img class="HeaderFavIcon" src="~/assets/favIcons/favFull.png" />
           </nuxt-link>
@@ -31,7 +31,7 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                :to="{ path: localePath('/'), hash: '#logo' }"
+                :to="localePath({ name: 'index', hash: '#logo' })"
               >
                 <svg
                   style="width: 18px; height: 18px; margin-bottom: 5px"
@@ -49,7 +49,7 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                :to="{ path: localePath('/auth/login'), hash: '#logo' }"
+                :to="localePath({ name: 'auth-login', hash: '#logo' })"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +75,7 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                :to="{ path: localePath('/auth/register'), hash: '#logo' }"
+                :to="localePath({ name: 'auth-register', hash: '#logo' })"
               >
                 <svg style="width: 18px; height: 18px" viewBox="0 0 24 24">
                   <path
@@ -94,7 +94,7 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                :to="{ path: localePath('/'), hash: '#logo' }"
+                :to="localePath({ name: 'index', hash: '#logo' })"
               >
                 <svg
                   style="width: 18px; height: 18px; margin-bottom: 5px"
@@ -112,10 +112,12 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                :to="{
-                  path: localePath('users-myprofile'),
-                  hash: '#logo',
-                }"
+                :to="
+                  localePath({
+                    name: 'users-myprofile',
+                    hash: '#logo',
+                  })
+                "
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -136,7 +138,7 @@
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"
-                :to="{ path: localePath('/admin'), hash: '#logo' }"
+                :to="localePath({ name: 'admin', hash: '#logo' })"
               >
                 <svg style="width: 18px; height: 18px" viewBox="0 0 24 24">
                   <path

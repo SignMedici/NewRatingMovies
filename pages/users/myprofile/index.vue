@@ -4,11 +4,13 @@
     <div class="welcome">
       <span id="nickname">{{ $t("welcome") }} {{ currentUser.nickname }}</span>
       <nuxt-link
-        :to="{
-          name: `users-myprofile-id___${locale}`,
-          params: { id: currentUser.id },
-          hash: '#bigLogo',
-        }"
+        :to="
+          localePath({
+            name: 'users-myprofile-id',
+            params: { id: currentUser.id },
+            hash: '#logo',
+          })
+        "
         class="ms-3"
       >
         <button>

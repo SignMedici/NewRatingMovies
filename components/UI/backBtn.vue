@@ -2,7 +2,7 @@
   <div>
     <!-- Back button -->
     <nuxt-link
-      :to="{ name: `${path}___${locale}`, hash: '#bigLogo' }"
+      :to="localePath({ name: backPath, hash: '#logo' })"
       class="backBtn"
     >
       <svg
@@ -23,12 +23,7 @@
 <script>
 export default {
   name: "backBtn",
-  props: ["path"],
-  data() {
-    return {
-      locale: this.$i18n.locale,
-    };
-  },
+  props: ["backPath"],
 };
 </script>
 
