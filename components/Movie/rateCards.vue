@@ -60,7 +60,7 @@
       </v-container>
       <UIPaginator
         :perPage="perPage"
-        :totalItems="nbMoviesDB"
+        :totalItems="nbMovies"
         @changePage="changePageContent"
       />
     </div>
@@ -70,9 +70,8 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
-
 export default {
+  props: ["movies", "nbMovies", "perPage"],
   data() {
     return {
       language: this.$i18n.locale,
@@ -84,25 +83,16 @@ export default {
       sortDirection: "asc",
       myRates: [],
       myFavorites: [],
-      perPage: 8,
-      currentPage: 1,
     };
   },
   computed: {
-    ...mapState("moviesStore", ["movies", "nbMoviesDB"]),
     isAuthenticated() {
       return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
   },
   methods: {
-    async changePageContent(page) {
-      this.currentPage = page;
-      await this.$store.dispatch("moviesStore/getMovies", [
-        page - 1,
-        this.perPage,
-        "min",
-      ]);
-      document.getElementById("logo").scrollIntoView();
+    changePageContent(page) {
+      this.$emit("changeHomeContent", page);
     },
   },
   async mounted() {
@@ -114,12 +104,6 @@ export default {
           this.perPage = 5;
         }
       }
-      await this.$store.dispatch("moviesStore/getMovies", [
-        0,
-        this.perPage,
-        "min",
-      ]);
-
       if (this.$store.getters.getUserInfo) {
         this.myRates = this.$store.getters.getUserInfo.myRates;
       }

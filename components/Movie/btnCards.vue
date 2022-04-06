@@ -2,7 +2,7 @@
   <div id="movieResults">
     <v-container class="d-flex grey lighten-5">
       <v-row no-gutters>
-        <v-col v-for="movie in results" :key="movie.id" cols="12" sm="3">
+        <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="3">
           <div class="cardContainer">
             <div class="card">
               <v-card>
@@ -75,11 +75,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 import axios from "axios";
 
 export default {
-  props: ["btnTxt", "fileToModify", "filePath"],
+  props: ["btnTxt", "fileToModify", "filePath", "movies"],
   data() {
     return {
       movieDbId: 0,
@@ -96,9 +95,6 @@ export default {
       baseURL: process.env.baseURL,
       siteLang: this.$i18n.locale,
     };
-  },
-  computed: {
-    ...mapState("moviesStore", ["results"]),
   },
   methods: {
     async checkIsInDB(filePath, fileToModify, movie) {

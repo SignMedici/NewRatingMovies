@@ -4,7 +4,7 @@ const state = () => {
     movies: [], // For results coming from DB
     results: [], // For search results from API and getMovieById
     currentMovie: {}, // movie to display
-    nbMoviesDB: 0, // Total number of movies in DB
+    nbMovies: 0, // Total number of movies in DB
   };
 };
 
@@ -15,7 +15,7 @@ const mutations = {
   },
 
   SET_NB_TOTAL_MOVIES: (state, nb) => {
-    state.nbMoviesDB = nb;
+    state.nbMovies = nb;
   },
 
   ADD_MOVIE: (state, movie) => {
@@ -38,7 +38,7 @@ const mutations = {
         .indexOf(idToRemove),
       1
     );
-    state.nbMoviesDB = state.nbMoviesDB - 1;
+    state.nbMovies = state.nbMovies - 1;
   },
 
   SET_RESULTS: (state, results) => {
@@ -146,7 +146,7 @@ const getters = {
     return state.movies;
   },
   getNbMovies(state) {
-    return state.nbMoviesDB;
+    return state.nbMovies;
   },
   getResults(state) {
     return state.results;

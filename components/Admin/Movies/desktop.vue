@@ -99,13 +99,23 @@
 import { mapState } from "vuex";
 
 export default {
+  props: ["perPage", "nbMoviesDB"],
   data() {
     return {
       baseURL: process.env.baseURL,
-      perPage: 5,
       currentPage: 1,
       siteLang: this.$i18n.locale,
     };
+  },
+  computed: {
+    ...mapState("moviesStore", ["movies", "nbMoviesDB"]),
+    roleIsAdmin() {
+      if (this.$store.getters.roleIsAdmin === true) {
+        return true;
+      } else {
+        this.$router.push("/");
+      }
+    },
   },
   methods: {
     async deleteMovie(id, displayedMovies) {
@@ -131,16 +141,6 @@ export default {
         "admin",
       ]);
       window.scrollTo({ top: 400 });
-    },
-  },
-  computed: {
-    ...mapState("moviesStore", ["movies", "nbMoviesDB"]),
-    roleIsAdmin() {
-      if (this.$store.getters.roleIsAdmin === true) {
-        return true;
-      } else {
-        this.$router.push("/");
-      }
     },
   },
   async created() {
