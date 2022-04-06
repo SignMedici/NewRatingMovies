@@ -2,17 +2,7 @@ import usersStore from "./modules/users.js";
 import moviesStore from "./modules/movies.js";
 
 const store = {
-  state() {
-    return {
-      siteLang: "fr",
-    };
-  },
-
   mutations: {
-    SET_LANG: (state, langCode) => {
-      state.siteLang = langCode;
-    },
-
     RATE_MOVIE: (state, myRate) => {
       let index = state.auth.user.myRates.findIndex(
         (rate) => rate.movieDbId === myRate.movieDbId
@@ -59,7 +49,7 @@ const store = {
         siteLang = "fr";
         await this.$cookiz.set("siteLang", siteLang);
       }
-      commit("SET_LANG", siteLang);
+
       this.$i18n.locale = siteLang;
       await this.$i18n.setLocale(siteLang);
       await this.switchLocalePath(siteLang);
@@ -129,11 +119,6 @@ const store = {
         .then(async (response) => {
           await this.$auth.logout(); // this method will logout the user and make token to false on the local storage of the user browser
         });
-    },
-
-    // Set language
-    async setLanguage({ commit }, langCode) {
-      commit("SET_LANG", langCode);
     },
   },
 

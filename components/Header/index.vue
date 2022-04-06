@@ -191,7 +191,6 @@ export default {
   data() {
     return {
       bannerURL: process.env.bannerPicURL,
-      siteLang: this.$i18n.locale,
     };
   },
   methods: {

@@ -71,11 +71,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      siteLang: this.$i18n.locale,
-    };
-  },
   methods: {
     async deleteUser(_id) {
       if (confirm(this.$t("deleteUserOK"))) {
