@@ -1,9 +1,9 @@
 <template>
   <div ref="moviesContainer">
     <div v-if="movies.length > 0">
-      <v-container class="d-flex grey lighten-5">
+      <v-container class="grey lighten-5">
         <v-row no-gutters>
-          <v-col v-for="movie in movies" :key="movie._id" cols="6" md="3">
+          <v-col v-for="movie in movies" :key="movie._id" cols="12" md="3">
             <nuxt-link
               class="nav-link active"
               aria-current="page"
@@ -15,45 +15,30 @@
                 })
               "
             >
-              <div class="card">
-                <v-card>
-                  <div class="hover10">
-                    <figure>
-                      <img
-                        class="imgMovieCard"
-                        :srcset="url + movie[language].poster_path"
-                      />
-                      <UIFavoriteIcon
-                        v-if="isAuthenticated"
-                        :myFavorites="myFavorites"
-                        :movieDbId="movie.movieDbId"
-                      />
-                    </figure>
-                  </div>
-                  <div class="cardInfos">
-                    <v-card-title v-if="movie[language].title.length > 22"
-                      >{{
-                        movie[language].title.substring(0, 22)
-                      }}...</v-card-title
-                    >
-                    <v-card-title v-else>{{
-                      movie[language].title
-                    }}</v-card-title>
-                    <div v-if="isAuthenticated" class="text-subtitle-1">
-                      {{ movie.release_date.substring(0, 4) }}
-                    </div>
-                    <div v-else class="text-subtitle-1">
-                      {{ movie.release_date.substring(0, 4) }}
-                    </div>
-                    <div v-if="isAuthenticated">
-                      <UIRatingStars
-                        :myRates="myRates"
-                        :movieDbId="movie.movieDbId"
-                      />
-                    </div>
-                  </div>
-                </v-card>
-              </div>
+              <v-card class="card">
+                <img
+                  class="imgMovieCard"
+                  :srcset="url + movie[language].poster_path"
+                />
+                <UIFavoriteIcon
+                  v-if="isAuthenticated"
+                  :myFavorites="myFavorites"
+                  :movieDbId="movie.movieDbId"
+                />
+                <div class="d-block">
+                  <v-card-title>{{
+                    titleHandler(movie[language].title)
+                  }}</v-card-title>
+                  <v-card-subtitle>
+                    {{ movie.release_date.substring(0, 4) }}
+                  </v-card-subtitle>
+                  <UIRatingStars
+                    :myRates="myRates"
+                    :movieDbId="movie.movieDbId"
+                    v-if="isAuthenticated"
+                  />
+                </div>
+              </v-card>
             </nuxt-link>
           </v-col>
         </v-row>
@@ -94,6 +79,31 @@ export default {
     changePageContent(page) {
       this.$emit("changeHomeContent", page);
     },
+    titleHandler(title) {
+      let titleToDisplay = "";
+      if (title.length > 20) {
+        let words = title.split(" ");
+
+        for (let word of words) {
+          if (titleToDisplay === "") {
+            if (word.length <= 20) {
+              titleToDisplay += word;
+            } else {
+              titleToDisplay += word.slice(0, 16) + " ...";
+            }
+          } else if (titleToDisplay.length + word.length + 1 <= 20) {
+            titleToDisplay += " " + word;
+          } else {
+            titleToDisplay += " ...";
+            break;
+          }
+        }
+      } else {
+        titleToDisplay = title;
+      }
+
+      return titleToDisplay;
+    },
   },
   async mounted() {
     this.$nextTick(async () => {
@@ -116,77 +126,46 @@ export default {
 };
 </script>
 <style scoped>
-.card {
+.v-card {
+  display: flex;
   margin: 5px;
   border: 0px;
   border-radius: 10px;
   overflow: hidden;
-  min-width: 270px;
-  max-width: 315px;
-  width: 100%;
+  max-width: 300px;
 }
-.imgMovieCard {
+.v-card img {
   object-fit: cover;
-  width: 100%;
-  height: auto;
-  max-width: 315px;
+  max-width: 300px;
+  margin: 0;
+  padding: 0;
+  -webkit-filter: sepia(0);
+  filter: sepia(0);
+  -webkit-transition: 0.6s ease-in-out;
+  transition: 0.6s ease-in-out;
 }
-.v-card__text {
-  max-height: 200px;
-  font-family: "Lato", sans-serif;
-  font-size: 18px;
+.v-card img:hover {
+  -webkit-filter: sepia(100%);
+  filter: sepia(100%);
 }
 .v-card__title {
-  padding: 10px 10px 0 10px;
+  padding: 5px 5px 0 10px;
   color: var(--color-fushia);
   font-family: "Ubuntu", sans-serif;
   font-weight: 600;
 }
-.text-subtitle-1 {
-  padding-left: 10px;
+.v-card__subtitle {
+  margin-top: 0;
+  padding: 0 0 5px 10px;
   font-family: "Lato", sans-serif;
   font-weight: 600;
   color: var(--color-fushia);
   font-size: 17px;
 }
-.cardInfos {
-  background-color: #d29eeb31;
-}
-.v-card__actions {
-  padding: 0;
-}
-.v-rating {
-  padding-bottom: 5px;
-}
-.v-icon {
-}
-figure {
-  display: flex;
-  margin: 0;
-}
 .v-icon.v-icon.v-icon--link {
-  cursor: pointer;
   outline: none;
-}
-/* Blur + Gray Scale */
-.hover10 figure img {
-  -webkit-filter: sepia(0);
-  filter: sepia(0);
-  -webkit-transition: 0.6s ease-in-out;
-  transition: 0.6s ease-in-out;
-  cursor: pointer;
-}
-.hover10 figure:hover img {
-  -webkit-filter: sepia(100%);
-  filter: sepia(100%);
 }
 .noMovieInDB {
   text-align: center;
-}
-
-@media (min-width: 1251px) {
-  .imgMovieCard {
-    min-height: 412px;
-  }
 }
 </style>

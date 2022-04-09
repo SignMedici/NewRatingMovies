@@ -139,6 +139,7 @@ const store = {
 
       if (state.auth.user) {
         let userFav = state.auth.user.myFavorites;
+
         userFav.forEach((movieDbId) => {
           state.moviesStore.movies.forEach((movie) => {
             if (movie.movieDbId === movieDbId) {

@@ -260,7 +260,6 @@ table span {
 
 .overview::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  /* background-color: rgba(82,15,73,1); */
   background-color: var(--color-fushia);
 }
 

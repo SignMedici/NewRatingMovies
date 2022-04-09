@@ -3,7 +3,7 @@
     <UIBigLogo />
     <v-container class="grey lighten-5 square">
       <!-- Back button -->
-      <UIBackBtn :backPath="'index'" />
+      <UIBackBtn :path="'index'" />
       <!-- Page logo and title -->
       <div class="pageLogoTitle">
         <img class="favLogo" src="~/assets/favIcons/favorites.png" />

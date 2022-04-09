@@ -1,14 +1,12 @@
 <template>
-  <div id="favoriteIcon">
-    <button @click="toggleFavorite">
-      <img
-        v-if="favStatus"
-        class="movieFavIcon"
-        src="~/assets/favIcons/favMinus.png"
-      />
-      <img v-else class="movieFavIcon" src="~/assets/favIcons/favPlus.png" />
-    </button>
-  </div>
+  <button @click="toggleFavorite" id="favIcon">
+    <img
+      v-if="favStatus"
+      class="movieFavIcon"
+      src="~/assets/favIcons/favMinus.png"
+    />
+    <img v-else class="movieFavIcon" src="~/assets/favIcons/favPlus.png" />
+  </button>
 </template>
 <script>
 export default {
@@ -53,6 +51,10 @@ export default {
 };
 </script>
 <style scoped>
+#favIcon {
+  margin: 0;
+  padding: 0;
+}
 .movieFavIcon {
   position: absolute;
   top: 15px;
