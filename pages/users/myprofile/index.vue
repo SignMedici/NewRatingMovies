@@ -27,13 +27,13 @@
       </nuxt-link>
     </div>
     <div class="profileInfo">
-      <img
+      <!-- <img
         class="portrait"
         :src="gcsPicURL + currentUser.profilePic"
         alt="Profile Pic"
         v-show="isLoaded"
         @load="loaded"
-      />
+      /> -->
       <v-card class="bussinessCard">
         <div id="infos">
           <div class="d-flex">
