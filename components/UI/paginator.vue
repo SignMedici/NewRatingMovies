@@ -1,16 +1,16 @@
 <template>
-  <div class="text-center" v-if="buttonsLength > 1">
-    <v-pagination
-      v-model="page"
-      :length="buttonsLength"
-      @input="next"
-      :total-visible="nbButtons"
-      prev-icon="mdi-menu-left"
-      next-icon="mdi-menu-right"
-      color="var(--color-fushia)"
-      circle
-    ></v-pagination>
-  </div>
+  <v-pagination
+    id="paginator"
+    v-if="buttonsLength > 1"
+    v-model="page"
+    :length="buttonsLength"
+    @input="next"
+    :total-visible="nbButtons"
+    prev-icon="mdi-menu-left"
+    next-icon="mdi-menu-right"
+    color="var(--color-fushia)"
+    circle
+  ></v-pagination>
 </template>
 <script>
 export default {

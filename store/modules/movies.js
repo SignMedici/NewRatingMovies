@@ -4,7 +4,7 @@ const state = () => {
     movies: [], // For results coming from DB
     results: [], // For search results from API and getMovieById
     currentMovie: {}, // movie to display
-    nbMovies: 0, // Total number of movies in DB
+    nbItems: 0, // For paginator
   };
 };
 
@@ -14,8 +14,8 @@ const mutations = {
     state.movies = allMovies;
   },
 
-  SET_NB_TOTAL_MOVIES: (state, nb) => {
-    state.nbMovies = nb;
+  SET_NB_ITEMS: (state, nb) => {
+    state.nbItems = nb;
   },
 
   ADD_MOVIE: (state, movie) => {
@@ -64,7 +64,7 @@ const actions = {
       )
       .then((response) => {
         commit("SET_MOVIES", response.data.movies);
-        commit("SET_NB_TOTAL_MOVIES", response.data.nbMovies);
+        commit("SET_NB_ITEMS", response.data.nbMovies);
       });
   },
 

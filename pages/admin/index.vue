@@ -25,12 +25,12 @@
       <v-tabs-items v-model="tab">
         <v-tab-item v-for="item in [$t('users'), $t('movies')]" :key="item">
           <v-card v-if="item === $t('users')" class="tableMain">
-            <AdminUsersDesktop />
-            <AdminUsersMobile />
+            <AdminUsersDesktop v-if="showDesktop" />
+            <AdminUsersMobile v-if="showMobile" />
           </v-card>
           <v-card v-else class="tableMain">
-            <AdminMoviesDesktop />
-            <AdminMoviesMobile />
+            <AdminMoviesDesktop v-if="showDesktop" />
+            <AdminMoviesMobile v-if="showMobile" />
           </v-card>
         </v-tab-item>
         <UIBtnTop :showAt="300" />
@@ -44,7 +44,8 @@ export default {
   data() {
     return {
       tab: null,
-      language: this.$i18n.locale,
+      showDesktop: false,
+      showMobile: false,
     };
   },
   computed: {
@@ -55,6 +56,10 @@ export default {
         this.$router.push("/");
       }
     },
+  },
+  mounted() {
+    let screenSize = window.innerWidth;
+    screenSize >= 1024 ? (this.showDesktop = true) : (this.showMobile = true);
   },
 };
 </script>

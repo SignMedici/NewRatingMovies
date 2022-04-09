@@ -45,7 +45,7 @@
       </v-container>
       <UIPaginator
         :perPage="perPage"
-        :totalItems="nbMovies"
+        :totalItems="nbItems"
         @changePage="changePageContent"
       />
     </div>
@@ -56,7 +56,7 @@
 </template>
 <script>
 export default {
-  props: ["movies", "nbMovies", "perPage"],
+  props: ["movies", "perPage", "nbItems"],
   data() {
     return {
       language: this.$i18n.locale,

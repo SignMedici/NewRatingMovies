@@ -3,7 +3,7 @@
     <UIBigLogo />
     <MovieRateCards
       :movies="movies"
-      :nbMovies="nbMovies"
+      :nbItems="nbItems"
       :perPage="perPage"
       @changeHomeContent="changeContent"
     />
@@ -16,11 +16,10 @@ export default {
   data() {
     return {
       perPage: 8,
-      currentPage: 1,
     };
   },
   computed: {
-    ...mapState("moviesStore", ["movies", "nbMovies"]),
+    ...mapState("moviesStore", ["movies", "nbItems"]),
   },
   async created() {
     await this.$store.dispatch("moviesStore/getMovies", [
@@ -31,7 +30,6 @@ export default {
   },
   methods: {
     async changeContent(page) {
-      this.currentPage = page;
       await this.$store.dispatch("moviesStore/getMovies", [
         page - 1,
         this.perPage,
