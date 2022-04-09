@@ -1,5 +1,5 @@
 <template>
-  <div v-if="roleIsAdmin" id="adminMoviesDesktop">
+  <div v-if="roleIsAdmin && showData" id="adminMoviesDesktop">
     <div>
       <nuxt-link
         :to="localePath({ name: 'admin-movies-add', hash: '#logo' })"
@@ -89,7 +89,7 @@
     </table>
     <UIPaginator
       :perPage="perPage"
-      :totalItems="nbMoviesDB"
+      :totalItems="nbItems"
       @changePage="changePageContent"
     />
   </div>
@@ -99,16 +99,17 @@
 import { mapState } from "vuex";
 
 export default {
-  props: ["perPage", "nbMoviesDB"],
   data() {
     return {
       baseURL: process.env.baseURL,
       currentPage: 1,
+      perPage: 5,
       siteLang: this.$i18n.locale,
+      showData: false,
     };
   },
   computed: {
-    ...mapState("moviesStore", ["movies", "nbMoviesDB"]),
+    ...mapState("moviesStore", ["movies", "nbItems"]),
     roleIsAdmin() {
       if (this.$store.getters.roleIsAdmin === true) {
         return true;
@@ -144,11 +145,12 @@ export default {
     },
   },
   async created() {
-    await this.$store.dispatch("moviesStore/getMovies", [
+    const response = await this.$store.dispatch("moviesStore/getMovies", [
       0,
       this.perPage,
       "admin",
     ]);
+    this.showData = true;
   },
 };
 </script>
