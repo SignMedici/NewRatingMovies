@@ -71,8 +71,8 @@ const actions = {
   async getMovieById({ commit }, id) {
     const response = await this.$axios
       .get(process.env.baseURL + "/movies/" + id)
-      .then(async (response) => {
-        await commit("SET_CURRENT_MOVIE", response.data);
+      .then((response) => {
+        commit("SET_CURRENT_MOVIE", response.data);
       })
       .catch((err) => {
         this.$toast.error(err);
