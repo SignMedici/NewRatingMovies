@@ -1,5 +1,5 @@
 <template>
-  <div class="moviePage">
+  <div id="moviePage">
     <UIBigLogo />
     <MovieOverviewDesktop v-if="showDesktop" />
     <MovieOverviewMobile v-if="showMobile" />
@@ -19,24 +19,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.desktop {
-  display: block;
-}
-.mobile {
-  display: none;
-}
-
-.movieData {
-  color: white;
-}
-
-@media (max-width: 1024px) {
-  .desktop {
-    display: none;
-  }
-  .mobile {
-    display: block;
-  }
-}
-</style>
