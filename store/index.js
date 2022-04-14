@@ -132,24 +132,6 @@ const store = {
     roleIsAdmin(state) {
       return state.auth.user?.isAdmin ? true : false;
     },
-
-    // get movie information of logged favorites
-    getUserFavorites(state) {
-      let userFavorites = [];
-
-      if (state.auth.user) {
-        let userFav = state.auth.user.myFavorites;
-
-        userFav.forEach((movieDbId) => {
-          state.moviesStore.movies.forEach((movie) => {
-            if (movie.movieDbId === movieDbId) {
-              userFavorites.push(movie);
-            }
-          });
-        });
-      }
-      return userFavorites;
-    },
   },
 
   modules: {

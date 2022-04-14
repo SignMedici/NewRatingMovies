@@ -1,16 +1,19 @@
 <template>
-  <div ref="movieTrailers" v-if="trailers.length > 0">
-    <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
-    <div class="trailers" v-for="trailer in trailers">
-      <iframe
-        class="trailer"
-        :src="baseVideoURL + trailer.key"
-        :width="width"
-        :height="height"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-        allowfullscreen
-      ></iframe>
+  <div>
+    <div ref="movieTrailers" v-if="trailers.length > 0">
+      <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
+      <div class="trailers" v-for="trailer in trailers">
+        <iframe
+          class="trailer"
+          :src="baseVideoURL + trailer.key"
+          :width="width"
+          :height="height"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
+          scrolling="no"
+          allowfullscreen
+        ></iframe>
+      </div>
     </div>
   </div>
 </template>

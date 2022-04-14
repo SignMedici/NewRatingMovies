@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isAuthenticated">
+  <div v-if="isAuthenticated && showData">
     <UIBigLogo />
     <v-container class="grey lighten-5 square">
       <!-- Back button -->
@@ -13,19 +13,30 @@
     </v-container>
     <!-- Movies cards -->
     <div class="my-5">
-      <MovieRateCards :movies="getUserFavorites" />
+      <MovieRateCards
+        :movies="results[0]"
+        :perPage="perPage"
+        :nbItems="nbItems"
+        @changeHomeContent="changeContent"
+      />
     </div>
     <UIBtnTop :showAt="300" />
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
+  data() {
+    return {
+      perPage: 8,
+      page: 0,
+      showData: false,
+    };
+  },
   computed: {
-    getUserFavorites() {
-      if (this.$store.getters.getUserInfo) {
-        return this.$store.getters.getUserFavorites;
-      }
-    },
+    ...mapState(["auth"]),
+    ...mapState("moviesStore", ["results", "nbItems"]),
     isAuthenticated() {
       if (this.$store.getters.isAuthenticated) {
         return this.$store.getters.isAuthenticated; // check if there is an authenticated user
@@ -33,6 +44,24 @@ export default {
         this.$router.push("/");
       }
     },
+  },
+  methods: {
+    async changeContent(page) {
+      console.log("🚀 ~ changeContent ~ page", page);
+      await this.$store.dispatch("moviesStore/getUserFavorites", [
+        this.auth.user.id,
+        page,
+        this.perPage,
+      ]);
+      document.getElementById("logo").scrollIntoView();
+    },
+  },
+  async created() {
+    const response = await this.$store.dispatch(
+      "moviesStore/getUserFavorites",
+      [this.auth.user.id, this.page, this.perPage]
+    );
+    this.showData = true;
   },
 };
 </script>

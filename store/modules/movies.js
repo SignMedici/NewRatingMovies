@@ -68,6 +68,19 @@ const actions = {
       });
   },
 
+  // get information of favorite movies
+  async getUserFavorites({ commit }, [userId, page, perPage]) {
+    const response = await this.$axios
+      .get(
+        process.env.baseURL +
+          `/users/${userId}/favorites?page=${page}&size=${perPage}`
+      )
+      .then(async (response) => {
+        await commit("SET_RESULTS", response.data.movies);
+        await commit("SET_NB_ITEMS", response.data.nbFavorites);
+      });
+  },
+
   async getMovieById({ commit }, id) {
     const response = await this.$axios
       .get(process.env.baseURL + "/movies/" + id)

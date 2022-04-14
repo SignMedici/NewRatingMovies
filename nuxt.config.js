@@ -170,6 +170,7 @@ export default {
           login: { url: "/auth/login", method: "post" },
           logout: false,
           user: { url: "/auth/user", method: "get" },
+          refresh: { url: "/auth/refresh", method: "post" },
         },
       },
     },
