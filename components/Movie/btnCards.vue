@@ -1,32 +1,27 @@
 <template>
   <div id="movieResults">
-    <v-container class="d-flex grey lighten-5">
+    <v-container class="cardContainer d-flex grey lighten-5">
       <v-row no-gutters>
         <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="3">
-          <div class="cardContainer">
+          <div>
             <div class="card">
               <v-card>
-                <div class="hover10">
-                  <figure>
-                    <!-- Poster -->
-                    <button
-                      class="imgMovieCard"
-                      @click="getInfo(null, null, movie)"
-                    >
-                      <img
-                        v-if="movie[siteLang].poster_path"
-                        :srcset="url + movie[siteLang].poster_path"
-                        class="imgMovieCard"
-                      />
-                      <img
-                        v-else
-                        class="defaultPic"
-                        src="~/assets/no_picture.png"
-                        alt="default picture"
-                      />
-                    </button>
-                  </figure>
-                </div>
+                <figure>
+                  <!-- Poster -->
+                  <button @click="getInfo(null, null, movie)">
+                    <img
+                      v-if="movie[siteLang].poster_path"
+                      :srcset="url + movie[siteLang].poster_path"
+                      class="imgMovieCard hover10"
+                    />
+                    <img
+                      v-else
+                      class="defaultPic hover10"
+                      src="~/assets/no_picture.png"
+                      alt="default picture"
+                    />
+                  </button>
+                </figure>
                 <div class="cardInfos">
                   <!-- Title -->
                   <v-card-title v-if="movie[siteLang].title.length > 22"
@@ -229,7 +224,6 @@ figure {
   filter: sepia(0);
   -webkit-transition: 0.6s ease-in-out;
   transition: 0.6s ease-in-out;
-  cursor: pointer;
 }
 .hover10 figure:hover img {
   -webkit-filter: sepia(100%);

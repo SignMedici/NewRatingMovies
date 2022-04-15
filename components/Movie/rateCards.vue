@@ -4,42 +4,39 @@
       <v-container class="grey lighten-5">
         <v-row no-gutters>
           <v-col v-for="movie in movies" :key="movie._id" cols="12" md="3">
-            <nuxt-link
-              class="nav-link active"
-              aria-current="page"
-              :to="
-                localePath({
-                  name: 'movies-id',
-                  params: { id: movie._id },
-                  hash: '#logo',
-                })
-              "
-            >
-              <v-card class="card">
-                <img
-                  class="imgMovieCard"
-                  :srcset="url + movie[language].poster_path"
-                />
+            <v-card class="card">
+              <nuxt-link
+                class="d-flex nav-link active"
+                aria-current="page"
+                :to="
+                  localePath({
+                    name: 'movies-id',
+                    params: { id: movie._id },
+                    hash: '#logo',
+                  })
+                "
+              >
+                <img :srcset="url + movie[language].poster_path" />
                 <UIFavoriteIcon
                   v-if="isAuthenticated"
                   :myFavorites="myFavorites"
                   :movieDbId="movie.movieDbId"
                 />
-                <div class="d-block">
-                  <v-card-title>{{
-                    titleHandler(movie[language].title)
-                  }}</v-card-title>
-                  <v-card-subtitle>
-                    {{ movie.release_date.substring(0, 4) }}
-                  </v-card-subtitle>
-                  <UIRatingStars
-                    :myRates="myRates"
-                    :movieDbId="movie.movieDbId"
-                    v-if="isAuthenticated"
-                  />
-                </div>
-              </v-card>
-            </nuxt-link>
+              </nuxt-link>
+              <div class="d-block">
+                <v-card-title>{{
+                  titleHandler(movie[language].title)
+                }}</v-card-title>
+                <v-card-subtitle>
+                  {{ movie.release_date.substring(0, 4) }}
+                </v-card-subtitle>
+                <UIRatingStars
+                  :myRates="myRates"
+                  :movieDbId="movie.movieDbId"
+                  v-if="isAuthenticated"
+                />
+              </div>
+            </v-card>
           </v-col>
         </v-row>
       </v-container>
@@ -128,7 +125,7 @@ export default {
 <style scoped>
 .v-card {
   display: flex;
-  margin: 5px;
+  margin: 10px;
   border: 0px;
   border-radius: 10px;
   overflow: hidden;
@@ -136,6 +133,7 @@ export default {
 }
 .v-card img {
   object-fit: cover;
+  width: 100%;
   max-width: 300px;
   margin: 0;
   padding: 0;
@@ -164,6 +162,9 @@ export default {
 }
 .v-icon.v-icon.v-icon--link {
   outline: none;
+}
+.nav-link {
+  padding: 0;
 }
 .noMovieInDB {
   text-align: center;
