@@ -1,5 +1,5 @@
 <template>
-  <div v-if="roleIsAdmin">
+  <div v-if="roleIsAdmin && showData">
     <UIBigLogo />
     <v-container class="grey lighten-5 square" ref="updateForm">
       <!-- Back button -->
@@ -19,20 +19,28 @@
         <!-- Title -->
         <div>
           <label>{{ $t("title") }}</label>
-          <input type="text" class="form-control" v-model="title" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="currentMovie[siteLang].title"
+          />
         </div>
         <!-- Release date -->
         <div class="my-3">
           <label
             >{{ $t("releaseDate") }} <small>(Format: YYYY-MM-DD)</small></label
           >
-          <input type="text" class="form-control" v-model="release_date" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="currentMovie.release_date"
+          />
         </div>
         <!-- Genre -->
         <div>
           <label>Genre</label>
           <UIGenreSelector
-            :movieGenre="genre"
+            :movieGenre="currentMovie.genre"
             :allGenres="movieGenres"
             :newGenre.sync="genre"
           />
@@ -43,7 +51,7 @@
           <input
             type="number"
             class="form-control"
-            v-model="vote_average"
+            v-model="currentMovie.vote_average"
             step="0.1"
             min="0"
             max="10"
@@ -52,12 +60,20 @@
         <!-- Director -->
         <div>
           <label>{{ $t("director") }}</label>
-          <input type="text" class="form-control" v-model="director" />
+          <input
+            type="text"
+            class="form-control"
+            v-model="currentMovie.director"
+          />
         </div>
         <!-- Overview -->
         <div class="mt-3">
           <label>{{ $t("overview") }}</label>
-          <textarea class="form-control" v-model="overview" rows="4" />
+          <textarea
+            class="form-control"
+            v-model="currentMovie[siteLang].overview"
+            rows="4"
+          />
         </div>
         <!-- Submit button -->
         <button type="submit" class="btn confirmButton mt-5">
@@ -86,6 +102,7 @@ export default {
       baseURL: process.env.baseURL,
       siteLang: this.$i18n.locale,
       movieGenres: process.env.MOVIE_GENRES,
+      showData: false,
     };
   },
   methods: {
@@ -127,17 +144,7 @@ export default {
       this.$route.params.id
     );
 
-    if (this.currentMovie) {
-      this.title = this.currentMovie[this.siteLang].title;
-      this.vote_average = this.currentMovie.vote_average;
-      this.genre = this.currentMovie.genre;
-      this.release_date = this.currentMovie.release_date;
-      this.overview = this.currentMovie[this.siteLang].overview;
-      this.director = this.currentMovie.director;
-      this.poster_path = this.currentMovie[this.siteLang].poster_path;
-    } else {
-      this.$router.push("/admin");
-    }
+    this.showData = true;
   },
 };
 </script>
