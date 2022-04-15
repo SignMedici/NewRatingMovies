@@ -9,26 +9,26 @@
   </button>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
-  props: ["myFavorites", "movieDbId"],
+  props: ["movieDbId"],
   data() {
     return {
       favStatus: false,
       baseURL: process.env.baseURL,
     };
   },
+  computed: {
+    ...mapState(["auth"]),
+  },
   methods: {
     toggleFavorite() {
       //Change value of the icon to make it full or empty
-      if (this.favStatus === false) {
-        this.favStatus = true;
-      } else {
-        this.favStatus = false;
-      }
+      this.favStatus = !this.favStatus;
 
       //Add & remove the favorite
-      let userId = this.$store.getters.getUserInfo.id;
-
+      let userId = this.auth.user.id;
       if (userId) {
         this.$store.dispatch("updateFavorite", [userId, this.movieDbId]);
       } else {
@@ -37,16 +37,9 @@ export default {
     },
   },
   created() {
-    if (this.myFavorites) {
-      if (this.myFavorites.length > 0) {
-        for (let i = 0; i < this.myFavorites.length; i++) {
-          if (this.myFavorites[i] === this.movieDbId) {
-            this.favStatus = 1;
-            break;
-          }
-        }
-      }
-    }
+    this.favStatus = this.auth.user.myFavorites.includes(this.movieDbId)
+      ? true
+      : false;
   },
 };
 </script>
@@ -54,6 +47,9 @@ export default {
 #favIcon {
   margin: 0;
   padding: 0;
+}
+
+#favIcon:hover {
 }
 .movieFavIcon {
   position: absolute;

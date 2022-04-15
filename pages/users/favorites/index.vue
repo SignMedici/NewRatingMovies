@@ -3,7 +3,7 @@
     <UIBigLogo />
     <v-container class="grey lighten-5 square">
       <!-- Back button -->
-      <UIBackBtn :path="'index'" />
+      <UIBackBtn :backPath="'index'" />
       <!-- Page logo and title -->
       <div class="pageLogoTitle">
         <img class="favLogo" src="~/assets/favIcons/favorites.png" />
@@ -47,7 +47,6 @@ export default {
   },
   methods: {
     async changeContent(page) {
-      console.log("🚀 ~ changeContent ~ page", page);
       await this.$store.dispatch("moviesStore/getUserFavorites", [
         this.auth.user.id,
         page,

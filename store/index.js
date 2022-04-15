@@ -37,7 +37,7 @@ const store = {
   },
 
   actions: {
-    async nuxtServerInit({ dispatch, commit }) {
+    async nuxtServerInit({ dispatch }) {
       await dispatch("moviesStore/getMovies", [0, 8, "min"]);
 
       // set siteLanguage
@@ -103,9 +103,11 @@ const store = {
     //Update favorite
     async updateFavorite({ commit }, [userId, movieDbId]) {
       const response = await this.$axios
-        .patch(process.env.baseURL + "/users/" + userId + "/" + movieDbId)
+        .post(
+          process.env.baseURL + "/users/" + userId + "/favorites/" + movieDbId
+        )
         .then((response) => {
-          commit("UPDATE_FAVORITE", response.data);
+          commit("UPDATE_FAVORITE", response.data.movieDbId);
         });
     },
 

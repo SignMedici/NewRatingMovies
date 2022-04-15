@@ -17,12 +17,11 @@
                 "
               >
                 <img :srcset="url + movie[language].poster_path" />
-                <UIFavoriteIcon
-                  v-if="isAuthenticated"
-                  :myFavorites="myFavorites"
-                  :movieDbId="movie.movieDbId"
-                />
               </nuxt-link>
+              <UIFavoriteIcon
+                v-if="isAuthenticated"
+                :movieDbId="movie.movieDbId"
+              />
               <div class="d-block">
                 <v-card-title>{{
                   titleHandler(movie[language].title)
@@ -52,6 +51,8 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   props: ["movies", "perPage", "nbItems"],
   data() {
@@ -64,10 +65,10 @@ export default {
       sortBy: "title",
       sortDirection: "asc",
       myRates: [],
-      myFavorites: [],
     };
   },
   computed: {
+    ...mapState(["auth"]),
     isAuthenticated() {
       return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
@@ -102,7 +103,7 @@ export default {
       return titleToDisplay;
     },
   },
-  async mounted() {
+  async created() {
     this.$nextTick(async () => {
       let elem = this.$refs.moviesContainer;
       if (typeof elem != "undefined") {
@@ -111,12 +112,8 @@ export default {
           this.perPage = 5;
         }
       }
-      if (this.$store.getters.getUserInfo) {
-        this.myRates = this.$store.getters.getUserInfo.myRates;
-      }
-
-      if (this.$store.getters.getUserInfo) {
-        this.myFavorites = this.$store.getters.getUserInfo.myFavorites;
+      if (this.auth.user) {
+        this.myRates = await this.auth.user.myRates;
       }
     });
   },
