@@ -39,9 +39,7 @@
         </button>
       </v-form>
     </v-container>
-    <div v-if="this.results !== ''">
-      <MovieBtnCards :btnTxt="this.btnTxt" />
-    </div>
+    <MovieBtnCards :btnTxt="this.btnTxt" />
     <UIBtnTop :showAt="300" />
   </div>
 </template>
@@ -60,12 +58,12 @@ export default {
   },
   methods: {
     async getSearchResult() {
+      console.log("ok");
       if (this.title !== "") {
         await this.$store.dispatch("moviesStore/getSearchResults", [
           this.title.replace(" ", "+"),
           this.siteLang,
         ]);
-        this.results = "OK";
       } else {
         this.$toast.info(this.$t("enterTitle"));
       }

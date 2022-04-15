@@ -2,66 +2,60 @@
   <div id="movieResults">
     <v-container class="cardContainer d-flex grey lighten-5">
       <v-row no-gutters>
-        <v-col v-for="movie in movies" :key="movie.id" cols="12" sm="3">
-          <div>
-            <div class="card">
-              <v-card>
-                <figure>
-                  <!-- Poster -->
-                  <button @click="getInfo(null, null, movie)">
-                    <img
-                      v-if="movie[siteLang].poster_path"
-                      :srcset="url + movie[siteLang].poster_path"
-                      class="imgMovieCard hover10"
-                    />
-                    <img
-                      v-else
-                      class="defaultPic hover10"
-                      src="~/assets/no_picture.png"
-                      alt="default picture"
-                    />
-                  </button>
-                </figure>
-                <div class="cardInfos">
-                  <!-- Title -->
-                  <v-card-title v-if="movie[siteLang].title.length > 22"
-                    >{{
-                      movie[siteLang].title.substring(0, 22)
-                    }}...</v-card-title
-                  >
-                  <v-card-title v-else>{{
-                    movie[siteLang].title
-                  }}</v-card-title>
-                  <!-- Year -->
-                  <div
-                    v-if="movie.release_date"
-                    class="text-subtitle-1 ms-1 mb-2"
-                  >
-                    {{ movie.release_date.substring(0, 4) }}
-                  </div>
-                  <div v-else class="mb-2"><br /></div>
-                  <!-- Button -->
-                  <v-card-actions>
-                    <button
-                      v-if="btnTxt === 'add'"
-                      type="submit"
-                      @click="checkIsInDB(filePath, fileToModify, movie)"
-                      class="btn w-50 confirmButton"
-                    >
-                      {{ $t("add") }}
-                    </button>
-                    <button
-                      v-else-if="btnTxt === 'select'"
-                      type="submit"
-                      @click="getInfo(filePath, fileToModify, movie)"
-                      class="btn w-50 confirmButton"
-                    >
-                      {{ $t("choose") }}
-                    </button>
-                  </v-card-actions>
+        <v-col v-for="movie in results[0]" :key="movie.id" cols="12" sm="3">
+          <div class="cardContainer">
+            <v-card class="card">
+              <figure>
+                <!-- Poster -->
+                <button @click="getInfo(null, null, movie)">
+                  <img
+                    v-if="movie[siteLang].poster_path"
+                    :srcset="url + movie[siteLang].poster_path"
+                    class="imgMovieCard hover10"
+                  />
+                  <img
+                    v-else
+                    class="defaultPic hover10"
+                    src="~/assets/no_picture.png"
+                    alt="default picture"
+                  />
+                </button>
+              </figure>
+              <div class="cardInfos">
+                <!-- Title -->
+                <v-card-title v-if="movie[siteLang].title.length > 22"
+                  >{{ movie[siteLang].title.substring(0, 22) }}...</v-card-title
+                >
+                <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
+                <!-- Year -->
+                <div
+                  v-if="movie.release_date"
+                  class="text-subtitle-1 ms-1 mb-2"
+                >
+                  {{ movie.release_date.substring(0, 4) }}
                 </div>
-              </v-card>
-            </div>
+                <div v-else class="mb-2"><br /></div>
+                <!-- Button -->
+                <v-card-actions>
+                  <button
+                    v-if="btnTxt === 'add'"
+                    type="submit"
+                    @click="checkIsInDB(filePath, fileToModify, movie)"
+                    class="btn w-50 confirmButton"
+                  >
+                    {{ $t("add") }}
+                  </button>
+                  <button
+                    v-else-if="btnTxt === 'select'"
+                    type="submit"
+                    @click="getInfo(filePath, fileToModify, movie)"
+                    class="btn w-50 confirmButton"
+                  >
+                    {{ $t("choose") }}
+                  </button>
+                </v-card-actions>
+              </div>
+            </v-card>
           </div>
         </v-col>
       </v-row>
@@ -71,9 +65,10 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
-  props: ["btnTxt", "fileToModify", "filePath", "movies"],
+  props: ["btnTxt", "fileToModify", "filePath"],
   data() {
     return {
       movieDbId: 0,
@@ -90,6 +85,9 @@ export default {
       baseURL: process.env.baseURL,
       siteLang: this.$i18n.locale,
     };
+  },
+  computed: {
+    ...mapState("moviesStore", ["results"]),
   },
   methods: {
     async checkIsInDB(filePath, fileToModify, movie) {
@@ -149,14 +147,18 @@ export default {
       this.$toast.success(this.$t("addDone"));
     },
   },
+  created() {
+    console.log(this.results[0]);
+  },
 };
 </script>
 <style scoped>
 .cardContainer {
   position: relative;
-  padding: 5px;
+  padding: 10px;
 }
 .card {
+  display: flex;
   border: 0px;
   border-radius: 10px;
   overflow: hidden;
