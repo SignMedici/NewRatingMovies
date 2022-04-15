@@ -118,7 +118,7 @@ const actions = {
     const response = await this.$axios
       .delete(process.env.baseURL + "/movies/" + id)
       .then((response) => {
-        commit("DELETE_MOVIE", id);
+        commit("DELETE_MOVIE", response.deletedId);
       })
       .catch((err) => {
         this.$toast.error(err);
