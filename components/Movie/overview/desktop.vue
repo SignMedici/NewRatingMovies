@@ -99,6 +99,7 @@
       </div>
     </div>
     <MovieTrailers
+      v-if="currentMovie"
       :trailers="currentMovie[siteLang].trailers.slice(fromIndex, toIndex)"
     />
     <UIPaginator

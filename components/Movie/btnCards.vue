@@ -147,9 +147,6 @@ export default {
       this.$toast.success(this.$t("addDone"));
     },
   },
-  created() {
-    console.log(this.results[0]);
-  },
 };
 </script>
 <style scoped>
