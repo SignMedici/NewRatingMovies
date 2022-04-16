@@ -12,6 +12,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
+
 export default {
   data() {
     return {
@@ -22,6 +23,7 @@ export default {
     ...mapState("moviesStore", ["movies", "nbItems"]),
   },
   async created() {
+    this.$screen.width >= 1024 ? (this.perPage = 8) : (this.perPage = 5);
     await this.$store.dispatch("moviesStore/getMovies", [
       0,
       this.perPage,

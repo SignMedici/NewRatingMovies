@@ -150,6 +150,7 @@ export default {
     ["@nuxtjs/dotenv", { systemvars: true }],
     // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
     ["@nuxtjs/i18n", I18N],
+    "vue-screen/nuxt",
   ],
 
   // Auth
@@ -193,5 +194,8 @@ export default {
   // Dov env module options
   dotenv: {
     /* module options */
+  },
+  screen: {
+    extend: "bootstrap",
   },
 };
