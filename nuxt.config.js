@@ -101,7 +101,6 @@ export default {
   env: {
     baseURL: process.env.BASE_URL,
     apiPicURL: process.env.API_PIC_URL,
-    bannerPicURL: process.env.BANNER_PIC_URL,
     gcsPicURL: process.env.GCS_PIC_URL,
     MOVIE_GENRES: [
       "action",
