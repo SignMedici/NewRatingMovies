@@ -7,7 +7,7 @@
         dark
         shrink-on-scroll
         prominent
-        :src="require('~/assets/movies.png')"
+        :src="require('~/assets/banner.png')"
         fade-img-on-scroll
         scroll-target="#scrolling-techniques-3"
       >
@@ -188,6 +188,11 @@
 <script>
 import { mapState } from "vuex";
 export default {
+  data() {
+    return {
+      bannerURL: "~/assets/banner.png",
+    };
+  },
   methods: {
     async logout() {
       await this.$store.dispatch("logout");
