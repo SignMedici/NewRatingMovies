@@ -105,6 +105,7 @@ export default {
   },
   async created() {
     this.$nextTick(async () => {
+      console.log(this.movies);
       // let elem = this.$refs.moviesContainer;
       // if (typeof elem != "undefined") {
       //   let totalWidth = elem.getBoundingClientRect().width;

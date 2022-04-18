@@ -23,6 +23,7 @@ export default {
     ...mapState("moviesStore", ["movies", "nbItems"]),
   },
   async beforeMount() {
+    console.log("screen:", this.$screen);
     this.$screen.width >= 1024 ? (this.perPage = 8) : (this.perPage = 5);
     await this.$store.dispatch("moviesStore/getMovies", [
       0,

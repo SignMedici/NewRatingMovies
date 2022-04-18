@@ -70,9 +70,9 @@
         <div class="mt-3">
           <label>{{ $t("overview") }}</label>
           <textarea
-            class="form-control"
+            class="overview form-control"
             v-model="currentMovie[siteLang].overview"
-            rows="4"
+            rows="6"
           />
         </div>
         <!-- Submit button -->
@@ -192,6 +192,24 @@ export default {
 }
 label {
   color: white;
+}
+.overview {
+  overflow: auto;
+  text-align: justify;
+  padding: 0 10px 0 0;
+}
+.overview::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.overview::-webkit-scrollbar {
+  width: 8px;
+}
+
+.overview::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: var(--color-fushia);
 }
 
 @media (max-width: 620px) {

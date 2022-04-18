@@ -55,7 +55,8 @@ export default {
       document.getElementById("logo").scrollIntoView();
     },
   },
-  async created() {
+  async beforeMount() {
+    this.$screen.width >= 1024 ? (this.perPage = 8) : (this.perPage = 5);
     const response = await this.$store.dispatch(
       "moviesStore/getUserFavorites",
       [this.auth.user.id, this.page, this.perPage]
