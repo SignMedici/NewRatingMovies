@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="movieTrailers" v-if="trailers.length > 0">
+    <div ref="movieTrailers" v-if="trailers.length > 0">
       <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
       <div class="trailers" v-for="trailer in trailers">
         <iframe
@@ -30,24 +30,28 @@ export default {
   async mounted() {
     console.log("trailers:", this.trailers);
 
-    // Calc size of each trailer
-    let totalWidth = this.$screen.width;
-    if (totalWidth < 500) {
-      this.width = totalWidth;
-      this.height = (this.width * 9) / 16;
-    } else if (totalWidth >= 500 && totalWidth < 1024) {
-      this.width = totalWidth / 2;
-      this.height = (this.width * 9) / 16;
-    } else {
-      this.width = totalWidth / 3;
-      this.height = (this.width * 9) / 16;
-    }
+    let elem = this.$refs.movieTrailers;
 
-    // Calc height of trailers zone
-    if (this.trailers.length > 3) {
-      elem.style.height = String(this.height * 2 + 76) + "px";
-    } else {
-      elem.style.height = String(this.height + 56) + "px";
+    if (typeof elem != "undefined") {
+      // Calc size of each trailer
+      let totalWidth = this.$screen.width;
+      if (totalWidth < 500) {
+        this.width = totalWidth;
+        this.height = (this.width * 9) / 16;
+      } else if (totalWidth >= 500 && totalWidth < 1024) {
+        this.width = totalWidth / 2;
+        this.height = (this.width * 9) / 16;
+      } else {
+        this.width = totalWidth / 3;
+        this.height = (this.width * 9) / 16;
+      }
+
+      // Calc height of trailers zone
+      if (this.trailers.length > 3) {
+        elem.style.height = String(this.height * 2 + 76) + "px";
+      } else {
+        elem.style.height = String(this.height + 56) + "px";
+      }
     }
   },
 };
