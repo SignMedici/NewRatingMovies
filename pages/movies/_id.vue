@@ -13,9 +13,15 @@ export default {
       showMobile: false,
     };
   },
-  mounted() {
-    let screenSize = window.innerWidth;
-    screenSize >= 1024 ? (this.showDesktop = true) : (this.showMobile = true);
+  beforeMount() {
+    console.log("width:", this.$screen.width);
+    if (this.$screen.width >= 1024) {
+      this.showDesktop = true;
+      this.showMobile = false;
+    } else {
+      this.showDesktop = false;
+      this.showMobile = true;
+    }
   },
 };
 </script>

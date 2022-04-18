@@ -1,12 +1,12 @@
 <template>
-  <div class="movie">
+  <div class="movie" v-if="showData">
     <div class="movieContent">
       <div class="poster">
         <figure>
           <!-- Poster -->
           <img
-            v-if="movie[siteLang].poster_path"
-            :srcset="url + movie[siteLang].poster_path"
+            v-if="currentMovie[siteLang].poster_path"
+            :srcset="url + currentMovie[siteLang].poster_path"
           />
           <div v-else class="defaultPicContainer">
             <img
@@ -20,18 +20,22 @@
       <div class="d-block mt-4">
         <div>
           <!-- Title -->
-          <span v-if="movie[siteLang].title.length <= 33" class="bigTitle">{{
-            movie[siteLang].title
+          <span
+            v-if="currentMovie[siteLang].title.length <= 33"
+            class="bigTitle"
+            >{{ currentMovie[siteLang].title }}</span
+          >
+          <span v-else class="smallTitle">{{
+            currentMovie[siteLang].title
           }}</span>
-          <span v-else class="smallTitle">{{ movie[siteLang].title }}</span>
         </div>
         <!-- Movie details -->
         <div class="movieData">
           <!-- Year -->
-          <div v-if="movie.release_date" class="year mt-2">
-            {{ movie.release_date.substring(0, 4) }}
+          <div v-if="currentMovie.release_date" class="year mt-2">
+            {{ currentMovie.release_date.substring(0, 4) }}
             <!-- Vote -->
-            <span v-if="movie.vote_average" class="vote">
+            <span v-if="currentMovie.vote_average" class="vote">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -45,43 +49,45 @@
                   d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
                 />
               </svg>
-              {{ movie.vote_average }}
+              {{ currentMovie.vote_average }}
             </span>
           </div>
           <!-- Genres -->
           <span
             class="genre"
-            v-if="movie.genre"
-            v-for="movieGenre in movie.genre"
+            v-if="currentMovie.genre"
+            v-for="movieGenre in currentMovie.genre"
             >{{ $t(movieGenre) }}</span
           >
 
           <!-- People -->
           <div class="people">
             <!-- Director -->
-            <div v-show="movie.director">
+            <div v-show="currentMovie.director">
               <span>{{ $t("director") }}</span
               ><br />
-              <div class="casting">{{ movie.director }}</div>
+              <div class="casting">{{ currentMovie.director }}</div>
             </div>
             <!-- Actors -->
-            <div v-if="movie.casting">
+            <div v-if="currentMovie.casting">
               <span>{{ $t("casting") }}</span
               ><br />
-              <div class="casting">{{ movie.casting }}</div>
+              <div class="casting">{{ currentMovie.casting }}</div>
             </div>
           </div>
           <!-- Overview -->
-          <div v-if="movie[siteLang].overview" class="overview">
-            {{ movie[siteLang].overview }}
+          <div v-if="currentMovie[siteLang].overview" class="overview">
+            {{ currentMovie[siteLang].overview }}
           </div>
         </div>
       </div>
     </div>
-    <MovieTrailers :trailers="movie[siteLang].trailers" />
+    <MovieTrailers :trailers="currentMovie[siteLang].trailers" />
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "MovieDescription",
   data() {
@@ -91,13 +97,34 @@ export default {
       baseVideoURL: process.env.VIDEO_URL,
       movie: "",
       siteLang: this.$i18n.locale,
+      perPage: 6,
+      currentPage: 1,
+      fromIndex: 0,
+      toIndex: 6,
+      showData: false,
     };
   },
-  created() {
-    // Get movie data
-    this.movie = this.$store.getters["moviesStore/getMovieById"](
+  computed: {
+    ...mapState("moviesStore", ["currentMovie"]),
+  },
+  methods: {
+    async changePageContent(page) {
+      this.currentPage = page;
+      this.fromIndex = this.perPage * page - this.perPage;
+      this.toIndex = this.perPage * page;
+      // window.scrollTo({ top: 400 });
+    },
+  },
+  async created() {
+    const response = await this.$store.dispatch(
+      "moviesStore/getMovieById",
       this.$route.params.id
     );
+    this.showData = true;
+  },
+  beforeDestroy() {
+    this.showData = false;
+    this.$store.dispatch("moviesStore/resetCurrentMovie");
   },
 };
 </script>

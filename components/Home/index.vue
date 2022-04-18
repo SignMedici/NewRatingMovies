@@ -22,15 +22,6 @@ export default {
   computed: {
     ...mapState("moviesStore", ["movies", "nbItems"]),
   },
-  async beforeMount() {
-    console.log("screen:", this.$screen);
-    this.$screen.width >= 1024 ? (this.perPage = 8) : (this.perPage = 5);
-    await this.$store.dispatch("moviesStore/getMovies", [
-      0,
-      this.perPage,
-      "min",
-    ]);
-  },
   methods: {
     async changeContent(page) {
       await this.$store.dispatch("moviesStore/getMovies", [
@@ -40,6 +31,14 @@ export default {
       ]);
       document.getElementById("logo").scrollIntoView();
     },
+  },
+  async beforeMount() {
+    this.$screen.width >= 1024 ? (this.perPage = 8) : (this.perPage = 5);
+    await this.$store.dispatch("moviesStore/getMovies", [
+      0,
+      this.perPage,
+      "min",
+    ]);
   },
 };
 </script>

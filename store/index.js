@@ -38,8 +38,6 @@ const store = {
 
   actions: {
     async nuxtServerInit({ dispatch }) {
-      await dispatch("moviesStore/getMovies", [0, 8, "min"]);
-
       // set siteLanguage
       let siteLang = "";
 
