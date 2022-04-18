@@ -4,10 +4,10 @@
       <v-app-bar
         absolute
         color="#6A76AB"
+        :set="bannerURL"
         dark
         shrink-on-scroll
         prominent
-        :src="require('~/assets/banner.png')"
         fade-img-on-scroll
         scroll-target="#scrolling-techniques-3"
       >
@@ -185,12 +185,12 @@
   </div>
 </template>
 
-<script>
+<script scope>
 import { mapState } from "vuex";
 export default {
   data() {
     return {
-      bannerURL: "~/assets/banner.png",
+      bannerURL: process.env.bannerURL,
     };
   },
   methods: {

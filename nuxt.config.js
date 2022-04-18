@@ -102,6 +102,7 @@ export default {
     baseURL: process.env.BASE_URL,
     apiPicURL: process.env.API_PIC_URL,
     gcsPicURL: process.env.GCS_PIC_URL,
+    bannerURL: process.env.BANNER_PIC_URL,
     MOVIE_GENRES: [
       "action",
       "adventure",
@@ -147,7 +148,6 @@ export default {
     "@nuxtjs/toast",
     ["cookie-universal-nuxt", { alias: "cookiz" }],
     ["@nuxtjs/dotenv", { systemvars: true }],
-    // @nuxtjs/i18n - translation module - https://phrase.com/blog/posts/nuxt-js-tutorial-i18n/
     ["@nuxtjs/i18n", I18N],
     "vue-screen/nuxt",
   ],
@@ -194,7 +194,7 @@ export default {
   dotenv: {
     /* module options */
   },
-  screen: {
-    extend: "bootstrap",
-  },
+  // screen: {
+  //   extend: "bootstrap",
+  // },
 };
