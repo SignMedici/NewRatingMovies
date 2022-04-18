@@ -105,14 +105,6 @@ export default {
   },
   async created() {
     this.$nextTick(async () => {
-      console.log(this.movies);
-      // let elem = this.$refs.moviesContainer;
-      // if (typeof elem != "undefined") {
-      //   let totalWidth = elem.getBoundingClientRect().width;
-      //   if (totalWidth <= 1024) {
-      //     this.perPage = 5;
-      //   }
-      // }
       if (this.auth.user) {
         this.myRates = await this.auth.user.myRates;
       }

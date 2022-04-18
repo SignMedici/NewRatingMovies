@@ -14,6 +14,8 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   props: ["movieDbId", "myRates"],
   data() {
@@ -22,12 +24,13 @@ export default {
       baseURL: process.env.baseURL,
     };
   },
+  computed: {
+    ...mapState(["auth"]),
+  },
   methods: {
     async rateMovie(rate) {
-      let userId = this.$store.getters.getUserInfo.id;
-
-      if (userId) {
-        await this.$store.dispatch("rateMovie", [userId, this.movieDbId, rate]);
+      if (this.auth) {
+        await this.$store.dispatch("rateMovie", [this.movieDbId, rate]);
       } else {
         this.$toast.error(this.$t("pleaseLogoutLogin"));
       }

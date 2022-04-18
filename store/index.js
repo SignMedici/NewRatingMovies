@@ -57,12 +57,12 @@ const store = {
     },
 
     //Rate movies
-    async rateMovie({ commit }, [userId, movieDbId, rate]) {
+    async rateMovie({ commit, state }, [movieDbId, rate]) {
       const response = await this.$axios
         .patch(
           process.env.baseURL +
             "/users/" +
-            userId +
+            state.auth.user.id +
             "/" +
             movieDbId +
             "/" +

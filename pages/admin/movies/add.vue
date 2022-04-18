@@ -58,7 +58,6 @@ export default {
   },
   methods: {
     async getSearchResult() {
-      console.log("ok");
       if (this.title !== "") {
         await this.$store.dispatch("moviesStore/getSearchResults", [
           this.title.replace(" ", "+"),

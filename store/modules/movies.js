@@ -76,7 +76,6 @@ const actions = {
           `/users/${userId}/favorites?page=${page}&size=${perPage}`
       )
       .then(async (response) => {
-        console.log("🚀 ~ .then ~ response", response.data.movies);
         await commit("SET_RESULTS", response.data.movies);
         await commit("SET_NB_ITEMS", response.data.nbFavorites);
       });
