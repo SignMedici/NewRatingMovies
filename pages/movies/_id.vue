@@ -14,7 +14,6 @@ export default {
     };
   },
   beforeMount() {
-    console.log("width:", this.$screen.width);
     if (this.$screen.width >= 1024) {
       this.showDesktop = true;
       this.showMobile = false;
