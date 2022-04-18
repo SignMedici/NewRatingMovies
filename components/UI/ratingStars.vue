@@ -17,7 +17,7 @@
 import { mapState } from "vuex";
 
 export default {
-  props: ["movieDbId", "myRates"],
+  props: ["movieDbId"],
   data() {
     return {
       rate: 0,
@@ -39,10 +39,10 @@ export default {
   created() {
     let found = false;
 
-    if (this.myRates) {
-      for (let i = 0; i < this.myRates.length; i++) {
-        if (this.myRates[i].movieDbId === this.movieDbId) {
-          this.rate = this.myRates[i].rate / 2;
+    if (this.auth.user.myRates) {
+      for (let i = 0; i < this.auth.user.myRates.length; i++) {
+        if (this.auth.user.myRates[i].movieDbId === this.movieDbId) {
+          this.rate = this.auth.user.myRates[i].rate / 2;
           found = true;
           break;
         }
