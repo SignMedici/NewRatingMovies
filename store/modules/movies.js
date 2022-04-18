@@ -53,6 +53,9 @@ const mutations = {
   RESET_CURRENT_MOVIE: (state) => {
     state.movie = {};
   },
+  RESET_RESULTS: (state) => {
+    state.results = [];
+  },
 };
 
 //Actions
@@ -150,6 +153,9 @@ const actions = {
 
   resetCurrentMovie({ commit }) {
     commit("RESET_CURRENT_MOVIE");
+  },
+  resetResults({ commit }) {
+    commit("RESET_RESULTS");
   },
 };
 

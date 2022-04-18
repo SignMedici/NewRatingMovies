@@ -63,6 +63,9 @@ export default {
     );
     this.showData = true;
   },
+  beforeDestroy() {
+    this.$store.dispatch("moviesStore/resetResults");
+  },
 };
 </script>
 
