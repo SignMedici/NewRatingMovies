@@ -4,12 +4,13 @@
       <v-app-bar
         absolute
         color="#6A76AB"
-        :set="bannerURL"
+        :src="require('@/assets/banner.png')"
         dark
         shrink-on-scroll
         prominent
         fade-img-on-scroll
         scroll-target="#scrolling-techniques-3"
+        class="banner"
       >
         <v-spacer></v-spacer>
         <!-- Favorite icon -->

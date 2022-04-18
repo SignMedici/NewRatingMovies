@@ -33,7 +33,7 @@ export default {
   },
   beforeMount() {
     // set number of visible buttons
-    window.innerWidth <= 1024 ? (this.nbButtons = 3) : (this.buttons = 7);
+    this.$screen.width <= 1024 ? (this.nbButtons = 3) : (this.buttons = 7);
   },
 };
 </script>

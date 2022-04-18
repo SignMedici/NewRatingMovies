@@ -80,6 +80,7 @@ export default {
   plugins: [
     { src: "plugins/avatar", mode: "client" },
     { src: "./plugins/router.js" },
+    { src: "./plugins/screenSize.js" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -149,7 +150,6 @@ export default {
     ["cookie-universal-nuxt", { alias: "cookiz" }],
     ["@nuxtjs/dotenv", { systemvars: true }],
     ["@nuxtjs/i18n", I18N],
-    "vue-screen/nuxt",
   ],
 
   // Auth
