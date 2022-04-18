@@ -92,12 +92,7 @@
             </div>
             <!-- Overview -->
             <div v-if="currentMovie[siteLang].overview" class="overview">
-              <label>{{ $t("overview") }}</label>
-              <textarea
-                class="form-control"
-                v-model="currentMovie[siteLang].overview"
-                rows="4"
-              />
+              {{ currentMovie[siteLang].overview }}
             </div>
           </div>
         </div>
