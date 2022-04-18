@@ -1,5 +1,6 @@
 <template>
   <div>
+    <UILoading />
     <div ref="movieTrailers" v-if="trailers.length > 0">
       <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
       <div class="trailers" v-for="trailer in trailers">
