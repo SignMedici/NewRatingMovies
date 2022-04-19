@@ -23,7 +23,7 @@ export default {
   props: ["trailers"],
   data() {
     return {
-      baseVideoURL: process.env.VIDEO_URL,
+      baseVideoURL: process.env.videoURL,
       width: "",
       height: "",
       showTrailers: false,
