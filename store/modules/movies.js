@@ -5,7 +5,6 @@ const state = () => {
     results: [], // For search results from API and getMovieById
     currentMovie: {}, // movie to display
     nbItems: 0, // For paginator
-    showData: false,
   };
 };
 
@@ -59,9 +58,6 @@ const mutations = {
   },
   RESET_RESULTS: (state) => {
     state.results = [];
-  },
-  RESET_SHOW_DATA: (state) => {
-    state.showData = false;
   },
 };
 
@@ -164,9 +160,6 @@ const actions = {
   },
   resetResults({ commit }) {
     commit("RESET_RESULTS");
-  },
-  resetShowData({ commit }) {
-    commit("RESET_SHOW_DATA");
   },
 };
 

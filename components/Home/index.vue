@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" v-if="showData">
     <UIBigLogo />
     <MovieRateCards
       :movies="movies"
@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       perPage: 8,
+      showData: false,
     };
   },
   computed: {
@@ -39,6 +40,11 @@ export default {
       this.perPage,
       "min",
     ]);
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.showData = true;
+    });
   },
 };
 </script>
