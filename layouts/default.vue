@@ -1,6 +1,5 @@
 <template>
   <div>
-    <UILoading />
     <Header />
     <div class="container">
       <Nuxt />

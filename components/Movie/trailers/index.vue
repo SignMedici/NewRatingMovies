@@ -1,6 +1,5 @@
 <template>
   <div>
-    <UILoading />
     <div ref="movieTrailers" v-if="trailers.length > 0">
       <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
       <div class="trailers" v-for="trailer in trailers">
@@ -26,15 +25,7 @@ export default {
       baseVideoURL: process.env.videoURL,
       width: "",
       height: "",
-      showTrailers: false,
     };
-  },
-  watch: {
-    trailers(newValue) {
-      if (typeof newValue != "undefined") {
-        this.showTrailers = true;
-      }
-    },
   },
   async mounted() {
     this.$nextTick(() => {
