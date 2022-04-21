@@ -5,6 +5,7 @@ const state = () => {
     results: [], // For search results from API and getMovieById
     currentMovie: {}, // movie to display
     nbItems: 0, // For paginator
+    showData: false,
   };
 };
 
@@ -45,6 +46,9 @@ const mutations = {
     state.results = [];
     state.results.push(results);
   },
+  SET_SHOW_DATA: (state) => {
+    state.showData = true;
+  },
 
   SET_CURRENT_MOVIE: (state, movie) => {
     state.currentMovie = movie;
@@ -55,6 +59,9 @@ const mutations = {
   },
   RESET_RESULTS: (state) => {
     state.results = [];
+  },
+  RESET_SHOW_DATA: (state) => {
+    state.showData = false;
   },
 };
 
@@ -68,6 +75,7 @@ const actions = {
       .then((response) => {
         commit("SET_MOVIES", response.data.movies);
         commit("SET_NB_ITEMS", response.data.nbMovies);
+        commit("SET_SHOW_DATA");
       });
   },
 
@@ -156,6 +164,9 @@ const actions = {
   },
   resetResults({ commit }) {
     commit("RESET_RESULTS");
+  },
+  resetShowData({ commit }) {
+    commit("RESET_SHOW_DATA");
   },
 };
 

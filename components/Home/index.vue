@@ -1,5 +1,5 @@
 <template>
-  <div id="home" v-if="loading">
+  <div id="home">
     <UIBigLogo />
     <MovieRateCards
       :movies="movies"
@@ -17,7 +17,6 @@ export default {
   data() {
     return {
       perPage: 8,
-      loading: false,
     };
   },
   computed: {
@@ -32,12 +31,6 @@ export default {
       ]);
       document.getElementById("logo").scrollIntoView();
     },
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start();
-      setTimeout(() => (this.loading = true), 200);
-    });
   },
   async beforeMount() {
     this.$screen.width >= 1024 ? (this.perPage = 8) : (this.perPage = 5);

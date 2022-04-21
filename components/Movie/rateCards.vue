@@ -1,5 +1,5 @@
 <template>
-  <div ref="moviesContainer">
+  <div ref="moviesContainer" v-if="showData">
     <div v-if="movies.length > 0">
       <v-container class="grey lighten-5">
         <v-row no-gutters>
@@ -69,6 +69,7 @@ export default {
   },
   computed: {
     ...mapState(["auth"]),
+    ...mapState("moviesStore", ["showData"]),
     isAuthenticated() {
       return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
@@ -109,6 +110,9 @@ export default {
         this.myRates = await this.auth.user.myRates;
       }
     });
+  },
+  beforeDestroy() {
+    this.$store.dispatch("moviesStore/resetShowData");
   },
 };
 </script>
