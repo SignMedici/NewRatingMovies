@@ -74,8 +74,12 @@ export default {
       return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
   },
-  loading: {
-    continuous: true,
+  async created() {
+    this.$nextTick(async () => {
+      if (this.auth.user) {
+        this.myRates = await this.auth.user.myRates;
+      }
+    });
   },
   methods: {
     changePageContent(page) {
@@ -106,13 +110,6 @@ export default {
 
       return titleToDisplay;
     },
-  },
-  async created() {
-    this.$nextTick(async () => {
-      if (this.auth.user) {
-        this.myRates = await this.auth.user.myRates;
-      }
-    });
   },
 };
 </script>

@@ -71,7 +71,7 @@ const actions = {
       .then((response) => {
         commit("SET_MOVIES", response.data.movies);
         commit("SET_NB_ITEMS", response.data.nbMovies);
-        commit("SET_SHOW_DATA");
+        // commit("SET_SHOW_DATA");
       });
   },
 
