@@ -45,9 +45,6 @@ const mutations = {
     state.results = [];
     state.results.push(results);
   },
-  SET_SHOW_DATA: (state) => {
-    state.showData = true;
-  },
 
   SET_CURRENT_MOVIE: (state, movie) => {
     state.currentMovie = movie;
@@ -71,7 +68,6 @@ const actions = {
       .then((response) => {
         commit("SET_MOVIES", response.data.movies);
         commit("SET_NB_ITEMS", response.data.nbMovies);
-        // commit("SET_SHOW_DATA");
       });
   },
 

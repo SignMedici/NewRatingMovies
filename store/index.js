@@ -37,7 +37,10 @@ const store = {
   },
 
   actions: {
-    async nuxtServerInit({ dispatch }) {
+    async nuxtServerInit({ commit }) {
+      // Reset results state in moviesStore
+      commit("moviesStore/RESET_RESULTS");
+
       // set siteLanguage
       let siteLang = "";
 
