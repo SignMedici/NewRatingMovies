@@ -72,5 +72,9 @@
   "toLogIn": "Login",
   "modify": "Modify",
   "profilePic": "Profile picture",
-  "trailers": "Trailers"
+  "trailers": "Trailers",
+  "userNotFound": "Wrong email address.",
+  "passwordMissmatch": "Password missmatch.",
+  "serverError": "Server error.",
+  "emailExists": "User with this email already exists."
 }

@@ -61,8 +61,12 @@ export default {
         this.$i18n.setLocale(userLang);
         this.$cookiz.set("siteLang", userLang);
         this.$router.push("/");
-      } catch (err) {
-        this.$toast.error(err);
+      } catch (error) {
+        if (error.response.data.message.includes("data-not-found"))
+          this.$toast.error(this.$t("userNotFound"));
+        else if (error.response.data.message.includes("password-missmatch"))
+          this.$toast.error(this.$t("passwordMissmatch"));
+        else this.$toast.error(this.$t("serverError"));
       }
     },
   },

@@ -72,5 +72,9 @@
   "toLogIn": "Se connecter",
   "modify": "Modifier",
   "profilePic": "Photo de profile",
-  "trailers": "Bandes Annonces"
+  "trailers": "Bandes Annonces",
+  "userNotFound": "Adresse email incorrecte.",
+  "passwordMissmatch": "Mauvais mot de passe.",
+  "serverError": "Erreur serveur.",
+  "emailExists": "Utilisateur avec cet adresse email existe déjà."
 }

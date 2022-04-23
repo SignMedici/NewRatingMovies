@@ -72,5 +72,9 @@
   "toLogIn": "Accedi",
   "modify": "Modificare",
   "profilePic": "Foto profilo",
-  "trailers": "Trailers"
+  "trailers": "Trailers",
+  "userNotFound": "Indirizzo mail sbagliato",
+  "passwordMissmatch": "Password sbagliata",
+  "serverError": "Errore server.",
+  "emailExists": "Un utente con questo indirizzo mail existe già."
 }

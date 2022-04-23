@@ -72,5 +72,9 @@
   "toLogIn": "Inloggen",
   "modify": "Bewerken",
   "profilePic": "Profielfoto",
-  "trailers": "Filmtrailers"
+  "trailers": "Filmtrailers",
+  "userNotFound": "Vergist E-mailadres",
+  "passwordMissmatch": "Wachtwoord onjuist.",
+  "serverError": "Serverfout.",
+  "emailExists": "Een gebuiker met deze e-mailadres al bestaat."
 }

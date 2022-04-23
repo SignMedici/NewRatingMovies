@@ -84,10 +84,13 @@ export default {
           password: this.registerData.password,
           language: this.registerData.language,
         });
-      } catch (err) {
-        this.$toast.error(err);
+        this.$toast.success("User registered.");
+        this.$router.push("/auth/login");
+      } catch (error) {
+        if (error.response.data.message.includes("data-already-exists"))
+          this.$toast.error(this.$t("emailExists"));
+        else this.$toast.error(this.$t("serverError"));
       }
-      this.$router.push("/auth/login");
     },
   },
 };
