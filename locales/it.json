@@ -76,5 +76,6 @@
   "userNotFound": "Indirizzo mail sbagliato",
   "passwordMissmatch": "Password sbagliata",
   "serverError": "Errore server.",
-  "emailExists": "Un utente con questo indirizzo mail existe già."
+  "emailExists": "Questo indirizzo mail existe già.",
+  "userRegistered": "Utente registrato."
 }

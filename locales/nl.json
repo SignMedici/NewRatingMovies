@@ -76,5 +76,6 @@
   "userNotFound": "Vergist E-mailadres",
   "passwordMissmatch": "Wachtwoord onjuist.",
   "serverError": "Serverfout.",
-  "emailExists": "Een gebuiker met deze e-mailadres al bestaat."
+  "emailExists": "E-mailadres al bestaat.",
+  "userRegistered": "Gebruiker toegevoegd."
 }
