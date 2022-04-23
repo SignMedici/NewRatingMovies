@@ -2,10 +2,26 @@
   <div>
     <Header />
     <div class="container">
+      <UILoading v-if="showHideSpinner" />
       <Nuxt />
     </div>
   </div>
 </template>
+<script>
+export default {
+  beforeCreate() {
+    this.showHideSpinner = true;
+  },
+  mounted() {
+    this.showHideSpinner = false;
+  },
+  data() {
+    return {
+      showHideSpinner: true,
+    };
+  },
+};
+</script>
 <style>
 * {
   box-sizing: border-box;
