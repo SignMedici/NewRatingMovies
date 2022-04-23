@@ -84,7 +84,7 @@ export default {
           password: this.registerData.password,
           language: this.registerData.language,
         });
-        this.$toast.success("User registered.");
+        this.$toast.success(this.$t("userRegistered"));
         this.$router.push("/auth/login");
       } catch (error) {
         if (error.response.data.message.includes("data-already-exists"))
