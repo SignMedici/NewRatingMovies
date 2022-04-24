@@ -1,5 +1,6 @@
 <template>
   <div ref="moviesContainer">
+      <UILoading v-if="showHideSpinner" />
       <div v-if="movies.length > 0">
         <v-container class="grey lighten-5">
           <v-row no-gutters>
@@ -58,6 +59,7 @@ export default {
   props: ["movies", "perPage", "nbItems"],
   data() {
     return {
+      showHideSpinner: true,
       language: this.$i18n.locale,
       title: "",
       url: process.env.apiPicURL,
@@ -74,12 +76,18 @@ export default {
       return this.$store.getters.isAuthenticated; // it check if user isAuthenticated
     },
   },
+  beforeCreate() {
+    this.showHideSpinner = true;
+  },
   async created() {
     this.$nextTick(async () => {
       if (this.auth.user) {
         this.myRates = await this.auth.user.myRates;
       }
     });
+  },
+  mounted() {
+    this.showHideSpinner = false;
   },
   methods: {
     changePageContent(page) {
