@@ -1,53 +1,55 @@
 <template>
   <div ref="moviesContainer">
       <UILoading v-if="showHideSpinner" />
-      <div v-if="movies.length > 0">
-        <v-container class="grey lighten-5">
-          <v-row no-gutters>
-            <v-col v-for="movie in movies" :key="movie._id" cols="12" md="3">
-              <v-card class="card">
-                <nuxt-link
-                  class="d-flex nav-link active"
-                  aria-current="page"
-                  :to="
-                    localePath({
-                      name: 'movies-id',
-                      params: { id: movie._id },
-                      hash: '#logo',
-                    })
-                  "
-                >
-                  <img :srcset="url + movie[language].poster_path" />
-                </nuxt-link>
-                <UIFavoriteIcon
-                  v-if="isAuthenticated"
-                  :movieDbId="movie.movieDbId"
-                />
-                <div class="d-block">
-                  <v-card-title>{{
-                    titleHandler(movie[language].title)
-                  }}</v-card-title>
-                  <v-card-subtitle>
-                    {{ movie.release_date.substring(0, 4) }}
-                  </v-card-subtitle>
-                  <UIRatingStars
-                    :myRates="myRates"
-                    :movieDbId="movie.movieDbId"
+      <div v-else>
+        <div v-if="movies.length > 0">
+          <v-container class="grey lighten-5">
+            <v-row no-gutters>
+              <v-col v-for="movie in movies" :key="movie._id" cols="12" md="3">
+                <v-card class="card">
+                  <nuxt-link
+                    class="d-flex nav-link active"
+                    aria-current="page"
+                    :to="
+                      localePath({
+                        name: 'movies-id',
+                        params: { id: movie._id },
+                        hash: '#logo',
+                      })
+                    "
+                  >
+                    <img :srcset="url + movie[language].poster_path" />
+                  </nuxt-link>
+                  <UIFavoriteIcon
                     v-if="isAuthenticated"
+                    :movieDbId="movie.movieDbId"
                   />
-                </div>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-        <UIPaginator
-          :perPage="perPage"
-          :totalItems="nbItems"
-          @changePage="changePageContent"
-        />
-      </div>
-      <div v-else class="noMovieInDB">
-        <img src="~/assets/No-Movie.png" alt="no-movie.png" />
+                  <div class="d-block">
+                    <v-card-title>{{
+                      titleHandler(movie[language].title)
+                    }}</v-card-title>
+                    <v-card-subtitle>
+                      {{ movie.release_date.substring(0, 4) }}
+                    </v-card-subtitle>
+                    <UIRatingStars
+                      :myRates="myRates"
+                      :movieDbId="movie.movieDbId"
+                      v-if="isAuthenticated"
+                    />
+                  </div>
+                </v-card>
+              </v-col>
+            </v-row>
+          </v-container>
+          <UIPaginator
+            :perPage="perPage"
+            :totalItems="nbItems"
+            @changePage="changePageContent"
+          />
+        </div>
+        <div v-else class="noMovieInDB">
+          <img src="~/assets/No-Movie.png" alt="no-movie.png" />
+        </div>
       </div>
     </div>
   </div>
@@ -79,15 +81,15 @@ export default {
   beforeCreate() {
     this.showHideSpinner = true;
   },
+  mounted() {
+    this.showHideSpinner = false;
+  },
   async created() {
     this.$nextTick(async () => {
       if (this.auth.user) {
         this.myRates = await this.auth.user.myRates;
       }
     });
-  },
-  mounted() {
-    this.showHideSpinner = false;
   },
   methods: {
     changePageContent(page) {

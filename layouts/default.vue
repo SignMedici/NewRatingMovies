@@ -3,7 +3,7 @@
     <Header />
     <div class="container">
       <UILoading v-if="showHideSpinner" />
-      <Nuxt />
+      <Nuxt v-else />
     </div>
   </div>
 </template>
