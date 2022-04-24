@@ -68,6 +68,17 @@ const actions = {
       .then((response) => {
         commit("SET_MOVIES", response.data.movies);
         commit("SET_NB_ITEMS", response.data.nbMovies);
+      })
+      .catch((error) => {
+        if (error.response.data.message.includes("bad-params" && "data"))
+          this.$toast.error(this.$t("badDataType"));
+        else if (
+          error.response.data.message.includes(
+            "bad-params" && ("page" || "Size")
+          )
+        )
+          this.$toast.error(this.$t("badPagingParams"));
+        else this.$toast.error(this.$t("serverError"));
       });
   },
 

@@ -77,5 +77,7 @@
   "passwordMissmatch": "Mauvais mot de passe.",
   "serverError": "Erreur serveur.",
   "emailExists": "Cet adresse email existe déjà.",
-  "userRegistered": "Utilisateur enregistré"
+  "userRegistered": "Utilisateur enregistré",
+  "badTypeRequest": "Mauvais type de requête.",
+  "badPagingParams": "Mauvais paramètres de pagination."
 }
