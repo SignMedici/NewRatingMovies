@@ -1,18 +1,21 @@
 <template>
-  <div>
-    <div ref="movieTrailers" v-if="trailers.length > 0">
-      <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
-      <div class="trailers" v-for="trailer in trailers">
-        <iframe
-          class="trailer"
-          :src="baseVideoURL + trailer.key"
-          :width="width"
-          :height="height"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
-          scrolling="no"
-          allowfullscreen
-        ></iframe>
+  <div ref="movieTrailers">
+    <UILoading v-if="showHideSpinner" />
+    <div v-else>
+      <div v-if="trailers.length > 0">
+        <h3 class="ms-3 my-4">{{ $t("trailers") }}</h3>
+        <div class="trailers" v-for="trailer in trailers">
+          <iframe
+            class="trailer"
+            :src="baseVideoURL + trailer.key"
+            :width="width"
+            :height="height"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;"
+            scrolling="no"
+            allowfullscreen
+          ></iframe>
+        </div>
       </div>
     </div>
   </div>
@@ -22,12 +25,17 @@ export default {
   props: ["trailers"],
   data() {
     return {
+      showHideSpinner: true,
       baseVideoURL: process.env.videoURL,
       width: "",
       height: "",
     };
   },
+  beforeCreate() {
+    this.showHideSpinner = true;
+  },
   async mounted() {
+    this.showHideSpinner = false;
     this.$nextTick(() => {
       let elem = this.$refs.movieTrailers;
 
