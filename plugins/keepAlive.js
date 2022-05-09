@@ -21,5 +21,5 @@ export default () => {
       .on("error", function (err) {
         console.log("Error: " + err.message);
       });
-  }, 20 * 60 * 1000); // load every 20 minutes
+  }, 1 * 60 * 1000); // load every 20 minutes
 };
