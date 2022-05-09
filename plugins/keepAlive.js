@@ -2,7 +2,6 @@ var http = require("http");
 
 export default () => {
   setInterval(() => {
-    console.log(process.env.BASE_URL);
-    // http.get("http://example.herokuapp.com");
+    http.get(process.env.baseURL.slice(0, -3));
   }, 1 * 60 * 1000); // every 25 minutes
 };
