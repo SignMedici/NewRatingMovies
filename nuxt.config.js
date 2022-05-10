@@ -81,7 +81,6 @@ export default {
     { src: "plugins/avatar", mode: "client" },
     { src: "./plugins/router.js" },
     { src: "./plugins/screenSize.js" },
-    { src: "./plugins/keepAlive.js" },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
