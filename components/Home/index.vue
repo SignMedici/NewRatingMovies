@@ -24,18 +24,18 @@ export default {
     ...mapState("moviesStore", ["movies", "nbItems"]),
   },
   async mounted() {
-    var t0 = performance.now();
+    // var t0 = performance.now();
     this.$screen.width >= 1024 ? (this.perPage = 8) : (this.perPage = 5);
-    var t1 = performance.now();
-    console.log("To know width took " + (t1 - t0) + " milliseconds.");
-    var t0 = performance.now();
+    // var t1 = performance.now();
+    // console.log("To know width took " + (t1 - t0) + " milliseconds.");
+    // var t0 = performance.now();
     await this.$store.dispatch("moviesStore/getMovies", [
       0,
       this.perPage,
       "min",
     ]);
-    var t1 = performance.now();
-    console.log("To populate store took " + (t1 - t0) + " milliseconds.");
+    // var t1 = performance.now();
+    // console.log("To populate store took " + (t1 - t0) + " milliseconds.");
     this.showData = true;
   },
   methods: {
