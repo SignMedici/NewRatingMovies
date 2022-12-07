@@ -87,7 +87,7 @@ export default {
   async created() {
     this.$nextTick(async () => {
       if (this.auth.user) {
-        this.myRates = await this.auth.user.myRates;
+        this.myRates = await this.auth.user.my_rates;
       }
     });
   },

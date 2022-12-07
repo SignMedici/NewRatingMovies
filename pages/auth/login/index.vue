@@ -53,20 +53,21 @@ export default {
   methods: {
     async login() {
       try {
-        let response = await this.$auth.loginWith("local", {
+        let response = await this.$auth.login({
           data: this.loginData,
         });
         const userLang = response.data.language;
-        this.$i18n.locale = userLang;
-        this.$i18n.setLocale(userLang);
-        this.$cookiz.set("siteLang", userLang);
+        console.log("loggedUser:", this.$auth.user)
+        // this.$i18n.locale = userLang;
+        // this.$i18n.setLocale(userLang);
+        // this.$cookiz.set("siteLang", userLang);
         this.$router.push("/");
       } catch (error) {
-        if (error.response.data.message.includes("data-not-found"))
-          this.$toast.error(this.$t("userNotFound"));
-        else if (error.response.data.message.includes("password-missmatch"))
-          this.$toast.error(this.$t("passwordMissmatch"));
-        else this.$toast.error(this.$t("serverError"));
+        // if (error.response.data.message.includes("data-not-found"))
+        //   this.$toast.error(this.$t("userNotFound"));
+        // else if (error.response.data.message.includes("password-missmatch"))
+        //   this.$toast.error(this.$t("passwordMissmatch"));
+        // else this.$toast.error(this.$t("serverError"));
       }
     },
   },

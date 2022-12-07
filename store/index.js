@@ -9,9 +9,9 @@ const store = {
       );
 
       if (index > -1) {
-        state.auth.user.myRates[index].movieDbId = myRate.rate;
+        state.auth.user.my_rates[index].movieDbId = myRate.rate;
       } else {
-        state.auth.user.myRates.push({
+        state.auth.user.my_rates.push({
           movieDbId: myRate.movieDbId,
           rate: myRate.rate,
         });
@@ -19,12 +19,12 @@ const store = {
     },
 
     UPDATE_FAVORITE: (state, movieDbId) => {
-      let index = state.auth.user.myFavorites.indexOf(movieDbId);
+      let index = state.auth.user.my_favorites.indexOf(movieDbId);
 
       if (index >= 0) {
-        state.auth.user.myFavorites.splice(index, 1);
+        state.auth.user.my_favorites.splice(index, 1);
       } else {
-        state.auth.user.myFavorites.push(movieDbId);
+        state.auth.user.my_favorites.push(movieDbId);
       }
     },
 
@@ -32,7 +32,7 @@ const store = {
       if (data.nickname) state.auth.user["nickname"] = data.nickname;
       if (data.email) state.auth.user["email"] = data.email;
       if (data.language) state.auth.user["language"] = data.language;
-      if (data.profilePic) state.auth.user["profilePic"] = data.profilePic;
+      if (data.profilePic) state.auth.user["profile_pic"] = data.profilePic;
     },
   },
 
@@ -117,11 +117,8 @@ const store = {
       if (this.$cookiz.get("siteLang")) {
         this.$cookiz.remove("siteLang");
       }
-      const response = await this.$axios
-        .delete(process.env.baseURL + "/auth/logout")
-        .then(async (response) => {
-          await this.$auth.logout(); // this method will logout the user and make token to false on the local storage of the user browser
-        });
+
+      const response = await this.$auth.logout()
     },
   },
 
@@ -133,8 +130,9 @@ const store = {
 
     //Check if role is admin
     roleIsAdmin(state) {
-      return state.auth.user?.isAdmin ? true : false;
+      return state.auth.user?.is_admin ? true : false;
     },
+      
   },
 
   modules: {

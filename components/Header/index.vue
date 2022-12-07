@@ -135,7 +135,7 @@
                 <span>{{ $t("myProfile") }}</span>
               </nuxt-link>
             </v-tab>
-            <v-tab v-if="auth.user.isAdmin == true">
+            <v-tab v-if="auth.user.is_admin == true">
               <nuxt-link
                 class="nav-link active"
                 aria-current="page"

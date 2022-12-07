@@ -60,14 +60,13 @@ const mutations = {
 
 //Actions
 const actions = {
-  async getMovies({ commit }, [page, size, data]) {
+  async getMovies({ commit }, [page, size]) {
     const response = await this.$axios
-      .get(
-        process.env.baseURL + `/movies?page=${page}&size=${size}&data=${data}`
-      )
+      .get(process.env.baseURL + `/movies?page=${page}&size=${size}`)
       .then((response) => {
-        commit("SET_MOVIES", response.data.movies);
-        commit("SET_NB_ITEMS", response.data.nbMovies);
+        let pagingMoviesDTO = response.data;
+        commit("SET_MOVIES", pagingMoviesDTO.Data);
+        commit("SET_NB_ITEMS", pagingMoviesDTO.NbResults);
       })
       .catch((error) => {
         if (error.response.data.message.includes("bad-params" && "data"))
@@ -83,11 +82,11 @@ const actions = {
   },
 
   // get information of favorite movies
-  async getUserFavorites({ commit }, [userId, page, perPage]) {
+  async getUserFavorites({ commit }, [userId, page, size]) {
     const response = await this.$axios
       .get(
         process.env.baseURL +
-          `/users/${userId}/favorites?page=${page}&size=${perPage}`
+          `/users/${userId}/favorites?page=${page}&size=${size}`
       )
       .then(async (response) => {
         await commit("SET_RESULTS", response.data.movies);
@@ -142,8 +141,8 @@ const actions = {
   //Get search results from API
   async getSearchResults({ commit }, [title, language]) {
     const response = await this.$axios
-      .post(
-        process.env.baseURL + "/the-movie-db/search/" + title + "/" + language
+      .get(
+        process.env.baseURL + "/search/" + title + "/" + language
       )
       .then((response) => {
         commit("SET_RESULTS", response.data);

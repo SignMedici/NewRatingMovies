@@ -37,7 +37,7 @@ export default {
     },
   },
   created() {
-    this.favStatus = this.auth.user.myFavorites.includes(this.movieDbId)
+    this.favStatus = this.auth.user.my_favorites.includes(this.movieDbId)
       ? true
       : false;
   },

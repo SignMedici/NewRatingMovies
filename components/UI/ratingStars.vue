@@ -39,10 +39,10 @@ export default {
   created() {
     let found = false;
 
-    if (this.auth.user.myRates) {
-      for (let i = 0; i < this.auth.user.myRates.length; i++) {
-        if (this.auth.user.myRates[i].movieDbId === this.movieDbId) {
-          this.rate = this.auth.user.myRates[i].rate / 2;
+    if (this.auth.user.my_rates) {
+      for (let i = 0; i < this.auth.user.my_rates.length; i++) {
+        if (this.auth.user.my_rates[i].movieDbId === this.movieDbId) {
+          this.rate = this.auth.user.my_rates[i].rate / 2;
           found = true;
           break;
         }

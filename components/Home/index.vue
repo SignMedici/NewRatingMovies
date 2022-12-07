@@ -31,8 +31,7 @@ export default {
     // var t0 = performance.now();
     await this.$store.dispatch("moviesStore/getMovies", [
       0,
-      this.perPage,
-      "min",
+      this.perPage
     ]);
     // var t1 = performance.now();
     // console.log("To populate store took " + (t1 - t0) + " milliseconds.");

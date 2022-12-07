@@ -100,7 +100,7 @@ export default {
 
   // Environment variables
   env: {
-    baseURL: process.env.BASE_URL,
+    baseURL: "http://localhost:8010/api", // process.env.BASE_URL,
     apiPicURL: process.env.API_PIC_URL,
     gcsPicURL: process.env.GCS_PIC_URL,
     bannerURL: process.env.BANNER_PIC_URL,
@@ -163,15 +163,21 @@ export default {
           required: true,
           type: "Bearer",
         },
+        redirect: {
+          login: '/login',
+          logout: '/',
+          callback: '/login',
+          home: '/'
+        },
         user: {
-          property: "user",
+          property: "",
           autoFetch: true,
         },
         endpoints: {
-          login: { url: "/auth/login", method: "post" },
-          logout: false,
-          user: { url: "/auth/user", method: "get" },
-          refresh: { url: "/auth/refresh", method: "post" },
+          login: { url: "/login", method: "post" },
+          logout: { url: "/logout", method: "get" },
+          user: { url: "/me", method: "get" },
+          refresh: { url: "auth/refresh", method: "post" },
         },
       },
     },
