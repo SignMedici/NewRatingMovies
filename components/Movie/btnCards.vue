@@ -2,15 +2,15 @@
   <div id="movieResults">
     <v-container class="cardContainer d-flex grey lighten-5">
       <v-row no-gutters>
-        <v-col v-for="movie in results[0]" :key="movie.id" cols="12" sm="3">
+        <v-col v-for="movie in results" :key="movie.id" cols="12" sm="3">
           <div class="cardContainer">
             <v-card class="card">
               <figure>
                 <!-- Poster -->
                 <button @click="getInfo(null, null, movie)">
                   <img
-                    v-if="movie[siteLang].poster_path"
-                    :srcset="url + movie[siteLang].poster_path"
+                    v-if="movie.poster_path"
+                    :srcset="url + movie.poster_path"
                     class="imgMovieCard hover10"
                   />
                   <img
@@ -23,10 +23,10 @@
               </figure>
               <div class="cardInfos">
                 <!-- Title -->
-                <v-card-title v-if="movie[siteLang].title.length > 22"
-                  >{{ movie[siteLang].title.substring(0, 22) }}...</v-card-title
+                <v-card-title v-if="movie.title.length > 22"
+                  >{{ movie.title.substring(0, 22) }}...</v-card-title
                 >
-                <v-card-title v-else>{{ movie[siteLang].title }}</v-card-title>
+                <v-card-title v-else>{{ movie.title }}</v-card-title>
                 <!-- Year -->
                 <div
                   v-if="movie.release_date"
@@ -99,7 +99,7 @@ export default {
     },
     async getInfo(filePath, fileToModify, movie) {
       const response = await axios
-        .post(this.baseURL + "/the-movie-db/" + movie.id + "/getInfo")
+        .get(this.baseURL + "/getInfo/" + movie.id)
         .then(async (response) => {
           this.selectedMovie = await response.data;
           if (filePath === null) {

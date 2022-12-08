@@ -43,7 +43,8 @@ const mutations = {
 
   SET_RESULTS: (state, results) => {
     state.results = [];
-    state.results.push(results);
+    state.results.push(...results);
+    console.log("🚀 ~ state.results", state.results);
   },
 
   SET_CURRENT_MOVIE: (state, movie) => {
@@ -60,9 +61,12 @@ const mutations = {
 
 //Actions
 const actions = {
-  async getMovies({ commit }, [page, size]) {
+  async getMovies({ commit }, pagination) {
     const response = await this.$axios
-      .get(process.env.baseURL + `/movies?page=${page}&size=${size}`)
+      .get(
+        process.env.baseURL +
+          `/movies?page=${pagination.page}&size=${pagination.size}`
+      )
       .then((response) => {
         let pagingMoviesDTO = response.data;
         commit("SET_MOVIES", pagingMoviesDTO.Data);
@@ -141,9 +145,7 @@ const actions = {
   //Get search results from API
   async getSearchResults({ commit }, [title, language]) {
     const response = await this.$axios
-      .get(
-        process.env.baseURL + "/search/" + title + "/" + language
-      )
+      .get(process.env.baseURL + "/search/" + title + "/" + language)
       .then((response) => {
         commit("SET_RESULTS", response.data);
       });

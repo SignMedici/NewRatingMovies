@@ -123,11 +123,10 @@ export default {
       if (confirm(this.$t("deleteMovieOK"))) {
         await this.$store.dispatch("moviesStore/deleteMovie", id);
         if (displayedMovies === 1 && this.currentPage > 1) {
-          await this.$store.dispatch("moviesStore/getMovies", [
-            this.currentPage - 1,
-            this.perPage,
-            "admin",
-          ]);
+          await this.$store.dispatch("moviesStore/getMovies", {
+            page: this.currentPage - 1,
+            size: this.perPage
+          });
         } else {
           this.changePageContent(this.currentPage);
         }
@@ -136,20 +135,18 @@ export default {
     },
     async changePageContent(page) {
       this.currentPage = page;
-      await this.$store.dispatch("moviesStore/getMovies", [
-        page - 1,
-        this.perPage,
-        "admin",
-      ]);
+      await this.$store.dispatch("moviesStore/getMovies", {
+        page: page - 1,
+        size: this.perPage
+      });
       window.scrollTo({ top: 400 });
     },
   },
   async created() {
-    const response = await this.$store.dispatch("moviesStore/getMovies", [
-      0,
-      this.perPage,
-      "admin",
-    ]);
+    const response = await this.$store.dispatch("moviesStore/getMovies", {
+      page: 0,
+      size: this.perPage
+    });
     this.showData = true;
   },
 };

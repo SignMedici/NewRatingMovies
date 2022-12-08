@@ -116,7 +116,7 @@ export default {
     },
   },
   async beforeCreate() {
-    await this.$store.dispatch("usersStore/setUsers");
+    await this.$store.dispatch("usersStore/setUsers", {page: 0, size: 10});
   },
 };
 </script>

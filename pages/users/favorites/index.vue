@@ -14,7 +14,7 @@
     <!-- Movies cards -->
     <div class="my-5">
       <MovieRateCards
-        :movies="results[0]"
+        :movies="results"
         :perPage="perPage"
         :nbItems="nbItems"
         @changeHomeContent="changeContent"
