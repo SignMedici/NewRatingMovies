@@ -90,7 +90,7 @@ const store = {
       })
         .then(async (response) => {
           await commit("usersStore/UPDATE_USER", {
-            _id: id,
+            id: id,
             ...response.data,
           });
           await commit("UPDATE_LOGGED_USER", response.data);
@@ -125,7 +125,7 @@ const store = {
   getters: {
     //Check if a user is authenticated
     isAuthenticated(state) {
-      return state.auth.loggedIn; // auth object as default will be added in vuex state, when you initialize nuxt auth
+      return state.auth.user ? true : false; // auth object as default will be added in vuex state, when you initialize nuxt auth
     },
 
     //Check if role is admin

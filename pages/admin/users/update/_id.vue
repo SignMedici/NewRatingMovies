@@ -102,25 +102,25 @@ export default {
   methods: {
     async updateUser() {
       await this.$store.dispatch("usersStore/updateUser", {
-        _id: this.$route.params.id,
+        id: this.$route.params.id,
         nickname: this.nickname,
         email: this.email,
         language: this.userLang,
-        isAdmin: this.isAdmin,
+        is_admin: this.isAdmin,
       });
       this.$toast.success(this.$t("updateDone"));
       this.$router.push("/admin");
     },
   },
   created() {
-    let userUpdate = this.$store.getters["usersStore/getUserById"](
+    let userToUpdate = this.$store.getters["usersStore/getUserById"](
       this.$route.params.id
     );
-    if (userUpdate) {
-      this.nickname = userUpdate.nickname;
-      this.email = userUpdate.email;
-      this.userLang = userUpdate.language;
-      this.isAdmin = userUpdate.isAdmin;
+    if (userToUpdate) {
+      this.nickname = userToUpdate.nickname;
+      this.email = userToUpdate.email;
+      this.userLang = userToUpdate.language;
+      this.isAdmin = userToUpdate.is_admin;
     } else {
       this.$router.push("/admin");
     }

@@ -16,7 +16,7 @@
     </div>
     <div v-if="movies.length > 0">
       <div id="movieCards" class="d-block">
-        <v-card v-for="movie in movies" :key="movie._id">
+        <v-card v-for="movie in movies" :key="movie.id">
           <table>
             <tr>
               <td class="infoTitle">{{ $t("title") }}</td>
@@ -52,7 +52,7 @@
               :to="
                 localePath({
                   name: `admin-movies-update-id`,
-                  params: { id: movie._id },
+                  params: { id: movie.id },
                   hash: '#logo',
                 })
               "
@@ -67,7 +67,7 @@
                 />
               </svg>
             </nuxt-link>
-            <button @click="deleteMovie(movie._id, movies.length)">
+            <button @click="deleteMovie(movie.id, movies.length)">
               <svg
                 style="width: 24px; height: 24px; color: #ad0545"
                 viewBox="0 0 24 24"
@@ -110,7 +110,7 @@ export default {
         if (displayedMovies === 1 && this.currentPage > 1) {
           await this.$store.dispatch("moviesStore/getMovies", {
             page: this.currentPage - 1,
-            size: this.perPage
+            size: this.perPage,
           });
         } else {
           this.changePageContent(this.currentPage);
@@ -121,8 +121,8 @@ export default {
     async changePageContent(page) {
       this.currentPage = page;
       await this.$store.dispatch("moviesStore/getMovies", {
-        page: page - 1,
-        size: this.perPage
+        page: page,
+        size: this.perPage,
       });
       window.scrollTo({ top: 400 });
     },

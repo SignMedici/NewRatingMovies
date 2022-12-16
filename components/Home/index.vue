@@ -30,7 +30,7 @@ export default {
     // console.log("To know width took " + (t1 - t0) + " milliseconds.");
     // var t0 = performance.now();
     await this.$store.dispatch("moviesStore/getMovies", {
-      page: 0,
+      page: 1,
       size: this.perPage
     });
     // var t1 = performance.now();
@@ -40,7 +40,7 @@ export default {
   methods: {
     async changeContent(page) {
       await this.$store.dispatch("moviesStore/getMovies", {
-        page: page - 1,
+        page: page,
         size: this.perPage
       });
       document.getElementById("logo").scrollIntoView();

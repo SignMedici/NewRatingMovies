@@ -1,13 +1,13 @@
 <template>
   <div v-if="roleIsAdmin" id="adminUsersMobile">
     <div v-if="allUsers.length > 0">
-      <v-card v-for="user in allUsers" :key="user._id">
+      <v-card v-for="user in allUsers" :key="user.id">
         <table>
           <tr>
             <td class="infoTitle">#</td>
           </tr>
           <tr>
-            <td class="infoText">{{ user._id }}</td>
+            <td class="infoText">{{ user.id }}</td>
           </tr>
           <tr>
             <td class="infoTitle">{{ $t("nickname") }}</td>
@@ -39,7 +39,7 @@
           <tr>
             <td class="infoTitle">{{ $t("admin") }}</td>
           </tr>
-          <tr v-if="user.isAdmin">
+          <tr v-if="user.is_admin">
             <td><img class="true" src="@/assets/true.png" alt="true.png" /></td>
           </tr>
           <tr v-else>
@@ -53,7 +53,7 @@
             :to="
               localePath({
                 name: 'admin-users-update-id',
-                params: { id: user._id },
+                params: { id: user.id },
                 hash: '#logo',
               })
             "
@@ -68,7 +68,7 @@
               />
             </svg>
           </nuxt-link>
-          <button @click="deleteUser(user._id)">
+          <button @click="deleteUser(user.id)">
             <svg
               style="width: 24px; height: 24px; color: #ad0545"
               viewBox="0 0 24 24"
@@ -96,9 +96,9 @@ export default {
     };
   },
   methods: {
-    async deleteUser(_id) {
+    async deleteUser(id) {
       if (confirm(this.$t("deleteUserOK"))) {
-        await this.$store.dispatch("usersStore/deleteUser", _id);
+        await this.$store.dispatch("usersStore/deleteUser", id);
         this.$toast.success(this.$t("deleteDone"));
       }
     },
@@ -116,7 +116,7 @@ export default {
     },
   },
   async beforeCreate() {
-    await this.$store.dispatch("usersStore/setUsers", {page: 0, size: 10});
+    await this.$store.dispatch("usersStore/setUsers", {page: 1, size: 10});
   },
 };
 </script>

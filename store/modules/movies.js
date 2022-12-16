@@ -23,7 +23,7 @@ const mutations = {
   },
 
   UPDATE_MOVIE: (state, movieToUpdate) => {
-    let index = state.movies.findIndex((obj) => obj._id === movieToUpdate.id);
+    let index = state.movies.findIndex((obj) => obj.id === movieToUpdate.id);
     Object.keys(movieToUpdate.newInfo).forEach((key) => {
       state.movies[index][key] = movieToUpdate.newInfo[key];
     });
@@ -33,7 +33,7 @@ const mutations = {
     state.movies.splice(
       state.movies
         .map(function (movie) {
-          return movie._id;
+          return movie.id;
         })
         .indexOf(idToRemove),
       1
@@ -44,7 +44,6 @@ const mutations = {
   SET_RESULTS: (state, results) => {
     state.results = [];
     state.results.push(...results);
-    console.log("🚀 ~ state.results", state.results);
   },
 
   SET_CURRENT_MOVIE: (state, movie) => {
@@ -109,9 +108,9 @@ const actions = {
       });
   },
 
-  async addMovie({ commit }, data) {
+  async addMovie({ commit }, movieDbId) {
     const response = await this.$axios
-      .post(process.env.baseURL + "/movies", data)
+      .post(process.env.baseURL + "/movies", { movie_db_id: movieDbId })
       .then((response) => {
         commit("ADD_MOVIE", data);
       })
@@ -156,7 +155,7 @@ const actions = {
     const response = await this.$axios
       .get(process.env.baseURL + "/movies/check/" + movieDBId)
       .then((response) => {
-        return response.data;
+        return response.data.is_in_db;
       })
       .catch((err) => {
         this.$toast.error(this.$t("alreadyInCatalog"));
@@ -183,7 +182,7 @@ const getters = {
     return state.results;
   },
   getMovieById: (state) => (id) => {
-    let index = state.movies.findIndex((obj) => obj._id == id);
+    let index = state.movies.findIndex((obj) => obj.id == id);
     return state.movies[index];
   },
 };

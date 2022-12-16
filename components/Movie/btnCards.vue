@@ -40,7 +40,7 @@
                   <button
                     v-if="btnTxt === 'add'"
                     type="submit"
-                    @click="checkIsInDB(filePath, fileToModify, movie)"
+                    @click="addMovie(movie.id)"
                     class="btn w-50 confirmButton"
                   >
                     {{ $t("add") }}
@@ -48,7 +48,7 @@
                   <button
                     v-else-if="btnTxt === 'select'"
                     type="submit"
-                    @click="getInfo(filePath, fileToModify, movie)"
+                    @click="modifyMetaData(filePath, fileToModify)"
                     class="btn w-50 confirmButton"
                   >
                     {{ $t("choose") }}
@@ -90,37 +90,13 @@ export default {
     ...mapState("moviesStore", ["results"]),
   },
   methods: {
-    async checkIsInDB(filePath, fileToModify, movie) {
-      let inDb = await this.$store.dispatch("moviesStore/idInDb", movie.id);
-      if (typeof inDb == "undefined") {
-        this.getInfo(filePath, fileToModify, movie);
-      } else {
-      }
-    },
-    async getInfo(filePath, fileToModify, movie) {
-      const response = await axios
-        .get(this.baseURL + "/getInfo/" + movie.id)
-        .then(async (response) => {
-          this.selectedMovie = await response.data;
-          if (filePath === null) {
-            this.toggleModal(this.selectedMovie);
-          } else if (this.btnTxt === "add") {
-            this.addMovie();
-          } else if (this.btnTxt === "select") {
-            this.selectedMovie.poster = this.url + this.selectedMovie.poster;
-            this.modifyMetaData(filePath, fileToModify);
-          }
-        });
-    },
-
-    modifyMetaData(filePath, fileToModify) {
-      let info = this.selectedMovie;
+    modifyMetaData(filePath, fileToModify, movie) {
       if (
         confirm(
           `${this.$t("useInfoOK")}\n   ` +
-            info[this.siteLang].title +
+            movie[this.siteLang].title +
             " - " +
-            info.release_date.substring(0, 4) +
+            movie.release_date.substring(0, 4) +
             `\n${this.$t("for")}\n   ` +
             fileToModify.name
         )
@@ -134,7 +110,7 @@ export default {
           .post(this.baseURL + "/movies/" + info.movieDbId + "/metadata", {
             format: fileToModify.type,
             path: filePath + fileToModify.name,
-            selectedMovie: info,
+            selectedMovie: movie,
           })
           .then((response) => {
             this.$router.go(0);
@@ -142,8 +118,8 @@ export default {
       }
     },
 
-    async addMovie() {
-      await this.$store.dispatch("moviesStore/addMovie", this.selectedMovie);
+    async addMovie(movieDbId) {
+      await this.$store.dispatch("moviesStore/addMovie", movieDbId);
       this.$toast.success(this.$t("addDone"));
     },
   },

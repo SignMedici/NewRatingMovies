@@ -196,7 +196,7 @@ label {
 .overview {
   overflow: auto;
   text-align: justify;
-  padding: 0 10px 0 0;
+  padding: 0 5px 0 5px;
 }
 .overview::-webkit-scrollbar-track {
   border-radius: 10px;

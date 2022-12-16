@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       perPage: 8,
-      page: 0,
+      page: 1,
       showData: false,
     };
   },

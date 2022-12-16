@@ -13,7 +13,7 @@ const mutations = {
   },
 
   UPDATE_USER: (state, data) => {
-    let index = state.users.findIndex((obj) => obj._id === data._id);
+    let index = state.users.findIndex((obj) => obj.id === data.id);
     Object.keys(data).forEach((key) => {
       state.users[index][key] = data[key];
     });
@@ -35,9 +35,12 @@ const mutations = {
 const actions = {
   async setUsers({ commit }, pagination) {
     const response = await this.$axios
-      .get(process.env.baseURL + `/users?page=${pagination.page}&size=${pagination.size}`)
+      .get(
+        process.env.baseURL +
+          `/users?page=${pagination.page}&size=${pagination.size}`
+      )
       .then((response) => {
-        commit("SET_USERS", response.data);
+        commit("SET_USERS", response.data.Data);
       })
       .catch((err) => {
         this.$toast.error(err);
@@ -46,7 +49,7 @@ const actions = {
 
   async updateUser({ commit }, user) {
     const response = await this.$axios
-      .post(process.env.baseURL + "/users/" + user._id, user)
+      .post(process.env.baseURL + "/users/" + user.id, user)
       .catch((err) => {
         this.$toast.error(err);
       });
@@ -72,7 +75,7 @@ const getters = {
   },
   // Get user by id
   getUserById: (state) => (id) => {
-    let index = state.users.findIndex((obj) => obj._id == id);
+    let index = state.users.findIndex((obj) => obj.id == id);
     return state.users[index];
   },
 };

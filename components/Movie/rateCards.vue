@@ -5,7 +5,7 @@
         <div v-if="movies.length > 0">
           <v-container class="grey lighten-5">
             <v-row no-gutters>
-              <v-col v-for="movie in movies" :key="movie._id" cols="12" md="3">
+              <v-col v-for="movie in movies" :key="movie.id" cols="12" md="3">
                 <v-card class="card">
                   <nuxt-link
                     class="d-flex nav-link active"
@@ -13,7 +13,7 @@
                     :to="
                       localePath({
                         name: 'movies-id',
-                        params: { id: movie._id },
+                        params: { id: movie.id },
                         hash: '#logo',
                       })
                     "
@@ -22,7 +22,7 @@
                   </nuxt-link>
                   <UIFavoriteIcon
                     v-if="isAuthenticated"
-                    :movieDbId="movie.movieDbId"
+                    :movieDbId="movie.movie_db_id"
                   />
                   <div class="d-block">
                     <v-card-title>{{
@@ -33,7 +33,7 @@
                     </v-card-subtitle>
                     <UIRatingStars
                       :myRates="myRates"
-                      :movieDbId="movie.movieDbId"
+                      :movieDbId="movie.movie_db_id"
                       v-if="isAuthenticated"
                     />
                   </div>

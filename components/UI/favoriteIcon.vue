@@ -30,6 +30,7 @@ export default {
       //Add & remove the favorite
       let userId = this.auth.user.id;
       if (userId) {
+        console.log("movieDbId:", this.movieDbId);
         this.$store.dispatch("updateFavorite", [userId, this.movieDbId]);
       } else {
         this.$toast.error(this.$t("pleaseLogoutLogin"));
@@ -37,7 +38,7 @@ export default {
     },
   },
   created() {
-    this.favStatus = this.auth.user.my_favorites.includes(this.movieDbId)
+    this.favStatus = this.auth.user?.my_favorites?.includes(this.movieDbId)
       ? true
       : false;
   },

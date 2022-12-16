@@ -36,13 +36,13 @@ export default {
       // Update the language of the user in DB
       if (this.auth.user) {
         await this.$store.dispatch("usersStore/updateUser", {
-          _id: this.auth.user.id,
+          id: this.auth.user.id,
           language: langCode,
         });
 
         // and the profile in store
         this.$store.commit("UPDATE_LOGGED_USER", {
-          _id: this.auth.user.id,
+          id: this.auth.user.id,
           language: langCode,
         });
       }
